@@ -6,8 +6,7 @@
 
 {
   imports =
-    [
-      # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -15,8 +14,8 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10;
+      enable = true;
+      configurationLimit = 10;
   };
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -39,13 +38,13 @@
   };
 
   hardware.opengl = {
-    enable = true;
-    extraPackages = [
-      pkgs.libvdpau-va-gl
-    ];
+      enable = true;
+      extraPackages = [
+          pkgs.libvdpau-va-gl
+      ];
 
-    driSupport = true;
-    driSupport32Bit = true;
+      driSupport = true;
+      driSupport32Bit = true;
   };
 
   hardware.steam-hardware.enable = true;
@@ -68,31 +67,30 @@
   security.sudo.enable = false;
 
   security.doas.extraRules = [{
-    users = [ "manuel" ];
-    keepEnv = true;
-    persist = true;
+      users = [ "manuel" ];
+      keepEnv = true;
+      persist = true;
   }];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "games" "input" "geoclue" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-    packages = with pkgs; [
-    ];
+     isNormalUser = true;
+     extraGroups = [ "wheel" "audio" "video" "games" "input" "geoclue" ]; # Enable ‘sudo’ for the user.
+     shell = pkgs.fish;
+     packages = with pkgs; [
+     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #   wget
-    git
-    links2
-    ripgrep
-    fd
-    htop
-    openrgb
+  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #   wget
+  links2
+  ripgrep
+  fd
+  htop
+  openrgb
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -113,36 +111,34 @@
   programs.dconf.enable = true;
 
   services.geoclue2 = {
-    enable = true;
-    appConfig."gammastep".isAllowed = true;
-    appConfig."gammastep".isSystem = false;
+      enable = true;
+      appConfig."gammastep".isAllowed = true;
+      appConfig."gammastep".isSystem = false;
   };
 
   services.gnome.gnome-keyring.enable = true;
   xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
+  	enable = true;
+  	extraPortals = [
+      		pkgs.xdg-desktop-portal-wlr
+  	];
   };
 
   services.openssh = {
-    enable = true;
+      enable = true;
   };
 
 
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
+          nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+                    inherit pkgs;
+          };
   };
 
   nix.gc = {
-    persistent = true;
-    automatic = true;
+      persistent = true;
+      automatic = true;
   };
-  nix.extraOptions = "experimental-features = nix-command flakes";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -153,7 +149,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true; #broken with flakes
+  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
