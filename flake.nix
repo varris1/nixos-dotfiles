@@ -8,20 +8,20 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nur, ... }:
     let
+      username = "manuel";
+
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
-        overlays = [ self.overlays.default ];
+        overlays = [ self.overlays.default nur.overlay ];
       };
-
-
-      lib = nixpkgs.lib;
 
     in
     {
@@ -34,10 +34,10 @@
           };
         });
 
-      nixosConfigurations.terra = lib.nixosSystem
+      nixosConfigurations.terra = nixpkgs.lib.nixosSystem
         {
           inherit system;
-          specialArgs = inputs;
+          specialArgs = { inherit inputs; };
           modules = [
             ./system/configuration.nix
             home-manager.nixosModules.home-manager
@@ -46,11 +46,13 @@
                 {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.manuel = import ./user/home.nix;
-                  extraSpecialArgs = { inherit pkgs; };
+                  users.${username} = import ./user/home.nix;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    inherit pkgs;
+                  };
                 };
             }
-            nur.nixosModules.nur
           ];
         };
     };

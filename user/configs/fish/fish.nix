@@ -31,6 +31,21 @@
         	end
         	popd &> /dev/null
       '';
+
+      nor = ''
+        pushd &> /dev/null
+        cd "${config.home.homeDirectory}/.dotfiles"
+        doas nixos-rebuild switch --upgrade --flake .#
+        popd &> /dev/null
+      '';
+
+      nou = ''
+        pushd &> /dev/null
+        cd "${config.home.homeDirectory}/.dotfiles"
+        nix flake update --commit-lock-file
+        doas nixos-rebuild switch --upgrade --flake .#
+        popd &> /dev/null
+      '';
     };
     shellAliases = {
       hm = "home-manager";
