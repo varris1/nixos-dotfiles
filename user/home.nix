@@ -82,6 +82,14 @@
     enableFishIntegration = true;
   };
 
+  programs.command-not-found.enable = false;
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+
+
   services.gnome-keyring.enable = true;
 
   # This value determines the Home Manager release that your
@@ -93,9 +101,6 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 }

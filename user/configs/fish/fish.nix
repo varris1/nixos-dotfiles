@@ -23,7 +23,7 @@
       ec = ''
         	pushd &> /dev/null
         	cd "${config.home.homeDirectory}"
-        	set "filename" (${pkgs.fd}/bin/fd -t f . ${config.home.homeDirectory}/.config/nixpkgs | \
+        	set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
         	            ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
         	            --preview "${pkgs.python3Packages.pygments}/bin/pygmentize -g -O linenos=1 {}")
         	if test -f "$filename"

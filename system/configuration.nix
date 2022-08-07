@@ -142,7 +142,11 @@
     persistent = true;
     automatic = true;
   };
-  nix.extraOptions = "experimental-features = nix-command flakes";
+
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+    warn-dirty = false
+  '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

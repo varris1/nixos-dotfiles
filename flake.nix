@@ -12,7 +12,6 @@
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
-        inherit system;
         config = { allowUnfree = true; };
       };
 
@@ -20,20 +19,18 @@
 
     in
     {
-      nixosConfigurations = {
-        terra = lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            ./system/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.manuel = import ./user/home.nix;
-            }
-          ];
-        };
+      nixosConfigurations.terra = lib.nixosSystem {
+        inherit system;
+        specialArgs = inputs;
+        modules = [
+          ./system/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.manuel = import ./user/home.nix;
+          }
+        ];
       };
     };
 }
