@@ -21,6 +21,54 @@
         "type": "github"
       }
     },
+    "kakoune-auto-pairs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647175978,
+        "narHash": "sha256-MgqCuGj03ctKty2yQgQvy6qV/0s7euNwukhSjqauqW8=",
+        "owner": "alexherbo2",
+        "repo": "auto-pairs.kak",
+        "rev": "bfdcb8566076f653ec707f86207f83ea75173ce9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexherbo2",
+        "repo": "auto-pairs.kak",
+        "type": "github"
+      }
+    },
+    "kakoune-smarttab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649581983,
+        "narHash": "sha256-STLZSwQPM+gTnkA+FQOF4I0ifPTjQWpEc/95JRzvIqU=",
+        "owner": "andreyorst",
+        "repo": "smarttab.kak",
+        "rev": "86ac6599b13617ff938905ba4cdd8225d7eb6a2e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreyorst",
+        "repo": "smarttab.kak",
+        "type": "github"
+      }
+    },
+    "kakoune-sort-selections": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647781028,
+        "narHash": "sha256-P0uyuKQ//QqzOHs920gggXUKyWoMeAWn7XnlOQazHbc=",
+        "owner": "occivink",
+        "repo": "kakoune-sort-selections",
+        "rev": "fdc03616b83140d3657f971dbc914269f9c8f1ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "occivink",
+        "repo": "kakoune-sort-selections",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1659803779,
@@ -38,11 +86,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1659896700,
-        "narHash": "sha256-PG0jBH9lpE9XBBP+sq9Gq4baZwwbeqWBnob5jFuaS+Q=",
+        "lastModified": 1659903500,
+        "narHash": "sha256-JFOiQXNJIPb51sDFGuXaL6x102bwAkpsHm43pY3W1wI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "d023e5cc92e746c130891b6110f5cf28d9734fb4",
+        "rev": "056c956ec67e6ead227ba08d6d4b7078786e75e1",
         "type": "github"
       },
       "original": {
@@ -51,11 +99,31 @@
         "type": "github"
       }
     },
+    "rofi-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1555978826,
+        "narHash": "sha256-nAVNtibzVhv1wBcAo36jvHbsN7spFYjjm3IhcAeoM6M=",
+        "owner": "bardisty",
+        "repo": "gruvbox-rofi",
+        "rev": "0b4cf703087e2150968826b7508cf119437eba7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bardisty",
+        "repo": "gruvbox-rofi",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "kakoune-auto-pairs": "kakoune-auto-pairs",
+        "kakoune-smarttab": "kakoune-smarttab",
+        "kakoune-sort-selections": "kakoune-sort-selections",
         "nixpkgs": "nixpkgs",
-        "nur": "nur"
+        "nur": "nur",
+        "rofi-theme": "rofi-theme"
       }
     },
     "utils": {
