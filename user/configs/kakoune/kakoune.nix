@@ -1,32 +1,19 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   smarttab = pkgs.kakouneUtils.buildKakounePlugin {
-    name = "smarttab-kak";
-    src = pkgs.fetchFromGitHub {
-      owner = "andreyorst";
-      repo = "smarttab.kak";
-      rev = "86ac6599b13617ff938905ba4cdd8225d7eb6a2e";
-      sha256 = "1992xwf2aygzfd26lhg3yiy253g0hl1iagj0kq9yhcqg0i5xjcj9";
-    };
+    name = "kakoune-smarttab";
+    src = inputs.kakoune-smarttab;
   };
+
   auto-pairs = pkgs.kakouneUtils.buildKakounePlugin {
-    name = "auto-pairs-kak";
-    src = pkgs.fetchFromGitHub {
-      owner = "alexherbo2";
-      repo = "auto-pairs.kak";
-      rev = "bfdcb8566076f653ec707f86207f83ea75173ce9";
-      sha256 = "0vx9msk8wlj8p9qf6yiv9gzrbanb5w245cidnx5cppgld2w842ij";
-    };
+    name = "kakoune-auto-pairs";
+    src = inputs.kakoune-auto-pairs;
   };
   sort-selections = pkgs.kakouneUtils.buildKakounePlugin {
     name = "sort-selections-kak";
-    src = pkgs.fetchFromGitHub {
-      owner = "occivink";
-      repo = "kakoune-sort-selections";
-      rev = "fdc03616b83140d3657f971dbc914269f9c8f1ff";
-      sha256 = "P0uyuKQ//QqzOHs920gggXUKyWoMeAWn7XnlOQazHbc=";
-    };
+    src = inputs.kakoune-sort-selections;
   };
+
 in
 {
   programs.kakoune = {
@@ -80,3 +67,4 @@ in
     pkgs.rnix-lsp
   ];
 }
+

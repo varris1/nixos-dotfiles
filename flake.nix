@@ -9,11 +9,26 @@
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Kakoune Plugins
+    kakoune-smarttab.url = "github:andreyorst/smarttab.kak";
+    kakoune-smarttab.flake = false;
+
+    kakoune-auto-pairs.url = "github:alexherbo2/auto-pairs.kak";
+    kakoune-auto-pairs.flake = false;
+
+    kakoune-sort-selections.url = "github:occivink/kakoune-sort-selections";
+    kakoune-sort-selections.flake = false;
+    # Kakoune Plugins End
+
+    rofi-theme.url = "github:bardisty/gruvbox-rofi";
+    rofi-theme.flake = false;
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nur, ... }:
     let
       username = "manuel";
+      hostname = "terra";
 
       system = "x86_64-linux";
 
@@ -32,9 +47,13 @@
               "JetBrainsMono"
             ];
           };
+          discord = prev.discord.override {
+            nss = pkgs.nss_latest;
+            withOpenASAR = true;
+          };
         });
 
-      nixosConfigurations.terra = nixpkgs.lib.nixosSystem
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem
         {
           inherit system;
           specialArgs = { inherit inputs; };

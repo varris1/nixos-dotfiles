@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   wobsock = "/tmp/wob-swayvol.fifo";
   wallpaper = "/mnt/hdd/Wallpapers/gruv-4.jpg";
@@ -45,13 +45,7 @@ let
       echo "Xwayland: $DSP - Primary monitor set"
     '';
 
-  rofi-theme = pkgs.fetchFromGitHub
-    {
-      owner = "bardisty";
-      repo = "gruvbox-rofi";
-      rev = "0b4cf703087e2150968826b7508cf119437eba7a";
-      sha256 = "nAVNtibzVhv1wBcAo36jvHbsN7spFYjjm3IhcAeoM6M=";
-    } + "/gruvbox-dark.rasi";
+  rofi-theme = inputs.rofi-theme + "/gruvbox-dark.rasi";
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh"
     ''
@@ -91,6 +85,7 @@ in
           "${modifier}+Shift+o" = "exec ${killprocess}/bin/killprocess.sh";
 
           "${modifier}+q" = "exec ${pkgs.firefox}/bin/firefox";
+          "${modifier}+r" = "exec ${pkgs.xfce.thunar}/bin/thunar";
 
           "Ctrl+Space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "Ctrl+grave" = "exec ${pkgs.mako}/bin/makoctl restore";
@@ -176,6 +171,9 @@ in
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
     '';
+    wrapperFeatures = {
+      gtk = true;
+    };
   };
 
   programs.mako = {

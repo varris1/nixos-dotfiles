@@ -27,6 +27,7 @@
     pkgs.pavucontrol
     pkgs.polymc
     pkgs.steam
+    pkgs.steam-run
     pkgs.thunderbird
     pkgs.twemoji-color-font
     pkgs.xivlauncher
@@ -59,7 +60,7 @@
     enable = true;
     theme = {
       package = pkgs.gruvbox-dark-gtk;
-      name = "gruvbox-dark-gtk";
+      name = "gruvbox-dark";
     };
     font = {
       name = "JetBrainsMono Nerd Font";
@@ -88,10 +89,15 @@
     enableFishIntegration = true;
   };
 
-
-
   services.gnome-keyring.enable = true;
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+
+    music = "/mnt/hdd/Music";
+    download = "/mnt/hdd/Downloads";
+  };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -101,6 +107,5 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.05";
-
-  nixpkgs.config.allowUnfree = true;
 }
+

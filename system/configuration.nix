@@ -34,8 +34,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    #keyMap = "us-intl";
-    useXkbConfig = true; # use xkbOptions in tty.
+    keyMap = "us-acentos";
   };
 
   hardware.opengl = {
@@ -121,9 +120,9 @@
   services.gnome.gnome-keyring.enable = true;
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
     ];
   };
 

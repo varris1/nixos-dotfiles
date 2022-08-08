@@ -35,7 +35,7 @@
       nor = ''
         pushd &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
-        doas nixos-rebuild switch --upgrade --flake .#
+        doas nixos-rebuild switch --flake .#
         popd &> /dev/null
       '';
 
@@ -48,7 +48,6 @@
       '';
     };
     shellAliases = {
-      hm = "home-manager";
       nf = "${pkgs.neofetch}/bin/neofetch";
     };
   };
