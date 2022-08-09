@@ -82,7 +82,6 @@
       main_window_color = "yellow";
       visualizer_color = "default, yellow";
       header_window_color = "yellow";
-
     };
   };
   services.mpdris2 = {

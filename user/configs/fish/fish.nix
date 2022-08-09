@@ -42,7 +42,7 @@
       nou = ''
         pushd &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
-        nix flake update --commit-lock-file
+        nix flake lock --commit-lock-file
         doas nixos-rebuild switch --upgrade --flake .#
         popd &> /dev/null
       '';

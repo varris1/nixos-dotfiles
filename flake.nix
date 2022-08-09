@@ -2,27 +2,41 @@
   description = "My personal dotfiles";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "nixpkgs/nixos-unstable";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Kakoune Plugins
-    kakoune-smarttab.url = "github:andreyorst/smarttab.kak";
-    kakoune-smarttab.flake = false;
+    kakoune-smarttab = {
+      url = "github:andreyorst/smarttab.kak";
+      flake = false;
+    };
 
-    kakoune-auto-pairs.url = "github:alexherbo2/auto-pairs.kak";
-    kakoune-auto-pairs.flake = false;
+    kakoune-auto-pairs = {
+      url = "github:alexherbo2/auto-pairs.kak";
+      flake = false;
+    };
 
-    kakoune-sort-selections.url = "github:occivink/kakoune-sort-selections";
-    kakoune-sort-selections.flake = false;
+    kakoune-sort-selections = {
+      url = "github:occivink/kakoune-sort-selections";
+      flake = false;
+    };
     # Kakoune Plugins End
 
-    rofi-theme.url = "github:bardisty/gruvbox-rofi";
-    rofi-theme.flake = false;
+    rofi-theme = {
+      url = "github:bardisty/gruvbox-rofi";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nur, ... }:
