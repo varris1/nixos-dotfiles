@@ -11,7 +11,9 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot = {
@@ -84,8 +86,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #   wget
     git
     links2
     ripgrep
@@ -103,10 +103,6 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   services.udev.packages = [ pkgs.openrgb ];
 
   programs.dconf.enable = true;
@@ -128,13 +124,6 @@
 
   services.openssh = {
     enable = true;
-  };
-
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
   };
 
   nix.gc = {

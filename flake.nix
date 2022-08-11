@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs = {
-      url = "nixpkgs/nixos-unstable";
+      #url = "nixpkgs/nixos-unstable";
+      url = "nixpkgs/nixpkgs-unstable";
     };
 
     home-manager = {
@@ -39,7 +40,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, ... }:
+  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
     let
       username = "manuel";
       hostname = "terra";
@@ -56,13 +57,14 @@
     {
       overlays.default =
         (final: prev: rec {
+
           nerdfonts = prev.nerdfonts.override {
             fonts = [
               "JetBrainsMono"
             ];
           };
+
           discord = prev.discord.override {
-            nss = pkgs.nss_latest;
             withOpenASAR = true;
           };
         });
@@ -75,16 +77,15 @@
             ./system/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager =
-                {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.${username} = import ./user/home.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    inherit pkgs;
-                  };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./user/home.nix;
+                extraSpecialArgs = {
+                  inherit inputs;
+                  inherit pkgs;
                 };
+              };
             }
           ];
         };
