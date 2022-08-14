@@ -74,6 +74,7 @@
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "Varris";
     userEmail = "varris@posteo.net";
   };
@@ -90,6 +91,8 @@
   };
 
   services.gnome-keyring.enable = true;
+
+  programs.aria2.enable = true;
 
   xdg.userDirs = {
     enable = true;

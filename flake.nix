@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs = {
-      #url = "nixpkgs/nixos-unstable";
       url = "nixpkgs/nixpkgs-unstable";
     };
 
@@ -41,6 +40,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+
     let
       username = "manuel";
       hostname = "terra";
@@ -49,7 +49,10 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
+        };
         overlays = [ self.overlays.default nur.overlay ];
       };
 
@@ -65,7 +68,7 @@
           };
 
           discord = prev.discord.override {
-            withOpenASAR = true;
+            #            withOpenASAR = true;
           };
         });
 

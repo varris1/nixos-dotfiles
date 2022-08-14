@@ -33,7 +33,17 @@
   time.timeZone = "Europe/Vienna";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_NUMERIC = "de_AT.UTF-8";
+      LC_TIME = "de_AT.UTF-8";
+      LC_MONETARY = "de_AT.UTF-8";
+      LC_MEASUREMENT = "de_AT.UTF-8";
+      LC_IDENTIFICATION = "de_AT.UTF-8";
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us-acentos";
@@ -62,9 +72,6 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   security.doas.enable = true;
   security.sudo.enable = false;
 
@@ -74,13 +81,15 @@
     persist = true;
   }];
 
+  security.polkit.enable = true;
+
+  programs.fish.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "games" "input" "geoclue" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
-    packages = with pkgs; [
-    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -93,6 +102,7 @@
     htop
     openrgb
   ];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -114,6 +124,7 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -126,6 +137,16 @@
     enable = true;
   };
 
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.cnijfilter2 ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
   nix.gc = {
     persistent = true;
     automatic = true;
@@ -136,23 +157,6 @@
     warn-dirty = false
   '';
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true; #broken with flakes
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
