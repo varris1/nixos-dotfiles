@@ -2,9 +2,7 @@
   description = "My personal dotfiles";
 
   inputs = {
-    nixpkgs = {
-      url = "nixpkgs/nixpkgs-unstable";
-    };
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,10 +35,12 @@
       url = "github:bardisty/gruvbox-rofi";
       flake = false;
     };
+
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
-
+  outputs = { self, nixpkgs, home-manager, nur, grub2-themes, ... }@inputs:
     let
       username = "manuel";
       hostname = "terra";
@@ -55,20 +55,14 @@
         };
         overlays = [ self.overlays.default nur.overlay ];
       };
-
     in
     {
       overlays.default =
         (final: prev: rec {
-
           nerdfonts = prev.nerdfonts.override {
             fonts = [
               "JetBrainsMono"
             ];
-          };
-
-          discord = prev.discord.override {
-            #            withOpenASAR = true;
           };
         });
 
@@ -90,6 +84,7 @@
                 };
               };
             }
+            grub2-themes.nixosModule
           ];
         };
     };

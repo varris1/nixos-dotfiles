@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -11,21 +11,41 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
+
+  boot = {
+    consoleLogLevel = 3;
+
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "amdgpu.ppfeaturemask=0xffffffff"
+    ];
+
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+
+      grub = {
+        enable = true;
+        useOSProber = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+
+      grub2-theme = {
+        enable = true;
+        theme = "vimix";
+        screen = "2k";
+      };
+    };
+
+    initrd.availableKernelModules = [ "amdgpu" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10;
-  };
-
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.availableKernelModules = [ "amdgpu" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
 
   networking.hostName = "terra"; # Define your hostname.
 
@@ -72,6 +92,16 @@
     pulse.enable = true;
   };
 
+  services.locate = {
+    enable = true;
+    locate = pkgs.plocate;
+    localuser = null;
+    prunePaths = lib.mkOptionDefault [
+      "/mnt/btrfs"
+    ];
+    interval = "hourly";
+  };
+
   security.doas.enable = true;
   security.sudo.enable = false;
 
@@ -88,7 +118,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" ];
     shell = pkgs.fish;
   };
 
@@ -145,6 +175,17 @@
   services.avahi = {
     enable = true;
     nssmdns = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        vt = 1;
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd sway";
+      };
+      user = "manuel";
+    };
   };
 
   nix.gc = {

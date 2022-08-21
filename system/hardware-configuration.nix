@@ -21,7 +21,7 @@
       options = [ "subvol=@nixos-root" "compress-force=zstd" ];
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     {
       device = "/dev/disk/by-uuid/1AC9-E1AD";
       fsType = "vfat";
