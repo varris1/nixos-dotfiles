@@ -39,22 +39,6 @@
         "type": "github"
       }
     },
-    "kakoune-auto-pairs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1647175978,
-        "narHash": "sha256-MgqCuGj03ctKty2yQgQvy6qV/0s7euNwukhSjqauqW8=",
-        "owner": "alexherbo2",
-        "repo": "auto-pairs.kak",
-        "rev": "bfdcb8566076f653ec707f86207f83ea75173ce9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "alexherbo2",
-        "repo": "auto-pairs.kak",
-        "type": "github"
-      }
-    },
     "kakoune-smarttab": {
       "flake": false,
       "locked": {
@@ -120,11 +104,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1661618423,
-        "narHash": "sha256-43J94pXW1GQBwHRa4gBjDsOr7DgVlVdXu5sllJJbGvg=",
+        "lastModified": 1661788105,
+        "narHash": "sha256-j9rqK3d2wBwggYZ+mrhMlM2AVQ96d99Kuh0d0FMIW8M=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "dda41de026f7419f6ee1d4a0d5d9c10a7b56d54c",
+        "rev": "7b5af0a33fd0e3bcae7a993f733e4635ba87ef54",
         "type": "github"
       },
       "original": {
@@ -153,7 +137,6 @@
       "inputs": {
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
-        "kakoune-auto-pairs": "kakoune-auto-pairs",
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
         "nixpkgs": "nixpkgs_2",
