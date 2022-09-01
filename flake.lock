@@ -71,6 +71,22 @@
         "type": "github"
       }
     },
+    "mesa-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662051737,
+        "narHash": "sha256-xGBrMUwXM9i5KViivdBgtb9n4HdUoMOGjsoDSp9IypI=",
+        "ref": "refs/heads/main",
+        "rev": "23fca58ef304dc195bdb01878f5834e5ea70a7d4",
+        "revCount": 159032,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1661999158,
@@ -104,11 +120,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1662036324,
-        "narHash": "sha256-DwXECqazTrHw8syTf7724ZrMufGx7OU2fftLN6kvyUM=",
+        "lastModified": 1662062412,
+        "narHash": "sha256-g2HuS8+wxKx3VcdXxQitxRWPQ0MA/vfztfDEDiDUB94=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3ca4abf86bd5759ca3f26b8011d41dc1b6b23c61",
+        "rev": "56a831bed43862c0d8655b055d9ee52fb3cb2645",
         "type": "github"
       },
       "original": {
@@ -139,6 +155,7 @@
         "home-manager": "home-manager",
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
+        "mesa-git": "mesa-git",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "rofi-theme": "rofi-theme",
