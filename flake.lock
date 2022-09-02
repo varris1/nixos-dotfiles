@@ -89,11 +89,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1661353537,
-        "narHash": "sha256-1E2IGPajOsrkR49mM5h55OtYnU0dGyre6gl60NXKITE=",
+        "lastModified": 1661799568,
+        "narHash": "sha256-P3xXCyYfd6WzVC3anpb5ZvUeZ6vMttcs05OWGWvgc+E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0e304ff0d9db453a4b230e9386418fd974d5804a",
+        "rev": "c3e4dc4f6d23c7e41dda5ce98956c75c7779e2fa",
         "type": "github"
       },
       "original": {
@@ -104,11 +104,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1662062412,
-        "narHash": "sha256-g2HuS8+wxKx3VcdXxQitxRWPQ0MA/vfztfDEDiDUB94=",
+        "lastModified": 1662143203,
+        "narHash": "sha256-Jh8IOPFh1lXf2lw7mNOx2TFvLYYzviW4pN+hAhdadOo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "56a831bed43862c0d8655b055d9ee52fb3cb2645",
+        "rev": "b6f234155b9ae9134e804aad547ef70a191bad06",
         "type": "github"
       },
       "original": {
@@ -143,7 +143,8 @@
         "nur": "nur",
         "rofi-theme": "rofi-theme",
         "sway-git": "sway-git",
-        "wlroots-git": "wlroots-git"
+        "wlroots-git": "wlroots-git",
+        "xorg-git": "xorg-git"
       }
     },
     "sway-git": {
@@ -191,6 +192,22 @@
       "original": {
         "type": "git",
         "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
+      }
+    },
+    "xorg-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661927934,
+        "narHash": "sha256-SRV2DeWFWO8SmBLOfqmPQasnYLXwwZYZRiuduE72bwY=",
+        "ref": "refs/heads/master",
+        "rev": "79c572fbd349cb6373f685a502e430552f856995",
+        "revCount": 17898,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
       }
     }
   },
