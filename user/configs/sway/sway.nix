@@ -131,6 +131,7 @@ in
         { command = "${xwaylandSetPrimary}/bin/xwayland-setprimary.sh"; always = true; }
         { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
         { command = "${pkgs.openrgb}/bin/openrgb --server --profile autorun.orp"; }
+        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
       ];
       bars = [{
         command = "${pkgs.waybar}/bin/waybar";
@@ -167,6 +168,7 @@ in
       };
     };
     extraConfig = ''
+      seat seat0 xcursor_theme capitaine-cursors-white 32
     '';
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1

@@ -47,7 +47,13 @@
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
-  networking.hostName = "terra"; # Define your hostname.
+  networking = {
+    hostName = "terra"; # Define your hostname.
+    networkmanager = {
+      enable = true;
+    };
+    firewall.checkReversePath = false;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Vienna";
@@ -102,37 +108,50 @@
     interval = "hourly";
   };
 
-  security.doas.enable = true;
-  security.sudo.enable = false;
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
 
-  security.doas.extraRules = [{
-    users = [ "manuel" ];
-    keepEnv = true;
-    persist = true;
-  }];
-
-  security.polkit.enable = true;
+  security = {
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [{
+        users = [ "manuel" ];
+        keepEnv = true;
+        persist = true;
+      }];
+    };
+    polkit.enable = true;
+  };
 
   programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" ];
+    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" "networkmanager" "nm-openvpn" ];
     shell = pkgs.fish;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    links2
-    ripgrep
-    fd
-    htop
-    openrgb
-  ];
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment = {
+    systemPackages = with pkgs; [
+      git
+      links2
+      ripgrep
+      fd
+      htop
+      openrgb
+      unzip
+      unrar
+      p7zip
+    ];
+    pathsToLink = [ "/share/zsh" ];
+    binsh = "${pkgs.dash}/bin/dash";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

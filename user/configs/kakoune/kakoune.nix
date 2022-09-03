@@ -5,10 +5,6 @@ let
     src = inputs.kakoune-smarttab;
   };
 
-  auto-pairs = pkgs.kakouneUtils.buildKakounePlugin {
-    name = "kakoune-auto-pairs";
-    src = inputs.kakoune-auto-pairs;
-  };
   sort-selections = pkgs.kakouneUtils.buildKakounePlugin {
     name = "sort-selections-kak";
     src = inputs.kakoune-sort-selections;
@@ -21,9 +17,11 @@ in
     plugins = with pkgs.kakounePlugins; [
       smarttab
       kakboard
-      auto-pairs
-      pkgs.kak-lsp
+      #auto-pairs-kak
+      kak-lsp
       sort-selections
+      powerline-kak
+      kakoune-extra-filetypes
     ];
     config = {
       colorScheme = "gruvbox-dark";
@@ -53,13 +51,17 @@ in
     };
     extraConfig = ''
       set global startup_info_version 99999999
-      set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` ` “ ” ‘ ’ « » ‹ ›
+      #set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` ` “ ” ‘ ’ « » ‹ ›
 
       eval %sh{kak-lsp --kakoune -s $kak_session}  # Not needed if you load it with plug.kak.
       lsp-enable
 
       map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
 
+      require-module powerline
+      powerline-start
+      powerline-theme gruvbox
+      powerline-separator global half-step
     '';
   };
 

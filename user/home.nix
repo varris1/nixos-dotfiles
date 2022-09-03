@@ -17,9 +17,10 @@
   home.homeDirectory = "/home/manuel";
   home.packages = [
     pkgs.appimage-run
-    pkgs.bottles
+    #    pkgs.bottles
     pkgs.discord
     pkgs.firefox
+    pkgs.lutris
     pkgs.nerdfonts
     pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-cjk-serif
@@ -69,6 +70,11 @@
     iconTheme = {
       package = pkgs.gruvbox-dark-icons-gtk;
       name = "oomox-gruvbox-dark";
+    };
+    cursorTheme = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors-white";
+      size = 32;
     };
   };
 

@@ -42,8 +42,8 @@
 
   fileSystems."/home" =
     {
-      device = "/dev/disk/by-uuid/d94babc9-ef09-43bb-949d-ed477ff4f4c2";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/4dd7a8ea-311a-458b-8839-1d92c7abab1f";
+      fsType = "xfs";
     };
 
   fileSystems."/opt/games" =
@@ -60,7 +60,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  # networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp6s0.useDHCP = lib.mkDefault true;
 
