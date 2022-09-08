@@ -2,7 +2,9 @@
   "nodes": {
     "grub2-themes": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1661882555,
@@ -26,11 +28,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1662472236,
-        "narHash": "sha256-epA5KzVUxw9ZV+st2aU4oFfJGyIcYleTpX28wsCQQP4=",
+        "lastModified": 1662583828,
+        "narHash": "sha256-5rlP4RhAJX+n2Jd1S6vlDksOu9Wsodzv+DeKHTI/m9o=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "de94878b6b83f7f2cfda9cdff005417a6d7ac82c",
+        "rev": "22113a3ae3c8410c682324e1ac3d0b995ceaf82a",
         "type": "github"
       },
       "original": {
@@ -74,11 +76,11 @@
     "mesa-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1662424536,
-        "narHash": "sha256-zNcrlXSs4/nzuuyirJrWJr2OSJwBmkCxAo225beNm54=",
+        "lastModified": 1662506186,
+        "narHash": "sha256-KcNOapj/UuaYVnq3T40TP+jCkokgg2NTLN62dbb8JKQ=",
         "ref": "refs/heads/main",
-        "rev": "4330313666f85da4f1435007af9b584298260b01",
-        "revCount": 159314,
+        "rev": "6e020dff99e5f3fd6e059d158c46e16dc69ecc3e",
+        "revCount": 159361,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       },
@@ -88,22 +90,6 @@
       }
     },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1661999158,
-        "narHash": "sha256-mJLfGfeHHt2psXAynhurZ0ciul1q0Ay+VrBzPi2x3rw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "cc9c837aa23a08b18bdda489dbe9728c5aa88466",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1662096612,
         "narHash": "sha256-R+Q8l5JuyJryRPdiIaYpO5O3A55rT+/pItBrKcy7LM4=",
@@ -120,11 +106,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1662495434,
-        "narHash": "sha256-1Ofwetc8fci5tDf7uiJEaodZ9xCaHJf1PuryyUAS8Xc=",
+        "lastModified": 1662584505,
+        "narHash": "sha256-aOwo5NVWV3sudmZct0sof+6/ywqBiWOPMAbrpxPATXM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b0a35357871c473c5cd1de2a0a66abdcef4f52c7",
+        "rev": "144e03494fec7c6d6547949f90d63b4cde9f27c2",
         "type": "github"
       },
       "original": {
@@ -156,7 +142,7 @@
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
         "mesa-git": "mesa-git",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nur": "nur",
         "rofi-theme": "rofi-theme",
         "sway-git": "sway-git",
@@ -198,11 +184,11 @@
     "wlroots-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1661882030,
-        "narHash": "sha256-Kw0MG4rXdTnbndVLLCNwkXDmNszwdQZmm7pwI1R3Kds=",
+        "lastModified": 1662384859,
+        "narHash": "sha256-oEyanqgkpIAXmv2oTyT6FNv/mb9PrU5mf/0CgnU07Oo=",
         "ref": "refs/heads/master",
-        "rev": "fd0b0276c9ecc159549acff48b932b83ec3b4f12",
-        "revCount": 5685,
+        "rev": "f8ae56490664e716ea1ad701172c7aaa39e9a5ab",
+        "revCount": 5688,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
       },
