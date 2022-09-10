@@ -30,7 +30,7 @@
 
       grub = {
         enable = true;
-        useOSProber = true;
+        useOSProber = false;
         efiSupport = true;
         device = "nodev";
       };
@@ -43,8 +43,9 @@
     };
 
     initrd.availableKernelModules = [ "amdgpu" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
+
   };
 
   networking = {
@@ -103,7 +104,6 @@
     locate = pkgs.plocate;
     localuser = null;
     prunePaths = lib.mkOptionDefault [
-      "/mnt/btrfs"
     ];
     interval = "hourly";
   };
@@ -127,6 +127,7 @@
   };
 
   programs.fish.enable = true;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
@@ -153,18 +154,12 @@
     binsh = "${pkgs.dash}/bin/dash";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
   services.udev.packages = [ pkgs.openrgb ];
 
   programs.dconf.enable = true;
+
+  programs.kdeconnect.enable = true;
 
   services.geoclue2 = {
     enable = true;
@@ -206,6 +201,8 @@
       user = "manuel";
     };
   };
+
+  services.fwupd.enable = true;
 
   nix.gc = {
     persistent = true;

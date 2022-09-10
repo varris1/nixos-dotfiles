@@ -76,11 +76,11 @@
     "mesa-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1662506186,
-        "narHash": "sha256-KcNOapj/UuaYVnq3T40TP+jCkokgg2NTLN62dbb8JKQ=",
+        "lastModified": 1662758755,
+        "narHash": "sha256-dOlQAySir0NB3VXCngV/vfNNTqG0ftI8EZ8t0nEhf40=",
         "ref": "refs/heads/main",
-        "rev": "6e020dff99e5f3fd6e059d158c46e16dc69ecc3e",
-        "revCount": 159361,
+        "rev": "e6cdffa0fcba7289ce2b51f783318a913c80eb91",
+        "revCount": 159470,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       },
@@ -184,11 +184,11 @@
     "wlroots-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1662384859,
-        "narHash": "sha256-oEyanqgkpIAXmv2oTyT6FNv/mb9PrU5mf/0CgnU07Oo=",
+        "lastModified": 1662639520,
+        "narHash": "sha256-1fft+tP0iAi5eCmWsoOQlpNepmMdSrEMog+rMQ3trXo=",
         "ref": "refs/heads/master",
-        "rev": "f8ae56490664e716ea1ad701172c7aaa39e9a5ab",
-        "revCount": 5688,
+        "rev": "4cc5bdc4d1c23177532d9d075bd9896b7fe4b5a6",
+        "revCount": 5696,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
       },
@@ -200,11 +200,11 @@
     "xorg-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1661927934,
-        "narHash": "sha256-SRV2DeWFWO8SmBLOfqmPQasnYLXwwZYZRiuduE72bwY=",
+        "lastModified": 1662742363,
+        "narHash": "sha256-YJuBvWRs9tiKvNRuuKLegElhxLpbLZz39YZptg9+qUA=",
         "ref": "refs/heads/master",
-        "rev": "79c572fbd349cb6373f685a502e430552f856995",
-        "revCount": 17898,
+        "rev": "2ab70dede76c99876d7d5d1efa521b8082e13210",
+        "revCount": 17909,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
       },

@@ -11,7 +11,6 @@
 
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Kakoune Plugins
@@ -22,11 +21,6 @@
 
     kakoune-sort-selections = {
       url = "github:occivink/kakoune-sort-selections";
-      flake = false;
-    };
-
-    xorg-git = {
-      url = "git+https://gitlab.freedesktop.org/xorg/xserver.git";
       flake = false;
     };
 
@@ -47,7 +41,20 @@
       flake = false;
     };
 
-    grub2-themes.url = "github:vinceliuice/grub2-themes";
+    xorg-git = {
+      url = "git+https://gitlab.freedesktop.org/xorg/xserver.git";
+      flake = false;
+    };
+
+    mesa-git = {
+      url = "git+https://gitlab.freedesktop.org/mesa/mesa.git";
+      flake = false;
+    };
+
+    grub2-themes = {
+      url = "github:vinceliuice/grub2-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -69,6 +76,7 @@
     in
     {
       overlays.default = (final: prev: rec {
+
         nerdfonts = prev.nerdfonts.override {
           fonts = [
             "JetBrainsMono"
@@ -109,6 +117,13 @@
           inherit pkgs;
           specialArgs = { inherit inputs; };
           modules = [
+            {
+              #needed to get tools working that expect a nixpkgs channel to exist
+              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+              nix.registry = {
+                nixpkgs.flake = nixpkgs;
+              };
+            }
             ./system/configuration.nix
             home-manager.nixosModules.home-manager
             {

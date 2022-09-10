@@ -76,9 +76,9 @@ in
           "Mod5+F12" = "exec ${pkgs.mpc-cli}/bin/mpc next";
           "XF86AudioMute" = "exec mpc toggle";
 
-          "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy screen";
-          "${modifier}+Shift+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy area";
-          "${modifier}+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy active";
+          "Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy screen";
+          "${modifier}+Shift+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy area";
+          "${modifier}+Print" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy active";
 
           "${modifier}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show drun";
           "${modifier}+Shift+p" = "exec ${passmenu}/bin/passmenu.sh";

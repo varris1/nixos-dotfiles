@@ -16,28 +16,20 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/0981f787-9cb2-495e-95d5-611e0de24d85";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos-root" "compress-force=zstd" ];
+      device = "/dev/disk/by-uuid/5907e244-fda6-41d4-aff1-a2be7160a559";
+      fsType = "xfs";
     };
 
   fileSystems."/boot/efi" =
     {
-      device = "/dev/disk/by-uuid/1AC9-E1AD";
+      device = "/dev/disk/by-uuid/D56E-61DC";
       fsType = "vfat";
-    };
-
-  fileSystems."/mnt/btrfs" =
-    {
-      device = "/dev/disk/by-uuid/0981f787-9cb2-495e-95d5-611e0de24d85";
-      fsType = "btrfs";
-      options = [ "subvol=/" ];
     };
 
   fileSystems."/mnt/hdd" =
     {
-      device = "/dev/disk/by-uuid/beccaf7e-9c7e-4c04-959b-52f1e0375491";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/ecbbfb05-ada8-4044-81a6-9a280f93802f";
+      fsType = "xfs";
     };
 
   fileSystems."/home" =
@@ -46,15 +38,8 @@
       fsType = "xfs";
     };
 
-  fileSystems."/opt/games" =
-    {
-      device = "/dev/disk/by-uuid/0981f787-9cb2-495e-95d5-611e0de24d85";
-      fsType = "btrfs";
-      options = [ "subvol=@steamgames" ];
-    };
-
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/b7ec8c05-2a36-4b35-99fc-866e97c6330b"; }];
+    [{ device = "/dev/disk/by-uuid/e0d93baa-8a8f-4fb2-9a48-f37f5d397826"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

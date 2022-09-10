@@ -49,6 +49,7 @@
     };
     shellAliases = {
       nf = "${pkgs.neofetch}/bin/neofetch";
+      r = "${pkgs.nnn}/bin/nnn";
     };
   };
 }

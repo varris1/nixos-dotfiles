@@ -9,6 +9,8 @@
     ./configs/mpd/mpd.nix
     ./configs/mpv/mpv.nix
     ./configs/firefox/firefox.nix
+    ./configs/nnn/nnn.nix
+    ./configs/dircolors.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -32,6 +34,7 @@
     pkgs.thunderbird
     pkgs.twemoji-color-font
     pkgs.xivlauncher
+    pkgs.sxiv
   ];
 
   home.sessionVariables = {
@@ -112,6 +115,7 @@
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "thunar.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
     };
   };
 
