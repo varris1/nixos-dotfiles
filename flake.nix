@@ -9,10 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-    };
-
     # Kakoune Plugins
     kakoune-smarttab = {
       url = "github:andreyorst/smarttab.kak";
@@ -41,6 +37,11 @@
       flake = false;
     };
 
+    gamescope-git = {
+      url = "github:Plagman/gamescope";
+      flake = false;
+    };
+
     xorg-git = {
       url = "git+https://gitlab.freedesktop.org/xorg/xserver.git";
       flake = false;
@@ -56,9 +57,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    veloren = {
+      url = "github:veloren/veloren";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, veloren, ... }@inputs:
     let
       username = "manuel";
       hostname = "terra";
@@ -71,7 +76,7 @@
           allowUnfree = true;
           allowUnsupportedSystem = true;
         };
-        overlays = [ self.overlays.default nur.overlay ];
+        overlays = [ self.overlays.default ];
       };
     in
     {
@@ -83,12 +88,12 @@
           ];
         };
 
-        wlroots = prev.wlroots.overrideAttrs (old: {
+        wlroots-git = prev.wlroots.overrideAttrs (old: {
           version = "0.16.0";
           src = inputs.wlroots-git;
         });
 
-        sway-unwrapped = prev.sway-unwrapped.overrideAttrs (old: {
+        sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
           version = "1.8";
           buildInputs = old.buildInputs ++ [
             prev.xorg.xcbutilwm
@@ -98,7 +103,14 @@
             prev.cmake
           ];
           src = inputs.sway-git;
-        });
+        })).override
+          {
+            wlroots = wlroots-git;
+          };
+
+        waybar = prev.waybar.override {
+          wlroots = wlroots-git;
+        };
 
         xwayland = prev.xwayland.overrideAttrs (old: {
           version = "22.2";
@@ -108,6 +120,22 @@
             prev.xorg.libpciaccess
           ];
         });
+
+        steam = prev.steam.override {
+          extraPkgs = pkgs: [
+            pkgs.gnome.zenity
+            pkgs.gamescope
+            pkgs.libkrb5
+            pkgs.keyutils
+          ];
+        };
+
+        gamescope = prev.gamescope.overrideAttrs (old: {
+          version = "3.11.45";
+          src = inputs.gamescope-git;
+        });
+
+        inherit (veloren.packages."${system}") veloren-voxygen;
 
       });
 

@@ -35,11 +35,17 @@
     pkgs.twemoji-color-font
     pkgs.xivlauncher
     pkgs.sxiv
+    pkgs.veloren-voxygen
+    pkgs.gamescope
+
+    pkgs.wineWowPackages.stagingFull
+    pkgs.protontricks
   ];
 
   home.sessionVariables = {
     EDITOR = "kak";
     GTK_USE_PORTAL = "1";
+    WINEDLLOVERRIDES = "winemenubuilder.exe=d";
   };
 
   fonts.fontconfig.enable = true;
@@ -66,19 +72,23 @@
       package = pkgs.gruvbox-dark-gtk;
       name = "gruvbox-dark";
     };
+
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 9;
     };
+
     iconTheme = {
       package = pkgs.gruvbox-dark-icons-gtk;
       name = "oomox-gruvbox-dark";
     };
+
     cursorTheme = {
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors-white";
       size = 32;
     };
+
   };
 
   programs.git = {
@@ -109,14 +119,6 @@
 
     music = "/mnt/hdd/Music";
     download = "/mnt/hdd/Downloads";
-  };
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "inode/directory" = [ "thunar.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-    };
   };
 
   # This value determines the Home Manager release that your

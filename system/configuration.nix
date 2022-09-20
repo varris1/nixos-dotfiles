@@ -43,7 +43,7 @@
     };
 
     initrd.availableKernelModules = [ "amdgpu" ];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
 
   };
@@ -173,7 +173,7 @@
     enable = true;
     wlr.enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+      #pkgs.xdg-desktop-portal-gtk
     ];
   };
 
