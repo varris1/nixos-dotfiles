@@ -15,13 +15,12 @@ in
   programs.kakoune = {
     enable = true;
     plugins = with pkgs.kakounePlugins; [
-      smarttab
-      kakboard
-      #auto-pairs-kak
       kak-lsp
-      sort-selections
-      powerline-kak
+      kakboard
       kakoune-extra-filetypes
+      powerline-kak
+      smarttab
+      sort-selections
     ];
     config = {
       colorScheme = "gruvbox-dark";

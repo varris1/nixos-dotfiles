@@ -103,23 +103,20 @@
             prev.cmake
           ];
           src = inputs.sway-git;
-        })).override
-          {
-            wlroots = wlroots-git;
-          };
+        })).override { wlroots = wlroots-git; };
 
         waybar = prev.waybar.override {
           wlroots = wlroots-git;
         };
 
-        xwayland = prev.xwayland.overrideAttrs (old: {
-          version = "22.2";
-          src = inputs.xorg-git;
-          buildInputs = old.buildInputs ++ [
-            prev.udev
-            prev.xorg.libpciaccess
-          ];
-        });
+        # xwayland = prev.xwayland.overrideAttrs (old: {
+        #   version = "22.2";
+        #   src = inputs.xorg-git;
+        #   buildInputs = old.buildInputs ++ [
+        #     prev.udev
+        #     prev.xorg.libpciaccess
+        #   ];
+        # });
 
         steam = prev.steam.override {
           extraPkgs = pkgs: [
@@ -134,6 +131,22 @@
           version = "3.11.45";
           src = inputs.gamescope-git;
         });
+
+        mesa-git = (prev.mesa.overrideAttrs (old: {
+          version = "23.0";
+          src = inputs.mesa-git;
+          buildInputs = old.buildInputs ++ [
+            pkgs.glslang
+          ];
+          patches = [
+            ./pkgs/mesa-git/opencl.patch
+            ./pkgs/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
+          ];
+        })).override {
+          galliumDrivers = [ "radeonsi" "swrast" ];
+          vulkanDrivers = [ "amd" ];
+          enableGalliumNine = false; # Replaced by DXVK
+        };
 
         inherit (veloren.packages."${system}") veloren-voxygen;
 
@@ -156,12 +169,11 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                useGlobalPkgs = true;
+                #useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${username} = import ./user/home.nix;
                 extraSpecialArgs = {
-                  inherit inputs;
-                  inherit pkgs;
+                  inherit inputs pkgs;
                 };
               };
             }

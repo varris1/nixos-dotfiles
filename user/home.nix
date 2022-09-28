@@ -19,9 +19,9 @@
   home.homeDirectory = "/home/manuel";
   home.packages = [
     pkgs.appimage-run
-    #    pkgs.bottles
     pkgs.discord
     pkgs.firefox
+    pkgs.gamescope
     pkgs.lutris
     pkgs.nerdfonts
     pkgs.noto-fonts-cjk-sans
@@ -29,17 +29,15 @@
     pkgs.pass
     pkgs.pavucontrol
     pkgs.polymc
+    pkgs.protontricks
     pkgs.steam
     pkgs.steam-run
+    pkgs.sxiv
     pkgs.thunderbird
     pkgs.twemoji-color-font
-    pkgs.xivlauncher
-    pkgs.sxiv
     pkgs.veloren-voxygen
-    pkgs.gamescope
-
     pkgs.wineWowPackages.stagingFull
-    pkgs.protontricks
+    #pkgs.xivlauncher
   ];
 
   home.sessionVariables = {
@@ -56,13 +54,13 @@
 
   services.udiskie.enable = true;
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
+  # services.kdeconnect = {
+  #   enable = true;
+  #   indicator = true;
+  # };
 
   services.gammastep = {
-    enable = true;
+    enable = false;
     provider = "geoclue2";
   };
 

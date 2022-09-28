@@ -78,6 +78,8 @@
 
   hardware.opengl = {
     enable = true;
+    package = pkgs.mesa-git.drivers;
+    package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
     extraPackages = [
       pkgs.libvdpau-va-gl
     ];
@@ -132,7 +134,17 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "users" "wheel" "audio" "video" "games" "input" "geoclue" "networkmanager" "nm-openvpn" ];
+    extraGroups = [
+      "audio"
+      "games"
+      "geoclue"
+      "input"
+      "networkmanager"
+      "nm-openvpn"
+      "users"
+      "video"
+      "wheel"
+    ];
     shell = pkgs.fish;
   };
 
