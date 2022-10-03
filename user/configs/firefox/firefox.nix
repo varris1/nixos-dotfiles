@@ -1,7 +1,1 @@
-{ config, pkgs, ... }:
-{
-  programs.firefox = {
-    enable = true;
-  };
-}
-
+{ config, pkgs, ... }: { programs.firefox = { enable = true; }; }

@@ -9,9 +9,7 @@ let
     name = "sort-selections-kak";
     src = inputs.kakoune-sort-selections;
   };
-
-in
-{
+in {
   programs.kakoune = {
     enable = true;
     plugins = with pkgs.kakounePlugins; [
@@ -27,26 +25,34 @@ in
       tabStop = 4;
       indentWidth = 4;
       showMatching = true;
-      showWhitespace = {
-        enable = false;
-      };
+      showWhitespace = { enable = false; };
       numberLines.enable = true;
 
       hooks = [
-        { name = "WinSetOption"; option = "filetype=nix|sh"; commands = "hook window BufWritePre .* lsp-formatting-sync"; }
+        {
+          name = "WinSetOption";
+          option = "filetype=nix|sh";
+          commands = "hook window BufWritePre .* lsp-formatting-sync";
+        }
 
-        { name = "WinCreate"; option = ".*"; commands = "kakboard-enable"; }
-        { name = "InsertChar"; option = "\\t"; commands = "exec -draft -itersel h@"; }
+        {
+          name = "WinCreate";
+          option = ".*";
+          commands = "kakboard-enable";
+        }
+        {
+          name = "InsertChar";
+          option = "\\t";
+          commands = "exec -draft -itersel h@";
+        }
       ];
 
-      keyMappings = [
-      ];
+      keyMappings = [ ];
 
       ui = {
         assistant = "none";
         setTitle = true;
       };
-
     };
     extraConfig = ''
       set global startup_info_version 99999999
@@ -64,8 +70,5 @@ in
     '';
   };
 
-  home.packages = [
-    pkgs.rnix-lsp
-  ];
+  home.packages = [ pkgs.rnix-lsp ];
 }
-

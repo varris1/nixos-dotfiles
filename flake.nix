@@ -9,6 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Fish Plugins
+    bobthefish = {
+      url = "github:oh-my-fish/theme-bobthefish";
+      flake = false;
+    };
+
     # Kakoune Plugins
     kakoune-smarttab = {
       url = "github:andreyorst/smarttab.kak";
@@ -56,14 +62,9 @@
       url = "github:vinceliuice/grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    veloren = {
-      url = "github:veloren/veloren";
-    };
-
   };
 
-  outputs = { self, nixpkgs, home-manager, veloren, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       username = "manuel";
       hostname = "terra";
@@ -80,34 +81,22 @@
       };
     in
     {
-      overlays.default = (final: prev: rec {
-
-        nerdfonts = prev.nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-          ];
-        };
+      overlays.default = final: prev: rec {
+        nerdfonts = prev.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
 
         wlroots-git = prev.wlroots.overrideAttrs (old: {
-          version = "0.16.0";
+          version = "git";
           src = inputs.wlroots-git;
         });
 
         sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
-          version = "1.8";
-          buildInputs = old.buildInputs ++ [
-            prev.xorg.xcbutilwm
-            prev.pcre2
-          ];
-          nativeBuildInputs = old.nativeBuildInputs ++ [
-            prev.cmake
-          ];
+          version = "git";
+          buildInputs = old.buildInputs ++ [ prev.xorg.xcbutilwm prev.pcre2 ];
+          nativeBuildInputs = old.nativeBuildInputs ++ [ prev.cmake ];
           src = inputs.sway-git;
         })).override { wlroots = wlroots-git; };
 
-        waybar = prev.waybar.override {
-          wlroots = wlroots-git;
-        };
+        waybar = prev.waybar.override { wlroots = wlroots-git; };
 
         # xwayland = prev.xwayland.overrideAttrs (old: {
         #   version = "22.2";
@@ -128,58 +117,52 @@
         };
 
         gamescope = prev.gamescope.overrideAttrs (old: {
-          version = "3.11.45";
+          version = "git";
           src = inputs.gamescope-git;
         });
 
         mesa-git = (prev.mesa.overrideAttrs (old: {
-          version = "23.0";
+          version = "git";
           src = inputs.mesa-git;
-          buildInputs = old.buildInputs ++ [
-            pkgs.glslang
-          ];
+          buildInputs = old.buildInputs ++ [ pkgs.glslang ];
           patches = [
             ./pkgs/mesa-git/opencl.patch
             ./pkgs/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
           ];
+          mesonFlags = pkgs.lib.lists.remove
+            "-Dxvmc-libs-path=${placeholder "drivers"}/lib"
+            old.mesonFlags; # xvmc was removed upstream
         })).override {
           galliumDrivers = [ "radeonsi" "swrast" ];
           vulkanDrivers = [ "amd" ];
           enableGalliumNine = false; # Replaced by DXVK
         };
 
-        inherit (veloren.packages."${system}") veloren-voxygen;
+        fzf = prev.fzf.overrideAttrs (old: { version = "0.33.0"; });
+      };
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
 
-      });
-
-      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem
-        {
-          inherit system;
-          inherit pkgs;
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              #needed to get tools working that expect a nixpkgs channel to exist
-              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-              nix.registry = {
-                nixpkgs.flake = nixpkgs;
-              };
-            }
-            ./system/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                #useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${username} = import ./user/home.nix;
-                extraSpecialArgs = {
-                  inherit inputs pkgs;
-                };
-              };
-            }
-            inputs.grub2-themes.nixosModule
-          ];
-        };
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+        inherit system;
+        inherit pkgs;
+        specialArgs = { inherit inputs; };
+        modules = [
+          {
+            #needed to get tools working that expect a nixpkgs channel to exist
+            nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+            nix.registry = { nixpkgs.flake = nixpkgs; };
+          }
+          ./system/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              users.${username} = import ./user/home.nix;
+              extraSpecialArgs = { inherit inputs pkgs; };
+            };
+          }
+          inputs.grub2-themes.nixosModule
+        ];
+      };
     };
 }
-

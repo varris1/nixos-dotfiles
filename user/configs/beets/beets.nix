@@ -1,5 +1,4 @@
 { config, pkgs, ... }: {
-
   programs.beets = {
     enable = true;
 
@@ -16,22 +15,18 @@
       };
 
       paths = {
-        "default" = "%asciify{$albumartist}/$year - %asciify{$album}%aunique{}/$track %asciify{$title}";
+        "default" =
+          "%asciify{$albumartist}/$year - %asciify{$album}%aunique{}/$track %asciify{$title}";
         "singleton" = "Non-Album/%asciify{$artist}/%asciify{$title}";
-        "comp" = "Compilations/%asciify{$album}%aunique{}/$track %asciify{$title}";
+        "comp" =
+          "Compilations/%asciify{$album}%aunique{}/$track %asciify{$title}";
       };
 
-      ftintitle = {
-        "auto" = true;
-      };
+      ftintitle = { "auto" = true; };
 
-      fetchart = {
-        "auto" = true;
-      };
+      fetchart = { "auto" = true; };
 
-      chroma = {
-        auto = true;
-      };
+      chroma = { auto = true; };
 
       replaygain = {
         "backend" = "gstreamer";
@@ -40,4 +35,3 @@
     };
   };
 }
-

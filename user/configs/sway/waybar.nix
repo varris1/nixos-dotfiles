@@ -1,28 +1,24 @@
 { config, pkgs, ... }:
 let
+  ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
+    ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
+    ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
 
-  ds-battery = pkgs.writeShellScriptBin "ds-battery.sh"
-    ''
-      ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
-      ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
-
-      while true; do
-      	if [[ -f $ds_capacity_file ]]; then
-      		charge=$(<"$ds_capacity_file")
-      		if [[ $(<"$ds_status_file") == "Charging" ]]; then
-      			echo "{\"class\":\"charging\",\"text\":\"  Charging: $charge%\",\"tooltip\":\"Charging:\n$charge%\"}"
-      		else
-      			echo "{\"class\":\"discharging\",\"text\":\"  $charge%\",\"tooltip\":\"Battery:\\n$charge%\"}"
-      		fi
-      	else
-      		echo "{\"class\":\"not_connected\",\"text\":\"\"}"
-      	fi
-      	sleep 1
-      done
-    '';
-
-in
-{
+    while true; do
+    	if [[ -f $ds_capacity_file ]]; then
+    		charge=$(<"$ds_capacity_file")
+    		if [[ $(<"$ds_status_file") == "Charging" ]]; then
+    			echo "{\"class\":\"charging\",\"text\":\"  Charging: $charge%\",\"tooltip\":\"Charging:\n$charge%\"}"
+    		else
+    			echo "{\"class\":\"discharging\",\"text\":\"  $charge%\",\"tooltip\":\"Battery:\\n$charge%\"}"
+    		fi
+    	else
+    		echo "{\"class\":\"not_connected\",\"text\":\"\"}"
+    	fi
+    	sleep 1
+    done
+  '';
+in {
   programs.waybar = {
     enable = true;
     settings = [{
@@ -32,19 +28,23 @@ in
 
       modules-left = [ "custom/blank" "sway/workspaces" "sway/mode" ];
       modules-center = [ "sway/window" ];
-      modules-right = [ "custom/ds-battery" "pulseaudio" "mpd" "tray" "custom/blank" "clock" "custom/blank" ];
+      modules-right = [
+        "custom/ds-battery"
+        "pulseaudio"
+        "mpd"
+        "tray"
+        "custom/blank"
+        "clock"
+        "custom/blank"
+      ];
 
-      "sway/mode" = {
-        format = " {}";
-      };
+      "sway/mode" = { format = " {}"; };
       "sway/window" = {
         icon = false;
         icon-size = 16;
       };
 
-      "clock" = {
-        format = "{:%a %d. %B  %H:%M}";
-      };
+      "clock" = { format = "{:%a %d. %B  %H:%M}"; };
 
       "pulseaudio" = {
         scroll-step = 5;
@@ -57,7 +57,8 @@ in
         spacing = 10;
       };
       "mpd" = {
-        format = "{stateIcon} {artist} - {title}  {elapsedTime:%M:%S}/{totalTime:%M:%S}";
+        format =
+          "{stateIcon} {artist} - {title}  {elapsedTime:%M:%S}/{totalTime:%M:%S}";
         format-stopped = "栗 stopped";
         state-icons = {
           playing = "";
@@ -70,10 +71,7 @@ in
         exec = "${ds-battery}/bin/ds-battery.sh";
         escape = "true";
       };
-      "custom/blank" = {
-        format = " ";
-      };
-
+      "custom/blank" = { format = " "; };
     }];
     style = ''
       @define-color foreground #EBDBB2;

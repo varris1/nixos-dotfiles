@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, inputs, ... }: {
   programs.exa = {
     enable = true;
     enableAliases = true;
@@ -7,29 +6,38 @@
 
   programs.fish = {
     enable = true;
+
+    plugins = [
+      {
+        name = "bobthefish";
+        src = inputs.bobthefish;
+      }
+    ];
+
     interactiveShellInit = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      set theme_color_scheme gruvbox
     '';
     functions = {
-      fish_prompt = ''
-        set_color green
-        printf (prompt_pwd)
-        set_color cyan
-        printf " ► "
-        set_color normal
-      '';
+      #fish_prompt = ''
+      # set_color green
+      # printf (prompt_pwd)
+      # set_color cyan
+      # printf " ► "
+      # set_color normal
+      #'';
       fish_greeting = "";
 
       ec = ''
-        	pushd &> /dev/null
-        	cd "${config.home.homeDirectory}"
-        	set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
-        	            ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
-        	            --preview "${pkgs.python3Packages.pygments}/bin/pygmentize -g -O linenos=1 {}")
-        	if test -f "$filename"
-        		$EDITOR $filename
-        	end
-        	popd &> /dev/null
+        pushd &> /dev/null
+        cd "${config.home.homeDirectory}"
+        set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
+                    ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
+                    --preview "${pkgs.python3Packages.pygments}/bin/pygmentize -g -O linenos=1 {}")
+        if test -f "$filename"
+        	$EDITOR $filename
+        end
+        popd &> /dev/null
       '';
 
       nor = ''
@@ -53,4 +61,3 @@
     };
   };
 }
-

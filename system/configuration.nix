@@ -1,26 +1,19 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{ config, pkgs, lib, inputs, ... }: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
   boot = {
     consoleLogLevel = 3;
 
-    kernelParams = [
-      "quiet"
-      "udev.log_level=3"
-      "amdgpu.ppfeaturemask=0xffffffff"
-    ];
+    kernelParams =
+      [ "quiet" "udev.log_level=3" "amdgpu.ppfeaturemask=0xffffffff" ];
 
     loader = {
       efi = {
@@ -45,14 +38,13 @@
     initrd.availableKernelModules = [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
-
   };
+
+  powerManagement = { cpuFreqGovernor = "schedutil"; };
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    networkmanager = {
-      enable = true;
-    };
+    networkmanager = { enable = true; };
     firewall.checkReversePath = false;
   };
 
@@ -80,9 +72,7 @@
     enable = true;
     package = pkgs.mesa-git.drivers;
     package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
-    extraPackages = [
-      pkgs.libvdpau-va-gl
-    ];
+    extraPackages = [ pkgs.libvdpau-va-gl ];
 
     driSupport = true;
     driSupport32Bit = true;
@@ -105,8 +95,7 @@
     enable = true;
     locate = pkgs.plocate;
     localuser = null;
-    prunePaths = lib.mkOptionDefault [
-    ];
+    prunePaths = lib.mkOptionDefault [ ];
     interval = "hourly";
   };
 
@@ -130,6 +119,11 @@
 
   programs.fish.enable = true;
 
+  programs.ccache = {
+    enable = true;
+    packageNames = [
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
@@ -189,9 +183,7 @@
     ];
   };
 
-  services.openssh = {
-    enable = true;
-  };
+  services.openssh = { enable = true; };
 
   services.printing = {
     enable = true;
@@ -227,6 +219,4 @@
   '';
 
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }
-

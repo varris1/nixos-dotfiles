@@ -1,6 +1,4 @@
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, inputs, ... }: {
   imports = [
     ./configs/beets/beets.nix
     ./configs/kakoune/kakoune.nix
@@ -35,9 +33,9 @@
     pkgs.sxiv
     pkgs.thunderbird
     pkgs.twemoji-color-font
-    pkgs.veloren-voxygen
     pkgs.wineWowPackages.stagingFull
     #pkgs.xivlauncher
+    pkgs.xarchiver
   ];
 
   home.sessionVariables = {
@@ -48,9 +46,7 @@
 
   fonts.fontconfig.enable = true;
 
-  services.gpg-agent = {
-    enable = true;
-  };
+  services.gpg-agent = { enable = true; };
 
   services.udiskie.enable = true;
 
@@ -86,7 +82,6 @@
       name = "capitaine-cursors-white";
       size = 32;
     };
-
   };
 
   programs.git = {
@@ -129,4 +124,3 @@
   # changes in each release.
   home.stateVersion = "22.05";
 }
-

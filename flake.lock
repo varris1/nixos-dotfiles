@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "bobthefish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659411664,
+        "narHash": "sha256-jBbm0wTNZ7jSoGFxRkTz96QHpc5ViAw9RGsRBkCQEIU=",
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "rev": "2dcfcab653ae69ae95ab57217fe64c97ae05d8de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "type": "github"
+      }
+    },
     "gamescope-git": {
       "flake": false,
       "locked": {
@@ -92,11 +108,11 @@
     "mesa-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1664631406,
-        "narHash": "sha256-ouwR0GAYp/0BxSiI/KtcmiTuvPqfsF77pKemA0J0hbM=",
+        "lastModified": 1664825548,
+        "narHash": "sha256-bt3/6JLi+DeGLHJlteuViLUvP7lA1lyLLLhsCf43YqI=",
         "ref": "refs/heads/main",
-        "rev": "3246889fb047c54623795956a3b4890e672f05ef",
-        "revCount": 160795,
+        "rev": "e577bb18c8da40905ab2d4d56b9c6f96c619d96c",
+        "revCount": 160837,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       },
@@ -138,6 +154,7 @@
     },
     "root": {
       "inputs": {
+        "bobthefish": "bobthefish",
         "gamescope-git": "gamescope-git",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
