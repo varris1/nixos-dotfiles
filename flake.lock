@@ -19,11 +19,11 @@
     "gamescope-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1666202349,
-        "narHash": "sha256-4HFtgFwj9d8Dzl9zAZH1JYvLXcbvNsUneMvgpGRKp8E=",
+        "lastModified": 1666924555,
+        "narHash": "sha256-/a0fW0NVIrg9tuK+mg+D+IOcq3rJJxKdFwspM1ZRR9M=",
         "owner": "Plagman",
         "repo": "gamescope",
-        "rev": "677e3b66245c07e6a6259a6034409753f6b4b5d3",
+        "rev": "f072cbd58b0ab373f486bf1647b7acd0ffce8f0d",
         "type": "github"
       },
       "original": {
@@ -39,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1661882555,
-        "narHash": "sha256-XC7Zqy4AscFd2IzbEIoghMqsG3KkZHA4QB1T/k/72h4=",
+        "lastModified": 1666525448,
+        "narHash": "sha256-MsNIq6TRauByEUj4qthAUEe98uKpqv7dn5E253ewm+k=",
         "owner": "vinceliuice",
         "repo": "grub2-themes",
-        "rev": "c6e2967f06549d760332476b11d9c83d1778ded8",
+        "rev": "967a302d8f996fd58b7e7125ae4aee13d39f70af",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666903647,
-        "narHash": "sha256-sFI1Gh9DTGzHnBINondupUGYbe+T0wZcpcZjkW0qffM=",
+        "lastModified": 1667234164,
+        "narHash": "sha256-oPMAvHZBDgamjmIQly5+sw2LtfKwY7qcWZZwKiwKQy8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "213a06295dff96668a1d673b9fd1c03ce1de6745",
+        "rev": "722e8d65d3aba6f527100cc2d1539e4ca04d066f",
         "type": "github"
       },
       "original": {
@@ -81,11 +81,11 @@
         "wlroots": "wlroots"
       },
       "locked": {
-        "lastModified": 1666786777,
-        "narHash": "sha256-FElsXIm/egsCKAiXL9YojcLE6Ge+QyS+1ndCOR97NN0=",
+        "lastModified": 1667042684,
+        "narHash": "sha256-61qKTbBmzDMELsIEWPggsW2GKr/NbaYO/KoB+TkBf5o=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4aebb73de005e50bb08bacb0bb26ea89e0bd2818",
+        "rev": "05f3eebd968455752eb95cee373bbf2d9a71deae",
         "type": "github"
       },
       "original": {
@@ -113,11 +113,11 @@
     "kakoune-sort-selections": {
       "flake": false,
       "locked": {
-        "lastModified": 1665491270,
-        "narHash": "sha256-Z22Bi1nUEcsaf/WhieyMKkwucJ5JizwAwZ8Dr+WSaQs=",
+        "lastModified": 1665604908,
+        "narHash": "sha256-1Cu1tZuc8/cXRSH/S+mWrKDiy1hu5iYRmMDd+s8kihA=",
         "owner": "occivink",
         "repo": "kakoune-sort-selections",
-        "rev": "c46c6e60e6861646bce879fc738e67f353c3dd9f",
+        "rev": "29d3c8db1b76822fde67bac86f6571a540520a1a",
         "type": "github"
       },
       "original": {
@@ -129,11 +129,11 @@
     "mesa-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1666781673,
-        "narHash": "sha256-ZhVci9Dz41T2Nqgj2RyfYvctRsEqwK6IxUzYJ1N0iME=",
+        "lastModified": 1667010017,
+        "narHash": "sha256-8czpbr4xZhqe8/AslzqFaoMWB/Yr3bwnlOIDPkJ1/u4=",
         "ref": "refs/heads/main",
-        "rev": "16287ff87d47ccea6e1652924f52dc691ce4b524",
-        "revCount": 161856,
+        "rev": "10ace5de3afa213b654a9a8bc1b06281896dd5f5",
+        "revCount": 162061,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       },
@@ -144,11 +144,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1666926733,
-        "narHash": "sha256-+gYfOEnQVISPDRNoWm2VJD5OEuTUySt48RchLpvm61o=",
+        "lastModified": 1667085676,
+        "narHash": "sha256-jPHYYoSdrV3ypWG4oi9SUeI2MU6dLjxM88+9io5Rrx0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f44ba1be526c8da9e79a5759feca2365204003f6",
+        "rev": "e6e6bad81b7e11f37d893ef39712ce8918ae2338",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
     "sway-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1666518989,
-        "narHash": "sha256-zH45b5zWlXlDORXFWvMbdynWOJHNOC2naENeDxox5xY=",
+        "lastModified": 1666997221,
+        "narHash": "sha256-XHnmYV2dmI32T7gKKYzACuyO1bAnZB1wjJQhkp8jtgU=",
         "owner": "swaywm",
         "repo": "sway",
-        "rev": "9d99bb956fea8922f8e0196d67eabbd510c53f1f",
+        "rev": "a61815d3859e4cc92d3f8a0701a5675d97b81cdc",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     },
     "utils": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "lastModified": 1667077288,
+        "narHash": "sha256-bdC8sFNDpT0HK74u9fUkpbf1MEzVYJ+ka7NXCdgBoaA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "rev": "6ee9ebb6b1ee695d2cacc4faa053a7b9baa76817",
         "type": "github"
       },
       "original": {
@@ -259,11 +259,11 @@
     "wlroots-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1666685955,
-        "narHash": "sha256-5s0tlQQMuWX9JqHr/gnQmmu5ciaGBBOEOhyP1fh6hrs=",
+        "lastModified": 1666957743,
+        "narHash": "sha256-RfGvDMzgGr0uNHIACyqkEBD4crW324sEdfrHNf+LA1M=",
         "ref": "refs/heads/master",
-        "rev": "f83b3809cf49b9c969d1fa6773dc827d51e028e2",
-        "revCount": 5804,
+        "rev": "4d04144b9254335c74f54c6e282904ec0c54c9dd",
+        "revCount": 5808,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
       },
@@ -275,11 +275,11 @@
     "xorg-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1664377248,
-        "narHash": "sha256-cyl3v2hqtEiMB3tn0ZuLxRDuaOAa0tEGcQSYXR4AlAA=",
+        "lastModified": 1666973551,
+        "narHash": "sha256-RIxmlR0Gt9DZMr32XuuvUlShQ4uWRz5vr5T/wfMbHcs=",
         "ref": "refs/heads/master",
-        "rev": "e37f18ee97aa4856108ef701628e013d6bf4903e",
-        "revCount": 17914,
+        "rev": "459e2855730a30bb50f4836f2ff6153841bf843c",
+        "revCount": 17923,
         "type": "git",
         "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
       },
