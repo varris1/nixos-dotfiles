@@ -18,7 +18,8 @@ let
     	sleep 1
     done
   '';
-in {
+in
+{
   programs.waybar = {
     enable = true;
     settings = [{
@@ -44,7 +45,9 @@ in {
         icon-size = 16;
       };
 
-      "clock" = { format = "{:%a %d. %B  %H:%M}"; };
+      "clock" = {
+        format = "{:%a %d. %B  %H:%M}";
+      };
 
       "pulseaudio" = {
         scroll-step = 5;
@@ -77,6 +80,12 @@ in {
       @define-color foreground #EBDBB2;
       @define-color background #282828;
       @define-color box-bg #3C3836;
+
+      label:disabled,
+      button:disabled {
+          color: inherit;
+          background-image: none;
+      }
 
       * {
         font-family: JetBrainsMono Nerd Font;

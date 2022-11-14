@@ -16,7 +16,12 @@
 
     interactiveShellInit = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-      set theme_color_scheme gruvbox
+
+      set -g theme_color_scheme gruvbox
+      set -g theme_nerd_fonts yes
+      set -g theme_display_git_default_branch yes
+      set -g theme_git_default_branches master main
+
     '';
     functions = {
       #fish_prompt = ''

@@ -45,10 +45,12 @@ let
   rofi-theme = inputs.rofi-theme + "/gruvbox-dark.rasi";
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | rofi -dmenu  -p "kill process" | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu  -p "kill process" | awk '{print $1}' | uniq | xargs -r kill -9
   '';
-in {
+in
+{
   imports = [ ./waybar.nix ];
+
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -57,7 +59,8 @@ in {
       gaps = { inner = 20; };
       keybindings =
         let modifier = config.wayland.windowManager.sway.config.modifier;
-        in lib.mkOptionDefault {
+        in
+        lib.mkOptionDefault {
           "XF86AudioRaiseVolume" =
             "exec ${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}";
           "XF86AudioLowerVolume" =
@@ -75,7 +78,7 @@ in {
           "${modifier}+Print" =
             "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy active";
 
-          "${modifier}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show drun";
+          "${modifier}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
           "${modifier}+Shift+p" = "exec ${passmenu}/bin/passmenu.sh";
           "${modifier}+Shift+o" = "exec ${killprocess}/bin/killprocess.sh";
 
@@ -84,13 +87,22 @@ in {
 
           "Ctrl+Space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "Ctrl+grave" = "exec ${pkgs.mako}/bin/makoctl restore";
+
+          # resize gaps
+          "${modifier}+Shift+F10" = "exec swaymsg gaps inner all set 20";
+          "${modifier}+Shift+F11" = "exec swaymsg gaps inner all plus 20";
+          "${modifier}+Shift+F12" = "exec swaymsg gaps inner all minus 20";
+
+
         };
       input = {
         "type:keyboard" = {
           xkb_layout = "us";
           xkb_variant = "altgr-intl";
         };
+
         "type:pointer" = { accel_profile = "flat"; };
+
         "type:touchpad" = {
           events =
             "disabled"; # disable DualSense touchpad. Let Steam Input handle it

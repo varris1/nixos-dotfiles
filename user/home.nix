@@ -17,8 +17,8 @@
   home.homeDirectory = "/home/manuel";
   home.packages = [
     pkgs.appimage-run
-    pkgs.discord
-    pkgs.firefox
+    pkgs.blueman
+    pkgs.discord-canary
     pkgs.gamescope
     pkgs.lutris
     pkgs.nerdfonts
@@ -26,7 +26,6 @@
     pkgs.noto-fonts-cjk-serif
     pkgs.pass
     pkgs.pavucontrol
-    pkgs.polymc
     pkgs.protontricks
     pkgs.steam
     pkgs.steam-run
@@ -34,26 +33,36 @@
     pkgs.thunderbird
     pkgs.twemoji-color-font
     pkgs.wineWowPackages.stagingFull
-    #pkgs.xivlauncher
+    pkgs.xivlauncher
     pkgs.xarchiver
+    pkgs.sshfs
+    pkgs.gnome.gvfs
+    pkgs.signal-desktop
   ];
 
   home.sessionVariables = {
+    BROWSER = "librewolf";
     EDITOR = "kak";
     GTK_USE_PORTAL = "1";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
+    #WLR_RENDERER = "vulkan"; Causes hangs
   };
 
   fonts.fontconfig.enable = true;
+
+  programs.keychain = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   services.gpg-agent = { enable = true; };
 
   services.udiskie.enable = true;
 
-  # services.kdeconnect = {
-  #   enable = true;
-  #   indicator = true;
-  # };
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 
   services.gammastep = {
     enable = false;
@@ -103,6 +112,11 @@
   };
 
   services.gnome-keyring.enable = true;
+
+  services.easyeffects = {
+    enable = true;
+    preset = "custom";
+  };
 
   programs.aria2.enable = true;
 

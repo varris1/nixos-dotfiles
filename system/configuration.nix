@@ -84,12 +84,16 @@
 
   # Enable sound.
   sound.enable = true;
+
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.flatpak.enable = true;
 
   services.locate = {
     enable = true;
@@ -169,8 +173,10 @@
 
   services.geoclue2 = {
     enable = true;
-    appConfig."gammastep".isAllowed = true;
-    appConfig."gammastep".isSystem = false;
+    appConfig."gammastep" = {
+      isAllowed = true;
+      isSystem = false;
+    };
   };
 
   services.gnome.gnome-keyring.enable = true;
@@ -179,11 +185,17 @@
     enable = true;
     wlr.enable = true;
     extraPortals = [
-      #pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 
-  services.openssh = { enable = true; };
+  programs.ssh = {
+    startAgent = true;
+  };
+
+  services.openssh = {
+    enable = true;
+  };
 
   services.printing = {
     enable = true;
@@ -196,7 +208,7 @@
   };
 
   services.greetd = {
-    enable = true;
+    enable = false;
     settings = {
       default_session = {
         vt = 1;
@@ -206,11 +218,22 @@
     };
   };
 
+  services.transmission = {
+    enable = true;
+    user = "manuel";
+    openFirewall = true;
+  };
+
   services.fwupd.enable = true;
 
-  nix.gc = {
-    persistent = true;
-    automatic = true;
+  nix = {
+    gc = {
+      persistent = true;
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+    settings.auto-optimise-store = true;
   };
 
   nix.extraOptions = ''

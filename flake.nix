@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Fish Plugins
     bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
@@ -62,13 +67,15 @@
       url = "github:vinceliuice/grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    waybar = {
+      url = "github:alexays/waybar";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      username = "manuel";
-      hostname = "terra";
-
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
@@ -87,6 +94,11 @@
         wlroots-git = prev.wlroots.overrideAttrs (old: {
           version = "git";
           src = inputs.wlroots-git;
+          nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.cmake pkgs.hwdata ];
+          postPatch = ''
+            substituteInPlace backend/drm/meson.build \
+              --replace "/usr/share/hwdata/pnp.ids" "${pkgs.hwdata}/share/hwdata/pnp.ids"
+          '';
         });
 
         sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
@@ -94,13 +106,21 @@
           buildInputs = old.buildInputs ++ [ prev.xorg.xcbutilwm prev.pcre2 ];
           nativeBuildInputs = old.nativeBuildInputs ++ [ prev.cmake ];
           src = inputs.sway-git;
-        })).override { wlroots = wlroots-git; };
+        })).override {
+          wlroots = wlroots-git;
+        };
 
-        waybar = prev.waybar.override { wlroots = wlroots-git; };
+        waybar = (prev.waybar.overrideAttrs (old: {
+          version = "git";
+          src = inputs.waybar;
+        })).override {
+          wlroots = wlroots-git;
+        };
 
-        # xwayland = prev.xwayland.overrideAttrs (old: {
-        #   version = "22.2";
-        #   src = inputs.xorg-git;
+        #xwayland = prev.xwayland.overrideAttrs (old: {
+        # version = "git";
+        #
+        # src = inputs.xorg-git;
         #   buildInputs = old.buildInputs ++ [
         #     prev.udev
         #     prev.xorg.libpciaccess
@@ -113,6 +133,11 @@
             pkgs.gamescope
             pkgs.libkrb5
             pkgs.keyutils
+            pkgs.mpg123
+          ];
+
+          extraLibraries = pkgs: [
+            pkgs.mpg123
           ];
         };
 
@@ -124,25 +149,22 @@
         mesa-git = (prev.mesa.overrideAttrs (old: {
           version = "git";
           src = inputs.mesa-git;
-          buildInputs = old.buildInputs ++ [ pkgs.glslang ];
+          buildInputs = old.buildInputs ++ [ pkgs.glslang pkgs.vulkan-loader ];
           patches = [
-            ./pkgs/mesa-git/opencl.patch
-            ./pkgs/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
+            ./pkgs/patches/mesa-git/opencl.patch
+            ./pkgs/patches/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
           ];
           mesonFlags = pkgs.lib.lists.remove
             "-Dxvmc-libs-path=${placeholder "drivers"}/lib"
             old.mesonFlags; # xvmc was removed upstream
         })).override {
-          galliumDrivers = [ "radeonsi" "swrast" ];
+          galliumDrivers = [ "radeonsi" "swrast" "zink" ];
           vulkanDrivers = [ "amd" ];
           enableGalliumNine = false; # Replaced by DXVK
         };
-
-        fzf = prev.fzf.overrideAttrs (old: { version = "0.33.0"; });
       };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
 
-      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
         inherit system;
         inherit pkgs;
         specialArgs = { inherit inputs; };
@@ -157,7 +179,7 @@
           {
             home-manager = {
               useUserPackages = true;
-              users.${username} = import ./user/home.nix;
+              users.manuel = import ./user/home.nix;
               extraSpecialArgs = { inherit inputs pkgs; };
             };
           }
