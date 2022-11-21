@@ -73,27 +73,6 @@
         "type": "github"
       }
     },
-    "hyprland": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "wlroots": "wlroots"
-      },
-      "locked": {
-        "lastModified": 1667042684,
-        "narHash": "sha256-61qKTbBmzDMELsIEWPggsW2GKr/NbaYO/KoB+TkBf5o=",
-        "owner": "hyprwm",
-        "repo": "Hyprland",
-        "rev": "05f3eebd968455752eb95cee373bbf2d9a71deae",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "repo": "Hyprland",
-        "type": "github"
-      }
-    },
     "kakoune-smarttab": {
       "flake": false,
       "locked": {
@@ -129,26 +108,28 @@
     "mesa-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1667754232,
-        "narHash": "sha256-gBg8T+jmAC0PUxaU2L9F7YgvmvNUcsRypiWKL6zptAg=",
-        "ref": "refs/heads/main",
-        "rev": "c37357f4e013037e43fbdf71d0f76edae76a6b29",
-        "revCount": 162492,
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+        "host": "gitlab.freedesktop.org",
+        "lastModified": 1668992816,
+        "narHash": "sha256-/uCNttTMdAtbQ6JNtyEYXxbqvae3CtEi+UTyzsDMrpY=",
+        "owner": "mesa",
+        "repo": "mesa",
+        "rev": "e3b1f26a2b83538eb175be28b2e785bbe626bf5f",
+        "type": "gitlab"
       },
       "original": {
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+        "host": "gitlab.freedesktop.org",
+        "owner": "mesa",
+        "repo": "mesa",
+        "type": "gitlab"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1668882784,
-        "narHash": "sha256-L1mHACWrG83j8U/jDtAdQHmVZu+JwVUxRPf5mhuzr2s=",
+        "lastModified": 1669029319,
+        "narHash": "sha256-EdTqXZ/xBk7xjSCPGNbL0WnoWHEkYjwe78C6gZoUC0E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a1b4a562216eba8df3053bd869155dde4b5bca12",
+        "rev": "79bb815a1cdc789f6b036d2047e217ab3e989fff",
         "type": "github"
       },
       "original": {
@@ -179,7 +160,6 @@
         "gamescope-git": "gamescope-git",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
-        "hyprland": "hyprland",
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
         "mesa-git": "mesa-git",
@@ -239,55 +219,41 @@
         "type": "github"
       }
     },
-    "wlroots": {
-      "flake": false,
-      "locked": {
-        "host": "gitlab.freedesktop.org",
-        "lastModified": 1666466001,
-        "narHash": "sha256-ZjxAnqtcGmHQHKL1Z9sIraDnzIqrJleWcJXfPtzAm74=",
-        "owner": "wlroots",
-        "repo": "wlroots",
-        "rev": "c2d2773df57750081b16d56da13b5015d752cbd7",
-        "type": "gitlab"
-      },
-      "original": {
-        "host": "gitlab.freedesktop.org",
-        "owner": "wlroots",
-        "repo": "wlroots",
-        "type": "gitlab"
-      }
-    },
     "wlroots-git": {
       "flake": false,
       "locked": {
+        "host": "gitlab.freedesktop.org",
         "lastModified": 1668187337,
         "narHash": "sha256-k7BFx1xvvsdCXNWX0XeZYwv8H/myk4p42i2Y6vjILqM=",
-        "ref": "refs/heads/master",
+        "owner": "wlroots",
+        "repo": "wlroots",
         "rev": "1712a7d27444d62f8da8eeedf0840b386a810e96",
-        "revCount": 5847,
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
+        "type": "gitlab"
       },
       "original": {
+        "host": "gitlab.freedesktop.org",
+        "owner": "wlroots",
+        "repo": "wlroots",
         "rev": "1712a7d27444d62f8da8eeedf0840b386a810e96",
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
+        "type": "gitlab"
       }
     },
     "xorg-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1666973551,
-        "narHash": "sha256-RIxmlR0Gt9DZMr32XuuvUlShQ4uWRz5vr5T/wfMbHcs=",
-        "ref": "refs/heads/master",
-        "rev": "459e2855730a30bb50f4836f2ff6153841bf843c",
-        "revCount": 17923,
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
+        "host": "gitlab.freedesktop.org",
+        "lastModified": 1668613666,
+        "narHash": "sha256-SubGx8QX1j6NP3B+uxlb9b5oPUvBqP9IczlhcxWauQw=",
+        "owner": "xorg",
+        "repo": "xserver",
+        "rev": "82bf391c933cd14b92f0ac96b7937497353c1b30",
+        "type": "gitlab"
       },
       "original": {
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/xorg/xserver.git"
+        "host": "gitlab.freedesktop.org",
+        "owner": "xorg",
+        "repo": "xserver",
+        "type": "gitlab"
       }
     }
   },
