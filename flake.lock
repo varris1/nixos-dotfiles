@@ -39,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1666525448,
-        "narHash": "sha256-MsNIq6TRauByEUj4qthAUEe98uKpqv7dn5E253ewm+k=",
+        "lastModified": 1668213765,
+        "narHash": "sha256-mTx1jAy6AOY4moWRGvCHYnUNX4qBL/ba47ZcIkhczJM=",
         "owner": "vinceliuice",
         "repo": "grub2-themes",
-        "rev": "967a302d8f996fd58b7e7125ae4aee13d39f70af",
+        "rev": "c106dfb9b5b18ad092ff0f952f2b734933e8283e",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1669536800,
-        "narHash": "sha256-8E1aYwSPdc6xb/SP8LGjP4W9nkkGQM0tt1QoFLP2OUw=",
+        "lastModified": 1669573161,
+        "narHash": "sha256-UAOXq+LIX+goAAY2MiC0+zCxdNPaO7NAPTvCQExpIBs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7ae7250df8f38c4efc8cd6669a36272ab7a575ed",
+        "rev": "50c9bccb6abc52811a59db620606e016fcde32bd",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
     "waybar": {
       "flake": false,
       "locked": {
-        "lastModified": 1668292860,
-        "narHash": "sha256-CLAmRA8X/SXqP2YLXSClNN6I7ZbeTcupOc9oilyV5eI=",
+        "lastModified": 1669491929,
+        "narHash": "sha256-XMpl1soXKFe1NOux4HRBrmMrANgcnjGeGsUUKOzOFkE=",
         "owner": "alexays",
         "repo": "waybar",
-        "rev": "5250123dcb1b4974c2f58b009feb533e8cfa2887",
+        "rev": "cfef78a5bc8df6a29e06ec128f7a6075425db402",
         "type": "github"
       },
       "original": {
