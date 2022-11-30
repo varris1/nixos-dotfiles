@@ -6,6 +6,8 @@ let
   left_monitor = "HDMI-A-1";
   right_monitor = "DP-1";
 
+  fuzzel_command = "${pkgs.fuzzel}/bin/fuzzel -T ${pkgs.foot}/bin/foot --layer=overlay -x 20 -w 80 -r 0 -B 2 --line-height=12  -f 'JetBrainsMono Nerd Font:size=8' -b '#282828f2' -t '#EBDBB2ff' -S '#EBDBB2ff' -C '#d65d0eff' -s '#3C3836ff' -m '#D65D0Eff' -M '#D65D0Eff' ";
+
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumedaemon.sh" ''
     if pgrep "wob";  then
       killall wob &> /dev/null
@@ -28,7 +30,7 @@ let
     password_files=( "''${password_files[@]#"$prefix"/}" )
     password_files=( "''${password_files[@]%.gpg}" )
 
-    password=$(printf '%s\n' "''${password_files[@]}" | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "pass" "$@")
+    password=$(printf '%s\n' "''${password_files[@]}" | ${fuzzel_command} -d -p "pass: " "$@")
 
     [[ -n $password ]] || exit
 
@@ -42,10 +44,8 @@ let
     echo "Xwayland: $DSP - Primary monitor set"
   '';
 
-  rofi-theme = inputs.rofi-theme + "/gruvbox-dark.rasi";
-
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu  -p "kill process" | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "    " | ${fuzzel_command} -d -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 in
 {
@@ -78,7 +78,7 @@ in
           "${modifier}+Print" =
             "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy active";
 
-          "${modifier}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
+          "${modifier}+d" = "exec ${fuzzel_command}";
           "${modifier}+Shift+p" = "exec ${passmenu}/bin/passmenu.sh";
           "${modifier}+Shift+o" = "exec ${killprocess}/bin/killprocess.sh";
 
@@ -218,13 +218,6 @@ in
     borderRadius = 10;
     borderSize = 2;
 
-    font = "JetBrainsMono Nerd Font Regular 9";
-  };
-
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-    theme = "${rofi-theme}";
     font = "JetBrainsMono Nerd Font Regular 9";
   };
 

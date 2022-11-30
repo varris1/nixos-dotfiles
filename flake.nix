@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Fish Plugins
     bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
@@ -39,12 +34,12 @@
     };
 
     wlroots-git = {
-      url = "git+https://gitlab.freedesktop.org/wlroots/wlroots.git";
+      url = "gitlab:wlroots/wlroots/1712a7d27444d62f8da8eeedf0840b386a810e96?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     sway-git = {
-      url = "github:swaywm/sway";
+      url = "github:swaywm/sway/5c239eaac59f327294aceac739c6fa035456ed14";
       flake = false;
     };
 
@@ -54,12 +49,12 @@
     };
 
     xorg-git = {
-      url = "git+https://gitlab.freedesktop.org/xorg/xserver.git";
+      url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     mesa-git = {
-      url = "git+https://gitlab.freedesktop.org/mesa/mesa.git";
+      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
       flake = false;
     };
 
@@ -72,6 +67,7 @@
       url = "github:alexays/waybar";
       flake = false;
     };
+
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -89,10 +85,12 @@
     in
     {
       overlays.default = final: prev: rec {
-        nerdfonts = prev.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        nerdfonts = prev.nerdfonts.override {
+          fonts = [ "JetBrainsMono" ];
+        };
 
         wlroots-git = prev.wlroots.overrideAttrs (old: {
-          version = "git";
+          version = "0.16.0";
           src = inputs.wlroots-git;
           nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.cmake pkgs.hwdata ];
           postPatch = ''

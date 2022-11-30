@@ -30,7 +30,7 @@
 
       grub2-theme = {
         enable = true;
-        theme = "vimix";
+        theme = "stylish";
         screen = "2k";
       };
     };
@@ -108,6 +108,8 @@
     interval = "weekly";
   };
 
+  services.udisks2.enable = true;
+
   security = {
     sudo.enable = false;
     doas = {
@@ -179,7 +181,7 @@
     };
   };
 
-  services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = false;
 
   xdg.portal = {
     enable = true;

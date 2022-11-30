@@ -111,7 +111,7 @@
     enableFishIntegration = true;
   };
 
-  services.gnome-keyring.enable = true;
+  services.gnome-keyring.enable = false; #Reenable when nixpkgs PR #201229 has been merged
 
   services.easyeffects = {
     enable = true;

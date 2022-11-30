@@ -4,9 +4,11 @@
     config = {
       profile = "gpu-hq";
       ytdl-format = "bestvideo+bestaudio";
-      hwdec = "vaapi-copy";
-      gpu-context = "wayland";
+      hwdec = "vaapi";
+      #     gpu-context = "wayland";
       force-window = "yes";
+      ao = "pipewire";
+      #      vo = "dmabuf-wayland";
     };
   };
 }
