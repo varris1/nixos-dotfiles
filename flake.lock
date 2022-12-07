@@ -19,11 +19,11 @@
     "gamescope-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1670369909,
-        "narHash": "sha256-7Jpsxp0Inb9qpcoudWyl/KKwzTvYIPTbC6Rls/x1Kk4=",
+        "lastModified": 1670438874,
+        "narHash": "sha256-alJaB7uZORaHV+VNlIMGuCCkPjHCF9wQ//Jv2pzitmM=",
         "owner": "Plagman",
         "repo": "gamescope",
-        "rev": "d5ea069dc3d483732989ae5ae1bed99b32c219c6",
+        "rev": "7aef264dfcf81c5f303422d820b7e1ecf81568f3",
         "type": "github"
       },
       "original": {
@@ -109,11 +109,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1670427797,
-        "narHash": "sha256-v1UGcXlmoneRap4knhJulLpUlx4MHiibBVpLqIOwV04=",
+        "lastModified": 1670450725,
+        "narHash": "sha256-FsTKzVLqU3phAIlD9o+xfeJN+TZUmF64CSDjhk5+M6I=",
         "owner": "mesa",
         "repo": "mesa",
-        "rev": "bdb7fd69d659dee5c8bf0a05eef9fc3f330704c0",
+        "rev": "513442dc32f809bb52f843215f7355e2d386dd67",
         "type": "gitlab"
       },
       "original": {
