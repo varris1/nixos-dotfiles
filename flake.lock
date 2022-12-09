@@ -126,11 +126,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1670498129,
-        "narHash": "sha256-QOWbsKObHxNpBzrIVJrgR2TGQdwyYNFgBdoVCCvYuDU=",
+        "lastModified": 1670587192,
+        "narHash": "sha256-h3DHD2WBddfZxRuceYBa54JZKF1z8O8dtYNZK5UvP/4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "52665b05cfd702e12b877aa519b62374d003231a",
+        "rev": "aaac4123e3e33e779af54361a244857d029a64dd",
         "type": "github"
       },
       "original": {
@@ -168,6 +168,7 @@
         "rofi-theme": "rofi-theme",
         "sway-git": "sway-git",
         "waybar": "waybar",
+        "wayland-protcols-git": "wayland-protcols-git",
         "wlroots-git": "wlroots-git",
         "xorg-git": "xorg-git"
       }
@@ -175,17 +176,16 @@
     "sway-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1668189449,
-        "narHash": "sha256-gLXTgHcAFwr4SgzqkQnwYEOvqvNTfFIfJi52kiwTP1U=",
+        "lastModified": 1670245769,
+        "narHash": "sha256-SHGXmxxnG4ivsLQJAEALSuaxeKXpvtgVRuTDkSfomAw=",
         "owner": "swaywm",
         "repo": "sway",
-        "rev": "5c239eaac59f327294aceac739c6fa035456ed14",
+        "rev": "c32a507303e38c7bf0b8054108bec45ff67e92c2",
         "type": "github"
       },
       "original": {
         "owner": "swaywm",
         "repo": "sway",
-        "rev": "5c239eaac59f327294aceac739c6fa035456ed14",
         "type": "github"
       }
     },
@@ -220,22 +220,39 @@
         "type": "github"
       }
     },
+    "wayland-protcols-git": {
+      "flake": false,
+      "locked": {
+        "host": "gitlab.freedesktop.org",
+        "lastModified": 1669729061,
+        "narHash": "sha256-3QK+ZN6IFUFkDxySSoQwP1J3JnTlD7JPaUk6Tr/d/k4=",
+        "owner": "wayland",
+        "repo": "wayland-protocols",
+        "rev": "4624cfaaf563cd7be5e2e2087c8de6d3a48ea867",
+        "type": "gitlab"
+      },
+      "original": {
+        "host": "gitlab.freedesktop.org",
+        "owner": "wayland",
+        "repo": "wayland-protocols",
+        "type": "gitlab"
+      }
+    },
     "wlroots-git": {
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1668187337,
-        "narHash": "sha256-k7BFx1xvvsdCXNWX0XeZYwv8H/myk4p42i2Y6vjILqM=",
+        "lastModified": 1670514794,
+        "narHash": "sha256-oGUWisocBVVZG8aFdUQ6QS1LKN2YPnwI1Dr/zuBnuyU=",
         "owner": "wlroots",
         "repo": "wlroots",
-        "rev": "1712a7d27444d62f8da8eeedf0840b386a810e96",
+        "rev": "32fc23a3834ba5c4ecfea3b7c5c4c2126369074c",
         "type": "gitlab"
       },
       "original": {
         "host": "gitlab.freedesktop.org",
         "owner": "wlroots",
         "repo": "wlroots",
-        "rev": "1712a7d27444d62f8da8eeedf0840b386a810e96",
         "type": "gitlab"
       }
     },
