@@ -9,11 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-colors = {
+      url = "github:Misterio77/nix-colors";
+    };
+
     # Fish Plugins
     bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
       flake = false;
     };
+    # Fish Plugins End
 
     # Kakoune Plugins
     kakoune-smarttab = {
@@ -25,7 +30,6 @@
       url = "github:occivink/kakoune-sort-selections";
       flake = false;
     };
-
     # Kakoune Plugins End
 
     rofi-theme = {
@@ -33,13 +37,18 @@
       flake = false;
     };
 
+    wayland-protcols-git = {
+      url = "gitlab:wayland/wayland-protocols?host=gitlab.freedesktop.org";
+      flake = false;
+    };
+
     wlroots-git = {
-      url = "gitlab:wlroots/wlroots/1712a7d27444d62f8da8eeedf0840b386a810e96?host=gitlab.freedesktop.org";
+      url = "gitlab:wlroots/wlroots?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     sway-git = {
-      url = "github:swaywm/sway/5c239eaac59f327294aceac739c6fa035456ed14";
+      url = "github:swaywm/sway";
       flake = false;
     };
 
@@ -54,7 +63,7 @@
     };
 
     mesa-git = {
-      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
+      url = "gitlab:mesa/mesa/mesa-22.3.0?host=gitlab.freedesktop.org";
       flake = false;
     };
 
@@ -70,7 +79,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-colors, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -86,10 +95,15 @@
     {
       overlays.default = final: prev: rec {
         nerdfonts = prev.nerdfonts.override {
-          fonts = [ "JetBrainsMono" ];
+          fonts = [ "JetBrainsMono" "IBMPlexMono" ];
         };
 
-        wlroots-git = prev.wlroots.overrideAttrs (old: {
+        wayland-protcols-git = prev.wayland-protocols.overrideAttrs (old: {
+          version = "git";
+          src = inputs.wayland-protcols-git;
+        });
+
+        wlroots-git = (prev.wlroots.overrideAttrs (old: {
           version = "0.16.0";
           src = inputs.wlroots-git;
           nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.cmake pkgs.hwdata ];
@@ -97,7 +111,9 @@
             substituteInPlace backend/drm/meson.build \
               --replace "/usr/share/hwdata/pnp.ids" "${pkgs.hwdata}/share/hwdata/pnp.ids"
           '';
-        });
+        })).override {
+          wayland-protocols = wayland-protcols-git;
+        };
 
         sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
           version = "git";
@@ -105,6 +121,7 @@
           nativeBuildInputs = old.nativeBuildInputs ++ [ prev.cmake ];
           src = inputs.sway-git;
         })).override {
+          wayland-protocols = wayland-protcols-git;
           wlroots = wlroots-git;
         };
 
@@ -115,37 +132,39 @@
           wlroots = wlroots-git;
         };
 
-        #xwayland = prev.xwayland.overrideAttrs (old: {
-        # version = "git";
-        #
-        # src = inputs.xorg-git;
-        #   buildInputs = old.buildInputs ++ [
-        #     prev.udev
-        #     prev.xorg.libpciaccess
-        #   ];
-        # });
+        xwayland = prev.xwayland.overrideAttrs (old: {
+          version = "git";
+
+          src = inputs.xorg-git;
+          buildInputs = old.buildInputs ++ [
+            prev.udev
+            prev.xorg.libpciaccess
+          ];
+        });
 
         steam = prev.steam.override {
           extraPkgs = pkgs: [
-            pkgs.gnome.zenity
             pkgs.gamescope
-            pkgs.libkrb5
+            pkgs.gnome.zenity
             pkgs.keyutils
+            pkgs.libkrb5
+            pkgs.mangohud
             pkgs.mpg123
           ];
 
           extraLibraries = pkgs: [
             pkgs.mpg123
+            pkgs.zlib-ng
           ];
         };
 
-        gamescope = prev.gamescope.overrideAttrs (old: {
-          version = "git";
-          src = inputs.gamescope-git;
-        });
+        # gamescope = prev.gamescope.overrideAttrs (old: {
+        #   version = "git";
+        #   src = inputs.gamescope-git;
+        # });
 
         mesa-git = (prev.mesa.overrideAttrs (old: {
-          version = "git";
+          version = "22.3.0";
           src = inputs.mesa-git;
           buildInputs = old.buildInputs ++ [ pkgs.glslang pkgs.vulkan-loader ];
           patches = [
@@ -156,7 +175,7 @@
             "-Dxvmc-libs-path=${placeholder "drivers"}/lib"
             old.mesonFlags; # xvmc was removed upstream
         })).override {
-          galliumDrivers = [ "radeonsi" "swrast" "zink" ];
+          galliumDrivers = [ "radeonsi" "swrast" ];
           vulkanDrivers = [ "amd" ];
           enableGalliumNine = false; # Replaced by DXVK
         };
@@ -168,7 +187,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           {
-            #needed to get tools working that expect a nixpkgs channel to exist
+            # needed to get tools working that expect a nixpkgs channel to exist
             nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
             nix.registry = { nixpkgs.flake = nixpkgs; };
           }
@@ -178,7 +197,7 @@
             home-manager = {
               useUserPackages = true;
               users.manuel = import ./user/home.nix;
-              extraSpecialArgs = { inherit inputs pkgs; };
+              extraSpecialArgs = { inherit inputs pkgs nix-colors; };
             };
           }
           inputs.grub2-themes.nixosModule

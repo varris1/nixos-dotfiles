@@ -1,12 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 let
   wobsock = "/tmp/wob-swayvol.fifo";
-  wallpaper = "/mnt/hdd/Wallpapers/gruv-4.jpg";
+  wallpaper = "/mnt/hdd/Wallpapers/florest-stair2.jpg";
 
   left_monitor = "HDMI-A-1";
   right_monitor = "DP-1";
-
-  fuzzel_command = "${pkgs.fuzzel}/bin/fuzzel -T ${pkgs.foot}/bin/foot --layer=overlay -x 20 -w 80 -r 0 -B 2 --line-height=12  -f 'JetBrainsMono Nerd Font:size=8' -b '#282828f2' -t '#EBDBB2ff' -S '#EBDBB2ff' -C '#d65d0eff' -s '#3C3836ff' -m '#D65D0Eff' -M '#D65D0Eff' ";
 
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumedaemon.sh" ''
     if pgrep "wob";  then
@@ -18,7 +16,7 @@ let
     fi
 
     mkfifo "${wobsock}"
-    tail -f "${wobsock}" | ${pkgs.wob}/bin/wob --border-color "#D65D0EFF" --background-color "#282828FF" --bar-color "#D65D0EFF" -b 2 -H 40  &
+    tail -f "${wobsock}" | ${pkgs.wob}/bin/wob &
     echo "wob: started"
   '';
 
@@ -30,7 +28,7 @@ let
     password_files=( "''${password_files[@]#"$prefix"/}" )
     password_files=( "''${password_files[@]%.gpg}" )
 
-    password=$(printf '%s\n' "''${password_files[@]}" | ${fuzzel_command} -d -p "pass: " "$@")
+    password=$(printf '%s\n' "''${password_files[@]}" | ${pkgs.fuzzel}/bin/fuzzel -d -p "pass: " "$@")
 
     [[ -n $password ]] || exit
 
@@ -45,11 +43,12 @@ let
   '';
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | ${fuzzel_command} -d -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.fuzzel}/bin/fuzzel -d -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
+
 in
 {
-  imports = [ ./waybar.nix ];
+  imports = [ ./waybar.nix ./foot.nix ./wob.nix ./fuzzel.nix ./mako.nix ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -78,12 +77,12 @@ in
           "${modifier}+Print" =
             "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy active";
 
-          "${modifier}+d" = "exec ${fuzzel_command}";
+          "${modifier}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
           "${modifier}+Shift+p" = "exec ${passmenu}/bin/passmenu.sh";
           "${modifier}+Shift+o" = "exec ${killprocess}/bin/killprocess.sh";
 
           "${modifier}+q" = "exec ${pkgs.firefox}/bin/firefox";
-          "${modifier}+r" = "exec ${pkgs.xfce.thunar}/bin/thunar";
+          "${modifier}+r" = "exec ${pkgs.gnome.nautilus}/bin/nautilus";
 
           "Ctrl+Space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "Ctrl+grave" = "exec ${pkgs.mako}/bin/makoctl restore";
@@ -92,8 +91,6 @@ in
           "${modifier}+Shift+F10" = "exec swaymsg gaps inner all set 20";
           "${modifier}+Shift+F11" = "exec swaymsg gaps inner all plus 20";
           "${modifier}+Shift+F12" = "exec swaymsg gaps inner all minus 20";
-
-
         };
       input = {
         "type:keyboard" = {
@@ -159,10 +156,18 @@ in
           always = true;
         }
         {
-          command =
-            "${pkgs.openrgb}/bin/openrgb --server --profile autorun.orp";
+          command = "${pkgs.openrgb}/bin/openrgb --server --profile autorun.orp";
         }
-        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
+        {
+          command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+        }
+        {
+          command = "${pkgs.blueman}/bin/blueman-applet";
+        }
+        {
+          command = "${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'";
+          always = true;
+        }
       ];
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       colors = {
@@ -205,58 +210,6 @@ in
     wrapperFeatures = { gtk = true; };
   };
 
-  programs.mako = {
-    enable = true;
-    anchor = "top-right";
-    defaultTimeout = 5000;
-
-    width = 320;
-    height = 130;
-
-    backgroundColor = "#282828";
-    borderColor = "#3C3836";
-    borderRadius = 10;
-    borderSize = 2;
-
-    font = "JetBrainsMono Nerd Font Regular 9";
-  };
-
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        font = "JetBrainsMono Nerd Font:pixelsize=12";
-        box-drawings-uses-font-glyphs = "yes";
-        pad = "16x16 center";
-      };
-
-      colors = {
-        alpha = "0.95";
-        background = "282828";
-        foreground = "ebdbb2";
-        regular0 = "282828";
-        regular1 = "cc241d";
-        regular2 = "98971a";
-        regular3 = "d79921";
-        regular4 = "458588";
-        regular5 = "b16286";
-        regular6 = "689d6a";
-        regular7 = "a89984";
-        bright0 = "928374";
-        bright1 = "fb4934";
-        bright2 = "b8bb26";
-        bright3 = "fabd2f";
-        bright4 = "83a598";
-        bright5 = "d3869b";
-        bright6 = "8ec07c";
-        bright7 = "ebdbb2";
-
-        selection-foreground = "000000";
-        selection-background = "FFFACD";
-        urls = "0087BD";
-      };
-    };
-  };
-
   home.packages = [ pkgs.wl-clipboard ];
 }
+

@@ -10,10 +10,8 @@
   nixpkgs.config.allowUnfree = true;
 
   boot = {
-    consoleLogLevel = 3;
-
     kernelParams =
-      [ "quiet" "udev.log_level=3" "amdgpu.ppfeaturemask=0xffffffff" ];
+      [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
     loader = {
       efi = {
@@ -40,12 +38,18 @@
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
-  powerManagement = { cpuFreqGovernor = "schedutil"; };
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   networking = {
     hostName = "terra"; # Define your hostname.
     networkmanager = { enable = true; };
     firewall.checkReversePath = false;
+    firewall.enable = false;
+
+    extraHosts = ''
+      192.168.0.17 steam.deck
+    '';
+
   };
 
   # Set your time zone.
@@ -86,12 +90,17 @@
   sound.enable = true;
 
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.blueman.enable = true;
+
+  services.gvfs.enable = true;
 
   services.flatpak.enable = true;
 
@@ -151,16 +160,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    systemPackages = with pkgs; [
-      git
-      links2
-      ripgrep
-      fd
-      htop
-      openrgb
-      unzip
-      unrar
-      p7zip
+    systemPackages = [
+      pkgs.git
+      pkgs.links2
+      pkgs.ripgrep
+      pkgs.file
+      pkgs.fd
+      pkgs.htop
+      pkgs.openrgb
+      pkgs.unzip
+      pkgs.unrar
+      pkgs.p7zip
     ];
     pathsToLink = [ "/share/zsh" ];
     binsh = "${pkgs.dash}/bin/dash";
@@ -181,10 +191,11 @@
     };
   };
 
-  services.gnome.gnome-keyring.enable = false;
+  services.gnome.gnome-keyring.enable = true;
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
@@ -209,17 +220,6 @@
     nssmdns = true;
   };
 
-  services.greetd = {
-    enable = false;
-    settings = {
-      default_session = {
-        vt = 1;
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd sway";
-      };
-      user = "manuel";
-    };
-  };
-
   services.transmission = {
     enable = true;
     user = "manuel";
@@ -228,7 +228,13 @@
 
   services.fwupd.enable = true;
 
+  services.getty.autologinUser = "manuel";
+
   nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      warn-dirty = false
+    '';
     gc = {
       persistent = true;
       automatic = true;
@@ -237,11 +243,6 @@
     };
     settings.auto-optimise-store = true;
   };
-
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-    warn-dirty = false
-  '';
 
   system.stateVersion = "22.05"; # Did you read the comment?
 }

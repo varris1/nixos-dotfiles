@@ -23,6 +23,13 @@
       set -g theme_git_default_branches master main
 
     '';
+
+    loginShellInit = ''
+      if test (tty) = "/dev/tty1"
+          ${pkgs.sway}/bin/sway &> ~/.sway.log
+      end
+    '';
+
     functions = {
       #fish_prompt = ''
       # set_color green

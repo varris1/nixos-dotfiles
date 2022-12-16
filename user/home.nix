@@ -1,8 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, nix-colors, ... }: {
   imports = [
+    nix-colors.homeManagerModule
     ./configs/beets/beets.nix
     ./configs/kakoune/kakoune.nix
-    ./configs/sway/sway.nix
+    ./configs/wayland/sway.nix
     ./configs/fish/fish.nix
     ./configs/mpd/mpd.nix
     ./configs/mpv/mpv.nix
@@ -17,16 +18,22 @@
   home.homeDirectory = "/home/manuel";
   home.packages = [
     pkgs.appimage-run
-    pkgs.blueman
     pkgs.discord-canary
     pkgs.gamescope
+    pkgs.gnome.file-roller
+    pkgs.gnome.gvfs
+    pkgs.gnome.nautilus
     pkgs.lutris
+    pkgs.mesa-demos
     pkgs.nerdfonts
     pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-cjk-serif
+    pkgs.obs-studio
     pkgs.pass
     pkgs.pavucontrol
     pkgs.protontricks
+    pkgs.signal-desktop
+    pkgs.sshfs
     pkgs.steam
     pkgs.steam-run
     pkgs.sxiv
@@ -34,19 +41,18 @@
     pkgs.twemoji-color-font
     pkgs.wineWowPackages.stagingFull
     pkgs.xivlauncher
-    pkgs.xarchiver
-    pkgs.sshfs
-    pkgs.gnome.gvfs
-    pkgs.signal-desktop
+    pkgs.vulkan-validation-layers
   ];
 
   home.sessionVariables = {
-    BROWSER = "librewolf";
+    BROWSER = "firefox";
     EDITOR = "kak";
-    GTK_USE_PORTAL = "1";
+    #GTK_USE_PORTAL = "1";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    #WLR_RENDERER = "vulkan"; Causes hangs
+    WLR_RENDERER = "vulkan"; #Causes hangs
   };
+
+  colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
 
   fonts.fontconfig.enable = true;
 
@@ -91,6 +97,7 @@
       name = "capitaine-cursors-white";
       size = 32;
     };
+
   };
 
   programs.git = {
@@ -111,8 +118,7 @@
     enableFishIntegration = true;
   };
 
-  services.gnome-keyring.enable = false; #Reenable when nixpkgs PR #201229 has been merged
-
+  services.gnome-keyring.enable = true;
   services.easyeffects = {
     enable = true;
     preset = "custom";
@@ -127,7 +133,6 @@
     music = "/mnt/hdd/Music";
     download = "/mnt/hdd/Downloads";
   };
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -138,3 +143,4 @@
   # changes in each release.
   home.stateVersion = "22.05";
 }
+

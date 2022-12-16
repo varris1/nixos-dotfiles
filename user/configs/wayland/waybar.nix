@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 let
+  colors = config.colorScheme.colors;
+
   ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
     ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
     ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
@@ -77,9 +79,9 @@ in
       "custom/blank" = { format = " "; };
     }];
     style = ''
-      @define-color foreground #EBDBB2;
-      @define-color background #282828;
-      @define-color box-bg #3C3836;
+      @define-color foreground #${colors.base06};
+      @define-color background #${colors.base00};
+      @define-color box-bg #${colors.base01};
 
       label:disabled,
       button:disabled {

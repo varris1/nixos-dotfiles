@@ -9,14 +9,15 @@ let
     name = "sort-selections-kak";
     src = inputs.kakoune-sort-selections;
   };
-in {
+in
+{
   programs.kakoune = {
     enable = true;
     plugins = with pkgs.kakounePlugins; [
       kak-lsp
       kakboard
       kakoune-extra-filetypes
-      powerline-kak
+      #powerline-kak
       smarttab
       sort-selections
     ];
@@ -63,10 +64,10 @@ in {
 
       map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
 
-      require-module powerline
-      powerline-start
-      powerline-theme gruvbox
-      powerline-separator global half-step
+      # require-module powerline
+      # powerline-start
+      # powerline-theme gruvbox
+      # powerline-separator global half-step
     '';
   };
 

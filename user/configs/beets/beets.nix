@@ -26,7 +26,7 @@
 
       fetchart = { "auto" = true; };
 
-      chroma = { auto = true; };
+      chroma = { "auto" = true; };
 
       replaygain = {
         "backend" = "gstreamer";
