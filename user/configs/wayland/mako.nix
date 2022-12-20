@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  colors = config.colorScheme.colors;
+in
 {
   programs.mako = {
     enable = true;
@@ -8,8 +11,8 @@
     width = 320;
     height = 130;
 
-    backgroundColor = "#282828";
-    borderColor = "#3C3836";
+    backgroundColor = "#${colors.base00}";
+    borderColor = "#${colors.base01}";
     borderRadius = 10;
     borderSize = 2;
 

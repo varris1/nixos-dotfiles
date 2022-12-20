@@ -1,4 +1,5 @@
-{ config, pkgs, inputs, nix-colors, ... }: {
+{ config, pkgs, inputs, nix-colors, ... }:
+{
   imports = [
     nix-colors.homeManagerModule
     ./configs/beets/beets.nix
@@ -10,46 +11,49 @@
     ./configs/firefox/firefox.nix
     ./configs/nnn/nnn.nix
     ./configs/dircolors.nix
+    ./configs/xdg-mime.nix
   ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
-  home.packages = [
-    pkgs.appimage-run
-    pkgs.discord-canary
-    pkgs.gamescope
-    pkgs.gnome.file-roller
-    pkgs.gnome.gvfs
-    pkgs.gnome.nautilus
-    pkgs.lutris
-    pkgs.mesa-demos
-    pkgs.nerdfonts
-    pkgs.noto-fonts-cjk-sans
-    pkgs.noto-fonts-cjk-serif
-    pkgs.obs-studio
-    pkgs.pass
-    pkgs.pavucontrol
-    pkgs.protontricks
-    pkgs.signal-desktop
-    pkgs.sshfs
-    pkgs.steam
-    pkgs.steam-run
-    pkgs.sxiv
-    pkgs.thunderbird
-    pkgs.twemoji-color-font
-    pkgs.wineWowPackages.stagingFull
-    pkgs.xivlauncher
-    pkgs.vulkan-validation-layers
+  home.packages = with pkgs; [
+    appimage-run
+    discord-canary
+    gamescope
+    gnome.file-roller
+    gnome.gvfs
+    gnome.nautilus
+    lutris
+    mesa-demos
+    nerdfonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    obs-studio
+    pass
+    pavucontrol
+    protontricks
+    signal-desktop
+    sshfs
+    steam
+    steam-run
+    steamtinkerlaunch
+    sxiv
+    thunderbird
+    twemoji-color-font
+    wineWowPackages.stagingFull
+    xdg-utils
+    xivlauncher
+    vulkan-validation-layers
   ];
 
   home.sessionVariables = {
-    BROWSER = "firefox";
     EDITOR = "kak";
     #GTK_USE_PORTAL = "1";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     WLR_RENDERER = "vulkan"; #Causes hangs
+    RADV_PERFTEST = "gpl";
   };
 
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;

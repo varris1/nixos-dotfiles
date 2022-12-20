@@ -1,7 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -42,7 +43,7 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    networkmanager = { enable = true; };
+    networkmanager.enable = true;
     firewall.checkReversePath = false;
     firewall.enable = false;
 
@@ -223,12 +224,22 @@
   services.transmission = {
     enable = true;
     user = "manuel";
+    settings = {
+      download-dir = "/mnt/hdd/Downloads/Torrents";
+      incomplete-dir = "/mnt/hdd/Downloads/Torrents/.incomplete";
+    };
     openFirewall = true;
   };
 
   services.fwupd.enable = true;
 
-  services.getty.autologinUser = "manuel";
+  services.getty.autologinUser = " manuel ";
+
+  systemd.user.extraConfig = ''
+    # needed for xdg-open to find the default browser
+    DefaultEnvironment="
+        PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
+  '';
 
   nix = {
     extraOptions = ''
@@ -246,3 +257,4 @@
 
   system.stateVersion = "22.05"; # Did you read the comment?
 }
+

@@ -89,6 +89,22 @@
         "type": "github"
       }
     },
+    "kakoune-base16-themes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671326254,
+        "narHash": "sha256-2sE2HKVH/F0dquGSmWmJuCFnFxjrCqm8CQbse3rVO5w=",
+        "owner": "tinted-theming",
+        "repo": "base16-kakoune",
+        "rev": "5b812fdb79cc9f2507332ae840cefe0a61304ac4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "base16-kakoune",
+        "type": "github"
+      }
+    },
     "kakoune-smarttab": {
       "flake": false,
       "locked": {
@@ -125,17 +141,16 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1669843731,
-        "narHash": "sha256-CkMJsb1lFR3rQWB2z7sqD8rJ5lmw2DK5ohZ5qeL1JzA=",
+        "lastModified": 1671314051,
+        "narHash": "sha256-+LiyNh2lCj2OzWuHA3nXCdjCLv5uOpoHneDgf5zw+Oo=",
         "owner": "mesa",
         "repo": "mesa",
-        "rev": "32552010d1e0243948aebd6b6642ba9aeb979004",
+        "rev": "18f4dc6b75b1e3697d40f8c6a39d41179ccd2238",
         "type": "gitlab"
       },
       "original": {
         "host": "gitlab.freedesktop.org",
         "owner": "mesa",
-        "ref": "mesa-22.3.0",
         "repo": "mesa",
         "type": "gitlab"
       }
@@ -211,6 +226,7 @@
         "gamescope-git": "gamescope-git",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
+        "kakoune-base16-themes": "kakoune-base16-themes",
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
         "mesa-git": "mesa-git",

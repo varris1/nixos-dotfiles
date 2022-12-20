@@ -7,7 +7,7 @@
       restore_paused "yes"
 
       audio_output {
-          type "pulse"
+          type "pipewire"
           name "MPD PipeWire"
           replay_gain_handler "none"
       }

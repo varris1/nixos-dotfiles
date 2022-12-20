@@ -82,7 +82,7 @@ in
           "${modifier}+Shift+o" = "exec ${killprocess}/bin/killprocess.sh";
 
           "${modifier}+q" = "exec ${pkgs.firefox}/bin/firefox";
-          "${modifier}+r" = "exec ${pkgs.gnome.nautilus}/bin/nautilus";
+          "${modifier}+r" = "exec ${pkgs.cinnamon.nemo}/bin/nemo";
 
           "Ctrl+Space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "Ctrl+grave" = "exec ${pkgs.mako}/bin/makoctl restore";

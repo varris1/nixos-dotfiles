@@ -21,6 +21,11 @@
     # Fish Plugins End
 
     # Kakoune Plugins
+    kakoune-base16-themes = {
+      url = "github:tinted-theming/base16-kakoune";
+      flake = false;
+    };
+
     kakoune-smarttab = {
       url = "github:andreyorst/smarttab.kak";
       flake = false;
@@ -63,7 +68,7 @@
     };
 
     mesa-git = {
-      url = "gitlab:mesa/mesa/mesa-22.3.0?host=gitlab.freedesktop.org";
+      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
       flake = false;
     };
 
@@ -150,6 +155,7 @@
             pkgs.libkrb5
             pkgs.mangohud
             pkgs.mpg123
+            pkgs.steamtinkerlaunch
           ];
 
           extraLibraries = pkgs: [
@@ -164,7 +170,7 @@
         # });
 
         mesa-git = (prev.mesa.overrideAttrs (old: {
-          version = "22.3.0";
+          version = "git";
           src = inputs.mesa-git;
           buildInputs = old.buildInputs ++ [ pkgs.glslang pkgs.vulkan-loader ];
           patches = [
