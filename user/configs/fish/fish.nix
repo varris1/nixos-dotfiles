@@ -24,11 +24,11 @@
 
     '';
 
-    loginShellInit = ''
-      if test (tty) = "/dev/tty1"
-          ${pkgs.sway}/bin/sway &> ~/.sway.log
-      end
-    '';
+    #    loginShellInit = ''
+    #     if test (tty) = "/dev/tty1"
+    #        ${pkgs.sway}/bin/sway &> ~/.sway.log
+    #   end
+    #'';
 
     functions = {
       #fish_prompt = ''

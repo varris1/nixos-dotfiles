@@ -173,7 +173,6 @@
       pkgs.unrar
       pkgs.p7zip
     ];
-    pathsToLink = [ "/share/zsh" ];
     binsh = "${pkgs.dash}/bin/dash";
   };
 
@@ -224,21 +223,21 @@
   services.transmission = {
     enable = true;
     user = "manuel";
-    settings = {
-      download-dir = "/mnt/hdd/Downloads/Torrents";
-      incomplete-dir = "/mnt/hdd/Downloads/Torrents/.incomplete";
-    };
     openFirewall = true;
   };
 
   services.fwupd.enable = true;
 
-  services.getty.autologinUser = " manuel ";
+  #:  services.getty.autologinUser = " manuel ";
+
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 
   systemd.user.extraConfig = ''
     # needed for xdg-open to find the default browser
-    DefaultEnvironment="
-        PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
+    DefaultEnvironment="PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
+    DefaultTimeoutStopSec=10s
   '';
 
   nix = {

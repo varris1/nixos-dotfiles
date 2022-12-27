@@ -21,11 +21,6 @@
     # Fish Plugins End
 
     # Kakoune Plugins
-    kakoune-base16-themes = {
-      url = "github:tinted-theming/base16-kakoune";
-      flake = false;
-    };
-
     kakoune-smarttab = {
       url = "github:andreyorst/smarttab.kak";
       flake = false;
@@ -48,12 +43,12 @@
     };
 
     wlroots-git = {
-      url = "gitlab:wlroots/wlroots?host=gitlab.freedesktop.org";
+      url = "gitlab:wlroots/wlroots/0.16.0?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     sway-git = {
-      url = "github:swaywm/sway";
+      url = "github:swaywm/sway/v1.8";
       flake = false;
     };
 
@@ -121,7 +116,7 @@
         };
 
         sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
-          version = "git";
+          version = "1.8";
           buildInputs = old.buildInputs ++ [ prev.xorg.xcbutilwm prev.pcre2 ];
           nativeBuildInputs = old.nativeBuildInputs ++ [ prev.cmake ];
           src = inputs.sway-git;

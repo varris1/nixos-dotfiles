@@ -22,10 +22,12 @@
     appimage-run
     discord-canary
     gamescope
+    gimp
     gnome.file-roller
     gnome.gvfs
     gnome.nautilus
     lutris
+    mesa-demos
     mesa-demos
     nerdfonts
     noto-fonts-cjk-sans
@@ -42,17 +44,16 @@
     sxiv
     thunderbird
     twemoji-color-font
+    vulkan-tools
+    vulkan-validation-layers
     wineWowPackages.stagingFull
     xdg-utils
     xivlauncher
-    vulkan-validation-layers
   ];
 
   home.sessionVariables = {
     EDITOR = "kak";
-    #GTK_USE_PORTAL = "1";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    WLR_RENDERER = "vulkan"; #Causes hangs
     RADV_PERFTEST = "gpl";
   };
 

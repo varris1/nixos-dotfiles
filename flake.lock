@@ -89,22 +89,6 @@
         "type": "github"
       }
     },
-    "kakoune-base16-themes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1671326254,
-        "narHash": "sha256-2sE2HKVH/F0dquGSmWmJuCFnFxjrCqm8CQbse3rVO5w=",
-        "owner": "tinted-theming",
-        "repo": "base16-kakoune",
-        "rev": "5b812fdb79cc9f2507332ae840cefe0a61304ac4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-kakoune",
-        "type": "github"
-      }
-    },
     "kakoune-smarttab": {
       "flake": false,
       "locked": {
@@ -226,7 +210,6 @@
         "gamescope-git": "gamescope-git",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
-        "kakoune-base16-themes": "kakoune-base16-themes",
         "kakoune-smarttab": "kakoune-smarttab",
         "kakoune-sort-selections": "kakoune-sort-selections",
         "mesa-git": "mesa-git",
@@ -243,11 +226,11 @@
     "sway-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1671727533,
-        "narHash": "sha256-UYNbyFz7EkVaMFo7mnJJCor2DrJ2uQEyEKAYHjmY0Ek=",
+        "lastModified": 1671983996,
+        "narHash": "sha256-r5qf50YK0Wl0gFiFdSE/J6ZU+D/Cz32u1mKzOqnIuJ0=",
         "owner": "swaywm",
         "repo": "sway",
-        "rev": "0500cdbfce49f11a2b010b4d66565cab2549c2a9",
+        "rev": "b88b1b6302cf68cc50ee7f3279b2f2ff29e292c8",
         "type": "github"
       },
       "original": {

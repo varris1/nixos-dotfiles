@@ -10,20 +10,11 @@ let
     src = inputs.kakoune-sort-selections;
   };
 
-  base16-colorschemes = pkgs.kakouneUtils.buildKakounePlugin {
-    name = "base16-colorschemes";
-    src = inputs.kakoune-base16-themes;
-    postFixup = ''
-      mkdir -p $out/share/kak/colors
-      mv $out/share/kak/autoload/plugins/base16-colorschemes/colors $out/share/kak/colors
-    '';
-  };
 in
 {
   programs.kakoune = {
     enable = true;
     plugins = with pkgs.kakounePlugins; [
-      base16-colorschemes
       kak-lsp
       kakboard
       kakoune-extra-filetypes
@@ -32,7 +23,7 @@ in
       sort-selections
     ];
     config = {
-      colorScheme = "base16-gruvbox-dark-medium";
+      colorScheme = "gruvbox-dark";
       tabStop = 4;
       indentWidth = 4;
       showMatching = true;
