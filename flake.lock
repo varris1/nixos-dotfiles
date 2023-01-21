@@ -60,11 +60,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1674082145,
-        "narHash": "sha256-4IpEt5Jc6VrNcpIcrKMCZAyeJMLXaaHk+yOV9HusO/A=",
+        "lastModified": 1674250603,
+        "narHash": "sha256-SBolFspxBHpW3hCCDNAFXUiO2mucmkVmf17UmSIK3Cs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7026e1a934abfa02623c9870378dbcdac3cd7f80",
+        "rev": "275ab728912006eecb549338a50f24f294a7cfb7",
         "type": "github"
       },
       "original": {
@@ -153,16 +153,17 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1673469411,
-        "narHash": "sha256-JYWMz/Ht4Pv9xPZqmCjqqAQHZIVl8lNY1LTCy53FeM4=",
+        "lastModified": 1672343008,
+        "narHash": "sha256-i4tTqz6v94P88zPSA8nTS5+LR1TAeaAUpYoVOpDXXeY=",
         "owner": "mesa",
         "repo": "mesa",
-        "rev": "93c40e3353c55f634f8f2ac40a763ed0c5ed8955",
+        "rev": "a09d5e2747232093178e5d773569e9466c97873e",
         "type": "gitlab"
       },
       "original": {
         "host": "gitlab.freedesktop.org",
         "owner": "mesa",
+        "ref": "mesa-22.3.2",
         "repo": "mesa",
         "type": "gitlab"
       }
@@ -188,11 +189,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1673947312,
-        "narHash": "sha256-xx/2nRwRy3bXrtry6TtydKpJpqHahjuDB5sFkQ/XNDE=",
+        "lastModified": 1674096995,
+        "narHash": "sha256-/vw7At/SztpZjTeM11foA7YdOFmdwSn+ARo8oy+mlUU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2d38b664b4400335086a713a0036aafaa002c003",
+        "rev": "676c80dcc2f0ba780c8ab204f92c5abd69fa1245",
         "type": "github"
       },
       "original": {
@@ -267,11 +268,11 @@
     "waybar": {
       "flake": false,
       "locked": {
-        "lastModified": 1671612188,
-        "narHash": "sha256-95/JOd2oC3D5rSaINDOLPSR4eO72xPuLxjuiNhc5QRk=",
+        "lastModified": 1673944845,
+        "narHash": "sha256-3wgoKi5kzHMf4Rfm784NKNUh4ELGvR3j/zxGJ1CN7P4=",
         "owner": "alexays",
         "repo": "waybar",
-        "rev": "3e48551f25eabeeb4bd3701ebdc14a82a5a2181d",
+        "rev": "eb9d2d9c5d55ceba74ab423b2a7d461427c6c38d",
         "type": "github"
       },
       "original": {
