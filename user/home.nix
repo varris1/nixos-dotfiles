@@ -4,7 +4,8 @@
     nix-colors.homeManagerModule
     ./configs/beets/beets.nix
     ./configs/kakoune/kakoune.nix
-    ./configs/wayland/sway.nix
+    ./configs/wayland/hyprland.nix
+    #./configs/wayland/sway.nix
     ./configs/fish/fish.nix
     ./configs/mpd/mpd.nix
     ./configs/mpv/mpv.nix
@@ -20,12 +21,13 @@
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
     appimage-run
+    bottom
+    calcurse
     discord-canary
     gamescope
     gimp
     gnome.file-roller
     gnome.gvfs
-    gnome.nautilus
     lutris
     mesa-demos
     mesa-demos
@@ -47,6 +49,7 @@
     vulkan-tools
     vulkan-validation-layers
     wineWowPackages.stagingFull
+    wxedid
     xdg-utils
     xivlauncher
   ];
@@ -54,7 +57,7 @@
   home.sessionVariables = {
     EDITOR = "kak";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    RADV_PERFTEST = "gpl";
+    #RADV_PERFTEST = "gpl";
   };
 
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;

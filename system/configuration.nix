@@ -6,13 +6,19 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.hyprland.nixosModules.default
   ];
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.firmware = [ pkgs.customedid ];
+
   boot = {
     kernelParams =
-      [ "amdgpu.ppfeaturemask=0xffffffff" ];
+      [
+        "amdgpu.ppfeaturemask=0xffffffff"
+        "drm.edid_firmware=DP-1:edid/edid-EX2780Q.bin"
+      ];
 
     loader = {
       efi = {
@@ -34,7 +40,7 @@
       };
     };
 
-    initrd.availableKernelModules = [ "amdgpu" ];
+    # initrd.availableKernelModules=sd [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
@@ -75,8 +81,8 @@
 
   hardware.opengl = {
     enable = true;
-    package = pkgs.mesa-git.drivers;
-    package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
+    #package = pkgs.mesa-git.drivers;
+    #package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
     extraPackages = [ pkgs.libvdpau-va-gl ];
 
     driSupport = true;
@@ -140,6 +146,8 @@
     packageNames = [
     ];
   };
+
+  programs.hyprland.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {

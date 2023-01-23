@@ -42,33 +42,23 @@
       flake = false;
     };
 
-    wlroots-git = {
-      url = "gitlab:wlroots/wlroots/0.16.0?host=gitlab.freedesktop.org";
-      flake = false;
-    };
-
-    sway-git = {
-      url = "github:swaywm/sway/v1.8";
-      flake = false;
-    };
-
-    gamescope-git = {
-      url = "github:Plagman/gamescope";
-      flake = false;
-    };
-
     xorg-git = {
       url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     mesa-git = {
-      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
+      url = "gitlab:mesa/mesa/mesa-22.3.2?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     grub2-themes = {
       url = "github:vinceliuice/grub2-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -98,39 +88,17 @@
           fonts = [ "JetBrainsMono" "IBMPlexMono" ];
         };
 
-        wayland-protcols-git = prev.wayland-protocols.overrideAttrs (old: {
-          version = "git";
-          src = inputs.wayland-protcols-git;
-        });
-
-        wlroots-git = (prev.wlroots.overrideAttrs (old: {
-          version = "0.16.0";
-          src = inputs.wlroots-git;
-          nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.cmake pkgs.hwdata ];
-          postPatch = ''
-            substituteInPlace backend/drm/meson.build \
-              --replace "/usr/share/hwdata/pnp.ids" "${pkgs.hwdata}/share/hwdata/pnp.ids"
-          '';
-        })).override {
-          wayland-protocols = wayland-protcols-git;
-        };
-
-        sway-unwrapped = (prev.sway-unwrapped.overrideAttrs (old: {
-          version = "1.8";
-          buildInputs = old.buildInputs ++ [ prev.xorg.xcbutilwm prev.pcre2 ];
-          nativeBuildInputs = old.nativeBuildInputs ++ [ prev.cmake ];
-          src = inputs.sway-git;
-        })).override {
-          wayland-protocols = wayland-protcols-git;
-          wlroots = wlroots-git;
-        };
-
-        waybar = (prev.waybar.overrideAttrs (old: {
+        waybar = prev.waybar.overrideAttrs (old: {
           version = "git";
           src = inputs.waybar;
-        })).override {
-          wlroots = wlroots-git;
-        };
+
+          preConfigure = ''
+            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+          '';
+
+          mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
+
+        });
 
         xwayland = prev.xwayland.overrideAttrs (old: {
           version = "git";
@@ -150,7 +118,6 @@
             pkgs.libkrb5
             pkgs.mangohud
             pkgs.mpg123
-            pkgs.steamtinkerlaunch
           ];
 
           extraLibraries = pkgs: [
@@ -159,15 +126,10 @@
           ];
         };
 
-        # gamescope = prev.gamescope.overrideAttrs (old: {
-        #   version = "git";
-        #   src = inputs.gamescope-git;
-        # });
-
         mesa-git = (prev.mesa.overrideAttrs (old: {
           version = "git";
           src = inputs.mesa-git;
-          buildInputs = old.buildInputs ++ [ pkgs.glslang pkgs.vulkan-loader ];
+          buildInputs = old.buildInputs ++ [ pkgs.llvmPackages.libclang pkgs.glslang pkgs.vulkan-loader ];
           patches = [
             ./pkgs/patches/mesa-git/opencl.patch
             ./pkgs/patches/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
@@ -180,6 +142,10 @@
           vulkanDrivers = [ "amd" ];
           enableGalliumNine = false; # Replaced by DXVK
         };
+
+        customedid = pkgs.callPackage ./pkgs/custom-edid { };
+        wxedid = pkgs.callPackage ./pkgs/wxedid { };
+
       };
 
       nixosConfigurations.terra = nixpkgs.lib.nixosSystem {

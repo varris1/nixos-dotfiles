@@ -29,8 +29,8 @@ in
       position = "top";
       height = 32;
 
-      modules-left = [ "custom/blank" "sway/workspaces" "sway/mode" ];
-      modules-center = [ "sway/window" ];
+      modules-left = [ "custom/blank" "wlr/workspaces" ];
+      modules-center = [ "hyprland/window" ];
       modules-right = [
         "custom/ds-battery"
         "pulseaudio"
@@ -45,6 +45,16 @@ in
       "sway/window" = {
         icon = false;
         icon-size = 16;
+      };
+
+      "wlr/workspaces" = {
+        on-click = "activate";
+        on-scroll-up = "hyprctl dispatch workspace e+1";
+        on-scroll-down = "hyprctl dispatch workspace e-1";
+      };
+
+      "hyprland/window" = {
+        separate-outputs = true;
       };
 
       "clock" = {
@@ -133,7 +143,7 @@ in
         padding: 0 5px;
       }
 
-      #workspaces button.focused {
+      #workspaces button.active {
         border-radius: 0;
         color: @foreground;
         background: @box-bg;
