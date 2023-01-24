@@ -62,6 +62,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     waybar = {
       url = "github:alexays/waybar";
       flake = false;
@@ -79,7 +84,7 @@
           allowUnfree = true;
           allowUnsupportedSystem = true;
         };
-        overlays = [ self.overlays.default ];
+        overlays = [ self.overlays.default inputs.hyprland-contrib.overlays.default ];
       };
     in
     {

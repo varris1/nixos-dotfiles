@@ -58,6 +58,8 @@
     EDITOR = "kak";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     #RADV_PERFTEST = "gpl";
+
+    XDG_SCREENSHOTS_DIR = "~/Screenshots";
   };
 
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;

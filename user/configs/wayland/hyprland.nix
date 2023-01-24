@@ -95,7 +95,36 @@ in
       }
 
       misc {
-          no_vfr = no
+          no_vfr = yes
+      }
+
+      decoration {
+        rounding = 4
+
+
+        rounding = 10
+        blur = yes
+        blur_size = 3
+        blur_passes = 1
+        blur_new_optimizations = on
+
+        drop_shadow = yes
+        shadow_range = 12
+        shadow_render_power = 1
+        shadow_offset = 5 5
+        col.shadow = rgba(00000099)
+      }
+
+
+      animations {
+        enabled = yes
+
+        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        animation = windows, 1, 5, default
+        animation = windowsOut, 1, 5, default
+        animation = border, 1, 8, default
+        animation = fade, 1, 5, default
+        animation = workspaces, 1, 4, default
       }
 
       exec-once = ${pkgs.waybar}/bin/waybar
@@ -144,7 +173,7 @@ in
 
       bind = ${modKey}, q, exec, ${pkgs.firefox}/bin/firefox
 
-      bind = ${modKey}, Return, exec, foot
+      bind = ${modKey}, Return, exec, ${pkgs.foot}/bin/foot
 
       bind = , XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}
       bind = , XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 10 --get-volume > ${wobsock}
@@ -160,9 +189,9 @@ in
       bind = MOD5, F11, exec, ${pkgs.mpc-cli}/bin/mpc toggle
       bind = MOD5, F12, exec, ${pkgs.mpc-cli}/bin/mpc next
 
-      bind = , Print, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy screen
-      bind = ${modKey}, Print, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy active
-      bind = ${modKey} SHIFT, Print, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot -c --notify copy area
+      bind = , Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy screen
+      bind = ${modKey}, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy active
+      bind = ${modKey} SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy area
 
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 
