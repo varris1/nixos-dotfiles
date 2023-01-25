@@ -289,11 +289,11 @@
     "waybar": {
       "flake": false,
       "locked": {
-        "lastModified": 1674490041,
-        "narHash": "sha256-573UPWAA+xbWzaDHwLPiLnFF7R2boNGhD9rRHkYChyU=",
+        "lastModified": 1674549243,
+        "narHash": "sha256-O2CPSWqmGjmNETdfQQcU1eyYG4zRz9b1glmkdK0jERA=",
         "owner": "alexays",
         "repo": "waybar",
-        "rev": "e7af29ac1e2189f3d39d513feb814dab10b86fd7",
+        "rev": "dd9e3d017251f2f88c6bce39d6b3694fbd34d19a",
         "type": "github"
       },
       "original": {
