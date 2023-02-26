@@ -29,8 +29,8 @@ in
       position = "top";
       height = 32;
 
-      modules-left = [ "custom/blank" "wlr/workspaces" ];
-      modules-center = [ "hyprland/window" ];
+      modules-left = [ "custom/blank" "hyprland/window" ];
+      modules-center = [ "wlr/workspaces" "custom/blank" ];
       modules-right = [
         "custom/ds-battery"
         "pulseaudio"
@@ -51,6 +51,22 @@ in
         on-click = "activate";
         on-scroll-up = "hyprctl dispatch workspace e+1";
         on-scroll-down = "hyprctl dispatch workspace e-1";
+
+        format = "{icon}";
+        format-icons = {
+          #active = "";
+          #default = "";
+          active = "";
+          default = "";
+        };
+      };
+
+      "custom/workspaceborderleft" = {
+        format = " ";
+      };
+
+      "custom/workspaceborderright" = {
+        format = " ";
       };
 
       "hyprland/window" = {
@@ -65,6 +81,7 @@ in
         scroll-step = 5;
         format = "{icon} {volume}%";
         format-icons = [ "" "" "墳" "" ];
+        ignored-sinks = [ "Easy Effects Sink" ];
       };
 
       "tray" = {
@@ -92,6 +109,7 @@ in
       @define-color foreground #${colors.base06};
       @define-color background #${colors.base00};
       @define-color box-bg #${colors.base01};
+      @define-color workspace-bg #${colors.base00};
 
       label:disabled,
       button:disabled {
@@ -107,54 +125,61 @@ in
       window#waybar {
         background: @background;
         color: @foreground;
-        border-bottom: 1px solid @box-bg;
       }
 
-      #pulseaudio, #mpd, #custom-waybar-mpris, #custom-ds-battery, #window, #keyboard-state {
+      #pulseaudio, #mpd, #custom-waybar-mpris, #custom-ds-battery, #window, #keyboard-state, #tray, #clock {
        background: @box-bg;
        padding: 0 10px 0 10px;
        margin: 5px 10px 5px 0;
+       border-radius: 10px;
+      }
+
+      #tray, #clock {
+       margin: 5px 0 5px 0;
       }
 
       window#waybar.empty #window {
         background: @background;
       }
 
-      #tray, #clock {
-       background: @box-bg;
-       padding: 0 10px 0 10px;
-       margin: 5px 0 5px 0;
-      }
-
-      #clock {
-        margin: 5px 0 5px 0;
-      }
-
       #workspaces {
-        background: @box-bg;
-        color: @foreground;
         margin: 5px 0 5px 0;
+        padding-left: 10px;
       }
 
       #workspaces button {
-        border-radius: 0;
         color: @foreground;
-        background: @background;
+        background: @box-bg;
         padding: 0 5px;
       }
 
+      #workspaces button:last-child {
+        background: @box-bg;
+        border-radius: 0px 10px 10px 0;
+      }
+
+      #workspaces button:first-child {
+        background: @box-bg;
+        border-radius: 10px 0px 0px 10px;
+      }
+
+      #workspaces button:only-child {
+        background: @box-bg;
+        border-radius: 10px 10px 10px 10px;
+      }
+
       #workspaces button.active {
-        border-radius: 0;
         color: @foreground;
         background: @box-bg;
         font-weight: bold;
       }
 
       #workspaces button.unfocused {
-        border-radius: 0;
         color: @foreground;
-        background: @background;
+        background: @box-bg;
+        /* background: @box-bg; */
       }
     '';
   };
 }
+

@@ -20,6 +20,13 @@
         "drm.edid_firmware=DP-1:edid/edid-EX2780Q.bin"
       ];
 
+    extraModprobeConfig = ''
+      options iwlwifi power_save=0
+      options iwlwifi swcrypto=0
+      options iwlwifi uapsd_disable=1
+      options iwlmvm power_scheme=1
+    '';
+
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -41,7 +48,7 @@
     };
 
     # initrd.availableKernelModules=sd [ "amdgpu" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
@@ -49,7 +56,13 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi = {
+        scanRandMacAddress = false;
+        powersave = false;
+      };
+    };
     firewall.checkReversePath = false;
     firewall.enable = false;
 
@@ -81,8 +94,8 @@
 
   hardware.opengl = {
     enable = true;
-    #package = pkgs.mesa-git.drivers;
-    #package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
+    package = pkgs.mesa-git.drivers;
+    package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
     extraPackages = [ pkgs.libvdpau-va-gl ];
 
     driSupport = true;
@@ -92,11 +105,17 @@
   hardware.steam-hardware.enable = true;
 
   hardware.bluetooth.enable = true;
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.sane-airscan ];
+  };
 
   # Enable sound.
   sound.enable = true;
 
   security.rtkit.enable = true;
+  security.audit.enable = false;
+  security.auditd.enable = false;
 
   services.pipewire = {
     enable = true;
@@ -159,6 +178,8 @@
       "input"
       "networkmanager"
       "nm-openvpn"
+      "scanner"
+      "lp"
       "users"
       "video"
       "wheel"
@@ -204,7 +225,7 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    wlr.enable = true;
+    wlr.enable = false; #conflict with XDPH if enabled
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];

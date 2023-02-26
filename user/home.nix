@@ -23,11 +23,14 @@
     appimage-run
     bottom
     calcurse
-    discord-canary
+    fastfetch
     gamescope
     gimp
     gnome.file-roller
+    gnome.seahorse
+    gnome.simple-scan
     gnome.gvfs
+    hyprpaper
     lutris
     mesa-demos
     mesa-demos
@@ -38,6 +41,7 @@
     pass
     pavucontrol
     protontricks
+    sc-im
     signal-desktop
     sshfs
     steam
@@ -48,6 +52,7 @@
     twemoji-color-font
     vulkan-tools
     vulkan-validation-layers
+    webcord
     wineWowPackages.stagingFull
     wxedid
     xdg-utils
@@ -57,7 +62,8 @@
   home.sessionVariables = {
     EDITOR = "kak";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    #RADV_PERFTEST = "gpl";
+    RADV_PERFTEST = "gpl";
+    NIXOS_OZONE_WL = "1";
 
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
   };

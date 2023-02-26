@@ -14,7 +14,7 @@ in
       };
 
       colors = {
-        alpha = "0.95";
+        alpha = "0.70";
         background = "${colors.base00}";
         foreground = "${colors.base06}";
         regular0 = "${colors.base01}";

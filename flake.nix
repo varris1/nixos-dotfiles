@@ -32,23 +32,13 @@
     };
     # Kakoune Plugins End
 
-    rofi-theme = {
-      url = "github:bardisty/gruvbox-rofi";
-      flake = false;
-    };
-
-    wayland-protcols-git = {
-      url = "gitlab:wayland/wayland-protocols?host=gitlab.freedesktop.org";
-      flake = false;
-    };
-
     xorg-git = {
       url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;
     };
 
     mesa-git = {
-      url = "gitlab:mesa/mesa/mesa-22.3.2?host=gitlab.freedesktop.org";
+      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
       flake = false;
     };
 
@@ -67,8 +57,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     waybar = {
       url = "github:alexays/waybar";
+      flake = false;
+    };
+
+    webcord = {
+      url = "github:fufexan/webcord-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    openmw = {
+      url = "gitlab:OpenMW/openmw";
       flake = false;
     };
 
@@ -84,7 +89,12 @@
           allowUnfree = true;
           allowUnsupportedSystem = true;
         };
-        overlays = [ self.overlays.default inputs.hyprland-contrib.overlays.default ];
+        overlays = [
+          self.overlays.default
+          inputs.hyprland-contrib.overlays.default
+          inputs.hyprpaper.overlays.default
+          inputs.webcord.overlays.default
+        ];
       };
     in
     {
@@ -131,49 +141,74 @@
           ];
         };
 
-        mesa-git = (prev.mesa.overrideAttrs (old: {
-          version = "git";
-          src = inputs.mesa-git;
-          buildInputs = old.buildInputs ++ [ pkgs.llvmPackages.libclang pkgs.glslang pkgs.vulkan-loader ];
-          patches = [
-            ./pkgs/patches/mesa-git/opencl.patch
-            ./pkgs/patches/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
-          ];
-          mesonFlags = pkgs.lib.lists.remove
-            "-Dxvmc-libs-path=${placeholder "drivers"}/lib"
-            old.mesonFlags; # xvmc was removed upstream
-        })).override {
-          galliumDrivers = [ "radeonsi" "swrast" ];
-          vulkanDrivers = [ "amd" ];
-          enableGalliumNine = false; # Replaced by DXVK
-        };
-
-        customedid = pkgs.callPackage ./pkgs/custom-edid { };
-        wxedid = pkgs.callPackage ./pkgs/wxedid { };
-
-      };
-
-      nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
-        inherit system;
-        inherit pkgs;
-        specialArgs = { inherit inputs; };
-        modules = [
-          {
-            # needed to get tools working that expect a nixpkgs channel to exist
-            nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-            nix.registry = { nixpkgs.flake = nixpkgs; };
-          }
-          ./system/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              users.manuel = import ./user/home.nix;
-              extraSpecialArgs = { inherit inputs pkgs nix-colors; };
+        mesa-git =
+          (prev.mesa.overrideAttrs
+            (old: {
+              version = "git";
+              src = inputs.mesa-git;
+              patches = [
+                ./pkgs/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
+                ./pkgs/mesa-git/opencl.patch
+              ];
+              mesonFlags = old.mesonFlags ++ [
+                "-Dandroid-libbacktrace=disabled"
+                "-Dlmsensors=disabled"
+                "-Dlibunwind=disabled"
+              ];
+            })).override
+            {
+              galliumDrivers = [ "radeonsi" "swrast" "svga" ];
+              vulkanDrivers = [ "amd" ];
+              enableGalliumNine = false; # Replaced by DXVK
             };
-          }
-          inputs.grub2-themes.nixosModule
-        ];
+
+        mygui = prev.mygui.overrideAttrs
+          (old: {
+            version = "3.4.1";
+            src = prev.fetchFromGitHub {
+              owner = "MyGUI";
+              repo = "mygui";
+              rev = "MyGUI3.4.1";
+              sha256 = "sha256-5u9whibYKPj8tCuhdLOhL4nDisbFAB0NxxdjU/8izb8=";
+            };
+          });
+
+        customedid = pkgs.callPackage
+          ./pkgs/custom-edid
+          { };
+        wxedid = pkgs.callPackage
+          ./pkgs/wxedid
+          { };
+
+        fastfetch = pkgs.callPackage
+          ./pkgs/fastfetch
+          { };
+
       };
+
+      nixosConfigurations.terra = nixpkgs.lib.nixosSystem
+        {
+          inherit system;
+          inherit pkgs;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              # needed to get tools working that expect a nixpkgs channel to exist
+              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+              nix.registry = { nixpkgs.flake = nixpkgs; };
+            }
+            ./system/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useUserPackages = true;
+                users.manuel = import ./user/home.nix;
+                extraSpecialArgs = { inherit inputs pkgs nix-colors; };
+              };
+            }
+            inputs.grub2-themes.nixosModules.default
+          ];
+        };
     };
 }
+

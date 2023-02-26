@@ -11,7 +11,7 @@ let
   wallpaper = "/mnt/hdd/Wallpapers/florest-stair2.jpg";
 
 
-  wob-voldaemon = pkgs.writeShellScriptBin "wob-volumedaemon.sh" ''
+  wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
     if pgrep "wob";  then
       killall wob &> /dev/null
     fi
@@ -79,10 +79,10 @@ in
 
       general {
           gaps_in = 10
-          border_size = 2
+          border_size = 4
 
           col.active_border = rgba(${colors.base0F}FF)
-          col.inactive_border = rgba(${colors.base00}FF)
+          col.inactive_border = rgba(${colors.base00}B3)
       }
 
       dwindle {
@@ -95,31 +95,28 @@ in
       }
 
       misc {
-          no_vfr = yes
+          vfr = true
+          vrr = 2
       }
 
       decoration {
-        rounding = 4
-
-
         rounding = 10
         blur = yes
         blur_size = 3
-        blur_passes = 1
+        blur_passes = 2
         blur_new_optimizations = on
 
         drop_shadow = yes
         shadow_range = 12
         shadow_render_power = 1
         shadow_offset = 5 5
-        col.shadow = rgba(00000099)
+        col.shadow = rgba(${colors.base00}99)
       }
 
 
       animations {
         enabled = yes
 
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
         animation = windows, 1, 5, default
         animation = windowsOut, 1, 5, default
         animation = border, 1, 8, default
@@ -130,11 +127,11 @@ in
       exec-once = ${pkgs.waybar}/bin/waybar
       exec-once = ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill
 
-      exec-once = ${pkgs.openrgb}/bin/openrgb --server --profile autorun.orp
+      exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
       exec-once = ${pkgs.blueman}/bin/blueman-applet
 
-      exec = ${wob-voldaemon}/bin/wob-volumedaemon.sh;
+      exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
       exec = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
 
       #keybinds
@@ -192,12 +189,14 @@ in
       bind = , Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy screen
       bind = ${modKey}, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy active
       bind = ${modKey} SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy area
+      bind = ${modKey}, r, exec, ${pkgs.cinnamon.nemo}/bin/nemo
 
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 
+      windowrulev2 = fullscreen, class:^(hl2_linux)$
     '';
 
   };
-  home.packages = [ pkgs.wl-clipboard ];
+  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 ];
 }
 

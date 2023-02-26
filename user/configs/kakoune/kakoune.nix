@@ -65,6 +65,10 @@ in
 
       map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
 
+      set-face global Default rgb:ebdbb2,default
+      set-face global StatusLine rgb:ebdbb2,default
+      set-face global BufferPadding rgb:504945,default
+
       # require-module powerline
       # powerline-start
       # powerline-theme gruvbox
