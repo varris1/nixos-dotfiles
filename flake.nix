@@ -62,6 +62,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     waybar = {
       url = "github:alexays/waybar";
       flake = false;
@@ -93,6 +98,7 @@
           self.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpaper.overlays.default
+          inputs.hyprpicker.overlays.default
           inputs.webcord.overlays.default
         ];
       };
@@ -127,18 +133,12 @@
 
         steam = prev.steam.override {
           extraPkgs = pkgs: [
-            pkgs.gamescope
             pkgs.gnome.zenity
-            pkgs.keyutils
-            pkgs.libkrb5
-            pkgs.mangohud
-            pkgs.mpg123
           ];
+        };
 
-          extraLibraries = pkgs: [
-            pkgs.mpg123
-            pkgs.zlib-ng
-          ];
+        ncmpcpp = prev.ncmpcpp.override {
+          visualizerSupport = true;
         };
 
         mesa-git =
@@ -154,36 +154,18 @@
                 "-Dandroid-libbacktrace=disabled"
                 "-Dlmsensors=disabled"
                 "-Dlibunwind=disabled"
+                "-Dgallium-xa=disabled"
               ];
             })).override
             {
-              galliumDrivers = [ "radeonsi" "swrast" "svga" ];
+              galliumDrivers = [ "radeonsi" "swrast" ];
               vulkanDrivers = [ "amd" ];
               enableGalliumNine = false; # Replaced by DXVK
             };
 
-        mygui = prev.mygui.overrideAttrs
-          (old: {
-            version = "3.4.1";
-            src = prev.fetchFromGitHub {
-              owner = "MyGUI";
-              repo = "mygui";
-              rev = "MyGUI3.4.1";
-              sha256 = "sha256-5u9whibYKPj8tCuhdLOhL4nDisbFAB0NxxdjU/8izb8=";
-            };
-          });
-
-        customedid = pkgs.callPackage
-          ./pkgs/custom-edid
-          { };
-        wxedid = pkgs.callPackage
-          ./pkgs/wxedid
-          { };
-
-        fastfetch = pkgs.callPackage
-          ./pkgs/fastfetch
-          { };
-
+        customedid = pkgs.callPackage ./pkgs/custom-edid { };
+        wxedid = pkgs.callPackage ./pkgs/wxedid { };
+        fastfetch = pkgs.callPackage ./pkgs/fastfetch { };
       };
 
       nixosConfigurations.terra = nixpkgs.lib.nixosSystem

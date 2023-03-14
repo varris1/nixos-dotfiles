@@ -3,7 +3,7 @@ let
   colors = config.colorScheme.colors;
 in
 {
-  programs.mako = {
+  services.mako = {
     enable = true;
     anchor = "top-right";
     defaultTimeout = 5000;
@@ -11,7 +11,7 @@ in
     width = 320;
     height = 130;
 
-    backgroundColor = "#${colors.base00}";
+    backgroundColor = "#${colors.base00}B3";
     borderColor = "#${colors.base01}";
     borderRadius = 10;
     borderSize = 2;

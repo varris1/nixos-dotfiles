@@ -69,7 +69,6 @@
     };
     shellAliases = {
       nf = "${pkgs.pfetch}/bin/pfetch";
-      r = "${pkgs.nnn}/bin/nnn";
     };
   };
 }

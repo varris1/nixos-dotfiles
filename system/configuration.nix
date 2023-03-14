@@ -20,13 +20,6 @@
         "drm.edid_firmware=DP-1:edid/edid-EX2780Q.bin"
       ];
 
-    extraModprobeConfig = ''
-      options iwlwifi power_save=0
-      options iwlwifi swcrypto=0
-      options iwlwifi uapsd_disable=1
-      options iwlmvm power_scheme=1
-    '';
-
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -56,10 +49,11 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
+    enableIPv6 = false;
+
     networkmanager = {
       enable = true;
       wifi = {
-        scanRandMacAddress = false;
         powersave = false;
       };
     };

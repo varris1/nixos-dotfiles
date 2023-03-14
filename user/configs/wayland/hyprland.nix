@@ -78,7 +78,7 @@ in
       }
 
       general {
-          gaps_in = 10
+          gaps_in = 16
           border_size = 4
 
           col.active_border = rgba(${colors.base0F}FF)
@@ -97,6 +97,8 @@ in
       misc {
           vfr = true
           vrr = 2
+          enable_swallow = true
+          swallow_regex = ^(foot)$
       }
 
       decoration {
@@ -113,12 +115,14 @@ in
         col.shadow = rgba(${colors.base00}99)
       }
 
+      blurls = waybar
+      blurls = notifications
 
       animations {
         enabled = yes
 
-        animation = windows, 1, 5, default
-        animation = windowsOut, 1, 5, default
+        animation = windowsIn, 1, 8, default, slide
+        animation = windowsOut, 1, 8, default, slide
         animation = border, 1, 8, default
         animation = fade, 1, 5, default
         animation = workspaces, 1, 4, default

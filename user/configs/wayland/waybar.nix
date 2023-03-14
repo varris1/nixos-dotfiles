@@ -1,6 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, nix-colors, ... }:
 let
+  wobsock = "/tmp/wob-vol.fifo";
   colors = config.colorScheme.colors;
+
+  backgroundColorRGB = nix-colors.lib-core.conversions.hexToRGBString "," colors.base00;
+  backgroundAlpha = "0.7";
+
+  font = "JetBrainsMono Nerd Font";
+  fontSize = "9pt";
 
   ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
     ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
@@ -33,7 +40,7 @@ in
       modules-center = [ "wlr/workspaces" "custom/blank" ];
       modules-right = [
         "custom/ds-battery"
-        "pulseaudio"
+        "wireplumber"
         "mpd"
         "tray"
         "custom/blank"
@@ -54,19 +61,9 @@ in
 
         format = "{icon}";
         format-icons = {
-          #active = "";
-          #default = "";
           active = "";
           default = "";
         };
-      };
-
-      "custom/workspaceborderleft" = {
-        format = " ";
-      };
-
-      "custom/workspaceborderright" = {
-        format = " ";
       };
 
       "hyprland/window" = {
@@ -77,17 +74,20 @@ in
         format = "{:%a %d. %B  %H:%M}";
       };
 
-      "pulseaudio" = {
+      "wireplumber" = {
         scroll-step = 5;
         format = "{icon} {volume}%";
         format-icons = [ "" "" "墳" "" ];
         ignored-sinks = [ "Easy Effects Sink" ];
+        on-scroll-up = "${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}";
+        on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 10 --get-volume > ${wobsock}";
       };
 
       "tray" = {
         icon-size = 16;
         spacing = 10;
       };
+
       "mpd" = {
         format =
           "{stateIcon} {artist} - {title}  {elapsedTime:%M:%S}/{totalTime:%M:%S}";
@@ -96,6 +96,7 @@ in
           playing = "";
           paused = "";
         };
+        on-click = "${pkgs.foot}/bin/foot -e ${pkgs.ncmpcpp}/bin/ncmpcpp";
       };
 
       "custom/ds-battery" = {
@@ -103,23 +104,20 @@ in
         exec = "${ds-battery}/bin/ds-battery.sh";
         escape = "true";
       };
+
       "custom/blank" = { format = " "; };
+
     }];
+
     style = ''
       @define-color foreground #${colors.base06};
-      @define-color background #${colors.base00};
+      @define-color background rgba(${backgroundColorRGB},${backgroundAlpha});
       @define-color box-bg #${colors.base01};
       @define-color workspace-bg #${colors.base00};
 
-      label:disabled,
-      button:disabled {
-          color: inherit;
-          background-image: none;
-      }
-
       * {
-        font-family: JetBrainsMono Nerd Font;
-        font-size: 9pt;
+        font-family: ${font};
+        font-size: ${fontSize};
       }
 
       window#waybar {
@@ -127,15 +125,31 @@ in
         color: @foreground;
       }
 
-      #pulseaudio, #mpd, #custom-waybar-mpris, #custom-ds-battery, #window, #keyboard-state, #tray, #clock {
+      #wireplumber,
+      #mpd,
+      #custom-waybar-mpris,
+      #custom-ds-battery,
+      #window,
+      #keyboard-state,
+      #tray,
+      #clock {
        background: @box-bg;
-       padding: 0 10px 0 10px;
-       margin: 5px 10px 5px 0;
+       padding: 0px 10px 0px 10px;
+       margin: 5px 10px 5px 0px;
        border-radius: 10px;
       }
 
+      #wireplumber {
+       margin: 5px 4px 5px 0px;
+       border-radius: 10px 0px 0px 10px;
+      }
+
+      #mpd {
+       border-radius: 0px 10px 10px 0px;
+      }
+
       #tray, #clock {
-       margin: 5px 0 5px 0;
+       margin: 5px 0px 5px 0px;
       }
 
       window#waybar.empty #window {
@@ -143,19 +157,19 @@ in
       }
 
       #workspaces {
-        margin: 5px 0 5px 0;
+        margin: 5px 0px 5px 0px;
         padding-left: 10px;
       }
 
       #workspaces button {
         color: @foreground;
         background: @box-bg;
-        padding: 0 5px;
+        padding: 0px 5px;
       }
 
       #workspaces button:last-child {
         background: @box-bg;
-        border-radius: 0px 10px 10px 0;
+        border-radius: 0px 10px 10px 0px;
       }
 
       #workspaces button:first-child {
@@ -177,7 +191,6 @@ in
       #workspaces button.unfocused {
         color: @foreground;
         background: @box-bg;
-        /* background: @box-bg; */
       }
     '';
   };

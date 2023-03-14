@@ -18,7 +18,7 @@ in
       kak-lsp
       kakboard
       kakoune-extra-filetypes
-      #powerline-kak
+      powerline-kak
       smarttab
       sort-selections
     ];
@@ -53,7 +53,7 @@ in
 
       ui = {
         assistant = "none";
-        setTitle = true;
+        setTitle = false;
       };
     };
     extraConfig = ''
@@ -69,10 +69,10 @@ in
       set-face global StatusLine rgb:ebdbb2,default
       set-face global BufferPadding rgb:504945,default
 
-      # require-module powerline
-      # powerline-start
-      # powerline-theme gruvbox
-      # powerline-separator global half-step
+      require-module powerline
+      powerline-start
+      powerline-theme gruvbox
+      #powerline-separator global half-step
     '';
   };
 

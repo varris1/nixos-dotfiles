@@ -3,6 +3,7 @@
   imports = [
     nix-colors.homeManagerModule
     ./configs/beets/beets.nix
+    ./configs/cava/cava.nix
     ./configs/kakoune/kakoune.nix
     ./configs/wayland/hyprland.nix
     #./configs/wayland/sway.nix
@@ -10,7 +11,6 @@
     ./configs/mpd/mpd.nix
     ./configs/mpv/mpv.nix
     ./configs/firefox/firefox.nix
-    ./configs/nnn/nnn.nix
     ./configs/dircolors.nix
     ./configs/xdg-mime.nix
   ];
@@ -31,6 +31,7 @@
     gnome.simple-scan
     gnome.gvfs
     hyprpaper
+    hyprpicker
     lutris
     mesa-demos
     mesa-demos
@@ -38,7 +39,6 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     obs-studio
-    pass
     pavucontrol
     protontricks
     sc-im
@@ -141,6 +141,8 @@
   };
 
   programs.aria2.enable = true;
+
+  programs.password-store.enable = true;
 
   xdg.userDirs = {
     enable = true;
