@@ -34,18 +34,54 @@
 
     plugins = {
       intellitab.enable = true;
+
       airline = {
         enable = true;
         powerline = true;
         theme = "base16_gruvbox_dark_medium";
       };
+
+      comment-nvim.enable = true;
+
       fugitive.enable = true;
       lsp.enable = true;
       nvim-autopairs.enable = true;
+
+      lspkind = {
+        enable = true;
+        cmp = {
+          enable = true;
+        };
+      };
+
+      cmp-treesitter.enable = true;
+      nvim-cmp = {
+        enable = true; 
+
+        sources = [
+          { name = "treesitter"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+
+        mapping = {
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-e>" = "cmp.mapping.abort()";
+        };
+
+      };
+
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
       neo-tree.enable = true;
-      treesitter.enable = true;
+
+      treesitter = {
+        enable = true;
+        indent = true;
+      };
     };
 
     maps = {

@@ -77,7 +77,7 @@
       discard_colors_if_item_is_selected = true;
 
       main_window_color = "yellow";
-      visualizer_color = "default, yellow";
+      visualizer_color = "yellow";
       header_window_color = "yellow";
     };
   };
