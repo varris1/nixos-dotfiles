@@ -111,6 +111,14 @@
   security.audit.enable = false;
   security.auditd.enable = false;
 
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "262144";
+  }];
+
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;

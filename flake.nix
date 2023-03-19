@@ -32,6 +32,11 @@
     };
     # Kakoune Plugins End
 
+    nixvim = {
+      url = "github:pta2002/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     xorg-git = {
       url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;

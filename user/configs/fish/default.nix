@@ -42,7 +42,7 @@
 
       ec = ''
         pushd &> /dev/null
-        cd "${config.home.homeDirectory}"
+        cd "${config.home.homeDirectory}/.dotfiles"
         set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
                     ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
                     --preview "${pkgs.python3Packages.pygments}/bin/pygmentize -g -O linenos=1 {}")
@@ -69,6 +69,7 @@
     };
     shellAliases = {
       nf = "${pkgs.pfetch}/bin/pfetch";
+      e = "${pkgs.neovim}/bin/nvim";
     };
   };
 }

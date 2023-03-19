@@ -13,7 +13,7 @@ let
 in
 {
   programs.kakoune = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.kakounePlugins; [
       kak-lsp
       kakboard

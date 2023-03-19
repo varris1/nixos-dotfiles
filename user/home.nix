@@ -2,15 +2,16 @@
 {
   imports = [
     nix-colors.homeManagerModule
-    ./configs/beets/beets.nix
-    ./configs/cava/cava.nix
-    ./configs/kakoune/kakoune.nix
+    ./configs/beets
+    ./configs/cava
+    ./configs/kakoune
     ./configs/wayland/hyprland.nix
     #./configs/wayland/sway.nix
-    ./configs/fish/fish.nix
-    ./configs/mpd/mpd.nix
-    ./configs/mpv/mpv.nix
-    ./configs/firefox/firefox.nix
+    ./configs/fish
+    ./configs/mpd
+    ./configs/mpv
+    ./configs/neovim
+    ./configs/firefox
     ./configs/dircolors.nix
     ./configs/xdg-mime.nix
   ];
@@ -50,6 +51,7 @@
     sxiv
     thunderbird
     twemoji-color-font
+    vimv
     vulkan-tools
     vulkan-validation-layers
     webcord
@@ -60,7 +62,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "kak";
+    EDITOR = "nvim";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     RADV_PERFTEST = "gpl";
     NIXOS_OZONE_WL = "1";
