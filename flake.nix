@@ -20,18 +20,6 @@
     };
     # Fish Plugins End
 
-    # Kakoune Plugins
-    kakoune-smarttab = {
-      url = "github:andreyorst/smarttab.kak";
-      flake = false;
-    };
-
-    kakoune-sort-selections = {
-      url = "github:occivink/kakoune-sort-selections";
-      flake = false;
-    };
-    # Kakoune Plugins End
-
     nixvim = {
       url = "github:pta2002/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
