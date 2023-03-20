@@ -41,6 +41,12 @@
         theme = "base16_gruvbox_dark_medium";
       };
 
+      lsp.servers = {
+        clangd.enable = true;
+        rnix-lsp.enable = true;
+        bashls.enable = true;
+      };
+
       comment-nvim.enable = true;
 
       fugitive.enable = true;
@@ -55,21 +61,44 @@
       };
 
       cmp-treesitter.enable = true;
+
+      luasnip.enable = true;
+      cmp_luasnip.enable = true; 
+
       nvim-cmp = {
         enable = true; 
 
         sources = [
-          { name = "treesitter"; }
+          { name = "nvim_lsp"; }
+          { name = "luasnip";}
           { name = "path"; }
           { name = "buffer"; }
+          { name = "grammar"; } 
         ];
 
+        mappingPresets = [ "insert" ];
         mapping = {
           "<CR>" = "cmp.mapping.confirm({ select = true })";
           "<C-b>" = "cmp.mapping.scroll_docs(-4)";
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-e>" = "cmp.mapping.abort()";
+        };
+
+        completion = {
+          # keywordLength = 5;
+        };
+
+        window.completion = {
+          border = "single"; 
+          scrollbar = true;
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
+        };
+
+        window.documentation = {
+          border = "single";
+          maxHeight = "math.floor(40 * (40 / vim.o.lines))";
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
         };
 
       };
