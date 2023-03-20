@@ -495,38 +495,6 @@
         "type": "github"
       }
     },
-    "kakoune-smarttab": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1649581983,
-        "narHash": "sha256-STLZSwQPM+gTnkA+FQOF4I0ifPTjQWpEc/95JRzvIqU=",
-        "owner": "andreyorst",
-        "repo": "smarttab.kak",
-        "rev": "86ac6599b13617ff938905ba4cdd8225d7eb6a2e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "andreyorst",
-        "repo": "smarttab.kak",
-        "type": "github"
-      }
-    },
-    "kakoune-sort-selections": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1678134645,
-        "narHash": "sha256-eruYt0xOVPRYdNpa5q8mYeJRbxF22a2sDn05Baf/beo=",
-        "owner": "occivink",
-        "repo": "kakoune-sort-selections",
-        "rev": "708ef679e7d3906f09f4c7861d9fb3bd921809d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "occivink",
-        "repo": "kakoune-sort-selections",
-        "type": "github"
-      }
-    },
     "mach-nix": {
       "flake": false,
       "locked": {
@@ -804,8 +772,6 @@
         "hyprland-contrib": "hyprland-contrib",
         "hyprpaper": "hyprpaper",
         "hyprpicker": "hyprpicker",
-        "kakoune-smarttab": "kakoune-smarttab",
-        "kakoune-sort-selections": "kakoune-sort-selections",
         "mesa-git": "mesa-git",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs",
