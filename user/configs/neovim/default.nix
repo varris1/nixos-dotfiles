@@ -62,7 +62,13 @@
 
       cmp-treesitter.enable = true;
 
-      luasnip.enable = true;
+      luasnip = {
+        enable = true;
+        fromVscode = [
+          { paths = inputs.friendly-snippets.outPath; }
+        ];
+      };
+
       cmp_luasnip.enable = true; 
 
       nvim-cmp = {
@@ -105,6 +111,7 @@
 
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
+
       neo-tree.enable = true;
 
       treesitter = {

@@ -280,6 +280,22 @@
         "type": "github"
       }
     },
+    "friendly-snippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679197942,
+        "narHash": "sha256-TBklj+MKqRup4+qbQ8DywTQoPBYI8JIU/SuR2jxdKMk=",
+        "owner": "rafamadriz",
+        "repo": "friendly-snippets",
+        "rev": "25ddcd96540a2ce41d714bd7fea2e7f75fea8ead",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rafamadriz",
+        "repo": "friendly-snippets",
+        "type": "github"
+      }
+    },
     "ghc-utils": {
       "flake": false,
       "locked": {
@@ -781,6 +797,7 @@
     "root": {
       "inputs": {
         "bobthefish": "bobthefish",
+        "friendly-snippets": "friendly-snippets",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
