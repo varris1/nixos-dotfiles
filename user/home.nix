@@ -4,7 +4,6 @@
     nix-colors.homeManagerModule
     ./configs/beets
     ./configs/cava
-    ./configs/kakoune
     ./configs/wayland/hyprland.nix
     #./configs/wayland/sway.nix
     ./configs/fish
