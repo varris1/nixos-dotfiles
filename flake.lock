@@ -401,11 +401,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1679351214,
-        "narHash": "sha256-XiiwIRMk0XQRqu30tWJQUbdQVHYo1uJ16uH9jh9oT5c=",
+        "lastModified": 1679425284,
+        "narHash": "sha256-TNUfF4kW4meW9Ntf6lAgGLaxgICAJFQkOSqcxHSrgYU=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "cb229f64360502c6774e7242fa353254dcacc931",
+        "rev": "5ce91bb0fd4fe8eb09f1a728e3b84cc1ff4244eb",
         "type": "github"
       },
       "original": {
