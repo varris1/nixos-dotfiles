@@ -83,11 +83,11 @@
     "bobthefish": {
       "flake": false,
       "locked": {
-        "lastModified": 1659411664,
-        "narHash": "sha256-jBbm0wTNZ7jSoGFxRkTz96QHpc5ViAw9RGsRBkCQEIU=",
+        "lastModified": 1678900346,
+        "narHash": "sha256-7G0QSCwZYxNguUot0IVdzbCRFK/6l7WSRIBPOHo3gR0=",
         "owner": "oh-my-fish",
         "repo": "theme-bobthefish",
-        "rev": "2dcfcab653ae69ae95ab57217fe64c97ae05d8de",
+        "rev": "06ebe3b9af9af2e30f104b0956e255ca42ed5cab",
         "type": "github"
       },
       "original": {
@@ -401,11 +401,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1679425284,
-        "narHash": "sha256-TNUfF4kW4meW9Ntf6lAgGLaxgICAJFQkOSqcxHSrgYU=",
+        "lastModified": 1679505046,
+        "narHash": "sha256-JFzdbtnEaUHMdWi0eXznpxGZO6SRfdBRaOwn4PmDkE0=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "5ce91bb0fd4fe8eb09f1a728e3b84cc1ff4244eb",
+        "rev": "cf51a318078c82040eaeab29664bc34144ee1d62",
         "type": "github"
       },
       "original": {
@@ -421,11 +421,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677679546,
-        "narHash": "sha256-L+QE6hIHxhYHWPA1jfgZsbQFYxheD/hzFhtwGFRdWOk=",
+        "lastModified": 1679036674,
+        "narHash": "sha256-2s3Hfq56jL8ePyc3+calPT34FNMK2zksqwPhIxAq20o=",
         "owner": "hyprwm",
         "repo": "contrib",
-        "rev": "d4eccc8e7d31d30c7ce39dc2b864c4f23f173855",
+        "rev": "1af47a008e850c595aeddc83bb3f04fd81935caa",
         "type": "github"
       },
       "original": {
@@ -462,11 +462,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677282271,
-        "narHash": "sha256-wNooEHZpKMJN2jj2qPa1jRhi6f5q1yTYCxQcXEJ32eM=",
+        "lastModified": 1678893556,
+        "narHash": "sha256-FHhBetkV/S7M9BMpbCzUWX/P5E7tGE4mZIpj/2m0K2M=",
         "owner": "hyprwm",
         "repo": "hyprpaper",
-        "rev": "83867464c523c3ac2f7ce53d2c4b8d4f9b7551cd",
+        "rev": "61961973cfd10853b32c7f904cdb88f9ab6d84dd",
         "type": "github"
       },
       "original": {
@@ -514,11 +514,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1678728684,
-        "narHash": "sha256-29LDV1Vio56Y8KGLyvkM08DmemuM8D0OEklQs0nKF8U=",
+        "lastModified": 1679518094,
+        "narHash": "sha256-vWTw7DDZZkFz9atxpBqG5aO/N0Z//+S4ZwV7L7i0wfU=",
         "owner": "mesa",
         "repo": "mesa",
-        "rev": "ea3e9d541ff03037b0cef7fb1f1e03835268965a",
+        "rev": "8af8c5bd075776da251aee8fdab9c98894eccada",
         "type": "gitlab"
       },
       "original": {
@@ -637,11 +637,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1679182581,
-        "narHash": "sha256-4bSyoCSPtmDQnier9almlJFLSBX5V5s7rORY3tdtJmU=",
+        "lastModified": 1679493650,
+        "narHash": "sha256-9wVDJ8rF/vdCwps6q+tLe7vxe5WSmCsCsG3ylHwdvmw=",
         "owner": "pta2002",
         "repo": "nixvim",
-        "rev": "c300601dced69e9c00ad424550628f76c2ee880d",
+        "rev": "2550c919a5acac86ccf79972273a9193c6c77869",
         "type": "github"
       },
       "original": {
@@ -653,11 +653,11 @@
     "openmw": {
       "flake": false,
       "locked": {
-        "lastModified": 1678705023,
-        "narHash": "sha256-Kp6hG589s1YSYI/ow0Oo1VGZ3orh/Cz+J6ByhR/7Kq4=",
+        "lastModified": 1679518073,
+        "narHash": "sha256-0Z91jgUESD/p66SYhcW9zPDlUC/8Oz07ZTlPGHDXH1M=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "d8d2cb980c813c2df3464a2385a8211f76f6c352",
+        "rev": "db1b26032347104b84645e7cde6beefb813001d3",
         "type": "gitlab"
       },
       "original": {
@@ -930,11 +930,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1678295159,
-        "narHash": "sha256-paY02fcpoBqUFeiyfmWlrigIwXjpKzrpW/umYg1YRHA=",
+        "lastModified": 1679491899,
+        "narHash": "sha256-XYnU1mM/EFpd/KFPv3yJFZeSQzITqmliuER5Qeyd/eI=",
         "owner": "xorg",
         "repo": "xserver",
-        "rev": "1209a1bb57628df108600b09a77b15104e1bf1e2",
+        "rev": "fc625fe172d9f6a149a594b5214364bedf680239",
         "type": "gitlab"
       },
       "original": {
