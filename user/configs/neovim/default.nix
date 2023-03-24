@@ -7,7 +7,9 @@
   programs.nixvim = {
     enable = true;
 
-    globals = { };
+    globals = { 
+      mapleader = ",";
+    };
 
     colorschemes.gruvbox = {
       enable = true;
@@ -30,6 +32,7 @@
       shiftwidth = 2;
       expandtab = true;
       autoindent = true;
+      listchars = "tab:!·,trail:·";
     };
 
     plugins = {
@@ -70,6 +73,7 @@
       };
 
       cmp_luasnip.enable = true; 
+      cmp-cmdline.enable = true;
 
       nvim-cmp = {
         enable = true; 
@@ -91,10 +95,6 @@
           "<C-e>" = "cmp.mapping.abort()";
         };
 
-        completion = {
-          # keywordLength = 5;
-        };
-
         window.completion = {
           border = "single"; 
           scrollbar = true;
@@ -113,6 +113,16 @@
       nvim-lightbulb.enable = true;
 
       neo-tree.enable = true;
+
+      telescope = {
+        enable = true;
+
+        keymaps = {
+          "<leader>c" = "git_files";
+          "<leader>v" = "live_grep";
+        };
+
+      };
 
       treesitter = {
         enable = true;

@@ -64,6 +64,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+
     extraConfig = ''
       monitor=${leftMonitor}, 1920x1080@60, 0x0, 1
       monitor=${rightMonitor}, 2560x1440@144, 1920x0, 1

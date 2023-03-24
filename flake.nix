@@ -94,6 +94,7 @@
         };
         overlays = [
           self.overlays.default
+          inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpaper.overlays.default
           inputs.hyprpicker.overlays.default

@@ -41,7 +41,7 @@
       fish_greeting = "";
 
       ec = ''
-        pushd &> /dev/null
+        pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
         set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
                     ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
@@ -49,18 +49,18 @@
         if test -f "$filename"
         	$EDITOR $filename
         end
-        popd &> /dev/null
+        popd
       '';
 
       nor = ''
-        pushd &> /dev/null
+        pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
         doas nixos-rebuild switch --flake .#
         popd &> /dev/null
       '';
 
       nou = ''
-        pushd &> /dev/null
+        pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
         nix flake lock --commit-lock-file --update-input nixpkgs --update-input home-manager
         doas nixos-rebuild switch --upgrade --flake .#
