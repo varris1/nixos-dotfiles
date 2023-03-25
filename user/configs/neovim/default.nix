@@ -1,4 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
+let 
+  colors = config.colorScheme.colors;
+in 
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
@@ -8,7 +11,7 @@
     enable = true;
 
     globals = { 
-      mapleader = ",";
+      mapleader = " "; #Space key
     };
 
     colorschemes.gruvbox = {
@@ -53,7 +56,18 @@
       comment-nvim.enable = true;
 
       fugitive.enable = true;
-      lsp.enable = true;
+
+      lsp = {
+        enable = true;
+        keymaps.lspBuf = {
+          K = "hover";
+          gD = "references";
+          gd = "definition";
+          gi = "implementation";
+          gt = "type_definition";
+        };
+      };
+
       nvim-autopairs.enable = true;
 
       lspkind = {
@@ -127,6 +141,19 @@
       treesitter = {
         enable = true;
         indent = true;
+      };
+
+      bufferline = {
+        enable = true;
+        separatorStyle = "slant";
+        numbers = "buffer_id";
+        
+        highlights = {
+          fill = {
+            guibg = "#3C3836";
+          };
+        };
+
       };
     };
 
