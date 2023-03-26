@@ -378,11 +378,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1679480702,
-        "narHash": "sha256-npuRD61YmxUPitI1TqKwlxLrU6iGl5E+BPT196LgUDo=",
+        "lastModified": 1679786039,
+        "narHash": "sha256-VNjswu0Q4bZOkWNuc0+dHvRdjUCj+MnDlRfw/Q0R3vI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "363c46b2480f1b73ec37cf68caac61f5daa82a2e",
+        "rev": "cf662b6c98a0da81e06066fff0ecf9cbd4627727",
         "type": "github"
       },
       "original": {
@@ -401,11 +401,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1679505046,
-        "narHash": "sha256-JFzdbtnEaUHMdWi0eXznpxGZO6SRfdBRaOwn4PmDkE0=",
+        "lastModified": 1679792424,
+        "narHash": "sha256-EFXGWV13DcTO/6jaLf/zoAFOsQMCMPE8YMeXpSeUjNY=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "cf51a318078c82040eaeab29664bc34144ee1d62",
+        "rev": "3343aac6bf6aa601cb882859edf63a6cb59bb774",
         "type": "github"
       },
       "original": {
@@ -514,11 +514,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1679518094,
-        "narHash": "sha256-vWTw7DDZZkFz9atxpBqG5aO/N0Z//+S4ZwV7L7i0wfU=",
+        "lastModified": 1679768108,
+        "narHash": "sha256-JoVwsj4jeV5BEwknlg07ShQ2TZwh87+FucIT6YLJjC0=",
         "owner": "mesa",
         "repo": "mesa",
-        "rev": "8af8c5bd075776da251aee8fdab9c98894eccada",
+        "rev": "0f045d43d615ade6197efe565ed9175f35686d47",
         "type": "gitlab"
       },
       "original": {
@@ -565,11 +565,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1679553901,
-        "narHash": "sha256-OhmJc18XNIj0wVC4ZoPnCVoY3SGfcPxaeKJOz1WHo5M=",
+        "lastModified": 1679734080,
+        "narHash": "sha256-z846xfGLlon6t9lqUzlNtBOmsgQLQIZvR6Lt2dImk1M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "09ad6a72359f6aff0f96ce8e4d1ec2d1271ad15d",
+        "rev": "dbf5322e93bcc6cfc52268367a8ad21c09d76fea",
         "type": "github"
       },
       "original": {
@@ -637,27 +637,24 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1679695447,
-        "narHash": "sha256-Reqsn/TL0aznSV9vGl4rqYk2V+CYXSIEBrTWyM3F1Ew=",
-        "owner": "pta2002",
-        "repo": "nixvim",
-        "rev": "a0498fc4c4ed263c2728a912e52f0a2d89271163",
-        "type": "github"
+        "lastModified": 1679792452,
+        "narHash": "sha256-ArIkZVxrSLNUrv8ZaBOeF7dGSAvv4/63bFJ6xmJjFU0=",
+        "path": "/home/manuel/Repos/nixvim",
+        "type": "path"
       },
       "original": {
-        "owner": "pta2002",
-        "repo": "nixvim",
-        "type": "github"
+        "path": "/home/manuel/Repos/nixvim",
+        "type": "path"
       }
     },
     "openmw": {
       "flake": false,
       "locked": {
-        "lastModified": 1679518073,
-        "narHash": "sha256-0Z91jgUESD/p66SYhcW9zPDlUC/8Oz07ZTlPGHDXH1M=",
+        "lastModified": 1679761016,
+        "narHash": "sha256-61n3GXM1XR8SlRAV09pQvaKtyePRykMmTekFQXYH13g=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "db1b26032347104b84645e7cde6beefb813001d3",
+        "rev": "2f2b952e1280dec649ef211b814f1c8914dfa8d8",
         "type": "gitlab"
       },
       "original": {
