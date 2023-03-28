@@ -378,11 +378,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1679786039,
-        "narHash": "sha256-VNjswu0Q4bZOkWNuc0+dHvRdjUCj+MnDlRfw/Q0R3vI=",
+        "lastModified": 1680000368,
+        "narHash": "sha256-TlgC4IJ7aotynUdkGRtaAVxquaiddO38Ws89nB7VGY8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cf662b6c98a0da81e06066fff0ecf9cbd4627727",
+        "rev": "765e4007b6f9f111469a25d1df6540e8e0ca73a6",
         "type": "github"
       },
       "original": {
@@ -526,6 +526,22 @@
         "owner": "mesa",
         "repo": "mesa",
         "type": "gitlab"
+      }
+    },
+    "ncmpcpp-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672512759,
+        "narHash": "sha256-PjCzo3OSj/QIi2fdeV28ZjPiqLf6XAnZeNrDyjXt5wU=",
+        "owner": "ncmpcpp",
+        "repo": "ncmpcpp",
+        "rev": "9f44edf0b1d74da7cefbd498341d59bc52f6043f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ncmpcpp",
+        "repo": "ncmpcpp",
+        "type": "github"
       }
     },
     "nix-colors": {
@@ -773,6 +789,7 @@
         "hyprpaper": "hyprpaper",
         "hyprpicker": "hyprpicker",
         "mesa-git": "mesa-git",
+        "ncmpcpp-git": "ncmpcpp-git",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
