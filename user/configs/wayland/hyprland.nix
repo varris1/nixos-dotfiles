@@ -41,10 +41,13 @@ let
   '';
 
   xwaylandSetPrimary = pkgs.writeShellScriptBin "xwayland-setprimary.sh" ''
-    DSP=$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/2560x1440/ {print $1}' | head -n 1)
-
-    ${pkgs.xorg.xrandr}/bin/xrandr --output "$DSP" --primary
-    echo "Xwayland: $DSP - Primary monitor set"
+    while true; do
+    	DSP=$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/2560x1440/ {print $1}' | head -n 1)
+	  if [[ ! -z DSP ]]; then
+    	${pkgs.xorg.xrandr}/bin/xrandr --output "$DSP" --primary
+    fi
+    sleep 10
+    done
   '';
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
@@ -116,9 +119,6 @@ in
         col.shadow = rgba(${colors.base00}99)
       }
 
-      blurls = waybar
-      blurls = notifications
-
       animations {
         enabled = yes
 
@@ -133,8 +133,8 @@ in
       exec-once = ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill
 
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
-      exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
       exec-once = ${pkgs.blueman}/bin/blueman-applet
+      exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
       exec = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
@@ -198,10 +198,13 @@ in
 
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 
+      layerrule = blur, waybar
+      layerrule = blur, notifications
+
       windowrulev2 = fullscreen, class:^(hl2_linux)$
     '';
 
   };
-  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 ];
+  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.hyprpaper ];
 }
 

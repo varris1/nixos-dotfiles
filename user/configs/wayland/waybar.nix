@@ -24,7 +24,7 @@ let
     	else
     		echo "{\"class\":\"not_connected\",\"text\":\"\"}"
     	fi
-    	sleep 1
+    	sleep 60
     done
   '';
 in

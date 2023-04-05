@@ -4,9 +4,9 @@
 { config, pkgs, lib, inputs, ... }:
 {
   imports = [
-    # Include the results of the hardware scan.
+# Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.hyprland.nixosModules.default
+      inputs.hyprland.nixosModules.default
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -16,9 +16,15 @@
   boot = {
     kernelParams =
       [
-        "amdgpu.ppfeaturemask=0xffffffff"
+      "amdgpu.ppfeaturemask=0xffffffff"
         "drm.edid_firmware=DP-1:edid/edid-EX2780Q.bin"
+        "net.ifnames=0"
       ];
+
+    extraModprobeConfig = ''
+      options iwlmvm power_scheme=1
+      options iwlwifi power_save=0
+      '';
 
     loader = {
       efi = {
@@ -40,7 +46,7 @@
       };
     };
 
-    # initrd.availableKernelModules=sd [ "amdgpu" ];
+# initrd.availableKernelModules=sd [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
@@ -49,15 +55,18 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    enableIPv6 = false;
+      enableIPv6 = false;
 
-    networkmanager = {
+    wireless = {
       enable = true;
-      wifi = {
-        powersave = false;
+      #FORMAT:
+      #PSK_HOME = password
+      environmentFile = "/etc/nixos/wifi_secrets.conf";
+
+      networks."TP-Link_EDB8" = {
+        psk = "@PSK_HOME@";
       };
     };
-    firewall.checkReversePath = false;
     firewall.enable = false;
 
     extraHosts = ''
@@ -66,10 +75,10 @@
 
   };
 
-  # Set your time zone.
+# Set your time zone.
   time.timeZone = "Europe/Vienna";
 
-  # Select internationalisation properties.
+# Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -104,51 +113,23 @@
     extraBackends = [ pkgs.sane-airscan ];
   };
 
-  # Enable sound.
+# Enable sound.
   sound.enable = true;
 
-  security.rtkit.enable = true;
-  security.audit.enable = false;
-  security.auditd.enable = false;
-
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "262144";
-  }];
-
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  services.blueman.enable = true;
-
-  services.gvfs.enable = true;
-
-  services.flatpak.enable = true;
-
-  services.locate = {
-    enable = true;
-    locate = pkgs.plocate;
-    localuser = null;
-    prunePaths = lib.mkOptionDefault [ ];
-    interval = "hourly";
-  };
-
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
-  services.udisks2.enable = true;
-
   security = {
+    audit.enable = false;
+    auditd.enable = false;
+    polkit.enable = true;
+    rtkit.enable = true;
     sudo.enable = false;
+
+    pam.loginLimits = [{
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "262144";
+    }];
+
     doas = {
       enable = true;
       extraRules = [{
@@ -157,130 +138,125 @@
         persist = true;
       }];
     };
-    polkit.enable = true;
   };
 
-  programs.fish.enable = true;
-
-  programs.ccache = {
-    enable = true;
-    packageNames = [
-    ];
-  };
-
-  programs.hyprland.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+# Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [
-      "audio"
-      "games"
-      "geoclue"
-      "input"
-      "networkmanager"
-      "nm-openvpn"
-      "scanner"
-      "lp"
-      "users"
-      "video"
-      "wheel"
-    ];
+    extraGroups = [ "audio" "games" "input" "scanner" "lp" "users" "video" "wheel" ];
     shell = pkgs.fish;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+# List packages installed in system profile. To search, run:
+# $ nix search wget
   environment = {
     systemPackages = [
       pkgs.git
-      pkgs.links2
-      pkgs.ripgrep
-      pkgs.file
-      pkgs.fd
-      pkgs.htop
-      pkgs.openrgb
-      pkgs.unzip
-      pkgs.unrar
-      pkgs.p7zip
+        pkgs.links2
+        pkgs.ripgrep
+        pkgs.file
+        pkgs.fd
+        pkgs.htop
+        pkgs.openrgb
+        pkgs.unzip
+        pkgs.unrar
+        pkgs.p7zip
     ];
     binsh = "${pkgs.dash}/bin/dash";
   };
 
-  # List services that you want to enable:
-  services.udev.packages = [ pkgs.openrgb ];
-
-  programs.dconf.enable = true;
-
-  programs.kdeconnect.enable = true;
-
-  services.geoclue2 = {
-    enable = true;
-    appConfig."gammastep" = {
-      isAllowed = true;
-      isSystem = false;
-    };
+# List services that you want to enable:
+  programs = {
+    dconf.enable = true;
+    fish.enable = true;
+    hyprland.enable = true;
+    kdeconnect.enable = true;
+    ssh.startAgent = true;
   };
 
-  services.gnome.gnome-keyring.enable = true;
+  services = {
+    blueman.enable = true;
+    flatpak.enable = true;
+    fwupd.enable = true;
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+    openssh.enable = true;
+    udev.packages = [ pkgs.openrgb ];
+    udisks2.enable = true;
+
+    printing = {
+      enable = true;
+      drivers = [ pkgs.cnijfilter2 ];
+    };
+
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
+
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+
+
+    transmission = {
+      enable = true;
+      user = "manuel";
+      openFirewall = true;
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+
+    locate = {
+      enable = true;
+      locate = pkgs.plocate;
+      localuser = null;
+      prunePaths = lib.mkOptionDefault [ ];
+      interval = "hourly";
+    };
+
+    fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
+  };
 
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     wlr.enable = false; #conflict with XDPH if enabled
-    extraPortals = [
+      extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-    ];
+      ];
   };
-
-  programs.ssh = {
-    startAgent = true;
-  };
-
-  services.openssh = {
-    enable = true;
-  };
-
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.cnijfilter2 ];
-  };
-
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
-
-  services.transmission = {
-    enable = true;
-    user = "manuel";
-    openFirewall = true;
-  };
-
-  services.fwupd.enable = true;
-
-  #:  services.getty.autologinUser = " manuel ";
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
-  '';
+    '';
 
   systemd.user.extraConfig = ''
-    # needed for xdg-open to find the default browser
+# needed for xdg-open to find the default browser
     DefaultEnvironment="PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
     DefaultTimeoutStopSec=10s
-  '';
+    '';
 
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
       warn-dirty = false
-    '';
+      '';
     gc = {
       persistent = true;
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
     settings.auto-optimise-store = true;
   };

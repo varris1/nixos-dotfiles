@@ -40,6 +40,11 @@
       flake = false;
     };
 
+    ncmpcpp-git = {
+      url = "github:ncmpcpp/ncmpcpp";
+      flake = false;
+    };
+
     grub2-themes = {
       url = "github:vinceliuice/grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";

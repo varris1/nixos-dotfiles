@@ -11,7 +11,7 @@ in
     enable = true;
 
     globals = { 
-      mapleader = " "; #Space key
+      mapleader = ",";
     };
 
     colorschemes.gruvbox = {
@@ -25,10 +25,21 @@ in
       pattern = [ "*" ];
       command = "hi! Normal ctermbg=NONE guibg=NONE";
     }
+    {
+      event = [ "BufWinLeave" ]  ;
+      pattern = [ "*" ];
+      command = "silent! mkview";
+    }
+    {
+      event = [ "BufWinEnter" ]  ;
+      pattern = [ "*" ];
+      command = "silent! loadview";
+    }
     ];
 
     options = {
       number = true;
+      relativenumber = true;
       ignorecase = true;
       smartcase = true;
       tabstop = 2;
@@ -143,24 +154,16 @@ in
         indent = true;
       };
 
-      bufferline = {
-        enable = true;
-        separatorStyle = "slant";
-        numbers = "buffer_id";
-        
-        highlights = {
-          fill = {
-            guibg = "#3C3836";
-          };
-        };
-
-      };
     };
 
     maps = {
       normal."<C-n>" = {
         silent = true;
         action = "<cmd>NeoTreeFocusToggle<CR>";
+      };
+      normal."<mapleader><Space>" = {
+        silent = true;
+        action = "<cmd>nohlsearch<CR>";
       };
     };
 
