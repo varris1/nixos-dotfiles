@@ -29,7 +29,6 @@ in
       bottom
       calcurse
       fastfetch
-      gamescope
       gimp
       gnome.file-roller
       gnome.gvfs

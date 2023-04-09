@@ -43,10 +43,10 @@ let
   xwaylandSetPrimary = pkgs.writeShellScriptBin "xwayland-setprimary.sh" ''
     while true; do
     	DSP=$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/2560x1440/ {print $1}' | head -n 1)
-	  if [[ ! -z DSP ]]; then
-    	${pkgs.xorg.xrandr}/bin/xrandr --output "$DSP" --primary
-    fi
-    sleep 10
+      if [[ ! -z DSP ]]; then
+        ${pkgs.xorg.xrandr}/bin/xrandr --output "$DSP" --primary
+      fi
+      sleep 10
     done
   '';
 
@@ -135,9 +135,9 @@ in
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
+      exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      exec = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
 
       #keybinds
       bind = ${modKey}, 1, workspace, 1

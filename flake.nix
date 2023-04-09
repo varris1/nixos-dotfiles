@@ -35,16 +35,6 @@
       flake = false;
     };
 
-    mesa-git = {
-      url = "gitlab:mesa/mesa?host=gitlab.freedesktop.org";
-      flake = false;
-    };
-
-    ncmpcpp-git = {
-      url = "github:ncmpcpp/ncmpcpp";
-      flake = false;
-    };
-
     grub2-themes = {
       url = "github:vinceliuice/grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,10 +70,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    openmw = {
-      url = "gitlab:OpenMW/openmw";
-      flake = false;
-    };
+    chaotic-nyx.url = "github:chaotic-aur/nyx";
 
   };
 
@@ -104,6 +91,7 @@
           inputs.hyprpaper.overlays.default
           inputs.hyprpicker.overlays.default
           inputs.webcord.overlays.default
+          inputs.chaotic-nyx.overlays.default
         ];
       };
     in
@@ -122,7 +110,6 @@
           '';
 
           mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
-
         });
 
         xwayland = prev.xwayland.overrideAttrs (old: {
@@ -144,28 +131,6 @@
         ncmpcpp = prev.ncmpcpp.override {
           visualizerSupport = true;
         };
-
-        mesa-git =
-          (prev.mesa.overrideAttrs
-            (old: {
-              version = "git";
-              src = inputs.mesa-git;
-              patches = [
-                ./pkgs/mesa-git/disk_cache-include-dri-driver-path-in-cache-key.patch
-                ./pkgs/mesa-git/opencl.patch
-              ];
-              mesonFlags = old.mesonFlags ++ [
-                "-Dandroid-libbacktrace=disabled"
-                "-Dlmsensors=disabled"
-                "-Dlibunwind=disabled"
-                "-Dgallium-xa=disabled"
-              ];
-            })).override
-            {
-              galliumDrivers = [ "radeonsi" "swrast" ];
-              vulkanDrivers = [ "amd" ];
-              enableGalliumNine = false; # Replaced by DXVK
-            };
 
         customedid = pkgs.callPackage ./pkgs/custom-edid { };
         wxedid = pkgs.callPackage ./pkgs/wxedid { };
@@ -193,6 +158,7 @@
               };
             }
             inputs.grub2-themes.nixosModules.default
+            inputs.chaotic-nyx.nixosModules.default
           ];
         };
     };

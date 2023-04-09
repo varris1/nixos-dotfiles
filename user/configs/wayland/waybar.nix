@@ -10,8 +10,10 @@ let
   fontSize = "9pt";
 
   ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
-    ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
-    ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
+    #ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
+    #ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
+    ds_capacity_file="/sys/class/power_supply/ps-controller-battery-a4:53:85:35:11:fc/capacity"
+    ds_status_file="/sys/class/power_supply/ps-controller-battery-a4:53:85:35:11:fc/status"
 
     while true; do
     	if [[ -f $ds_capacity_file ]]; then
@@ -24,7 +26,7 @@ let
     	else
     		echo "{\"class\":\"not_connected\",\"text\":\"\"}"
     	fi
-    	sleep 60
+    	sleep 10
     done
   '';
 in

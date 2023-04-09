@@ -585,22 +585,6 @@
         "type": "github"
       }
     },
-    "ncmpcpp-git": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1672512759,
-        "narHash": "sha256-PjCzo3OSj/QIi2fdeV28ZjPiqLf6XAnZeNrDyjXt5wU=",
-        "owner": "ncmpcpp",
-        "repo": "ncmpcpp",
-        "rev": "9f44edf0b1d74da7cefbd498341d59bc52f6043f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ncmpcpp",
-        "repo": "ncmpcpp",
-        "type": "github"
-      }
-    },
     "nix-colors": {
       "inputs": {
         "base16-schemes": "base16-schemes",
@@ -846,7 +830,6 @@
         "hyprland-contrib": "hyprland-contrib",
         "hyprpaper": "hyprpaper",
         "hyprpicker": "hyprpicker",
-        "ncmpcpp-git": "ncmpcpp-git",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",

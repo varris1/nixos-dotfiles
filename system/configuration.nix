@@ -6,7 +6,7 @@
   imports = [
 # Include the results of the hardware scan.
     ./hardware-configuration.nix
-      inputs.hyprland.nixosModules.default
+      #inputs.hyprland.nixosModules.default
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -95,10 +95,9 @@
     keyMap = "us-acentos";
   };
 
+  chaotic.mesa-git.enable = true;
   hardware.opengl = {
     enable = true;
-    package = pkgs.mesa-git.drivers;
-    package32 = pkgs.pkgsi686Linux.mesa-git.drivers;
     extraPackages = [ pkgs.libvdpau-va-gl ];
 
     driSupport = true;
@@ -169,7 +168,7 @@
   programs = {
     dconf.enable = true;
     fish.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
     kdeconnect.enable = true;
     ssh.startAgent = true;
   };
@@ -258,7 +257,16 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    settings.auto-optimise-store = true;
+    settings = {
+      auto-optimise-store = true;
+      extra-substituters = [
+        "https://nyx.chaotic.cx"
+      ];
+      extra-trusted-public-keys = [
+        "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      ];
+    };
   };
 
   system.stateVersion = "22.05"; # Did you read the comment?
