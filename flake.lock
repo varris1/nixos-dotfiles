@@ -96,6 +96,30 @@
         "type": "github"
       }
     },
+    "chaotic-nyx": {
+      "inputs": {
+        "gamescope-git-src": "gamescope-git-src",
+        "input-leap-git-src": "input-leap-git-src",
+        "mesa-git-src": "mesa-git-src",
+        "nixpkgs": "nixpkgs",
+        "sway-git-src": "sway-git-src",
+        "waynergy-git-src": "waynergy-git-src",
+        "wlroots-git-src": "wlroots-git-src"
+      },
+      "locked": {
+        "lastModified": 1680984043,
+        "narHash": "sha256-6xFSPOHjUp2vnrWYpeAsCj9ZpkHGS1eymhWoIkQSjwQ=",
+        "owner": "chaotic-aur",
+        "repo": "nyx",
+        "rev": "7c97eeb85572221dac385347755ed6e2ab961ddb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chaotic-aur",
+        "repo": "nyx",
+        "type": "github"
+      }
+    },
     "crane": {
       "flake": false,
       "locked": {
@@ -293,6 +317,23 @@
       "original": {
         "owner": "rafamadriz",
         "repo": "friendly-snippets",
+        "type": "github"
+      }
+    },
+    "gamescope-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680853260,
+        "narHash": "sha256-oiS8WSEsZ1uTDbIXiiSeL/sZrhCoGlPZDdQkfU+jVII=",
+        "owner": "ValveSoftware",
+        "repo": "gamescope",
+        "rev": "1310315c9515c93650666bd80169a6c243213717",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ValveSoftware",
+        "ref": "master",
+        "repo": "gamescope",
         "type": "github"
       }
     },
@@ -495,6 +536,23 @@
         "type": "github"
       }
     },
+    "input-leap-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680536543,
+        "narHash": "sha256-veNc95CcN/I19Ait4kcgtz/6dosq4y8QkQGLy1GZYQ8=",
+        "owner": "input-leap",
+        "repo": "input-leap",
+        "rev": "98c56d0c9a985d0701fcf952980131fc32275802",
+        "type": "github"
+      },
+      "original": {
+        "owner": "input-leap",
+        "ref": "master",
+        "repo": "input-leap",
+        "type": "github"
+      }
+    },
     "mach-nix": {
       "flake": false,
       "locked": {
@@ -510,22 +568,21 @@
         "type": "indirect"
       }
     },
-    "mesa-git": {
+    "mesa-git-src": {
       "flake": false,
       "locked": {
-        "host": "gitlab.freedesktop.org",
         "lastModified": 1680934244,
         "narHash": "sha256-Owntlt2R074o4IgNwHyO+1KxDCObmgSFvVtCp9y4rvc=",
-        "owner": "mesa",
-        "repo": "mesa",
+        "owner": "chaotic-aur",
+        "repo": "mesa-mirror",
         "rev": "c7da969f8fe1b78d2479623e2510e52827c3035a",
-        "type": "gitlab"
+        "type": "github"
       },
       "original": {
-        "host": "gitlab.freedesktop.org",
-        "owner": "mesa",
-        "repo": "mesa",
-        "type": "gitlab"
+        "owner": "chaotic-aur",
+        "ref": "main",
+        "repo": "mesa-mirror",
+        "type": "github"
       }
     },
     "ncmpcpp-git": {
@@ -589,9 +646,10 @@
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
+        "owner": "NixOS",
         "ref": "nixpkgs-unstable",
-        "type": "indirect"
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs-lib": {
@@ -643,6 +701,21 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1681002951,
+        "narHash": "sha256-nD9fXN7EVKGovtjrXIuA7Si9M6PD9b02GNtvQPTSuOk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "431bf1e6cdd494e5230fbb72884afb4ca612c578",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixpkgs-unstable",
+        "type": "indirect"
+      }
+    },
     "nixvim": {
       "inputs": {
         "beautysh": "beautysh",
@@ -664,22 +737,6 @@
         "owner": "pta2002",
         "repo": "nixvim",
         "type": "github"
-      }
-    },
-    "openmw": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1680962044,
-        "narHash": "sha256-0lIKGqKJ8w1VxLeD07+pq3SgKmX6nYPK5hQoLeI376w=",
-        "owner": "OpenMW",
-        "repo": "openmw",
-        "rev": "8cd5b91b4a6b074b8bcf70c93c60dbc9785ebf9d",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "OpenMW",
-        "repo": "openmw",
-        "type": "gitlab"
       }
     },
     "poetry2nix": {
@@ -781,6 +838,7 @@
     "root": {
       "inputs": {
         "bobthefish": "bobthefish",
+        "chaotic-nyx": "chaotic-nyx",
         "friendly-snippets": "friendly-snippets",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
@@ -788,12 +846,10 @@
         "hyprland-contrib": "hyprland-contrib",
         "hyprpaper": "hyprpaper",
         "hyprpicker": "hyprpicker",
-        "mesa-git": "mesa-git",
         "ncmpcpp-git": "ncmpcpp-git",
         "nix-colors": "nix-colors",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
-        "openmw": "openmw",
         "waybar": "waybar",
         "webcord": "webcord",
         "xorg-git": "xorg-git"
@@ -813,6 +869,23 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "sway-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680811432,
+        "narHash": "sha256-ma4kBTd5+KD6lAAM+DrlXbCEq5YKXxIUDuVOwvTcBKg=",
+        "owner": "swaywm",
+        "repo": "sway",
+        "rev": "dadf3e9b7865e7a907a6d95cbb94a2e1cd8cf67f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "swaywm",
+        "ref": "master",
+        "repo": "sway",
         "type": "github"
       }
     },
@@ -859,6 +932,23 @@
       "original": {
         "owner": "alexays",
         "repo": "waybar",
+        "type": "github"
+      }
+    },
+    "waynergy-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680951881,
+        "narHash": "sha256-DHP84AYDd3M8on4LgS2TzFU/QulrWXdl1qbLV+qKoxw=",
+        "owner": "r-c-f",
+        "repo": "waynergy",
+        "rev": "833ff57906460acb4ba9e3ec45737f42f461fc53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "r-c-f",
+        "ref": "master",
+        "repo": "waynergy",
         "type": "github"
       }
     },
@@ -916,6 +1006,23 @@
         "owner": "wlroots",
         "repo": "wlroots",
         "type": "gitlab"
+      }
+    },
+    "wlroots-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680813548,
+        "narHash": "sha256-BOa/UZAZcr5kr7xx2EwQ/gRUrlWB2QHusD5j6nAaeqQ=",
+        "ref": "master",
+        "rev": "b1e38fc7eaf5d01a9a1f5ceeab1b8b75e143cabf",
+        "revCount": 6187,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
+      },
+      "original": {
+        "ref": "master",
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git"
       }
     },
     "xdph": {
