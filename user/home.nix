@@ -8,7 +8,7 @@ in
       ./configs/beets
       ./configs/cava
       ./configs/wayland/hyprland.nix
-      #./configs/wayland/sway.nix
+#./configs/wayland/sway.nix
       ./configs/fish
       ./configs/mpd
       ./configs/mpv
@@ -64,10 +64,10 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    RADV_PERFTEST = "gpl";
+    MESA_DISK_CACHE_SINGLE_FILE = "1";
     NIXOS_OZONE_WL = "1";
-
+    RADV_PERFTEST = "gpl";
+    WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
   };
 

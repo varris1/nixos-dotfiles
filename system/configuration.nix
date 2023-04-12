@@ -150,25 +150,35 @@
 # $ nix search wget
   environment = {
     systemPackages = [
+      pkgs.bc
+      pkgs.distrobox
       pkgs.git
-        pkgs.links2
-        pkgs.ripgrep
-        pkgs.file
-        pkgs.fd
-        pkgs.htop
-        pkgs.openrgb
-        pkgs.unzip
-        pkgs.unrar
-        pkgs.p7zip
+      pkgs.links2
+      pkgs.ripgrep
+      pkgs.file
+      pkgs.fd
+      pkgs.htop
+      pkgs.openrgb
+      pkgs.unzip
+      pkgs.unrar
+      pkgs.p7zip
     ];
     binsh = "${pkgs.dash}/bin/dash";
   };
 
+  chaotic.gamescope = {
+    enable = true;
+    #capSysNice = true;
+    session.enable = true;
+    package = pkgs.gamescope-git;
+  };
+  chaotic.linux_hdr.specialisation.enable = true;
+
 # List services that you want to enable:
   programs = {
     dconf.enable = true;
+    hyprland.enable = true;
     fish.enable = true;
-    # hyprland.enable = true;
     kdeconnect.enable = true;
     ssh.startAgent = true;
   };
@@ -184,7 +194,7 @@
     udisks2.enable = true;
 
     printing = {
-      enable = true;
+      enable = false;
       drivers = [ pkgs.cnijfilter2 ];
     };
 
@@ -226,6 +236,8 @@
       interval = "weekly";
     };
   };
+
+  virtualisation.podman.enable = true;
 
   xdg.portal = {
     enable = true;

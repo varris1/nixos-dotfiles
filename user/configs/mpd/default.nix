@@ -5,11 +5,11 @@
     extraConfig = ''
       auto_update "yes"
       restore_paused "yes"
+      replaygain "track"
 
       audio_output {
           type "pipewire"
           name "MPD PipeWire"
-          replay_gain_handler "none"
       }
 
       audio_output {

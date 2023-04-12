@@ -98,7 +98,7 @@
     {
       overlays.default = final: prev: rec {
         nerdfonts = prev.nerdfonts.override {
-          fonts = [ "JetBrainsMono" "IBMPlexMono" ];
+          fonts = [ "JetBrainsMono" ];
         };
 
         waybar = prev.waybar.overrideAttrs (old: {
@@ -112,19 +112,23 @@
           mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
         });
 
-        xwayland = prev.xwayland.overrideAttrs (old: {
-          version = "git";
-
-          src = inputs.xorg-git;
-          buildInputs = old.buildInputs ++ [
-            prev.udev
-            prev.xorg.libpciaccess
-          ];
-        });
+        # xwayland = prev.xwayland.overrideAttrs (old: {
+        #   version = "git";
+        #   src = inputs.xorg-git;
+        #   buildInputs = old.buildInputs ++ [
+        #     prev.udev
+        #     prev.xorg.libpciaccess
+        #   ];
+        # });
 
         steam = prev.steam.override {
           extraPkgs = pkgs: [
             pkgs.gnome.zenity
+            pkgs.xdg-user-dirs
+            pkgs.gamescope
+          ];
+          extraLibraries = pkgs: [
+            pkgs.openal
           ];
         };
 
