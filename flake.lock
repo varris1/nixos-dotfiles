@@ -110,8 +110,8 @@
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1682637492,
-        "narHash": "sha256-SeaXfu80JesTQBorzdqzeybeQYb8MD2ckiSKAj0Td4U=",
+        "lastModified": 1682637548,
+        "narHash": "sha256-qsRJGbY1f839x9+eJoGl9L46NKIPGIp5O4tig0LCQ3E=",
         "path": "/home/manuel/Repos/nyx",
         "type": "path"
       },
