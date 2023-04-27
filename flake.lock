@@ -110,14 +110,17 @@
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1682637614,
-        "narHash": "sha256-kIUy6DqYkLXb51HknmdpSpAZaGABYMd3dOc7oELLvhw=",
-        "path": "/home/manuel/Repos/nyx",
-        "type": "path"
+        "lastModified": 1682611855,
+        "narHash": "sha256-nd0/5v4YoKPHoJDZjS2zBpeWO/R+OCG4Ycdd+FHimsA=",
+        "owner": "chaotic-aur",
+        "repo": "nyx",
+        "rev": "240be6272a53d585b467f904a111214e44c405a8",
+        "type": "github"
       },
       "original": {
-        "path": "/home/manuel/Repos/nyx",
-        "type": "path"
+        "owner": "chaotic-aur",
+        "repo": "nyx",
+        "type": "github"
       }
     },
     "compare-to": {
