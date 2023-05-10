@@ -10,10 +10,8 @@ let
   fontSize = "9pt";
 
   ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
-    #ds_capacity_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/capacity"
-    #ds_status_file="/sys/class/power_supply/ps-controller-battery-4c:b9:9b:74:ae:31/status"
-    ds_capacity_file="/sys/class/power_supply/ps-controller-battery-a4:53:85:35:11:fc/capacity"
-    ds_status_file="/sys/class/power_supply/ps-controller-battery-a4:53:85:35:11:fc/status"
+    ds_capacity_file="/sys/class/power_supply/ps-controller-battery-e8:47:3a:46:72:1b/capacity"
+    ds_status_file="/sys/class/power_supply/ps-controller-battery-e8:47:3a:46:72:1b/status"
 
     while true; do
     	if [[ -f $ds_capacity_file ]]; then
@@ -33,6 +31,8 @@ in
 {
   programs.waybar = {
     enable = true;
+    package = pkgs.waybar_hyprland;
+
     settings = [{
       layer = "top";
       position = "top";
@@ -79,7 +79,7 @@ in
       "wireplumber" = {
         scroll-step = 5;
         format = "{icon} {volume}%";
-        format-icons = [ "" "" "墳" "" ];
+        format-icons = [ "" "" "󰕾" "" ];
         ignored-sinks = [ "Easy Effects Sink" ];
         on-scroll-up = "${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}";
         on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 10 --get-volume > ${wobsock}";
@@ -93,10 +93,10 @@ in
       "mpd" = {
         format =
           "{stateIcon} {artist} - {title}  {elapsedTime:%M:%S}/{totalTime:%M:%S}";
-        format-stopped = "栗 stopped";
+        format-stopped = "󰓛 stopped";
         state-icons = {
           playing = "";
-          paused = "";
+          paused = "󰏤";
         };
         on-click = "${pkgs.foot}/bin/foot -e ${pkgs.ncmpcpp}/bin/ncmpcpp";
       };

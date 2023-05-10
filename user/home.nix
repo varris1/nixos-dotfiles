@@ -8,7 +8,6 @@ in
       ./configs/beets
       ./configs/cava
       ./configs/wayland/hyprland.nix
-#./configs/wayland/sway.nix
       ./configs/fish
       ./configs/mpd
       ./configs/mpv
@@ -16,6 +15,7 @@ in
       ./configs/firefox
       ./configs/dircolors.nix
       ./configs/xdg-mime.nix
+      ./configs/kvantum
   ];
 
 # Home Manager needs a bit of information about you and the
@@ -28,7 +28,6 @@ in
       bc
       bottom
       calcurse
-      fastfetch
       gimp
       gnome.file-roller
       gnome.gvfs
@@ -40,6 +39,7 @@ in
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       obs-studio
+      openmw
       pavucontrol
       protontricks
       sc-im
@@ -60,6 +60,7 @@ in
       wxedid
       xdg-utils
       xivlauncher
+      qbittorrent
       ];
 
   home.sessionVariables = {
@@ -69,6 +70,7 @@ in
     RADV_PERFTEST = "gpl";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
@@ -80,7 +82,10 @@ in
     enableFishIntegration = true;
   };
 
-  services.gpg-agent.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+  };
 
   services.udiskie.enable = true;
 
@@ -114,10 +119,10 @@ in
     cursorTheme = {
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors-white";
-      size = 32;
+      size = 24;
     };
-
   };
+
   programs = {
     aria2.enable = true;
     password-store.enable = true;
@@ -163,8 +168,8 @@ in
 
   services.gnome-keyring.enable = true;
   services.easyeffects = {
-    enable = false;
-    preset = "custom";
+    enable = true;
+    preset = "DT770";
   };
 
 

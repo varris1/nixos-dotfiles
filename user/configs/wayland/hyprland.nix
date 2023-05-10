@@ -72,6 +72,14 @@ in
       monitor=${leftMonitor}, 1920x1080@60, 0x0, 1
       monitor=${rightMonitor}, 2560x1440@144, 1920x0, 1
 
+      workspace = 1, monitor:${rightMonitor}
+      workspace = 2, monitor:${rightMonitor}
+      workspace = 3, monitor:${rightMonitor}
+
+      workspace = 4, monitor:${leftMonitor}
+      workspace = 5, monitor:${leftMonitor}
+      workspace = 6, monitor:${leftMonitor}
+
       input {
           kb_layout = us
           kb_variant = altgr-intl
@@ -129,15 +137,20 @@ in
         animation = workspaces, 1, 4, default
       }
 
-      exec-once = ${pkgs.waybar}/bin/waybar
-      exec-once = ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill
-
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
+      exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
       exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
+      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
+
+      #Set cursor
+      exec-once = ${pkgs.hyprland}/bin/hyprctl setcursor capitaine-cursors-white 24 &> /dev/null
+
+      exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
+      exec = pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill
 
       #keybinds
       bind = ${modKey}, 1, workspace, 1
@@ -154,13 +167,6 @@ in
       bind = ${modKey} SHIFT, 5, movetoworkspace, 5
       bind = ${modKey} SHIFT, 6, movetoworkspace, 6
 
-      wsbind = 1,${rightMonitor}
-      wsbind = 2,${rightMonitor}
-      wsbind = 3,${rightMonitor}
-
-      wsbind = 4,${leftMonitor}
-      wsbind = 5,${leftMonitor}
-      wsbind = 6,${leftMonitor}
 
       bindm = ${modKey}, mouse:272, movewindow
       bindm = ${modKey}, mouse:273, resizewindow
@@ -194,7 +200,7 @@ in
       bind = , Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy screen
       bind = ${modKey}, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy active
       bind = ${modKey} SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy area
-      bind = ${modKey}, r, exec, ${pkgs.cinnamon.nemo}/bin/nemo
+      bind = ${modKey}, R, exec, ${pkgs.dolphin}/bin/dolphin
 
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 

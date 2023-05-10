@@ -3,34 +3,28 @@
     enable = true;
 
     settings = {
-      plugins = "mpdupdate ftintitle fetchart chroma edit";
+      plugins = "ftintitle fetchart embedart chroma edit replaygain";
 
       directory = "/mnt/hdd/Music";
       library = "/mnt/hdd/Music/library.db";
+      asciify_paths = true;
 
       import = {
+        "write" = true;
         "resume" = true;
         "group_albums" = true;
         "move" = true;
       };
 
       paths = {
-        "default" =
-          "%asciify{$albumartist}/$year - %asciify{$album}%aunique{}/$track %asciify{$title}";
-        "singleton" = "Non-Album/%asciify{$artist}/%asciify{$title}";
-        "comp" =
-          "Compilations/%asciify{$album}%aunique{}/$track %asciify{$title}";
+        "default" = "$albumartist/$year - $album%aunique{}/$track $title";
+        "singleton" = "Singles/$artist/$year - $title";
+        "comp" = "Compilations/$year - $album%aunique{}/$track $title";
       };
-
-      ftintitle = { "auto" = true; };
-
-      fetchart = { "auto" = true; };
-
-      chroma = { "auto" = true; };
 
       replaygain = {
         "backend" = "gstreamer";
-        "threads" = 8;
+        "threads" = 16;
       };
     };
   };

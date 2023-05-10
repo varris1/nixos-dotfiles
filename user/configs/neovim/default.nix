@@ -14,6 +14,8 @@ in
       mapleader = ",";
     };
 
+    clipboard.register = "unnamedplus";
+
     colorschemes.gruvbox = {
       enable = true;
       transparentBg = true;
@@ -128,7 +130,6 @@ in
 
         window.documentation = {
           border = "single";
-          maxHeight = "math.floor(40 * (40 / vim.o.lines))";
           winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
         };
 
@@ -152,6 +153,17 @@ in
       treesitter = {
         enable = true;
         indent = true;
+      };
+
+      bufferline = {
+        enable = true;
+        separatorStyle = "slant";
+      };
+      
+      indent-blankline = {
+        enable = true;
+        useTreesitter = true;
+        useTreesitterScope = true;
       };
 
     };

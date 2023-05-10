@@ -31,13 +31,6 @@
     #'';
 
     functions = {
-      #fish_prompt = ''
-      # set_color green
-      # printf (prompt_pwd)
-      # set_color cyan
-      # printf " ► "
-      # set_color normal
-      #'';
       fish_greeting = "";
 
       ec = ''
@@ -55,7 +48,7 @@
       nor = ''
         pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
-        doas nixos-rebuild switch --flake .#
+        doas nixos-rebuild switch --flake .# --impure
         popd &> /dev/null
       '';
 
@@ -63,7 +56,7 @@
         pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
         nix flake lock --commit-lock-file --update-input nixpkgs --update-input home-manager --update-input hyprland --update-input chaotic-nyx
-        doas nixos-rebuild switch --upgrade --flake .#
+        doas nixos-rebuild switch --upgrade --flake .# --impure
         popd &> /dev/null
       '';
     };

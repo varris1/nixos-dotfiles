@@ -5,6 +5,7 @@
     extraConfig = ''
       auto_update "yes"
       restore_paused "yes"
+
       replaygain "track"
 
       audio_output {

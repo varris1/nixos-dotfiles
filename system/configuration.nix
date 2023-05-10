@@ -6,7 +6,6 @@
   imports = [
 # Include the results of the hardware scan.
     ./hardware-configuration.nix
-      #inputs.hyprland.nixosModules.default
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -24,6 +23,7 @@
     extraModprobeConfig = ''
       options iwlmvm power_scheme=1
       options iwlwifi power_save=0
+      options cfg80211 cfg80211_disable_40mhz_24ghz=Y
       '';
 
     loader = {
@@ -34,7 +34,7 @@
 
       grub = {
         enable = true;
-        useOSProber = false;
+        useOSProber = true;
         efiSupport = true;
         device = "nodev";
       };
@@ -46,7 +46,6 @@
       };
     };
 
-# initrd.availableKernelModules=sd [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
@@ -55,19 +54,13 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-      enableIPv6 = false;
 
-    wireless = {
-      enable = true;
-      #FORMAT:
-      #PSK_HOME = password
-      environmentFile = "/etc/nixos/wifi_secrets.conf";
-
-      networks."TP-Link_EDB8" = {
-        psk = "@PSK_HOME@";
+      networkmanager = {
+        enable = true;
+        wifi.powersave = false;
       };
-    };
-    firewall.enable = false;
+
+      firewall.enable = false;
 
     extraHosts = ''
       192.168.0.17 steam.deck
@@ -95,7 +88,7 @@
     keyMap = "us-acentos";
   };
 
-  chaotic.mesa-git.enable = true;
+  chaotic.mesa-git.enable = true; # requires --impure for now
   hardware.opengl = {
     enable = true;
     extraPackages = [ pkgs.libvdpau-va-gl ];
@@ -142,7 +135,7 @@
 # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "audio" "games" "input" "scanner" "lp" "users" "video" "wheel" ];
+    extraGroups = [ "audio" "games" "input" "scanner" "lp" "users" "video" "vboxusers" "wheel" "networkmanager" ];
     shell = pkgs.fish;
   };
 
@@ -158,21 +151,21 @@
       pkgs.file
       pkgs.fd
       pkgs.htop
+      pkgs.lm_sensors
+      pkgs.nvtop-amd
       pkgs.openrgb
       pkgs.unzip
       pkgs.unrar
       pkgs.p7zip
+      pkgs.pciutils
+      pkgs.usbutils
     ];
-    binsh = "${pkgs.dash}/bin/dash";
   };
 
   chaotic.gamescope = {
     enable = true;
-    #capSysNice = true;
-    session.enable = true;
-    package = pkgs.gamescope-git;
+    package = pkgs.gamescope_git;
   };
-  chaotic.linux_hdr.specialisation.enable = true;
 
 # List services that you want to enable:
   programs = {
@@ -190,8 +183,11 @@
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
-    udev.packages = [ pkgs.openrgb ];
     udisks2.enable = true;
+
+    udev = {
+      packages = [ pkgs.openrgb ];
+    };
 
     printing = {
       enable = false;
@@ -206,13 +202,6 @@
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;
-    };
-
-
-    transmission = {
-      enable = true;
-      user = "manuel";
-      openFirewall = true;
     };
 
     pipewire = {
@@ -237,7 +226,10 @@
     };
   };
 
-  virtualisation.podman.enable = true;
+  virtualisation = {
+    podman.enable = true;
+  #  virtualbox.host.enable = true;
+  };
 
   xdg.portal = {
     enable = true;

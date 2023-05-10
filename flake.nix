@@ -42,6 +42,8 @@
 
     hyprland = {
       url = "github:hyprwm/hyprland";
+      #url = "github:hyprwm/hyprland";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,6 +62,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    openmw-git = {
+      url = "gitlab:OpenMW/openmw";
+      flake = false;
+    };
+
     waybar = {
       url = "github:alexays/waybar";
       flake = false;
@@ -68,6 +75,11 @@
     webcord = {
       url = "github:fufexan/webcord-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    gruvbox-kvantum = {
+      url = "github:thefallnn/Gruvbox-Kvantum";
+      flake = false;
     };
 
     chaotic-nyx.url = "github:chaotic-aur/nyx";
@@ -86,12 +98,12 @@
         };
         overlays = [
           self.overlays.default
+          inputs.chaotic-nyx.overlays.default
           inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpaper.overlays.default
           inputs.hyprpicker.overlays.default
           inputs.webcord.overlays.default
-          inputs.chaotic-nyx.overlays.default
         ];
       };
     in
@@ -101,36 +113,48 @@
           fonts = [ "JetBrainsMono" ];
         };
 
-        waybar = prev.waybar.overrideAttrs (old: {
-          version = "git";
+        xwayland = prev.xwayland.overrideAttrs (old: {
+          version = "9999";
+          src = inputs.xorg-git;
+          buildInputs = old.buildInputs ++ [
+            prev.udev
+            prev.xorg.libpciaccess
+          ];
+        });
+
+        waybar_hyprland = prev.waybar.overrideAttrs (old: {
+          version = "9999";
           src = inputs.waybar;
 
           preConfigure = ''
-            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' \
+              src/modules/wlr/workspace_manager.cpp
           '';
 
-          mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
+          mesonFlags = old.mesonFlags ++ [ 
+          "-Dexperimental=true" 
+          "-Dcava=disabled"
+          ];
         });
-
-        # xwayland = prev.xwayland.overrideAttrs (old: {
-        #   version = "git";
-        #   src = inputs.xorg-git;
-        #   buildInputs = old.buildInputs ++ [
-        #     prev.udev
-        #     prev.xorg.libpciaccess
-        #   ];
-        # });
 
         steam = prev.steam.override {
           extraPkgs = pkgs: [
             pkgs.gnome.zenity
             pkgs.xdg-user-dirs
-            pkgs.gamescope
           ];
           extraLibraries = pkgs: [
-            pkgs.openal
           ];
         };
+
+        openmw = prev.openmw.overrideAttrs (old: {
+          version = "9999";
+          src = inputs.openmw-git;
+
+          buildInputs = old.buildInputs ++ [ pkgs.libyamlcpp pkgs.luajit ];
+
+          patches = [];
+          dontWrapQtApps = false;
+        });
 
         ncmpcpp = prev.ncmpcpp.override {
           visualizerSupport = true;
@@ -138,7 +162,6 @@
 
         customedid = pkgs.callPackage ./pkgs/custom-edid { };
         wxedid = pkgs.callPackage ./pkgs/wxedid { };
-        fastfetch = pkgs.callPackage ./pkgs/fastfetch { };
       };
 
       nixosConfigurations.terra = nixpkgs.lib.nixosSystem
