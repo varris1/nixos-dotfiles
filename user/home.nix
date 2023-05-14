@@ -28,6 +28,8 @@ in
       bc
       bottom
       calcurse
+      libsForQt5.dolphin
+      libsForQt5.dolphin-plugins
       gimp
       gnome.file-roller
       gnome.gvfs
@@ -39,6 +41,7 @@ in
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       obs-studio
+      openxray
       openmw
       pavucontrol
       protontricks
@@ -55,7 +58,7 @@ in
       vimv
       vulkan-tools
       vulkan-validation-layers
-      webcord
+      webcord-vencord
       wineWowPackages.stagingFull
       wxedid
       xdg-utils

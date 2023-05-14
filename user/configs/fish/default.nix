@@ -36,12 +36,7 @@
       ec = ''
         pushd . &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
-        set "filename" (${pkgs.fd}/bin/fd -t f . ~/.dotfiles | \
-                    ${pkgs.fzf}/bin/fzf -q "$argv[1]" \
-                    --preview "${pkgs.python3Packages.pygments}/bin/pygmentize -g -O linenos=1 {}")
-        if test -f "$filename"
-        	$EDITOR $filename
-        end
+        nvim "+Telescope find_files"
         popd
       '';
 

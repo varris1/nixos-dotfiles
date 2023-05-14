@@ -7,7 +7,7 @@
 
       directory = "/mnt/hdd/Music";
       library = "/mnt/hdd/Music/library.db";
-      asciify_paths = true;
+      # asciify_paths = true;
 
       import = {
         "write" = true;

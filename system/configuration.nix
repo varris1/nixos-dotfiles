@@ -16,14 +16,12 @@
     kernelParams =
       [
       "amdgpu.ppfeaturemask=0xffffffff"
-        "drm.edid_firmware=DP-1:edid/edid-EX2780Q.bin"
-        "net.ifnames=0"
+      "net.ifnames=0"
       ];
 
     extraModprobeConfig = ''
       options iwlmvm power_scheme=1
       options iwlwifi power_save=0
-      options cfg80211 cfg80211_disable_40mhz_24ghz=Y
       '';
 
     loader = {
@@ -145,19 +143,21 @@
     systemPackages = [
       pkgs.bc
       pkgs.distrobox
-      pkgs.git
-      pkgs.links2
-      pkgs.ripgrep
-      pkgs.file
       pkgs.fd
+      pkgs.file
+      pkgs.git
       pkgs.htop
+      pkgs.links2
+      pkgs.libsForQt5.dolphin
+      pkgs.libsForQt5.kio-extras
       pkgs.lm_sensors
       pkgs.nvtop-amd
       pkgs.openrgb
-      pkgs.unzip
-      pkgs.unrar
       pkgs.p7zip
       pkgs.pciutils
+      pkgs.ripgrep
+      pkgs.unrar
+      pkgs.unzip
       pkgs.usbutils
     ];
   };

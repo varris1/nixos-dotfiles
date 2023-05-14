@@ -20,11 +20,6 @@
     };
     # Fish Plugins End
 
-    nixvim = {
-      url = "github:pta2002/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     friendly-snippets = {
       url = "github:rafamadriz/friendly-snippets";
       flake = false;
@@ -72,11 +67,6 @@
       flake = false;
     };
 
-    webcord = {
-      url = "github:fufexan/webcord-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     gruvbox-kvantum = {
       url = "github:thefallnn/Gruvbox-Kvantum";
       flake = false;
@@ -103,7 +93,6 @@
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpaper.overlays.default
           inputs.hyprpicker.overlays.default
-          inputs.webcord.overlays.default
         ];
       };
     in

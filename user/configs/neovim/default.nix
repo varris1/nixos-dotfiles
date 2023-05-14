@@ -1,184 +1,32 @@
 { config, pkgs, lib, inputs, ... }:
-let 
-  colors = config.colorScheme.colors;
-in 
 {
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-  ];
-
-  programs.nixvim = {
-    enable = true;
-
-    globals = { 
-      mapleader = ",";
-    };
-
-    clipboard.register = "unnamedplus";
-
-    colorschemes.gruvbox = {
-      enable = true;
-      transparentBg = true;
-    };
-
-    autoCmd = [
-    {
-      event = [ "VimEnter" ];
-      pattern = [ "*" ];
-      command = "hi! Normal ctermbg=NONE guibg=NONE";
-    }
-    {
-      event = [ "BufWinLeave" ]  ;
-      pattern = [ "*" ];
-      command = "silent! mkview";
-    }
-    {
-      event = [ "BufWinEnter" ]  ;
-      pattern = [ "*" ];
-      command = "silent! loadview";
-    }
-    ];
-
-    options = {
-      number = true;
-      relativenumber = true;
-      ignorecase = true;
-      smartcase = true;
-      tabstop = 2;
-      shiftwidth = 2;
-      expandtab = true;
-      autoindent = true;
-      listchars = "tab:!·,trail:·";
-    };
-
-    plugins = {
-      intellitab.enable = true;
-
-      airline = {
+    programs.neovim = {
         enable = true;
-        powerline = true;
-        theme = "base16_gruvbox_dark_medium";
-      };
 
-      lsp.servers = {
-        clangd.enable = true;
-        rnix-lsp.enable = true;
-        bashls.enable = true;
-      };
+        plugins = with pkgs.vimPlugins; [
+            gruvbox-nvim
+                nvim-web-devicons
+                lualine-nvim
+                bufferline-nvim
+                nvim-colorizer-lua
+                nvim-autopairs
+                comment-nvim
+                neo-tree-nvim
+                nvim-notify
+                nvim-treesitter.withAllGrammars
 
-      comment-nvim.enable = true;
+                telescope-nvim
+                telescope-fzf-native-nvim
 
-      fugitive.enable = true;
-
-      lsp = {
-        enable = true;
-        keymaps.lspBuf = {
-          K = "hover";
-          gD = "references";
-          gd = "definition";
-          gi = "implementation";
-          gt = "type_definition";
-        };
-      };
-
-      nvim-autopairs.enable = true;
-
-      lspkind = {
-        enable = true;
-        cmp = {
-          enable = true;
-        };
-      };
-
-      cmp-treesitter.enable = true;
-
-      luasnip = {
-        enable = true;
-        fromVscode = [
-          { paths = inputs.friendly-snippets.outPath; }
-        ];
-      };
-
-      cmp_luasnip.enable = true; 
-      cmp-cmdline.enable = true;
-
-      nvim-cmp = {
-        enable = true; 
-
-        sources = [
-          { name = "nvim_lsp"; }
-          { name = "luasnip";}
-          { name = "path"; }
-          { name = "buffer"; }
-          { name = "grammar"; } 
+                nvim-cmp
+                lspkind-nvim
+                cmp-cmdline
+                cmp-path
+                cmp-buffer
+                cmp-nvim-lsp
         ];
 
-        mappingPresets = [ "insert" ];
-        mapping = {
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-e>" = "cmp.mapping.abort()";
-        };
-
-        window.completion = {
-          border = "single"; 
-          scrollbar = true;
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
-        };
-
-        window.documentation = {
-          border = "single";
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None";
-        };
-
-      };
-
-      nvim-colorizer.enable = true;
-      nvim-lightbulb.enable = true;
-
-      neo-tree.enable = true;
-
-      telescope = {
-        enable = true;
-
-        keymaps = {
-          "<leader>c" = "git_files";
-          "<leader>v" = "live_grep";
-        };
-
-      };
-
-      treesitter = {
-        enable = true;
-        indent = true;
-      };
-
-      bufferline = {
-        enable = true;
-        separatorStyle = "slant";
-      };
-      
-      indent-blankline = {
-        enable = true;
-        useTreesitter = true;
-        useTreesitterScope = true;
-      };
-
+        extraLuaConfig = builtins.readFile ./init.lua;
     };
-
-    maps = {
-      normal."<C-n>" = {
-        silent = true;
-        action = "<cmd>NeoTreeFocusToggle<CR>";
-      };
-      normal."<mapleader><Space>" = {
-        silent = true;
-        action = "<cmd>nohlsearch<CR>";
-      };
-    };
-
-  };
 }
 

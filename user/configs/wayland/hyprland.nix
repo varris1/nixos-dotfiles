@@ -208,6 +208,7 @@ in
       layerrule = blur, notifications
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$
+      windowrulev2 = float, class:^(org.kde.dolphin)$
     '';
 
   };
