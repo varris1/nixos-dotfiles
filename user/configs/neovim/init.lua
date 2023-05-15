@@ -11,6 +11,7 @@ vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.lazyredraw = true
+vim.o.timeoutlen = 100
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -26,9 +27,9 @@ require("lualine").setup({
 
 require("bufferline").setup({
     options = {
-        separator_style = "slant",
         show_tab_indicators = true,
-    }
+        separator_style = { "", "" },
+    },
 })
 
 require("colorizer").setup()
@@ -75,11 +76,16 @@ require("nvim-treesitter.configs").setup({
     highlight = { enable = true, },
 })
 
+require("which-key").setup()
+
 local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find Files" })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live Grep" })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "List Buffers" })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help Tags" })
+vim.keymap.set('n', '<leader>fc', builtin.git_files, { desc = "Find Files (Git)" })
+
+require("telescope").load_extension("fzf")
 
 local cmp = require("cmp")
 local lspkind = require("lspkind")

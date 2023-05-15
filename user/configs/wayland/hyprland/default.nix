@@ -58,11 +58,11 @@ in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ./waybar.nix
-    ./foot.nix
-    ./wob.nix
-    ./fuzzel.nix
-    ./mako.nix
+    ../waybar
+    ../foot
+    ../wob
+    ../fuzzel
+    ../mako
   ];
 
   wayland.windowManager.hyprland = {

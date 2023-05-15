@@ -149,8 +149,6 @@
           visualizerSupport = true;
         };
 
-        customedid = pkgs.callPackage ./pkgs/custom-edid { };
-        wxedid = pkgs.callPackage ./pkgs/wxedid { };
       };
 
       nixosConfigurations.terra = nixpkgs.lib.nixosSystem
@@ -164,7 +162,7 @@
               nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
               nix.registry = { nixpkgs.flake = nixpkgs; };
             }
-            ./system/configuration.nix
+            ./configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {

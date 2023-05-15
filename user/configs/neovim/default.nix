@@ -14,6 +14,7 @@
                 neo-tree-nvim
                 nvim-notify
                 nvim-treesitter.withAllGrammars
+                which-key-nvim
 
                 telescope-nvim
                 telescope-fzf-native-nvim

@@ -7,7 +7,7 @@ in
     nix-colors.homeManagerModule
       ./configs/beets
       ./configs/cava
-      ./configs/wayland/hyprland.nix
+      ./configs/wayland/hyprland
       ./configs/fish
       ./configs/mpd
       ./configs/mpv
@@ -48,9 +48,7 @@ in
       sc-im
       signal-desktop
       sshfs
-      steam
       steam-run
-      steamtinkerlaunch
       sxiv
       thunderbird
       tldr
@@ -60,7 +58,6 @@ in
       vulkan-validation-layers
       webcord-vencord
       wineWowPackages.stagingFull
-      wxedid
       xdg-utils
       xivlauncher
       qbittorrent
@@ -70,6 +67,7 @@ in
     EDITOR = "nvim";
     MESA_DISK_CACHE_SINGLE_FILE = "1";
     NIXOS_OZONE_WL = "1";
+    NIXPKGS_ALLOW_UNFREE = "1";
     RADV_PERFTEST = "gpl";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";

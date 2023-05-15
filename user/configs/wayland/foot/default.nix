@@ -11,6 +11,8 @@ in
         font = "JetBrainsMono Nerd Font:pixelsize=12";
         box-drawings-uses-font-glyphs = "yes";
         pad = "16x16 center";
+        horizontal-letter-offset = "0";
+        vertical-letter-offset = "0";
       };
 
       colors = {

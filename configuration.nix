@@ -10,19 +10,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  hardware.firmware = [ pkgs.customedid ];
-
   boot = {
     kernelParams =
       [
       "amdgpu.ppfeaturemask=0xffffffff"
       "net.ifnames=0"
       ];
-
-    extraModprobeConfig = ''
-      options iwlmvm power_scheme=1
-      options iwlwifi power_save=0
-      '';
 
     loader = {
       efi = {
@@ -87,6 +80,7 @@
   };
 
   chaotic.mesa-git.enable = true; # requires --impure for now
+
   hardware.opengl = {
     enable = true;
     extraPackages = [ pkgs.libvdpau-va-gl ];
@@ -96,6 +90,8 @@
   };
 
   hardware.steam-hardware.enable = true;
+  programs.steam.enable = true;
+  chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
 
   hardware.bluetooth.enable = true;
   hardware.sane = {
@@ -190,7 +186,7 @@
     };
 
     printing = {
-      enable = false;
+      enable = true;
       drivers = [ pkgs.cnijfilter2 ];
     };
 
