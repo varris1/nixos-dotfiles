@@ -4,7 +4,7 @@
 
   xdg.configFile."cava/config".text = lib.generators.toINI { } {
     general = {
-      bar_width = "2";
+      bar_width = "3";
     };
   };
 }

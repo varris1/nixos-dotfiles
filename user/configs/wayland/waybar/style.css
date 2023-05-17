@@ -1,0 +1,84 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12;
+}
+
+window#waybar {
+    background: @base;
+    color: @text;
+}
+
+#wireplumber,
+#mpd,
+#custom-waybar-mpris,
+#custom-ds-battery,
+#window,
+#keyboard-state,
+#tray,
+#clock,
+#custom-swaync {
+    background: @surface1;
+    padding: 0px 10px 0px 10px;
+    margin: 5px 10px 5px 0px;
+    border-radius: 10px;
+}
+
+#window {
+    margin: 5px 10px 5px 10px;
+}
+
+#wireplumber {
+    margin: 5px 0px 5px 0px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#mpd {
+    border-radius: 0px 10px 10px 0px;
+}
+
+#tray {
+    margin: 5px 10px 5px 0px;
+}
+
+#clock {
+    margin: 5px 10px 5px 0;
+}
+
+#workspaces {
+    margin: 5px 0px 5px 0px;
+    padding-left: 10px;
+}
+
+#workspaces button {
+    color: @text;
+    background: @surface1;
+    padding: 0px 5px;
+    border-radius: 0;
+}
+
+#workspaces button:last-child {
+    background: @surface1;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#workspaces button:first-child {
+    background: @surface1;
+    border-radius: 10px 0px 0px 10px;
+}
+
+#workspaces button:only-child {
+    background: @surface1;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#workspaces button.active {
+    color: @mantle;
+    background: @blue;
+    font-weight: bold;
+}
+
+#workspaces button.unfocused {
+    color: @text;
+    background: @surface1;
+}
+

@@ -14,7 +14,7 @@
     kernelParams =
       [
       "amdgpu.ppfeaturemask=0xffffffff"
-      "net.ifnames=0"
+        "net.ifnames=0"
       ];
 
     loader = {
@@ -51,11 +51,11 @@
         wifi.powersave = false;
       };
 
-      firewall.enable = false;
+    firewall.enable = false;
 
     extraHosts = ''
       192.168.0.17 steam.deck
-    '';
+      '';
 
   };
 
@@ -81,13 +81,13 @@
 
   chaotic.mesa-git.enable = true; # requires --impure for now
 
-  hardware.opengl = {
-    enable = true;
-    extraPackages = [ pkgs.libvdpau-va-gl ];
+    hardware.opengl = {
+      enable = true;
+      extraPackages = [ pkgs.libvdpau-va-gl ];
 
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+      driSupport = true;
+      driSupport32Bit = true;
+    };
 
   hardware.steam-hardware.enable = true;
   programs.steam.enable = true;
@@ -136,25 +136,8 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
   environment = {
-    systemPackages = [
-      pkgs.bc
-      pkgs.distrobox
-      pkgs.fd
-      pkgs.file
-      pkgs.git
-      pkgs.htop
-      pkgs.links2
-      pkgs.libsForQt5.dolphin
-      pkgs.libsForQt5.kio-extras
-      pkgs.lm_sensors
-      pkgs.nvtop-amd
-      pkgs.openrgb
-      pkgs.p7zip
-      pkgs.pciutils
-      pkgs.ripgrep
-      pkgs.unrar
-      pkgs.unzip
-      pkgs.usbutils
+    systemPackages = with pkgs; [
+        bc distrobox fd file git htop links2 libsForQt5.dolphin libsForQt5.kio-extras lm_sensors nvtop-amd openrgb p7zip pciutils ripgrep unrar unzip usbutils
     ];
   };
 
@@ -224,7 +207,7 @@
 
   virtualisation = {
     podman.enable = true;
-  #  virtualbox.host.enable = true;
+#  virtualbox.host.enable = true;
   };
 
   xdg.portal = {
@@ -264,7 +247,7 @@
       ];
       extra-trusted-public-keys = [
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+          "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
     };
   };

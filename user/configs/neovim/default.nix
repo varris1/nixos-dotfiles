@@ -4,8 +4,7 @@
         enable = true;
 
         plugins = with pkgs.vimPlugins; [
-            gruvbox-nvim
-                nvim-web-devicons
+                catppuccin-nvim
                 lualine-nvim
                 bufferline-nvim
                 nvim-colorizer-lua
@@ -19,6 +18,8 @@
                 telescope-nvim
                 telescope-fzf-native-nvim
 
+                nvim-lspconfig
+
                 nvim-cmp
                 lspkind-nvim
                 cmp-cmdline
@@ -28,6 +29,12 @@
         ];
 
         extraLuaConfig = builtins.readFile ./init.lua;
+
+        extraPackages = with pkgs; [
+          rnix-lsp
+          lua-language-server
+          clang-tools
+        ];
     };
 }
 

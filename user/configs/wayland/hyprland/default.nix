@@ -1,6 +1,5 @@
 { config, pkgs, lib, inputs, ... }:
 let
-  colors = config.colorScheme.colors;
   wobsock = "/tmp/wob-vol.fifo";
 
   modKey = "SUPER";
@@ -8,8 +7,7 @@ let
   leftMonitor = "HDMI-A-1";
   rightMonitor = "DP-1";
 
-  wallpaper = "/mnt/hdd/Wallpapers/florest-stair2.jpg";
-
+  wallpaper = "/mnt/hdd/Wallpapers/flat-landscape-minimalism-trees-sunset-river-artwork-22750-.jpeg";
 
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
     if pgrep "wob";  then
@@ -25,21 +23,6 @@ let
     echo "wob: started"
   '';
 
-  passmenu = pkgs.writeShellScriptBin "passmenu.sh" ''
-    shopt -s nullglob globstar
-
-    prefix=''${PASSWORD_STORE_DIR-~/.password-store}
-    password_files=( "$prefix"/**/*.gpg )
-    password_files=( "''${password_files[@]#"$prefix"/}" )
-    password_files=( "''${password_files[@]%.gpg}" )
-
-    password=$(printf '%s\n' "''${password_files[@]}" | ${pkgs.fuzzel}/bin/fuzzel -d -p "pass: " "$@")
-
-    [[ -n $password ]] || exit
-
-    pass show -c "$password" 2>/dev/null
-  '';
-
   xwaylandSetPrimary = pkgs.writeShellScriptBin "xwayland-setprimary.sh" ''
     while true; do
     	DSP=$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/2560x1440/ {print $1}' | head -n 1)
@@ -51,7 +34,7 @@ let
   '';
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.fuzzel}/bin/fuzzel -d -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 in
 
@@ -61,14 +44,14 @@ in
     ../waybar
     ../foot
     ../wob
-    ../fuzzel
     ../mako
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-
-    extraConfig = ''
+    extraConfig = lib.concatStrings [
+      (builtins.readFile (inputs.catppuccin-hyprland + "/themes/macchiato.conf"))
+      ''
       monitor=${leftMonitor}, 1920x1080@60, 0x0, 1
       monitor=${rightMonitor}, 2560x1440@144, 1920x0, 1
 
@@ -92,9 +75,8 @@ in
       general {
           gaps_in = 16
           border_size = 4
-
-          col.active_border = rgba(${colors.base0F}FF)
-          col.inactive_border = rgba(${colors.base00}B3)
+          col.active_border = 0xff$surface2Alpha 0xff$surface0alpha 45deg
+          col.inactive_border = 0xff$baseAlpha
       }
 
       dwindle {
@@ -121,10 +103,9 @@ in
         blur_new_optimizations = on
 
         drop_shadow = yes
-        shadow_range = 12
+        shadow_range = 8
         shadow_render_power = 1
-        shadow_offset = 5 5
-        col.shadow = rgba(${colors.base00}99)
+        col.shadow = $base
       }
 
       animations {
@@ -177,7 +158,7 @@ in
       bind = ${modKey}, F, fullscreen
 
       bind = ${modKey} SHIFT, Q, killactive
-      bind = ${modKey}, d, exec, ${pkgs.fuzzel}/bin/fuzzel
+      bind = ${modKey}, d, exec, ${pkgs.rofi}/bin/rofi -show drun -show-icons
 
       bind = ${modKey}, q, exec, ${pkgs.firefox}/bin/firefox
 
@@ -189,7 +170,6 @@ in
       bind = CTRL, Space, exec, ${pkgs.mako}/bin/makoctl dismiss
       bind = CTRL, grave, exec, ${pkgs.mako}/bin/makoctl restore
 
-      bind = ${modKey} SHIFT, p, exec, ${passmenu}/bin/passmenu.sh
       bind = ${modKey} SHIFT, o, exec, ${killprocess}/bin/killprocess.sh
 
       bind = MOD5, F9, exec, ${pkgs.mpc-cli}/bin/mpc stop
@@ -209,9 +189,10 @@ in
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$
       windowrulev2 = float, class:^(org.kde.dolphin)$
-    '';
+    ''
+    ];
 
   };
-  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.hyprpaper ];
+  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.hyprpaper pkgs.hyprprop ];
 }
 

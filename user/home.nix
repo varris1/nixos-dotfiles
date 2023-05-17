@@ -1,13 +1,10 @@
 { config, pkgs, inputs, nix-colors, ... }:
-let 
-colors = config.colorScheme.colors;
-in 
 {
   imports = [
-    nix-colors.homeManagerModule
       ./configs/beets
       ./configs/cava
       ./configs/wayland/hyprland
+      ./configs/rofi
       ./configs/fish
       ./configs/mpd
       ./configs/mpv
@@ -74,8 +71,6 @@ in
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
-  colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
-
   fonts.fontconfig.enable = true;
 
   programs.keychain = {
@@ -103,8 +98,13 @@ in
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.gruvbox-dark-gtk;
-      name = "gruvbox-dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "standard";
+        tweaks = [];
+        variant = "macchiato";
+      };
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
     };
 
     font = {
@@ -113,8 +113,8 @@ in
     };
 
     iconTheme = {
-      package = pkgs.gruvbox-dark-icons-gtk;
-      name = "oomox-gruvbox-dark";
+      package = pkgs.catppuccin-papirus-folders-macchiato;
+      name = "Papirus";
     };
 
     cursorTheme = {
@@ -144,26 +144,6 @@ in
     nix-index = {
       enable = true;
       enableFishIntegration = true;
-    };
-
-    zellij = {
-      enable = true;
-      settings = {
-        theme = "gruvbox-dark";
-        themes.gruvbox-dark = {
-          fg = "#${colors.base05}";
-          bg = "#${colors.base00}";
-          black = "#${colors.base01}";
-          red = "#${colors.base08}";
-          green = "#${colors.base0B}";
-          yellow = "#${colors.base0A}";
-          blue = "#${colors.base0D}";
-          magenta = "#${colors.base0E}";
-          cyan = "#${colors.base0C}";
-          white = "#${colors.base07}";
-          orange = "#${colors.base0F}";
-        };
-      };
     };
   };
 

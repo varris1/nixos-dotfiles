@@ -3,22 +3,13 @@
   xdg.mimeApps = {
     enable = true;
 
-
-    associations.added = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-    };
-
-
     defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
+      "inode/directory" = "org.kde.dolphin.desktop";
+      "text/plain" = "nvim.desktop";
+
+      "image/jpeg" = "sxiv.desktop";
+      "image/png" = "sxiv.desktop";
+      "image/svg" = "sxiv.desktop";
     };
   };
 }

@@ -1,17 +1,14 @@
 { config, pkgs, lib, ... }:
-let
-  colors = config.colorScheme.colors;
-in
 {
   xdg.configFile."wob/wob.ini".text = lib.generators.toINIWithGlobalSection { } {
     globalSection = {
       height = "40";
 
       border_size = "2";
-      border_color = "${colors.base0F}FF";
+      border_color = "5A5F78FF";
 
-      background_color = "${colors.base00}FF";
-      bar_color = "${colors.base0F}FF";
+      background_color = "24273AFF";
+      bar_color = "8AADF4FF";
 
     };
     sections = { };

@@ -13,8 +13,8 @@
     platformTheme = "gtk";
   };
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = "theme=gruvbox-kvantum";
-  xdg.configFile."Kvantum/gruvbox-kvantum/gruvbox-kvantum.kvconfig".source = inputs.gruvbox-kvantum + "/gruvbox-kvantum/gruvbox-kvantum.kvconfig";
-  xdg.configFile."Kvantum/gruvbox-kvantum/gruvbox-kvantum.svg".source = inputs.gruvbox-kvantum + "/gruvbox-kvantum/gruvbox-kvantum.svg";
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = "theme=catppuccin";
+  xdg.configFile."Kvantum/catppuccin/catppuccin.kvconfig".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Blue/Catppuccin-Macchiato-Blue.kvconfig";
+  xdg.configFile."Kvantum/catppuccin/catppuccin.svg".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Blue/Catppuccin-Macchiato-Blue.svg";
 
 }

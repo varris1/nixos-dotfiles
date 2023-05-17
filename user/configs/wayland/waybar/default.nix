@@ -38,14 +38,14 @@ in
       position = "top";
       height = 32;
 
-      modules-left = [ "custom/blank" "hyprland/window" ];
-      modules-center = [ "wlr/workspaces" "custom/blank" ];
+      modules-left = [ "wlr/workspaces" "custom/blank" "hyprland/window" ];
+      # modules-center = [ "wlr/workspaces" "custom/blank" ];
       modules-right = [
         "custom/ds-battery"
         "wireplumber"
+        "custom/blank"
         "mpd"
         "tray"
-        "custom/blank"
         "clock"
         "custom/blank"
       ];
@@ -60,12 +60,6 @@ in
         on-click = "activate";
         on-scroll-up = "hyprctl dispatch workspace e+1";
         on-scroll-down = "hyprctl dispatch workspace e-1";
-
-        format = "{icon}";
-        format-icons = {
-          active = "";
-          default = "";
-        };
       };
 
       "hyprland/window" = {
@@ -111,90 +105,11 @@ in
 
     }];
 
-    style = ''
-      @define-color foreground #${colors.base06};
-      @define-color background rgba(${backgroundColorRGB},${backgroundAlpha});
-      @define-color box-bg #${colors.base01};
-      @define-color workspace-bg #${colors.base00};
-
-      * {
-        font-family: ${font};
-        font-size: ${fontSize};
-      }
-
-      window#waybar {
-        background: @background;
-        color: @foreground;
-      }
-
-      #wireplumber,
-      #mpd,
-      #custom-waybar-mpris,
-      #custom-ds-battery,
-      #window,
-      #keyboard-state,
-      #tray,
-      #clock {
-       background: @box-bg;
-       padding: 0px 10px 0px 10px;
-       margin: 5px 10px 5px 0px;
-       border-radius: 10px;
-      }
-
-      #wireplumber {
-       margin: 5px 4px 5px 0px;
-       border-radius: 10px 0px 0px 10px;
-      }
-
-      #mpd {
-       border-radius: 0px 10px 10px 0px;
-      }
-
-      #tray, #clock {
-       margin: 5px 0px 5px 0px;
-      }
-
-      window#waybar.empty #window {
-        background: @background;
-      }
-
-      #workspaces {
-        margin: 5px 0px 5px 0px;
-        padding-left: 10px;
-      }
-
-      #workspaces button {
-        color: @foreground;
-        background: @box-bg;
-        padding: 0px 5px;
-      }
-
-      #workspaces button:last-child {
-        background: @box-bg;
-        border-radius: 0px 10px 10px 0px;
-      }
-
-      #workspaces button:first-child {
-        background: @box-bg;
-        border-radius: 10px 0px 0px 10px;
-      }
-
-      #workspaces button:only-child {
-        background: @box-bg;
-        border-radius: 10px 10px 10px 10px;
-      }
-
-      #workspaces button.active {
-        color: @foreground;
-        background: @box-bg;
-        font-weight: bold;
-      }
-
-      #workspaces button.unfocused {
-        color: @foreground;
-        background: @box-bg;
-      }
-    '';
+    style = lib.concatStrings [
+      (builtins.readFile ./macchiato.css)
+      "\n"
+      (builtins.readFile ./style.css)
+    ];
   };
 }
 

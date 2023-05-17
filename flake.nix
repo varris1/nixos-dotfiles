@@ -13,12 +13,10 @@
       url = "github:Misterio77/nix-colors";
     };
 
-    # Fish Plugins
     bobthefish = {
       url = "github:oh-my-fish/theme-bobthefish";
       flake = false;
     };
-    # Fish Plugins End
 
     friendly-snippets = {
       url = "github:rafamadriz/friendly-snippets";
@@ -37,7 +35,6 @@
 
     hyprland = {
       url = "github:hyprwm/hyprland";
-      #url = "github:hyprwm/hyprland";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -74,68 +71,71 @@
 
     chaotic-nyx.url = "github:chaotic-aur/nyx";
 
+    #catppuccin theme repos
+    catppuccin-hyprland = { url = "github:catppuccin/hyprland"; flake = false; };
+
   };
 
   outputs = { self, nixpkgs, home-manager, nix-colors, ... }@inputs:
     let
-      system = "x86_64-linux";
+    system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-        };
-        overlays = [
-          self.overlays.default
-          inputs.chaotic-nyx.overlays.default
-          inputs.hyprland.overlays.default
-          inputs.hyprland-contrib.overlays.default
-          inputs.hyprpaper.overlays.default
-          inputs.hyprpicker.overlays.default
-        ];
+  pkgs = import nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      allowUnsupportedSystem = true;
+    };
+    overlays = [
+      self.overlays.default
+        inputs.chaotic-nyx.overlays.default
+        inputs.hyprland.overlays.default
+        inputs.hyprland-contrib.overlays.default
+        inputs.hyprpaper.overlays.default
+        inputs.hyprpicker.overlays.default
+    ];
+  };
+  in
+  {
+    overlays.default = final: prev: rec {
+      nerdfonts = prev.nerdfonts.override {
+        fonts = [ "JetBrainsMono" ];
       };
-    in
-    {
-      overlays.default = final: prev: rec {
-        nerdfonts = prev.nerdfonts.override {
-          fonts = [ "JetBrainsMono" ];
-        };
 
-        xwayland = prev.xwayland.overrideAttrs (old: {
+      xwayland = prev.xwayland.overrideAttrs (old: {
           version = "9999";
           src = inputs.xorg-git;
           buildInputs = old.buildInputs ++ [
-            prev.udev
-            prev.xorg.libpciaccess
+          prev.udev
+          prev.xorg.libpciaccess
           ];
-        });
+          });
 
-        waybar_hyprland = prev.waybar.overrideAttrs (old: {
+      waybar_hyprland = prev.waybar.overrideAttrs (old: {
           version = "9999";
           src = inputs.waybar;
 
           preConfigure = ''
-            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' \
-              src/modules/wlr/workspace_manager.cpp
+          sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' \
+          src/modules/wlr/workspace_manager.cpp
           '';
 
           mesonFlags = old.mesonFlags ++ [ 
           "-Dexperimental=true" 
           "-Dcava=disabled"
           ];
-        });
+          });
 
-        steam = prev.steam.override {
-          extraPkgs = pkgs: [
-            pkgs.gnome.zenity
+      steam = prev.steam.override {
+        extraPkgs = pkgs: [
+          pkgs.gnome.zenity
             pkgs.xdg-user-dirs
-          ];
-          extraLibraries = pkgs: [
-          ];
-        };
+        ];
+        extraLibraries = pkgs: [
+        ];
+      };
 
-        openmw = prev.openmw.overrideAttrs (old: {
+      openmw = prev.openmw.overrideAttrs (old: {
           version = "9999";
           src = inputs.openmw-git;
 
@@ -143,38 +143,48 @@
 
           patches = [];
           dontWrapQtApps = false;
-        });
+          });
 
-        ncmpcpp = prev.ncmpcpp.override {
-          visualizerSupport = true;
-        };
-
+      ncmpcpp = prev.ncmpcpp.override {
+        visualizerSupport = true;
       };
 
-      nixosConfigurations.terra = nixpkgs.lib.nixosSystem
-        {
-          inherit system;
-          inherit pkgs;
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              # needed to get tools working that expect a nixpkgs channel to exist
-              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-              nix.registry = { nixpkgs.flake = nixpkgs; };
-            }
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useUserPackages = true;
-                users.manuel = import ./user/home.nix;
-                extraSpecialArgs = { inherit inputs pkgs nix-colors; };
-              };
-            }
-            inputs.grub2-themes.nixosModules.default
-            inputs.chaotic-nyx.nixosModules.default
-          ];
-        };
+      catppuccin-kvantum-macchiato = prev.catppuccin-kvantum.override {
+        accent = "Blue";
+        variant = "Macchiato";
+      };
+
+      catppuccin-papirus-folders-macchiato = prev.catppuccin-papirus-folders.override {
+        accent = "blue";
+        flavor = "macchiato";
+      };
+
     };
+
+    nixosConfigurations.terra = nixpkgs.lib.nixosSystem
+    {
+      inherit system;
+      inherit pkgs;
+      specialArgs = { inherit inputs; };
+      modules = [
+      {
+# needed to get tools working that expect a nixpkgs channel to exist
+        nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+        nix.registry = { nixpkgs.flake = nixpkgs; };
+      }
+      ./configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            users.manuel = import ./user/home.nix;
+            extraSpecialArgs = { inherit inputs pkgs nix-colors; };
+          };
+        }
+      inputs.grub2-themes.nixosModules.default
+        inputs.chaotic-nyx.nixosModules.default
+      ];
+    };
+  };
 }
 

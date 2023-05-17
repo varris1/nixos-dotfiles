@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  colors = config.colorScheme.colors;
-in
 {
   services.mako = {
     enable = true;
@@ -11,8 +8,10 @@ in
     width = 440;
     height = 320;
 
-    backgroundColor = "#${colors.base00}B3";
-    borderColor = "#${colors.base01}";
+    backgroundColor = "#24273aB3";
+    borderColor = "#8aadf4";
+    textColor = "#cad3f5";
+    progressColor = "over #363a4f" ;
     borderRadius = 10;
     borderSize = 2;
 
