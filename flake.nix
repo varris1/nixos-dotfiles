@@ -9,15 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-colors = {
-      url = "github:Misterio77/nix-colors";
-    };
-
-    bobthefish = {
-      url = "github:oh-my-fish/theme-bobthefish";
-      flake = false;
-    };
-
     friendly-snippets = {
       url = "github:rafamadriz/friendly-snippets";
       flake = false;
@@ -76,7 +67,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-colors, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
     system = "x86_64-linux";
 
@@ -149,13 +140,19 @@
         visualizerSupport = true;
       };
 
+      catppuccin-gtk-macchiato = prev.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "standard";
+        variant = "macchiato";
+      };
+
       catppuccin-kvantum-macchiato = prev.catppuccin-kvantum.override {
-        accent = "Blue";
+        accent = "Lavender";
         variant = "Macchiato";
       };
 
       catppuccin-papirus-folders-macchiato = prev.catppuccin-papirus-folders.override {
-        accent = "blue";
+        accent = "lavender";
         flavor = "macchiato";
       };
 
@@ -178,7 +175,7 @@
           home-manager = {
             useUserPackages = true;
             users.manuel = import ./user/home.nix;
-            extraSpecialArgs = { inherit inputs pkgs nix-colors; };
+            extraSpecialArgs = { inherit inputs pkgs; };
           };
         }
       inputs.grub2-themes.nixosModules.default

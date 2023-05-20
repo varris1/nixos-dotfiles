@@ -1,9 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, ... }:
 {
     programs.neovim = {
         enable = true;
 
         plugins = with pkgs.vimPlugins; [
+                nvim-web-devicons
                 catppuccin-nvim
                 lualine-nvim
                 bufferline-nvim
@@ -12,13 +13,13 @@
                 comment-nvim
                 neo-tree-nvim
                 nvim-notify
-                nvim-treesitter.withAllGrammars
                 which-key-nvim
 
                 telescope-nvim
                 telescope-fzf-native-nvim
 
                 nvim-lspconfig
+                nvim-treesitter.withAllGrammars
 
                 nvim-cmp
                 lspkind-nvim

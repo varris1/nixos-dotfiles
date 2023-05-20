@@ -7,7 +7,7 @@ let
   leftMonitor = "HDMI-A-1";
   rightMonitor = "DP-1";
 
-  wallpaper = "/mnt/hdd/Wallpapers/flat-landscape-minimalism-trees-sunset-river-artwork-22750-.jpeg";
+  wallpaper = "/mnt/hdd/Wallpapers/wallhaven-qdgx55.jpg";
 
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
     if pgrep "wob";  then
@@ -34,7 +34,7 @@ let
   '';
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 in
 
@@ -74,7 +74,7 @@ in
 
       general {
           gaps_in = 16
-          border_size = 4
+          border_size = 6
           col.active_border = 0xff$surface2Alpha 0xff$surface0alpha 45deg
           col.inactive_border = 0xff$baseAlpha
       }
@@ -158,7 +158,7 @@ in
       bind = ${modKey}, F, fullscreen
 
       bind = ${modKey} SHIFT, Q, killactive
-      bind = ${modKey}, d, exec, ${pkgs.rofi}/bin/rofi -show drun -show-icons
+      bind = ${modKey}, d, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons
 
       bind = ${modKey}, q, exec, ${pkgs.firefox}/bin/firefox
 

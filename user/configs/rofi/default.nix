@@ -5,7 +5,7 @@
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.foot}/bin/foot";
     extraConfig = {
-        modi = "drun,run,window";
+        modi = "drun,run";
     };
     theme = ./catppuccin-macchiato.rasi;
   };

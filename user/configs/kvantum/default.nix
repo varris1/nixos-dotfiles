@@ -14,7 +14,7 @@
   };
 
   xdg.configFile."Kvantum/kvantum.kvconfig".text = "theme=catppuccin";
-  xdg.configFile."Kvantum/catppuccin/catppuccin.kvconfig".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Blue/Catppuccin-Macchiato-Blue.kvconfig";
-  xdg.configFile."Kvantum/catppuccin/catppuccin.svg".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Blue/Catppuccin-Macchiato-Blue.svg";
+  xdg.configFile."Kvantum/catppuccin/catppuccin.kvconfig".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Lavender/Catppuccin-Macchiato-Lavender.kvconfig";
+  xdg.configFile."Kvantum/catppuccin/catppuccin.svg".source = pkgs.catppuccin-kvantum-macchiato + "/share/Kvantum/Catppuccin-Macchiato-Lavender/Catppuccin-Macchiato-Lavender.svg";
 
 }

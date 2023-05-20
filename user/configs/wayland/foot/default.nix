@@ -6,8 +6,7 @@
       main = {
         font = "JetBrainsMono Nerd Font:pixelsize=12";
         pad = "16x16 center";
-        horizontal-letter-offset = "0";
-        vertical-letter-offset = "0";
+        underline-offset = "4px";
       };
 
       colors = {

@@ -13,6 +13,7 @@
       ./configs/dircolors.nix
       ./configs/xdg-mime.nix
       ./configs/kvantum
+      ./configs/zellij.nix
   ];
 
 # Home Manager needs a bit of information about you and the
@@ -98,13 +99,8 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
-        size = "standard";
-        tweaks = [];
-        variant = "macchiato";
-      };
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk-macchiato;
+      name = "Catppuccin-Macchiato-Standard-Lavender-Dark";
     };
 
     font = {
