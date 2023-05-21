@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,13 +72,12 @@
         inputs.chaotic-nyx.overlays.default
         inputs.hyprland.overlays.default
         inputs.hyprland-contrib.overlays.default
-        inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
     ];
   };
   in
   {
-    overlays.default = final: prev: rec {
+    overlays.default = final: prev: {
       nerdfonts = prev.nerdfonts.override {
         fonts = [ "JetBrainsMono" ];
       };

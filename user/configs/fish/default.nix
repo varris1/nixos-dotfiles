@@ -45,13 +45,13 @@
             nou = ''
                 pushd . &> /dev/null
                 cd "${config.home.homeDirectory}/.dotfiles"
-                nix flake lock --commit-lock-file --update-input nixpkgs --update-input home-manager --update-input hyprland --update-input chaotic-nyx
+                nix flake update --commit-lock-file
                 doas nixos-rebuild switch --upgrade --flake .#
                 popd &> /dev/null
                 '';
         };
         shellAliases = {
-            nf = "${pkgs.pfetch}/bin/pfetch";
+            nf = "${pkgs.neofetch}/bin/neofetch";
             e = "nvim";
         };
     };

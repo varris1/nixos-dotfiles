@@ -7,8 +7,6 @@ let
   leftMonitor = "HDMI-A-1";
   rightMonitor = "DP-1";
 
-  wallpaper = "/mnt/hdd/Wallpapers/wallhaven-qdgx55.jpg";
-
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
     if pgrep "wob";  then
       killall wob &> /dev/null
@@ -36,6 +34,22 @@ let
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
     ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
+
+  passmenu = pkgs.writeShellScriptBin "passmenu.sh" ''
+    shopt -s nullglob globstar
+
+    prefix=''${PASSWORD_STORE_DIR-~/.password-store}
+    password_files=( "$prefix"/**/*.gpg )
+    password_files=( "''${password_files[@]#"$prefix"/}" )
+    password_files=( "''${password_files[@]%.gpg}" )
+
+    password=$(printf '%s\n' "''${password_files[@]}" | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "pass: " "$@")
+
+    [[ -n $password ]] || exit
+
+    pass show -c "$password" 2>/dev/null
+  '';
+
 in
 
 {
@@ -74,7 +88,7 @@ in
 
       general {
           gaps_in = 16
-          border_size = 6
+          border_size = 4
           col.active_border = 0xff$surface2Alpha 0xff$surface0alpha 45deg
           col.inactive_border = 0xff$baseAlpha
       }
@@ -124,6 +138,7 @@ in
       exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = ${pkgs.swww}/bin/swww-daemon
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
 
@@ -131,7 +146,6 @@ in
       exec-once = ${pkgs.hyprland}/bin/hyprctl setcursor capitaine-cursors-white 24 &> /dev/null
 
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
-      exec = pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill
 
       #keybinds
       bind = ${modKey}, 1, workspace, 1
@@ -158,9 +172,9 @@ in
       bind = ${modKey}, F, fullscreen
 
       bind = ${modKey} SHIFT, Q, killactive
-      bind = ${modKey}, d, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons
+      bind = ${modKey}, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons
 
-      bind = ${modKey}, q, exec, ${pkgs.firefox}/bin/firefox
+      bind = ${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox
 
       bind = ${modKey}, Return, exec, ${pkgs.foot}/bin/foot
 
@@ -169,8 +183,8 @@ in
 
       bind = CTRL, Space, exec, ${pkgs.mako}/bin/makoctl dismiss
       bind = CTRL, grave, exec, ${pkgs.mako}/bin/makoctl restore
-
-      bind = ${modKey} SHIFT, o, exec, ${killprocess}/bin/killprocess.sh
+      bind = ${modKey} SHIFT, O, exec, ${killprocess}/bin/killprocess.sh
+      bind = ${modKey} SHIFT, P, exec, ${passmenu}/bin/passmenu.sh
 
       bind = MOD5, F9, exec, ${pkgs.mpc-cli}/bin/mpc stop
       bind = MOD5, F10, exec, ${pkgs.mpc-cli}/bin/mpc prev
@@ -191,8 +205,20 @@ in
       windowrulev2 = float, class:^(org.kde.dolphin)$
     ''
     ];
-
   };
-  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.hyprpaper pkgs.hyprprop ];
+  home.file.".local/share/kservices5/swww.desktop".text = ''
+   [Desktop Entry]
+   Type=Service
+   X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+   MimeType=image/jpeg;image/png;image/svg
+   Actions=setSWWWWallpaper;
+   Encoding=UTF-8
+
+   [Desktop Action setSWWWWallpaper]
+   Name=Set Wallpaper with swww
+   Exec=swww img "%f" 
+  '';
+
+  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.swww pkgs.hyprprop ];
 }
 

@@ -93,20 +93,18 @@ require("nvim-treesitter.configs").setup({
 
 require("which-key").setup()
 
-local ts_builtin = require("telescope.builtin")
-vim.keymap.set('n', '<leader>ff', ts_builtin.find_files, { desc = "Find Files" })
-vim.keymap.set('n', '<leader>fg', ts_builtin.live_grep, { desc = "Live Grep" })
-vim.keymap.set('n', '<leader>fb', ts_builtin.buffers, { desc = "List Buffers" })
-vim.keymap.set('n', '<leader>fh', ts_builtin.help_tags, { desc = "Help Tags" })
-vim.keymap.set('n', '<leader>fc', ts_builtin.git_files, { desc = "Find Files (Git)" })
+require("trouble").setup()
 
-require("telescope").load_extension("fzf")
+local telescope = require("telescope")
+local telescope_builtin = require("telescope.builtin")
+
+telescope.load_extension("fzf")
 
 require('nvim-surround').setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require("lspconfig")
-lspconfig.rnix.setup {
+lspconfig.nil_ls.setup {
   capabilities = capabilities
 }
 lspconfig.lua_ls.setup {
@@ -122,7 +120,9 @@ lspconfig.lua_ls.setup {
     },
   },
 }
-lspconfig.clangd.setup {}
+lspconfig.clangd.setup {
+  capabilities = capabilities,
+}
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -269,3 +269,11 @@ vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buff
 vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+
+vim.keymap.set("n", '<leader>ff', telescope_builtin.find_files, { desc = "Find Files" })
+vim.keymap.set("n", '<leader>fg', telescope_builtin.live_grep, { desc = "Live Grep" })
+vim.keymap.set("n", '<leader>fb', telescope_builtin.buffers, { desc = "List Buffers" })
+vim.keymap.set("n", '<leader>fh', telescope_builtin.help_tags, { desc = "Help Tags" })
+vim.keymap.set("n", '<leader>fc', telescope_builtin.git_files, { desc = "Find Files (Git)" })
+
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble Window" })

@@ -45,18 +45,11 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-
-      networkmanager = {
-        enable = true;
-        wifi.powersave = false;
-      };
-
+    networkmanager.enable = true;
     firewall.enable = false;
-
     extraHosts = ''
-      192.168.0.17 steam.deck
+      192.168.0.18 steam.deck
       '';
-
   };
 
 # Set your time zone.

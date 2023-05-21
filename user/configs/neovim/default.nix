@@ -23,6 +23,8 @@
 
                 nvim-lspconfig
                 nvim-treesitter.withAllGrammars
+                trouble-nvim
+                vim-fugitive
 
                 nvim-cmp
                 lspkind-nvim
@@ -37,7 +39,7 @@
         extraLuaConfig = builtins.readFile ./init.lua;
 
         extraPackages = with pkgs; [
-          rnix-lsp
+          nil
           lua-language-server
           clang-tools
         ];
