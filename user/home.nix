@@ -13,7 +13,7 @@
       ./configs/dircolors.nix
       ./configs/xdg-mime.nix
       ./configs/kvantum
-      ./configs/zellij.nix
+      ./configs/tmux
   ];
 
 # Home Manager needs a bit of information about you and the

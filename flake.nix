@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    friendly-snippets = {
-      url = "github:rafamadriz/friendly-snippets";
-      flake = false;
-    };
-
     xorg-git = {
       url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;

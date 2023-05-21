@@ -16,27 +16,6 @@ vim.o.timeoutlen = 100
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- keymaps 
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-
-vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
-
-
-
 require("catppuccin").setup({
   flavour = "macchiato",
   transparent_background = true,
@@ -45,9 +24,11 @@ vim.cmd.colorscheme "catppuccin"
 
 require("lualine").setup({
   options = {
-    theme = "catppuccin"
+    theme = "catppuccin",
   }
 })
+
+require("dressing").setup()
 
 require("bufferline").setup({
   highlights = require("catppuccin.groups.integrations.bufferline").get(),
@@ -105,7 +86,6 @@ require("neo-tree").setup({
     }
   },
 })
-vim.keymap.set("n", "<C-n>", "<cmd>NeoTreeFocusToggle<CR>")
 
 require("nvim-treesitter.configs").setup({
   highlight = { enable = true, },
@@ -122,9 +102,15 @@ vim.keymap.set('n', '<leader>fc', ts_builtin.git_files, { desc = "Find Files (Gi
 
 require("telescope").load_extension("fzf")
 
+require('nvim-surround').setup()
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require("lspconfig")
-lspconfig.rnix.setup {}
+lspconfig.rnix.setup {
+  capabilities = capabilities
+}
 lspconfig.lua_ls.setup {
+  capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -138,15 +124,23 @@ lspconfig.lua_ls.setup {
 }
 lspconfig.clangd.setup {}
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 local cmp = require("cmp")
+
 local lspkind = require("lspkind")
+local luasnip = require("luasnip")
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   formatting = {
     format = lspkind.cmp_format ({
       mode = "symbol",
-      maxwidth = 50,
-      ellipsis_char = "...",
 
       symbol_map = {
         Text = "󰉿",
@@ -175,8 +169,13 @@ cmp.setup({
         Operator = "󰆕",
         TypeParameter = ""
       },
-
     }),
+  },
+
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
   },
 
   window = {
@@ -188,6 +187,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
     { name = "nvim_lsp" },
+    { name = "luasnip" },
   }),
 
   mapping = cmp.mapping.preset.insert({
@@ -196,13 +196,37 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+        -- they way you will only jump inside the snippet region
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   }),
 })
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+'confirm_done',
+cmp_autopairs.on_confirm_done()
 )
 
 cmp.setup.cmdline(":", {
@@ -219,3 +243,29 @@ cmp.setup.cmdline("/", {
     { name = "buffer" },
   })
 })
+
+-- keymaps 
+vim.keymap.set("n", "<C-n>", "<cmd>NeoTreeFocusToggle<CR>")
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })

@@ -59,22 +59,6 @@
         "type": "github"
       }
     },
-    "friendly-snippets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1684537978,
-        "narHash": "sha256-HxkNW8b/iG+hEaZmbpiwLbGUVRmR7FgE1PAJEHD3zes=",
-        "owner": "rafamadriz",
-        "repo": "friendly-snippets",
-        "rev": "f674dae71b9daf5ba4a4daf0734f7780417237b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rafamadriz",
-        "repo": "friendly-snippets",
-        "type": "github"
-      }
-    },
     "gamescope-git-src": {
       "flake": false,
       "locked": {
@@ -354,7 +338,6 @@
       "inputs": {
         "catppuccin-hyprland": "catppuccin-hyprland",
         "chaotic-nyx": "chaotic-nyx",
-        "friendly-snippets": "friendly-snippets",
         "grub2-themes": "grub2-themes",
         "gruvbox-kvantum": "gruvbox-kvantum",
         "home-manager": "home-manager",

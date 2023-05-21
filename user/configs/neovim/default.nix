@@ -14,6 +14,9 @@
                 neo-tree-nvim
                 nvim-notify
                 which-key-nvim
+                nvim-surround
+                luasnip
+                dressing-nvim
 
                 telescope-nvim
                 telescope-fzf-native-nvim
@@ -27,6 +30,8 @@
                 cmp-path
                 cmp-buffer
                 cmp-nvim-lsp
+                cmp_luasnip
+                friendly-snippets
         ];
 
         extraLuaConfig = builtins.readFile ./init.lua;
