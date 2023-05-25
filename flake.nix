@@ -51,16 +51,16 @@
           nix.registry = { nixpkgs.flake = nixpkgs; };
         }
         ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              users.manuel = import ./user/home.nix;
-              extraSpecialArgs = { inherit inputs pkgs; };
-            };
-          }
-        inputs.grub2-themes.nixosModules.default
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            users.manuel = import ./user/home.nix;
+            extraSpecialArgs = { inherit inputs pkgs; };
+          };
+        }
         inputs.chaotic-nyx.nixosModules.default
+        inputs.grub2-themes.nixosModules.default
       ];
     };
   };

@@ -4,19 +4,21 @@
         enable = true;
 
         plugins = with pkgs.vimPlugins; [
-                nvim-web-devicons
-                catppuccin-nvim
-                lualine-nvim
                 bufferline-nvim
-                nvim-colorizer-lua
-                nvim-autopairs
+                catppuccin-nvim
                 comment-nvim
-                neo-tree-nvim
-                nvim-notify
-                which-key-nvim
-                nvim-surround
-                luasnip
                 dressing-nvim
+                lualine-nvim
+                luasnip
+                neo-tree-nvim
+                nvim-autopairs
+                nvim-colorizer-lua
+                nvim-notify
+                nvim-surround
+                nvim-web-devicons
+                which-key-nvim
+
+                vim-fugitive
 
                 telescope-nvim
                 telescope-fzf-native-nvim
@@ -24,25 +26,25 @@
                 nvim-lspconfig
                 nvim-treesitter.withAllGrammars
                 trouble-nvim
-                vim-fugitive
 
                 nvim-cmp
-                lspkind-nvim
-                cmp-cmdline
-                cmp-path
                 cmp-buffer
+                cmp-cmdline
                 cmp-nvim-lsp
+                cmp-path
                 cmp_luasnip
                 friendly-snippets
+                lspkind-nvim
         ];
 
         extraLuaConfig = builtins.readFile ./init.lua;
 
         extraPackages = with pkgs; [
-          nil
-          lua-language-server
           clang-tools
+          lua-language-server
+          nil
           rust-analyzer
+          nodePackages.vscode-css-languageserver-bin
         ];
     };
 }

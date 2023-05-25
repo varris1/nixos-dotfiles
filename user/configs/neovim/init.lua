@@ -49,9 +49,9 @@ require("bufferline").setup({
   },
 })
 
-require("colorizer").setup()
-require("nvim-autopairs").setup()
-require("Comment").setup()
+require("colorizer").setup({})
+require("nvim-autopairs").setup({})
+require("Comment").setup({})
 
 require("neo-tree").setup({
   default_component_configs = {
@@ -104,6 +104,8 @@ telescope.load_extension("fzf")
 require('nvim-surround').setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local lspconfig = require("lspconfig")
 lspconfig.nil_ls.setup {
   capabilities = capabilities,
@@ -112,22 +114,26 @@ lspconfig.lua_ls.setup {
   capabilities = capabilities,
   settings = {
     Lua = {
-      diagnostics = {
-        globals = { "vim" },
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } },
+      workspace = { 
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false
       },
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false },
     },
   },
 }
 
-lspconfig.clangd.setup {
-  capabilities = capabilities,
-}
+lspconfig.clangd.setup { capabilities = capabilities }
+lspconfig.rust_analyzer.setup { capabilities = capabilities }
 
-lspconfig.rust_analyzer.setup {
+lspconfig.cssls.setup {
   capabilities = capabilities,
+  cmd = { "css-languageserver", "--stdio" },
+  settings = {
+    css = { validate = false },
+  }
 }
 
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -146,7 +152,7 @@ cmp.setup({
   preselect = cmp.PreselectMode.None,
   formatting = {
     format = lspkind.cmp_format ({
-      mode = "symbol",
+      mode = "symbol_text",
 
       symbol_map = {
         Text = "󰉿",

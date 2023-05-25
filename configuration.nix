@@ -130,7 +130,8 @@
 # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-        bc distrobox fd file git htop links2 libsForQt5.dolphin libsForQt5.kio-extras lm_sensors nvtop-amd openrgb p7zip pciutils ripgrep unrar unzip usbutils
+        bc compsize distrobox fd file git htop links2 libsForQt5.dolphin 
+        libsForQt5.kio-extras lm_sensors nvtop-amd openrgb p7zip pciutils ripgrep unrar unzip usbutils
     ];
   };
 
