@@ -1,13 +1,6 @@
-{ config, pkgs, lib, nix-colors, ... }:
+{ pkgs, lib, ... }:
 let
   wobsock = "/tmp/wob-vol.fifo";
-  colors = config.colorScheme.colors;
-
-  backgroundColorRGB = nix-colors.lib-core.conversions.hexToRGBString "," colors.base00;
-  backgroundAlpha = "0.7";
-
-  font = "JetBrainsMono Nerd Font";
-  fontSize = "9pt";
 
   ds-battery = pkgs.writeShellScriptBin "ds-battery.sh" ''
     ds_capacity_file="/sys/class/power_supply/ps-controller-battery-e8:47:3a:46:72:1b/capacity"
@@ -60,6 +53,14 @@ in
         on-click = "activate";
         on-scroll-up = "hyprctl dispatch workspace e+1";
         on-scroll-down = "hyprctl dispatch workspace e-1";
+        persistent_workspaces = {
+            "1" = [ "DP-1" ];
+            "2" = [ "DP-1" ];
+            "3" = [ "DP-1" ];
+            "4" = [ "HDMI-A-1" ];
+            "5" = [ "HDMI-A-1" ];
+            "6" = [ "HDMI-A-1" ];
+          };
       };
 
       "hyprland/window" = {

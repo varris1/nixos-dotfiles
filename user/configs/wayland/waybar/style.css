@@ -4,8 +4,12 @@
 }
 
 window#waybar {
-    background: @base;
+    background: transparent;
     color: @text;
+}
+
+window#waybar > box {
+  background-color: @base;
 }
 
 #wireplumber,
@@ -41,7 +45,7 @@ window#waybar {
 }
 
 #clock {
-    margin: 5px 10px 5px 0;
+    margin: 5px 5px 5px 0;
 }
 
 #workspaces {
@@ -57,17 +61,14 @@ window#waybar {
 }
 
 #workspaces button:last-child {
-    background: @surface1;
     border-radius: 0px 10px 10px 0px;
 }
 
 #workspaces button:first-child {
-    background: @surface1;
     border-radius: 10px 0px 0px 10px;
 }
 
 #workspaces button:only-child {
-    background: @surface1;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -77,8 +78,8 @@ window#waybar {
     font-weight: bold;
 }
 
-#workspaces button.unfocused {
-    color: @text;
+#workspaces button.persistent {
+    color: @mantle;
     background: @surface1;
+    font-weight: bold;
 }
-

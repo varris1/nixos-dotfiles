@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.packages = [
     pkgs.libsForQt5.qtstyleplugin-kvantum

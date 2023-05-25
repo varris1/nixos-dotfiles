@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, nix-colors, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
       ./configs/beets
@@ -21,28 +21,29 @@
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
-    appimage-run
-      qt5ct
+      appimage-run
       bc
       bottom
       calcurse
-      libsForQt5.dolphin
-      libsForQt5.dolphin-plugins
       gimp
       gnome.file-roller
+      gnome.gnome-boxes
       gnome.gvfs
       gnome.seahorse
       gnome.simple-scan
+      libsForQt5.dolphin
+      libsForQt5.dolphin-plugins
       lutris
       mesa-demos
       nerdfonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       obs-studio
-      openxray
       openmw
       pavucontrol
       protontricks
+      qbittorrent
+      qt5ct
       sc-im
       signal-desktop
       sshfs
@@ -58,7 +59,6 @@
       wineWowPackages.stagingFull
       xdg-utils
       xivlauncher
-      qbittorrent
       ];
 
   home.sessionVariables = {
@@ -114,9 +114,9 @@
     };
 
     cursorTheme = {
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors-white";
-      size = 24;
+      package = pkgs.catppuccin-cursors.macchiatoLavender;
+      name = "Catppuccin-Macchiato-Lavender-Cursors";
+      size = 32;
     };
   };
 
@@ -144,6 +144,7 @@
   };
 
   services.gnome-keyring.enable = true;
+
   services.easyeffects = {
     enable = true;
     preset = "DT770";

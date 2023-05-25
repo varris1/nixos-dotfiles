@@ -16,6 +16,7 @@ vim.o.timeoutlen = 100
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+
 require("catppuccin").setup({
   flavour = "macchiato",
   transparent_background = true,
@@ -120,7 +121,12 @@ lspconfig.lua_ls.setup {
     },
   },
 }
+
 lspconfig.clangd.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
 }
 
@@ -243,7 +249,6 @@ cmp.setup.cmdline("/", {
     { name = "buffer" },
   })
 })
-
 -- keymaps 
 vim.keymap.set("n", "<C-n>", "<cmd>NeoTreeFocusToggle<CR>")
 

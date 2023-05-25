@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
     programs.neovim = {
         enable = true;
@@ -42,6 +42,7 @@
           nil
           lua-language-server
           clang-tools
+          rust-analyzer
         ];
     };
 }

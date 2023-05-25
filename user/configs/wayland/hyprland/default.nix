@@ -31,7 +31,7 @@ let
     done
   '';
 
-  killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
+  killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''hypr
     ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 
@@ -143,9 +143,12 @@ in
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
 
       #Set cursor
-      exec-once = ${pkgs.hyprland}/bin/hyprctl setcursor capitaine-cursors-white 24 &> /dev/null
+      exec-once = ${pkgs.hyprland}/bin/hyprctl setcursor Catppuccin-Macchiato-Lavender-Cursors 32 &> /dev/null
+      exec-once = ${pkgs.arrpc}/bin/arRPC
 
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
+
+      env = XCURSOR_SIZE,32
 
       #keybinds
       bind = ${modKey}, 1, workspace, 1
@@ -206,6 +209,7 @@ in
     ''
     ];
   };
+
   home.file.".local/share/kservices5/swww.desktop".text = ''
    [Desktop Entry]
    Type=Service
@@ -215,7 +219,7 @@ in
    Encoding=UTF-8
 
    [Desktop Action setSWWWWallpaper]
-   Name=Set Wallpaper with swww
+   Name=Set Image as Wallpaper
    Exec=swww img "%f" 
   '';
 
