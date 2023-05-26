@@ -1,3 +1,11 @@
+@define-color bg rgba(40,40,40,0.8);
+@define-color fg rgb(235,219,178);
+@define-color box-bg rgb(80,73,69);
+
+@define-color wsfg rgb(235,219,178);
+@define-color wsbg rgb(60,56,54);
+@define-color activewsbg rgb(102,92,84);
+
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-size: 12;
@@ -5,11 +13,11 @@
 
 window#waybar {
     background: transparent;
-    color: @text;
+    color: @fg;
 }
 
 window#waybar > box {
-  background-color: @base;
+  background-color: @bg;
 }
 
 #wireplumber,
@@ -21,7 +29,7 @@ window#waybar > box {
 #tray,
 #clock,
 #custom-swaync {
-    background: @surface1;
+    background: @box-bg;
     padding: 0px 10px 0px 10px;
     margin: 5px 10px 5px 0px;
     border-radius: 10px;
@@ -54,8 +62,8 @@ window#waybar > box {
 }
 
 #workspaces button {
-    color: @text;
-    background: @surface1;
+    color: @fg;
+    background: @wsbg;
     padding: 0px 5px;
     border-radius: 0;
 }
@@ -73,13 +81,13 @@ window#waybar > box {
 }
 
 #workspaces button.active {
-    color: @mantle;
-    background: @blue;
+    color: @wsfg;
+    background: @activewsbg;
     font-weight: bold;
 }
 
 #workspaces button.persistent {
-    color: @mantle;
-    background: @surface1;
+    color: @wsfg;
+    background: @wsbg;
     font-weight: bold;
 }

@@ -4,23 +4,6 @@
 
     arrpc = inputs.arrpc.packages.${prev.system}.arrpc;
 
-    catppuccin-kvantum-macchiato = prev.catppuccin-kvantum.override {
-      accent = "Lavender";
-      variant = "Macchiato";
-    };
-
-
-    catppuccin-gtk-macchiato = prev.catppuccin-gtk.override {
-      accents = [ "lavender" ];
-      size = "standard";
-      variant = "macchiato";
-    };
-
-    catppuccin-papirus-folders-macchiato = prev.catppuccin-papirus-folders.override {
-      accent = "lavender";
-      flavor = "macchiato";
-    };
-
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
     };

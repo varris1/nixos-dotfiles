@@ -4,17 +4,22 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
+
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    chaotic-nyx.url = "github:chaotic-cx/nyx";
+
+    gruvbox-kvantum = { url = "github:thefallnn/Gruvbox-Kvantum"; flake = false; };
+
+    fish-plugin-gruvbox-theme = { url = "github:Jomik/fish-gruvbox"; flake = false; };
+    fish-plugin-bobthefish = { url = "github:oh-my-fish/theme-bobthefish"; flake = false; };
+
     arrpc = { url = "github:notashelf/arrpc-flake"; inputs.nixpkgs.follows = "nixpkgs"; };
-    xorg-git = { url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org"; flake = false; };
+    chaotic-nyx.url = "github:chaotic-cx/nyx";
     grub2-themes = { url = "github:vinceliuice/grub2-themes"; inputs.nixpkgs.follows = "nixpkgs"; };
     openmw-git = { url = "gitlab:OpenMW/openmw"; flake = false; };
     waybar = { url = "github:alexays/waybar"; flake = false; };
-    gruvbox-kvantum = { url = "github:thefallnn/Gruvbox-Kvantum"; flake = false; };
-    catppuccin-hyprland = { url = "github:catppuccin/hyprland"; flake = false; };
+    xorg-git = { url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org"; flake = false; };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

@@ -5,7 +5,7 @@
 
         plugins = with pkgs.vimPlugins; [
                 bufferline-nvim
-                catppuccin-nvim
+                gruvbox-nvim
                 comment-nvim
                 dressing-nvim
                 lualine-nvim

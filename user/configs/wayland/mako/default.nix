@@ -8,10 +8,10 @@
     width = 440;
     height = 320;
 
-    backgroundColor = "#24273aB3";
-    borderColor = "#8aadf4";
-    textColor = "#cad3f5";
-    progressColor = "over #363a4f" ;
+    backgroundColor = "#282828B3";
+    borderColor = "#98971aff";
+    textColor = "#ebdbb2";
+    progressColor = "over #665c54";
     borderRadius = 10;
     borderSize = 2;
 

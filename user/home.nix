@@ -97,8 +97,8 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.catppuccin-gtk-macchiato;
-      name = "Catppuccin-Macchiato-Standard-Lavender-Dark";
+      package = pkgs.gruvbox-dark-gtk;
+      name = "gruvbox-dark";
     };
 
     font = {
@@ -107,15 +107,15 @@
     };
 
     iconTheme = {
-      package = pkgs.catppuccin-papirus-folders-macchiato;
-      name = "Papirus";
+      package = pkgs.gruvbox-dark-icons-gtk;
+      name = "oomox-gruvbox-dark";
     };
 
-    cursorTheme = {
-      package = pkgs.catppuccin-cursors.macchiatoLavender;
-      name = "Catppuccin-Macchiato-Lavender-Cursors";
-      size = 32;
-    };
+    # cursorTheme = {
+    #   package = pkgs.catppuccin-cursors.macchiatoLavender;
+    #   name = "Catppuccin-Macchiato-Lavender-Cursors";
+    #   size = 32;
+    # };
   };
 
   programs = {

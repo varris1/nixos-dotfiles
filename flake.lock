@@ -63,6 +63,38 @@
         "type": "github"
       }
     },
+    "fish-plugin-bobthefish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683513744,
+        "narHash": "sha256-DRMBZS8nT0rhKXQEGWNqR1FUavtvxH0xUdHU52WhSJQ=",
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "rev": "ed896b65c3ddbdf2929c38719adfb940b0d9b90d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oh-my-fish",
+        "repo": "theme-bobthefish",
+        "type": "github"
+      }
+    },
+    "fish-plugin-gruvbox-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1634049082,
+        "narHash": "sha256-vL2/Nm9Z9cdaptx8sJqbX5AnRtfd68x4ZKWdQk5Cngo=",
+        "owner": "Jomik",
+        "repo": "fish-gruvbox",
+        "rev": "80a6f3a7b31beb6f087b0c56cbf3470204759d1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Jomik",
+        "repo": "fish-gruvbox",
+        "type": "github"
+      }
+    },
     "gamescope-git-src": {
       "flake": false,
       "locked": {
@@ -378,6 +410,8 @@
       "inputs": {
         "arrpc": "arrpc",
         "chaotic-nyx": "chaotic-nyx",
+        "fish-plugin-bobthefish": "fish-plugin-bobthefish",
+        "fish-plugin-gruvbox-theme": "fish-plugin-gruvbox-theme",
         "grub2-themes": "grub2-themes",
         "gruvbox-kvantum": "gruvbox-kvantum",
         "home-manager": "home-manager",

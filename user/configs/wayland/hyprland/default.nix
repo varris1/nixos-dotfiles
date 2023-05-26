@@ -63,9 +63,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = lib.concatStrings [
-      (builtins.readFile (inputs.catppuccin-hyprland + "/themes/macchiato.conf"))
-      ''
+    extraConfig = ''
       monitor=${leftMonitor}, 1920x1080@60, 0x0, 1
       monitor=${rightMonitor}, 2560x1440@144, 1920x0, 1
 
@@ -89,8 +87,8 @@ in
       general {
           gaps_in = 16
           border_size = 4
-          col.active_border = 0xff$surface2Alpha 0xff$surface0alpha 45deg
-          col.inactive_border = 0xff$baseAlpha
+          col.active_border = rgba(98971aff)
+          col.inactive_border = rgba(282828ff)
       }
 
       dwindle {
@@ -119,7 +117,7 @@ in
         drop_shadow = yes
         shadow_range = 8
         shadow_render_power = 1
-        col.shadow = $base
+        col.shadow = rgba(282828ff)
       }
 
       animations {
@@ -206,8 +204,7 @@ in
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$
       windowrulev2 = float, class:^(org.kde.dolphin)$
-    ''
-    ];
+    '';
   };
 
   home.file.".local/share/kservices5/swww.desktop".text = ''

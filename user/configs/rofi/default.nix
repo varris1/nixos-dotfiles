@@ -7,6 +7,6 @@
     extraConfig = {
         modi = "drun,run";
     };
-    theme = ./catppuccin-macchiato.rasi;
+    theme = ./theme.rasi;
   };
 }

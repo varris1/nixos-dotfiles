@@ -6,6 +6,7 @@ vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 vim.o.smartindent = true
 
+vim.o.background = "dark"
 vim.o.clipboard = "unnamedplus"
 vim.o.termguicolors = true
 vim.o.ignorecase = true
@@ -16,23 +17,20 @@ vim.o.timeoutlen = 100
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-
-require("catppuccin").setup({
-  flavour = "macchiato",
-  transparent_background = true,
+require("gruvbox").setup({
+  transparent_mode = true
 })
-vim.cmd.colorscheme "catppuccin"
+vim.cmd("colorscheme gruvbox")
 
 require("lualine").setup({
   options = {
-    theme = "catppuccin",
+    theme = "gruvbox_dark",
   }
 })
 
 require("dressing").setup()
 
 require("bufferline").setup({
-  highlights = require("catppuccin.groups.integrations.bufferline").get(),
   options = {
     show_tab_indicators = true,
     -- separator_style = { "", "" },
