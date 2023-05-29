@@ -105,9 +105,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lspconfig = require("lspconfig")
-lspconfig.nil_ls.setup {
-  capabilities = capabilities,
-}
+
+lspconfig.rnix.setup { capabilities = capabilities }
+
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
   settings = {
@@ -125,6 +125,7 @@ lspconfig.lua_ls.setup {
 
 lspconfig.clangd.setup { capabilities = capabilities }
 lspconfig.rust_analyzer.setup { capabilities = capabilities }
+lspconfig.zls.setup { capabilities = capabilities }
 
 lspconfig.cssls.setup {
   capabilities = capabilities,
@@ -212,7 +213,7 @@ cmp.setup({
         cmp.select_next_item()
         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
         -- they way you will only jump inside the snippet region
-      elseif luasnip.expand_or_jumpable() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()

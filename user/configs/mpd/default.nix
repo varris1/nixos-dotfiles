@@ -55,7 +55,7 @@
     settings = {
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "my_fifo";
-      visualizer_in_stereo = false;
+      visualizer_in_stereo = true;
       visualizer_type = "spectrum";
       visualizer_look = "+│";
 

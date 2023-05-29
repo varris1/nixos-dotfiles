@@ -1,8 +1,10 @@
-{ inputs }:
+{ inputs, ... }:
 {
   default = final: prev: {
 
     arrpc = inputs.arrpc.packages.${prev.system}.arrpc;
+
+    gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack {};
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;

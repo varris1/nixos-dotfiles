@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   wobsock = "/tmp/wob-vol.fifo";
 
@@ -87,7 +87,7 @@ in
       general {
           gaps_in = 16
           border_size = 4
-          col.active_border = rgba(98971aff)
+          col.active_border = rgba(665C54ff)
           col.inactive_border = rgba(282828ff)
       }
 
@@ -137,14 +137,13 @@ in
       exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.swww}/bin/swww-daemon
+      exec-once = ${pkgs.arrpc}/bin/arRPC
+      exec-once = ${pkgs.jamesdsp}/bin/jamesdsp -t
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-
-      #Set cursor
-      exec-once = ${pkgs.hyprland}/bin/hyprctl setcursor Catppuccin-Macchiato-Lavender-Cursors 32 &> /dev/null
-      exec-once = ${pkgs.arrpc}/bin/arRPC
-
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
+      #Set cursor
+      exec = ${pkgs.hyprland}/bin/hyprctl setcursor "${config.gtk.cursorTheme.name}" 32 &> /dev/null
 
       env = XCURSOR_SIZE,32
 

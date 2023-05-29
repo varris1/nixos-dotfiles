@@ -23,6 +23,7 @@
       bc
       bottom
       calcurse
+      jamesdsp
       gimp
       gnome.file-roller
       gnome.gnome-boxes
@@ -56,8 +57,7 @@
       webcord-vencord
       wineWowPackages.stagingFull
       xdg-utils
-      xivlauncher
-      ];
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -107,15 +107,15 @@
     };
 
     iconTheme = {
-      package = pkgs.gruvbox-dark-icons-gtk;
-      name = "oomox-gruvbox-dark";
+      package = pkgs.gruvbox-plus-icon-pack;
+      name = "GruvboxPlus";
     };
 
-    # cursorTheme = {
-    #   package = pkgs.catppuccin-cursors.macchiatoLavender;
-    #   name = "Catppuccin-Macchiato-Lavender-Cursors";
-    #   size = 32;
-    # };
+    cursorTheme = {
+      package = pkgs.capitaine-cursors-themed;
+      name = "Capitaine Cursors (Gruvbox) - White";
+      size = 32;
+    };
   };
 
   programs = {
@@ -144,7 +144,7 @@
   services.gnome-keyring.enable = true;
 
   services.easyeffects = {
-    enable = true;
+    enable = false;
     preset = "DT770";
   };
 

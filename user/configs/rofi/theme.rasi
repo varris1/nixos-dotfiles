@@ -1,6 +1,6 @@
 * {
     bg-col:  #282828;
-    border-col: #98971A;
+    border-col: #665C54;
     selected-col: #504945;
     prompt: #504945;
     fg-col: #ebdbb2;

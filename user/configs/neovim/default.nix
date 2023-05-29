@@ -42,9 +42,10 @@
         extraPackages = with pkgs; [
           clang-tools
           lua-language-server
-          nil
+          rnix-lsp
           rust-analyzer
           nodePackages.vscode-css-languageserver-bin
+          zls
         ];
     };
 }

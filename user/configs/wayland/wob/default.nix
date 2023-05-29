@@ -5,7 +5,7 @@
       height = "40";
 
       border_size = "2";
-      border_color = "98971AFF";
+      border_color = "282828FF";
 
       background_color = "282828FF";
       bar_color = "665C54FF";
