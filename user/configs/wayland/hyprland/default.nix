@@ -159,6 +159,7 @@ in
       bind = ${modKey} SHIFT, 3, movetoworkspace, 3
       bind = ${modKey} SHIFT, 4, movetoworkspace, 4
       bind = ${modKey} SHIFT, 5, movetoworkspace, 5
+      bind = ${modKey} SHIFT, 6, movetoworkspace, 6
 
 
       bindm = ${modKey}, mouse:272, movewindow

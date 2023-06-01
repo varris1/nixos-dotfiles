@@ -5,7 +5,7 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
 
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland/v0.26.0";
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
@@ -36,7 +36,7 @@
 
         overlays = [
           self.overlays.default
-          inputs.chaotic-nyx.overlays.default
+          # inputs.chaotic-nyx.overlays.default
           inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpicker.overlays.default
