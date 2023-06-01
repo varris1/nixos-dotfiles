@@ -33,7 +33,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
@@ -45,7 +45,7 @@
     firewall.enable = false;
     extraHosts = ''
       192.168.0.18 steam.deck
-      '';
+    '';
   };
 
 # Set your time zone.
@@ -115,15 +115,12 @@
     };
   };
 
-# Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.manuel = {
     isNormalUser = true;
     extraGroups = [ "audio" "games" "input" "scanner" "lp" "users" "video" "vboxusers" "wheel" "networkmanager" ];
     shell = pkgs.fish;
   };
 
-# List packages installed in system profile. To search, run:
-# $ nix search wget
   environment = {
     systemPackages = with pkgs; [
         bc compsize distrobox fd file git htop links2 libsForQt5.dolphin 
@@ -136,7 +133,6 @@
     package = pkgs.gamescope_git;
   };
 
-# List services that you want to enable:
   programs = {
     dconf.enable = true;
     hyprland.enable = true;
@@ -197,7 +193,6 @@
 
   virtualisation = {
     podman.enable = true;
-#  virtualbox.host.enable = true;
   };
 
   xdg.portal = {
@@ -205,7 +200,7 @@
     xdgOpenUsePortal = true;
     wlr.enable = false; #conflict with XDPH if enabled
       extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gtk
       ];
   };
 
@@ -225,7 +220,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
       warn-dirty = false
-      '';
+    '';
     gc = {
       persistent = true;
       automatic = true;
@@ -234,16 +229,18 @@
     };
     settings = {
       auto-optimise-store = true;
-      extra-substituters = [
+      substituters = [
         "https://nyx.chaotic.cx"
+        "https://hyprland.cachix.org"
       ];
-      extra-trusted-public-keys = [
+      trusted-public-keys = [
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-          "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
   };
 
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.05"; 
 }
 

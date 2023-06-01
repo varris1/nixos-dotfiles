@@ -15,7 +15,7 @@
     fish-plugin-gruvbox-theme = { url = "github:Jomik/fish-gruvbox"; flake = false; };
 
     arrpc = { url = "github:notashelf/arrpc-flake"; inputs.nixpkgs.follows = "nixpkgs"; };
-    chaotic-nyx.url = "github:chaotic-cx/nyx";
+    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     grub2-themes = { url = "github:vinceliuice/grub2-themes"; inputs.nixpkgs.follows = "nixpkgs"; };
     openmw-git = { url = "gitlab:OpenMW/openmw"; flake = false; };
     waybar = { url = "github:alexays/waybar"; flake = false; };
@@ -27,7 +27,6 @@
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
-
         inherit system;
 
         config = {

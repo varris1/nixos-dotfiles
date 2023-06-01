@@ -17,6 +17,8 @@
                 nvim-surround
                 nvim-web-devicons
                 which-key-nvim
+                smart-splits-nvim
+                legendary-nvim
 
                 vim-fugitive
 

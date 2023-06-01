@@ -23,7 +23,6 @@
       bc
       bottom
       calcurse
-      jamesdsp
       gimp
       gnome.file-roller
       gnome.gnome-boxes
@@ -144,7 +143,7 @@
   services.gnome-keyring.enable = true;
 
   services.easyeffects = {
-    enable = false;
+    enable = true;
     preset = "DT770";
   };
 

@@ -90,13 +90,12 @@ require("nvim-treesitter.configs").setup({
   highlight = { enable = true, },
 })
 
-require("which-key").setup()
+
+require("smart-splits").setup()
 
 require("trouble").setup()
 
-local telescope = require("telescope")
-local telescope_builtin = require("telescope.builtin")
-
+local telescope = require("telescope") local telescope_builtin = require("telescope.builtin")
 telescope.load_extension("fzf")
 
 require('nvim-surround').setup()
@@ -114,7 +113,7 @@ lspconfig.lua_ls.setup {
     Lua = {
       runtime = { version = "LuaJIT" },
       diagnostics = { globals = { "vim" } },
-      workspace = { 
+      workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
         checkThirdParty = false
       },
@@ -254,36 +253,26 @@ cmp.setup.cmdline("/", {
     { name = "buffer" },
   })
 })
+
 -- keymaps 
-vim.keymap.set("n", "<C-n>", "<cmd>NeoTreeFocusToggle<CR>")
+require("which-key").setup()
+require("legendary").setup({
+  keymaps = {
+    { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>",      description = "Prev buffer" },
+    { "<S-l>",      "<cmd>BufferLineCycleNext<CR>",      description = "Next buffer" },
+    { "<ESC>",      "<cmd>noh<CR><ESC>",                  description = "Escape and clear hlsearch", mode = {"n", "i" }},
 
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+    { "<Leader>ff", telescope_builtin.find_files,    description = "Find Files" },
+    { "<Leader>fg", telescope_builtin.live_grep,     description = "Live Grep" },
+    { "<Leader>fb", telescope_builtin.buffers,       description = "List Buffers" },
+    { "<Leader>fh", telescope_builtin.help_tags,     description = "Help Tags" },
+    { "<Leader>fc", telescope_builtin.git_files,     description = "Find Files (Git)" },
 
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+    { "<C-n>",      "<cmd>NeoTreeFocusToggle<CR>",       description = "Open NeoTree" },
+    { "<leader>xx", "<cmd>TroubleToggle<CR>",            description = "Toggle Trouble Window", opts = { silent = true, noremap = true } },
 
-vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
-
-vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-
-vim.keymap.set("n", '<leader>ff', telescope_builtin.find_files, { desc = "Find Files" })
-vim.keymap.set("n", '<leader>fg', telescope_builtin.live_grep, { desc = "Live Grep" })
-vim.keymap.set("n", '<leader>fb', telescope_builtin.buffers, { desc = "List Buffers" })
-vim.keymap.set("n", '<leader>fh', telescope_builtin.help_tags, { desc = "Help Tags" })
-vim.keymap.set("n", '<leader>fc', telescope_builtin.git_files, { desc = "Find Files (Git)" })
-
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true, desc = "Toggle Trouble Window" })
+  },
+  extensions = {
+    smart_splits = {},
+  },
+})
