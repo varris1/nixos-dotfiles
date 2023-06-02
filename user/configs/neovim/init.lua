@@ -1,4 +1,4 @@
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 -- 4 space tabs
 vim.o.expandtab = true
@@ -59,8 +59,8 @@ require("neo-tree").setup({
     },
     git_status = {
       symbols = {
-        renamed   = "󰁕",
-        unstaged  = "󰄱",
+        renamed  = "󰁕",
+        unstaged = "󰄱",
       },
     },
   },
@@ -95,8 +95,17 @@ require("smart-splits").setup()
 
 require("trouble").setup()
 
-local telescope = require("telescope") local telescope_builtin = require("telescope.builtin")
+local telescope = require("telescope")
+telescope.setup({
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {}
+    },
+  },
+})
+local telescope_builtin = require("telescope.builtin")
 telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
 
 require('nvim-surround').setup()
 
@@ -149,7 +158,7 @@ local luasnip = require("luasnip")
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   formatting = {
-    format = lspkind.cmp_format ({
+    format = lspkind.cmp_format({
       mode = "symbol_text",
 
       symbol_map = {
@@ -193,7 +202,7 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
 
-  sources = cmp.config.sources ({
+  sources = cmp.config.sources({
     { name = "buffer" },
     { name = "path" },
     { name = "nvim_lsp" },
@@ -210,7 +219,7 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
         -- they way you will only jump inside the snippet region
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
@@ -235,8 +244,8 @@ cmp.setup({
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
-'confirm_done',
-cmp_autopairs.on_confirm_done()
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
 )
 
 cmp.setup.cmdline(":", {
@@ -254,25 +263,22 @@ cmp.setup.cmdline("/", {
   })
 })
 
--- keymaps 
+-- keymaps
 require("which-key").setup()
 require("legendary").setup({
   keymaps = {
-    { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>",      description = "Prev buffer" },
-    { "<S-l>",      "<cmd>BufferLineCycleNext<CR>",      description = "Next buffer" },
-    { "<ESC>",      "<cmd>noh<CR><ESC>",                  description = "Escape and clear hlsearch", mode = {"n", "i" }},
-
-    { "<Leader>ff", telescope_builtin.find_files,    description = "Find Files" },
-    { "<Leader>fg", telescope_builtin.live_grep,     description = "Live Grep" },
-    { "<Leader>fb", telescope_builtin.buffers,       description = "List Buffers" },
-    { "<Leader>fh", telescope_builtin.help_tags,     description = "Help Tags" },
-    { "<Leader>fc", telescope_builtin.git_files,     description = "Find Files (Git)" },
-
-    { "<C-n>",      "<cmd>NeoTreeFocusToggle<CR>",       description = "Open NeoTree" },
-    { "<leader>xx", "<cmd>TroubleToggle<CR>",            description = "Toggle Trouble Window", opts = { silent = true, noremap = true } },
-
+    { "<S-h>",      "<cmd>BufferLineCyclePrev<CR>", description = "Prev buffer" },
+    { "<S-l>",      "<cmd>BufferLineCycleNext<CR>", description = "Next buffer" },
+    { "<ESC>",      "<cmd>noh<CR><ESC>",            description = "Escape and clear hlsearch", mode = { "n", "i" } },
+    { "<Leader>ff", telescope_builtin.find_files,   description = "Find Files" },
+    { "<Leader>fg", telescope_builtin.live_grep,    description = "Live Grep" },
+    { "<Leader>fb", telescope_builtin.buffers,      description = "List Buffers" },
+    { "<Leader>fh", telescope_builtin.help_tags,    description = "Help Tags" },
+    { "<Leader>fc", telescope_builtin.git_files,    description = "Find Files (Git)" },
+    { "<C-n>",      "<cmd>NeoTreeFocusToggle<CR>",  description = "Open NeoTree" },
   },
+
   extensions = {
     smart_splits = {},
-  },
+  }
 })

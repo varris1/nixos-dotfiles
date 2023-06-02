@@ -36,7 +36,7 @@
 
         overlays = [
           self.overlays.default
-          # inputs.chaotic-nyx.overlays.default
+          inputs.chaotic-nyx.overlays.default
           inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpicker.overlays.default
