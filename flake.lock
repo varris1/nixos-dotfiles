@@ -35,11 +35,11 @@
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1685716748,
-        "narHash": "sha256-uwuNI9SD0HomLpZrJ0d3bmwc05msVoPwLCqmq5Am8uA=",
+        "lastModified": 1685801887,
+        "narHash": "sha256-OAhCesmwNECd5JvZVt57wykw5yK3tbsLjIYv7cuNXhk=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "7018851e174697a0fa34bce99e634e7da6fcb7af",
+        "rev": "92549a1d2a2536c21a9b7ddd2dffd7aea8936c0e",
         "type": "github"
       },
       "original": {
@@ -379,11 +379,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1685677062,
-        "narHash": "sha256-zoHF7+HNwNwne2XEomphbdc4Y8tdWT16EUxUTXpOKpQ=",
+        "lastModified": 1685714850,
+        "narHash": "sha256-OcvbIJq4CGwwFr9m7M/SQcDPZ64hhR4t77oZgEeh7ZY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "95be94370d09f97f6af6a1df1eb9649b5260724e",
+        "rev": "c6ffce3d5df7b4c588ce80a0c6e2d2348a611707",
         "type": "github"
       },
       "original": {
@@ -395,11 +395,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1685696184,
-        "narHash": "sha256-q3x2412qCdVcix19JN1DlOwhIaz/K+thqMp6eDlJPVY=",
+        "lastModified": 1685780239,
+        "narHash": "sha256-/Gu4IuhRRYCRgTKD92OjaRPrf15AJjzChgDq5JcA298=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "25bbaa2343d6ba0dd611d62d69d814cd818716f6",
+        "rev": "55cd30ea3bc7c896c006ebab9a0653cf202d2a4b",
         "type": "gitlab"
       },
       "original": {
