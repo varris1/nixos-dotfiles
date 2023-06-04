@@ -68,7 +68,7 @@
     keyMap = "us-acentos";
   };
 
-  chaotic.mesa-git.enable = true; # requires --impure for now
+  #chaotic.mesa-git.enable = true; # requires --impure for now
 
     hardware.opengl = {
       enable = true;
@@ -126,11 +126,6 @@
         bc compsize distrobox fd file git htop links2 libsForQt5.dolphin 
         libsForQt5.kio-extras lm_sensors nvtop-amd openrgb p7zip pciutils ripgrep unrar unzip usbutils
     ];
-  };
-
-  chaotic.gamescope = {
-    enable = true;
-    package = pkgs.gamescope_git;
   };
 
   programs = {

@@ -19,12 +19,14 @@
                 which-key-nvim
                 smart-splits-nvim
                 legendary-nvim
+                vim-easy-align
 
                 vim-fugitive
 
                 telescope-nvim
                 telescope-fzf-native-nvim
                 telescope-ui-select-nvim
+                telescope-undo-nvim
 
                 nvim-lspconfig
                 nvim-treesitter.withAllGrammars
@@ -36,20 +38,26 @@
                 cmp-nvim-lsp
                 cmp-path
                 cmp_luasnip
+                cmp-nvim-lsp-signature-help
                 friendly-snippets
                 lspkind-nvim
         ];
 
-        extraLuaConfig = builtins.readFile ./init.lua;
-
         extraPackages = with pkgs; [
+          nodePackages.bash-language-server
           clang-tools
           lua-language-server
+          python3Packages.jedi-language-server
           rnix-lsp
           rust-analyzer
           nodePackages.vscode-css-languageserver-bin
           zls
         ];
+    };
+
+    xdg.configFile.nvim = {
+      source = ./config;
+      recursive = true;
     };
 }
 

@@ -37,7 +37,6 @@
         overlays = [
           self.overlays.default
           inputs.chaotic-nyx.overlays.default
-          inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpicker.overlays.default
         ];
@@ -67,8 +66,9 @@
               useGlobalPkgs = true;
             };
           }
-          inputs.chaotic-nyx.nixosModules.default
           inputs.grub2-themes.nixosModules.default
+          inputs.chaotic-nyx.nixosModules.default
+          inputs.hyprland.nixosModules.default
         ];
       };
     };

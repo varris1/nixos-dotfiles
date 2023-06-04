@@ -137,7 +137,7 @@ in
       exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.swww}/bin/swww-daemon
-      exec-once = ${pkgs.arrpc}/bin/arRPC
+      exec-once = $pkgs.arrpc}/bin/arRPC
 
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
@@ -171,7 +171,7 @@ in
       bind = ${modKey}, F, fullscreen
 
       bind = ${modKey} SHIFT, Q, killactive
-      bind = ${modKey}, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons
+      bind = ${modKey}, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -p Applications -show-icons
 
       bind = ${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox
 
