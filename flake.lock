@@ -36,11 +36,11 @@
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1687128089,
-        "narHash": "sha256-didmYrvhuyLzH9WGLpVCZII7TqV6ONATpI9DPaA1jIs=",
+        "lastModified": 1687184423,
+        "narHash": "sha256-KBie/t/aMxIogyZF79d8svWPmM7o7xGR9QM60YhsUuc=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "16e54532f06c6174b7897726224d3c09727bca38",
+        "rev": "ac7e8960fa8868fc86796a35da57c7da1ed80e12",
         "type": "github"
       },
       "original": {
@@ -155,11 +155,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1687098182,
-        "narHash": "sha256-kBys+Cwmcxzh7UNVWTrunOgaR02zl2XN3feA8fSlqVo=",
+        "lastModified": 1687204608,
+        "narHash": "sha256-rZ0e0iAIQM7vlsMd2/pcGfymZzNBRawObFgqIpxE94c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0480dabc99e1b669ebe909949180fa2786e733cd",
+        "rev": "f06a43dca05fb7f1aa44742bf861d9c827b45122",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1687103638,
-        "narHash": "sha256-dwy/TK6Db5W7ivcgmcxUykhFwodIg0jrRzOFt7H5NUc=",
+        "lastModified": 1687130670,
+        "narHash": "sha256-VKTdfsJe7sVTTqxTd3eRGPoUgEeJKD+kwS86B6TY874=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "91430887645a0953568da2f3e9a3a3bb0a0378ac",
+        "rev": "c1bca7fe84c646cfd4ebf3482c0e6317a0b13f22",
         "type": "github"
       },
       "original": {
@@ -396,11 +396,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1687121886,
-        "narHash": "sha256-uct7GBvZ27Eeo9yMAkgj5k/HZhH7y5c4gq/Cwf5Uujw=",
+        "lastModified": 1687198542,
+        "narHash": "sha256-tZkRjb0qNP4pYuTUylYNSijDA1MmvYaM2yDcwUZwklI=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "bbfd906f08baf766c146c9dfc9a0a29aed7cb78f",
+        "rev": "57e028fcc9f6f5b9a2ce7e37db40690f3c5396b7",
         "type": "gitlab"
       },
       "original": {
