@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "amdgpu" "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -14,23 +15,27 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/33112a66-7f9a-482c-b14c-91490f2212c2";
+    {
+      device = "/dev/disk/by-uuid/33112a66-7f9a-482c-b14c-91490f2212c2";
       fsType = "btrfs";
       options = [ "subvol=@nixos" "compress=zstd" ];
     };
 
   fileSystems."/mnt/hdd" =
-    { device = "/dev/disk/by-uuid/ecbbfb05-ada8-4044-81a6-9a280f93802f";
+    {
+      device = "/dev/disk/by-uuid/ecbbfb05-ada8-4044-81a6-9a280f93802f";
       fsType = "xfs";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/4dd7a8ea-311a-458b-8839-1d92c7abab1f";
+    {
+      device = "/dev/disk/by-uuid/4dd7a8ea-311a-458b-8839-1d92c7abab1f";
       fsType = "xfs";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/D56E-61DC";
+    {
+      device = "/dev/disk/by-uuid/D56E-61DC";
       fsType = "vfat";
     };
 

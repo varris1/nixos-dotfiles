@@ -8,6 +8,7 @@ vim.o.smartindent = true
 
 vim.o.background = "dark"
 vim.o.clipboard = "unnamedplus"
+vim.o.mouse = ""
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -19,6 +20,8 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.o.undofile = true
+
+vim.o.scrolloff = 8
 
 vim.wo.number = true
 vim.wo.relativenumber = true

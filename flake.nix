@@ -4,22 +4,60 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
+    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    hyprland.url = "github:hyprwm/hyprland/v0.26.0";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
-    gruvbox-kvantum = { url = "github:thefallnn/Gruvbox-Kvantum"; flake = false; };
+    gruvbox-kvantum = {
+      url = "github:thefallnn/Gruvbox-Kvantum";
+      flake = false;
+    };
 
-    fish-plugin-bobthefish = { url = "github:oh-my-fish/theme-bobthefish"; flake = false; };
-    fish-plugin-gruvbox-theme = { url = "github:Jomik/fish-gruvbox"; flake = false; };
+    fish-plugin-bobthefish = {
+      url = "github:oh-my-fish/theme-bobthefish";
+      flake = false;
+    };
 
-    arrpc = { url = "github:notashelf/arrpc-flake"; inputs.nixpkgs.follows = "nixpkgs"; };
-    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    grub2-themes = { url = "github:vinceliuice/grub2-themes"; inputs.nixpkgs.follows = "nixpkgs"; };
-    openmw-git = { url = "gitlab:OpenMW/openmw"; flake = false; };
-    waybar = { url = "github:alexays/waybar"; flake = false; };
-    xorg-git = { url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org"; flake = false; };
+    fish-plugin-gruvbox-theme = {
+      url = "github:Jomik/fish-gruvbox";
+      flake = false;
+    };
+
+    grub2-themes = {
+      url = "github:vinceliuice/grub2-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixd = {
+      url = "github:nix-community/nixd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    openmw-git = {
+      url = "gitlab:OpenMW/openmw";
+      flake = false;
+    };
+
+    waybar = {
+      url = "github:alexays/waybar";
+      flake = false;
+    };
+
+    xorg-git = {
+      url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -39,6 +77,7 @@
           inputs.chaotic-nyx.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.hyprpicker.overlays.default
+          inputs.nixd.overlays.default
         ];
       };
     in
@@ -46,31 +85,29 @@
       overlays = (import ./overlay.nix { inherit inputs; });
 
       nixosConfigurations.terra = nixpkgs.lib.nixosSystem
-      {
-        inherit system;
-        inherit pkgs;
-        specialArgs = { inherit inputs; };
-        modules = [
-          {
-            # needed to get tools working that expect a nixpkgs channel to exist
-            nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-            nix.registry.nixpkgs.flake = nixpkgs;
-          }
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              users.manuel = import ./user/home.nix;
-              extraSpecialArgs = { inherit inputs; };
-              useGlobalPkgs = true;
-            };
-          }
-          inputs.grub2-themes.nixosModules.default
-          inputs.chaotic-nyx.nixosModules.default
-          inputs.hyprland.nixosModules.default
-        ];
-      };
+        {
+          inherit system;
+          inherit pkgs;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              # needed to get tools working that expect a nixpkgs channel to exist
+              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+              nix.registry.nixpkgs.flake = nixpkgs;
+            }
+            ./configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager = {
+                useUserPackages = true;
+                users.manuel = import ./user/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+                useGlobalPkgs = true;
+              };
+            }
+            inputs.grub2-themes.nixosModules.default
+            inputs.chaotic-nyx.nixosModules.default
+            inputs.hyprland.nixosModules.default
+          ];
+        };
     };
 }
-

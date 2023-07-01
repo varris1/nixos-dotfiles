@@ -5,7 +5,7 @@
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.foot}/bin/foot";
     extraConfig = {
-        modi = "drun,run";
+      modi = "drun,run";
     };
     theme = ./theme.rasi;
   };

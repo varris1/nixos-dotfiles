@@ -1,61 +1,65 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-      ./configs/beets
-      ./configs/cava
-      ./configs/wayland/hyprland
-      ./configs/rofi
-      ./configs/fish
-      ./configs/mpd
-      ./configs/mpv
-      ./configs/neovim
-      ./configs/firefox
-      ./configs/dircolors.nix
-      ./configs/xdg-mime.nix
-      ./configs/kvantum
-      ./configs/tmux
+    ./configs/beets
+    ./configs/cava
+    ./configs/wayland/hyprland
+    ./configs/rofi
+    ./configs/fish
+    ./configs/mpd
+    ./configs/mpv
+    ./configs/neovim
+    ./configs/firefox
+    ./configs/dircolors.nix
+    ./configs/xdg-mime.nix
+    ./configs/kvantum
+    ./configs/tmux
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
-      appimage-run
-      bc
-      bottom
-      calcurse
-      gimp
-      gnome.file-roller
-      gnome.gnome-boxes
-      gnome.gvfs
-      gnome.seahorse
-      gnome.simple-scan
-      libsForQt5.dolphin
-      libsForQt5.dolphin-plugins
-      lutris
-      mesa-demos
-      nerdfonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      obs-studio
-      openmw
-      pavucontrol
-      protontricks
-      qbittorrent
-      qt5ct
-      sc-im
-      signal-desktop
-      sshfs
-      steam-run
-      sxiv
-      thunderbird
-      tldr
-      twemoji-color-font
-      vimv
-      vulkan-tools
-      vulkan-validation-layers
-      webcord-vencord
-      wineWowPackages.stagingFull
-      xdg-utils
+    appimage-run
+    bc
+    bottles
+    bottom
+    calcurse
+    gimp
+    gnome.file-roller
+    gnome.gnome-boxes
+    gnome.gvfs
+    gnome.seahorse
+    gnome.simple-scan
+    heroic
+    libsForQt5.dolphin
+    libsForQt5.dolphin-plugins
+    lutris
+    mangohud
+    mesa-demos
+    nerdfonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    obs-studio
+    openmw
+    pavucontrol
+    protontricks
+    qbittorrent
+    qt5ct
+    sc-im
+    signal-desktop
+    sshfs
+    steam-run
+    sxiv
+    thunderbird
+    tldr
+    twemoji-color-font
+    vimv
+    vulkan-tools
+    vulkan-validation-layers
+    webcord-vencord
+    wineWowPackages.stagingFull
+    xdg-utils
   ];
 
   home.sessionVariables = {
@@ -66,10 +70,14 @@
     RADV_PERFTEST = "gpl";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   fonts.fontconfig.enable = true;
+
+  programs.exa = {
+    enable = true;
+  };
 
   programs.keychain = {
     enable = true;
@@ -138,6 +146,7 @@
       enable = true;
       enableFishIntegration = true;
     };
+    nix-index-database.comma.enable = true;
   };
 
   services.gnome-keyring.enable = true;

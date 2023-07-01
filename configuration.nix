@@ -9,7 +9,7 @@
   boot = {
     kernelParams =
       [
-      "amdgpu.ppfeaturemask=0xffffffff"
+        "amdgpu.ppfeaturemask=0xffffffff"
         "net.ifnames=0"
       ];
 
@@ -48,10 +48,10 @@
     '';
   };
 
-# Set your time zone.
+  # Set your time zone.
   time.timeZone = "Europe/Vienna";
 
-# Select internationalisation properties.
+  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -68,15 +68,14 @@
     keyMap = "us-acentos";
   };
 
-  #chaotic.mesa-git.enable = true; # requires --impure for now
+  # chaotic.mesa-git.enable = true;
 
-    hardware.opengl = {
-      enable = true;
-      extraPackages = [ pkgs.libvdpau-va-gl ];
+  hardware.opengl = {
+    enable = true;
+    extraPackages = [ pkgs.libvdpau-va-gl ];
 
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+    driSupport32Bit = true;
+  };
 
   hardware.steam-hardware.enable = true;
   programs.steam.enable = true;
@@ -88,7 +87,7 @@
     extraBackends = [ pkgs.sane-airscan ];
   };
 
-# Enable sound.
+  # Enable sound.
   sound.enable = true;
 
   security = {
@@ -123,8 +122,26 @@
 
   environment = {
     systemPackages = with pkgs; [
-        bc compsize distrobox fd file git htop links2 libsForQt5.dolphin 
-        libsForQt5.kio-extras lm_sensors nvtop-amd openrgb p7zip pciutils ripgrep unrar unzip usbutils
+      bc
+      compsize
+      distrobox
+      fd
+      file
+      git
+      htop
+      kdiskmark
+      links2
+      libsForQt5.dolphin
+      libsForQt5.kio-extras
+      lm_sensors
+      nvtop-amd
+      openrgb
+      p7zip
+      pciutils
+      ripgrep
+      unrar
+      unzip
+      usbutils
     ];
   };
 
@@ -194,14 +211,14 @@
     enable = true;
     xdgOpenUsePortal = true;
     wlr.enable = false; #conflict with XDPH if enabled
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
-    '';
+  '';
 
   systemd.user.extraConfig = ''
     # needed for xdg-open to find the default browser. Why the fuck do I even need to do that?
@@ -209,7 +226,7 @@
 
     #Systemd is a meme. This is the proof
     DefaultTimeoutStopSec=10s
-    '';
+  '';
 
   nix = {
     extraOptions = ''
@@ -224,10 +241,12 @@
     };
     settings = {
       auto-optimise-store = true;
+
       substituters = [
         "https://nyx.chaotic.cx"
         "https://hyprland.cachix.org"
       ];
+
       trusted-public-keys = [
         "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
@@ -236,6 +255,6 @@
     };
   };
 
-  system.stateVersion = "22.05"; 
+  system.stateVersion = "22.05";
 }
 

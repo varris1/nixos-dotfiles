@@ -19,9 +19,7 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/share/icons/GruvboxPlus
     cp -r * $out/share/icons/GruvboxPlus
 
-    for theme in $out/share/icons/*; do
-      gtk-update-icon-cache $theme
-    done
+    gtk-update-icon-cache $out/share/icons/GruvboxPlus
   '';
 
   dontDropIconThemeCache = true;

@@ -54,13 +54,13 @@ in
         on-scroll-up = "hyprctl dispatch workspace e+1";
         on-scroll-down = "hyprctl dispatch workspace e-1";
         persistent_workspaces = {
-            "1" = [ "DP-1" ];
-            "2" = [ "DP-1" ];
-            "3" = [ "DP-1" ];
-            "4" = [ "HDMI-A-1" ];
-            "5" = [ "HDMI-A-1" ];
-            "6" = [ "HDMI-A-1" ];
-          };
+          "1" = [ "DP-1" ];
+          "2" = [ "DP-1" ];
+          "3" = [ "DP-1" ];
+          "4" = [ "HDMI-A-1" ];
+          "5" = [ "HDMI-A-1" ];
+          "6" = [ "HDMI-A-1" ];
+        };
       };
 
       "hyprland/window" = {

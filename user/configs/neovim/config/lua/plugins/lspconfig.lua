@@ -1,9 +1,24 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 local lspconfig = require("lspconfig")
 
-lspconfig.rnix.setup { capabilities = capabilities }
+local null_ls = require("null-ls")
+local null_ls_formatting = null_ls.builtins.formatting
+
+
+null_ls.setup({
+  sources = {
+    null_ls_formatting.prettier,
+    null_ls_formatting.nixpkgs_fmt,
+  },
+})
+
+lspconfig.nixd.setup { capabilities = capabilities }
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,

@@ -4,7 +4,7 @@
 
     arrpc = inputs.arrpc.packages.${prev.system}.arrpc;
 
-    gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack {};
+    gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack { };
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
@@ -20,7 +20,7 @@
 
       buildInputs = old.buildInputs ++ [ prev.libyamlcpp prev.luajit ];
 
-      patches = [];
+      patches = [ ];
       dontWrapQtApps = false;
     });
 
@@ -31,7 +31,7 @@
       ];
       extraLibraries = prev: [ ];
     };
-    
+
     waybar_hyprland = prev.waybar.overrideAttrs (old: {
       version = "9999";
       src = inputs.waybar;
@@ -41,18 +41,9 @@
           src/modules/wlr/workspace_manager.cpp
       '';
 
-      mesonFlags = old.mesonFlags ++ [ 
-        "-Dexperimental=true" 
+      mesonFlags = old.mesonFlags ++ [
+        "-Dexperimental=true"
         "-Dcava=disabled"
-      ];
-    });
-
-    xwayland = prev.xwayland.overrideAttrs (old: {
-      version = "9999";
-      src = inputs.xorg-git;
-      buildInputs = old.buildInputs ++ [
-        prev.udev
-        prev.xorg.libpciaccess
       ];
     });
   };

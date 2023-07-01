@@ -103,8 +103,8 @@ in
       misc {
           vfr = true
           vrr = 2
-          enable_swallow = true
-          swallow_regex = ^(foot)$
+          # enable_swallow = true
+          # swallow_regex = ^(foot)$
       }
 
       decoration {
@@ -133,7 +133,7 @@ in
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
-      exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
+      # exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.swww}/bin/swww-daemon
@@ -142,9 +142,9 @@ in
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
       #Set cursor
-      exec = ${pkgs.hyprland}/bin/hyprctl setcursor "${config.gtk.cursorTheme.name}" 32 &> /dev/null
+      exec = ${pkgs.hyprland}/bin/hyprctl setcursor "${config.gtk.cursorTheme.name}" ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null
 
-      env = XCURSOR_SIZE,32
+      env = XCURSOR_SIZE,${builtins.toString config.gtk.cursorTheme.size}
 
       #keybinds
       bind = ${modKey}, 1, workspace, 1
@@ -206,16 +206,16 @@ in
   };
 
   home.file.".local/share/kservices5/swww.desktop".text = ''
-   [Desktop Entry]
-   Type=Service
-   X-KDE-ServiceTypes=KonqPopupMenu/Plugin
-   MimeType=image/jpeg;image/png;image/svg
-   Actions=setSWWWWallpaper;
-   Encoding=UTF-8
+    [Desktop Entry]
+    Type=Service
+    X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+    MimeType=image/jpeg;image/png;image/svg
+    Actions=setSWWWWallpaper;
+    Encoding=UTF-8
 
-   [Desktop Action setSWWWWallpaper]
-   Name=Set Image as Wallpaper
-   Exec=swww img "%f" 
+    [Desktop Action setSWWWWallpaper]
+    Name=Set Image as Wallpaper
+    Exec=swww img "%f" 
   '';
 
   home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.swww pkgs.hyprprop ];
