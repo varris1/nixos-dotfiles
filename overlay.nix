@@ -4,6 +4,10 @@
 
     arrpc = inputs.arrpc.packages.${prev.system}.arrpc;
 
+    eww = prev.eww.override {
+      withWayland = true;
+    };
+
     gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack { };
 
     ncmpcpp = prev.ncmpcpp.override {

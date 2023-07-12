@@ -90,11 +90,6 @@
           inherit pkgs;
           specialArgs = { inherit inputs; };
           modules = [
-            {
-              # needed to get tools working that expect a nixpkgs channel to exist
-              nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-              nix.registry.nixpkgs.flake = nixpkgs;
-            }
             ./configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager = {

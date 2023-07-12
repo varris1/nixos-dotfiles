@@ -4,7 +4,7 @@ let
 
   modKey = "SUPER";
 
-  leftMonitor = "HDMI-A-1";
+  leftMonitor = "DP-2";
   rightMonitor = "DP-1";
 
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
@@ -64,8 +64,8 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      monitor=${leftMonitor}, 1920x1080@60, 0x0, 1
-      monitor=${rightMonitor}, 2560x1440@144, 1920x0, 1
+      monitor=${leftMonitor}, 2560x1440@144, 0x0, 1
+      monitor=${rightMonitor}, 2560x1440@144, 2560x0, 1
 
       workspace = 1, monitor:${rightMonitor}
       workspace = 2, monitor:${rightMonitor}
@@ -85,7 +85,7 @@ in
       }
 
       general {
-          gaps_in = 16
+          gaps_in = 10
           border_size = 4
           col.active_border = rgba(665C54ff)
           col.inactive_border = rgba(282828ff)
@@ -133,8 +133,7 @@ in
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
-      # exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
-      exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
+      # exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.swww}/bin/swww-daemon
       exec-once = $pkgs.arrpc}/bin/arRPC

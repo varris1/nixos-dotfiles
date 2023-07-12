@@ -22,9 +22,9 @@
   home.packages = with pkgs; [
     appimage-run
     bc
-    bottles
     bottom
     calcurse
+    eww
     gimp
     gnome.file-roller
     gnome.gnome-boxes
@@ -57,7 +57,7 @@
     vimv
     vulkan-tools
     vulkan-validation-layers
-    webcord-vencord
+    webcord
     wineWowPackages.stagingFull
     xdg-utils
   ];

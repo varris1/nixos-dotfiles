@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -142,6 +142,7 @@
       unrar
       unzip
       usbutils
+      ydotool
     ];
   };
 
@@ -233,6 +234,8 @@
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
+      registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     gc = {
       persistent = true;
       automatic = true;

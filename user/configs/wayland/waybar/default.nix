@@ -32,12 +32,9 @@ in
       height = 32;
 
       modules-left = [ "wlr/workspaces" "custom/blank" "hyprland/window" ];
-      # modules-center = [ "wlr/workspaces" "custom/blank" ];
+      modules-center = [ "wireplumber" "custom/blank" "mpd" ];
       modules-right = [
         "custom/ds-battery"
-        "wireplumber"
-        "custom/blank"
-        "mpd"
         "tray"
         "clock"
         "custom/blank"
