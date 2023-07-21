@@ -439,11 +439,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1689874829,
-        "narHash": "sha256-NaM4Pwc0BpVEeoYRIKo0hWgPLASVL3fEdyt/XgEl3Nw=",
+        "lastModified": 1689930748,
+        "narHash": "sha256-H6NcnSlSHUp305JWj8Zp6tpIcSbk+toK6a4cgd6jVTU=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "9410eed9e51af09267fc243505faa217a72cee8b",
+        "rev": "c80a8d529376c13c63ac25af9df6b00d84a348ea",
         "type": "gitlab"
       },
       "original": {
