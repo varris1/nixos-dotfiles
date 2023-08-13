@@ -26,11 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    aitrack = {
-      url = "github:AIRLegend/aitrack";
-      flake = false;
-    };
-
     gruvbox-kvantum = {
       url = "github:thefallnn/Gruvbox-Kvantum";
       flake = false;

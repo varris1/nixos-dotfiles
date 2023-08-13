@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "aitrack": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1663260759,
-        "narHash": "sha256-XuE4BsB+gOfYmRw3dwqzZF+0D3jW2+KOqCJDoWY0RR8=",
-        "owner": "AIRLegend",
-        "repo": "aitrack",
-        "rev": "ed7d58c7decbe47c12c1008d44ea00fa9fb28c87",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AIRLegend",
-        "repo": "aitrack",
-        "type": "github"
-      }
-    },
     "bytecode-viewer-git-src": {
       "flake": false,
       "locked": {
@@ -521,7 +505,6 @@
     },
     "root": {
       "inputs": {
-        "aitrack": "aitrack",
         "chaotic-nyx": "chaotic-nyx",
         "fish-plugin-bobthefish": "fish-plugin-bobthefish",
         "fish-plugin-gruvbox-theme": "fish-plugin-gruvbox-theme",
