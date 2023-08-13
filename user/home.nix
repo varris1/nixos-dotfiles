@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ./configs/beets
@@ -22,16 +22,19 @@
   home.packages = with pkgs; [
     appimage-run
     bc
+    bottles
     bottom
     calcurse
     eww
+    gamescope_git
     gimp
-    gnome.file-roller
     gnome.gnome-boxes
     gnome.gvfs
     gnome.seahorse
+    gnome.gnome-settings-daemon
     gnome.simple-scan
     heroic
+    libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
     lutris
@@ -43,10 +46,12 @@
     obs-studio
     openmw
     pavucontrol
+    playerctl
     protontricks
     qbittorrent
     qt5ct
     sc-im
+    samba
     signal-desktop
     sshfs
     steam-run
@@ -57,13 +62,14 @@
     vimv
     vulkan-tools
     vulkan-validation-layers
-    webcord
+    discord
     wineWowPackages.stagingFull
     xdg-utils
   ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    GTK_THEME = "${builtins.toString config.gtk.theme.name}";
     MESA_DISK_CACHE_SINGLE_FILE = "1";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
@@ -104,8 +110,8 @@
   gtk = {
     enable = true;
     theme = {
-      package = pkgs.gruvbox-dark-gtk;
-      name = "gruvbox-dark";
+      package = pkgs.gruvbox-gtk-theme;
+      name = "Gruvbox-Dark-B";
     };
 
     font = {
@@ -165,6 +171,6 @@
     download = "/mnt/hdd/Downloads";
   };
 
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
 }
 

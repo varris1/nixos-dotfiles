@@ -16,8 +16,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    aitrack = {
+      url = "github:AIRLegend/aitrack";
+      flake = false;
+    };
 
     gruvbox-kvantum = {
       url = "github:thefallnn/Gruvbox-Kvantum";
@@ -54,10 +66,11 @@
       flake = false;
     };
 
-    xorg-git = {
-      url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
+    nvim-hmts = {
+      url = "github:calops/hmts.nvim";
       flake = false;
     };
+
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

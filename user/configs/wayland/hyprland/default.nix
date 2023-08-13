@@ -1,11 +1,11 @@
 { config, pkgs, inputs, ... }:
 let
-  wobsock = "/tmp/wob-vol.fifo";
+  leftMonitor = "DP-2";
+  rightMonitor = "DP-1";
 
   modKey = "SUPER";
 
-  leftMonitor = "DP-2";
-  rightMonitor = "DP-1";
+  wobsock = "/tmp/wob-vol.fifo";
 
   wob-voldaemon = pkgs.writeShellScriptBin "wob-volumeindicator.sh" ''
     if pgrep "wob";  then
@@ -21,17 +21,7 @@ let
     echo "wob: started"
   '';
 
-  xwaylandSetPrimary = pkgs.writeShellScriptBin "xwayland-setprimary.sh" ''
-    while true; do
-    	DSP=$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/2560x1440/ {print $1}' | head -n 1)
-      if [[ ! -z DSP ]]; then
-        ${pkgs.xorg.xrandr}/bin/xrandr --output "$DSP" --primary
-      fi
-      sleep 10
-    done
-  '';
-
-  killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''hypr
+  killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
     ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 
@@ -101,6 +91,8 @@ in
       }
 
       misc {
+          disable_hyprland_logo = true
+          disable_splash_rendering = true
           vfr = true
           vrr = 2
           # enable_swallow = true
@@ -109,10 +101,13 @@ in
 
       decoration {
         rounding = 10
-        blur = yes
-        blur_size = 3
-        blur_passes = 2
-        blur_new_optimizations = on
+
+        blur {
+          enabled = yes
+          size = 3
+          passes = 2
+          new_optimizations = on
+        }
 
         drop_shadow = yes
         shadow_range = 8
@@ -133,13 +128,15 @@ in
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
-      # exec-once = ${xwaylandSetPrimary}/bin/xwayland-setprimary.sh
-      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = ${pkgs.swww}/bin/swww-daemon
-      exec-once = $pkgs.arrpc}/bin/arRPC
+      # exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
+      exec-once = ${pkgs.ydotool}/bin/ydotoold
 
+      exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor} --primary
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
       exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
+      exec = pkill swww; ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
+
       #Set cursor
       exec = ${pkgs.hyprland}/bin/hyprctl setcursor "${config.gtk.cursorTheme.name}" ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null
 
@@ -198,6 +195,8 @@ in
 
       layerrule = blur, waybar
       layerrule = blur, notifications
+      layerrule = blur, gtk-layer-shell
+
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$
       windowrulev2 = float, class:^(org.kde.dolphin)$
@@ -214,7 +213,7 @@ in
 
     [Desktop Action setSWWWWallpaper]
     Name=Set Image as Wallpaper
-    Exec=swww img "%f" 
+    Exec=swww img "%f" && echo "%f" > ~/.cache/swww/wallpaper.txt
   '';
 
   home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.swww pkgs.hyprprop ];

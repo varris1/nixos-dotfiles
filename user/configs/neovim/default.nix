@@ -55,6 +55,8 @@
       stylua
       nodePackages.vscode-css-languageserver-bin
       zls
+    ] ++ [
+      pkgs.nvim-hmts
     ];
   };
 

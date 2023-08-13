@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       main = {
-        font = "JetBrainsMono Nerd Font:pixelsize=12";
+        font = "JetBrainsMono Nerd Font:pixelsize=14";
         pad = "16x16 center";
         underline-offset = "4px";
       };

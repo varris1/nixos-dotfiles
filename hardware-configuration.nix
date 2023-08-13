@@ -12,13 +12,12 @@
   boot.initrd.availableKernelModules = [ "amdgpu" "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [];
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/33112a66-7f9a-482c-b14c-91490f2212c2";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" "compress=zstd" ];
+      device = "/dev/disk/by-uuid/2949cfe9-f064-47b4-9621-3941b8ea1a42";
+      fsType = "xfs";
     };
 
   fileSystems."/mnt/hdd" =
@@ -35,7 +34,7 @@
 
   fileSystems."/boot/efi" =
     {
-      device = "/dev/disk/by-uuid/D56E-61DC";
+      device = "/dev/disk/by-uuid/2128-03CA";
       fsType = "vfat";
     };
 

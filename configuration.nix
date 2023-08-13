@@ -68,8 +68,6 @@
     keyMap = "us-acentos";
   };
 
-  # chaotic.mesa-git.enable = true;
-
   hardware.opengl = {
     enable = true;
     extraPackages = [ pkgs.libvdpau-va-gl ];
@@ -97,13 +95,6 @@
     rtkit.enable = true;
     sudo.enable = false;
 
-    pam.loginLimits = [{
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "262144";
-    }];
-
     doas = {
       enable = true;
       extraRules = [{
@@ -116,13 +107,14 @@
 
   users.users.manuel = {
     isNormalUser = true;
-    extraGroups = [ "audio" "games" "input" "scanner" "lp" "users" "video" "vboxusers" "wheel" "networkmanager" ];
+    extraGroups = [ "audio" "games" "input" "lp" "networkmanager" "scanner" "users" "vboxusers" "video" "wheel" ];
     shell = pkgs.fish;
   };
 
   environment = {
     systemPackages = with pkgs; [
       bc
+      cached-nix-shell
       compsize
       distrobox
       fd
@@ -189,7 +181,6 @@
       pulse.enable = true;
     };
 
-
     locate = {
       enable = true;
       locate = pkgs.plocate;
@@ -201,6 +192,16 @@
     fstrim = {
       enable = true;
       interval = "weekly";
+    };
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          user = "greeter";
+        };
+      };
     };
   };
 
@@ -234,14 +235,17 @@
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
+
       registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+
     gc = {
       persistent = true;
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
     settings = {
       auto-optimise-store = true;
 
@@ -258,6 +262,6 @@
     };
   };
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 }
 

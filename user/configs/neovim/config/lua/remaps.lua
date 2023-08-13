@@ -12,7 +12,7 @@ map( "n", "<Leader>fp",    telescope_builtin.git_files,    { desc = "Find Files 
 map( "n", "<Leader>fc",    function()
                              telescope_builtin.git_files({ cwd = "~/.dotfiles"})
                            end,                            { desc = "Edit Dotfiles" })
-map( "n", "<C-n>",         "<cmd>NeoTreeFocusToggle<CR>",  { desc = "Open NeoTree" })
+map( "n", "<C-n>",         "<cmd>Neotree toggle<CR>",  { desc = "Open NeoTree" })
 map( {"n", "x"}, "ga",     ":EasyAlign", { desc = "Align text" })
 
 -- resizing splits

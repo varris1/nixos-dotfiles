@@ -2,13 +2,11 @@
 {
   default = final: prev: {
 
-    arrpc = inputs.arrpc.packages.${prev.system}.arrpc;
-
     eww = prev.eww.override {
       withWayland = true;
     };
 
-    gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack { };
+    gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack { };
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
@@ -30,6 +28,8 @@
 
     steam = prev.steam.override {
       extraPkgs = prev: [
+        prev.libkrb5
+        prev.keyutils
         prev.gnome.zenity
         prev.xdg-user-dirs
       ];
@@ -50,5 +50,11 @@
         "-Dcava=disabled"
       ];
     });
+
+    nvim-hmts = prev.vimUtils.buildVimPluginFrom2Nix {
+      pname = "nvim-hmts";
+      version = "1";
+      src = inputs.nvim-hmts;
+    };
   };
 }

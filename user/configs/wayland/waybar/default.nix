@@ -40,12 +40,6 @@ in
         "custom/blank"
       ];
 
-      "sway/mode" = { format = " {}"; };
-      "sway/window" = {
-        icon = false;
-        icon-size = 16;
-      };
-
       "wlr/workspaces" = {
         on-click = "activate";
         on-scroll-up = "hyprctl dispatch workspace e+1";
