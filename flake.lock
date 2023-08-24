@@ -123,15 +123,16 @@
     "eww-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1692366702,
-        "narHash": "sha256-GEysmNDm+olt1WXHzRwb4ZLifkXmeP5+APAN3b81/Og=",
-        "owner": "elkowar",
+        "lastModified": 1692622179,
+        "narHash": "sha256-vxMGAa/RTsMADPK4dM/28SV2ktCT0DenYvGsHZ4IJ8c=",
+        "owner": "ralismark",
         "repo": "eww",
-        "rev": "a9a35c1804d72ef92e04ee71555bd9e5a08fa17e",
+        "rev": "a82ed62c25ba50f28dc8c3d57efe440d51d6136b",
         "type": "github"
       },
       "original": {
-        "owner": "elkowar",
+        "owner": "ralismark",
+        "ref": "tray-3",
         "repo": "eww",
         "type": "github"
       }

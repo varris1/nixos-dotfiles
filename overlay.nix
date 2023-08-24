@@ -2,9 +2,8 @@
 {
   default = final: prev: {
 
-    eww = prev.eww.override {
-      withWayland = true;
-    };
+    eww-git = prev.callPackage ./pkgs/eww-systray { inherit inputs; withWayland = true; }; 
+    eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow { inherit inputs; };
 
     gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack { };
 
@@ -32,24 +31,10 @@
         prev.keyutils
         prev.gnome.zenity
         prev.xdg-user-dirs
+
       ];
       extraLibraries = prev: [ ];
     };
-
-    waybar_hyprland = prev.waybar.overrideAttrs (old: {
-      version = "9999";
-      src = inputs.waybar;
-
-      preConfigure = ''
-        sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' \
-          src/modules/wlr/workspace_manager.cpp
-      '';
-
-      mesonFlags = old.mesonFlags ++ [
-        "-Dexperimental=true"
-        "-Dcava=disabled"
-      ];
-    });
 
     nvim-hmts = prev.vimUtils.buildVimPluginFrom2Nix {
       pname = "nvim-hmts";

@@ -1,7 +1,18 @@
 { config, pkgs, inputs, ... }:
 let
-  leftMonitor = "DP-2";
-  rightMonitor = "DP-1";
+  leftMonitor = {
+    display = "DP-2";
+    res = "2560x1440";
+    pos = "-2560x0";
+    refreshRate = "144";
+  };
+
+  rightMonitor = {
+    display = "DP-1";
+    res = "2560x1440";
+    pos = "0x0";
+    refreshRate = "144";
+  };
 
   modKey = "SUPER";
 
@@ -49,21 +60,22 @@ in
     ../foot
     ../wob
     ../mako
+    ../eww
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      monitor=${leftMonitor}, 2560x1440@144, 0x0, 1
-      monitor=${rightMonitor}, 2560x1440@144, 2560x0, 1
+      monitor=${leftMonitor.display}, ${leftMonitor.res}@${leftMonitor.refreshRate}, ${leftMonitor.pos}, 1
+      monitor=${rightMonitor.display}, ${rightMonitor.res}@${rightMonitor.refreshRate}, ${rightMonitor.pos}, 1
 
-      workspace = 1, monitor:${rightMonitor}
-      workspace = 2, monitor:${rightMonitor}
-      workspace = 3, monitor:${rightMonitor}
+      workspace = 1, monitor:${rightMonitor.display}
+      workspace = 2, monitor:${rightMonitor.display}
+      workspace = 3, monitor:${rightMonitor.display}
 
-      workspace = 4, monitor:${leftMonitor}
-      workspace = 5, monitor:${leftMonitor}
-      workspace = 6, monitor:${leftMonitor}
+      workspace = 4, monitor:${leftMonitor.display}
+      workspace = 5, monitor:${leftMonitor.display}
+      workspace = 6, monitor:${leftMonitor.display}
 
       input {
           kb_layout = us
@@ -132,13 +144,17 @@ in
       exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${pkgs.ydotool}/bin/ydotoold
 
-      exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor} --primary
+      exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      exec = pkill waybar; ${pkgs.waybar_hyprland}/bin/waybar
-      exec = pkill swww; ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
+      # exec = pkill waybar; ${pkgs.waybar-hyprland}/bin/waybar
+      exec = ${pkgs.eww-git}/bin/eww kill; ${pkgs.eww-git}/bin/eww open-many bar0 bar1
+      exec = pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
 
       #Set cursor
       exec = ${pkgs.hyprland}/bin/hyprctl setcursor "${config.gtk.cursorTheme.name}" ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null
+
+      # Fix clipboard with Wine
+      exec-once = ${pkgs.wl-clipboard}/bin/wl-paste -t text -w sh -c '[ "$(${pkgs.xclip}/bin/xclip -selection clipboard -o)" = "$(${pkgs.wl-clipboard}/bin/wl-paste -n)" ] || ${pkgs.xclip}/bin/xclip -selection clipboard'
 
       env = XCURSOR_SIZE,${builtins.toString config.gtk.cursorTheme.size}
 

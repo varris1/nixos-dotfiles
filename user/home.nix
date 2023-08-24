@@ -25,7 +25,6 @@
     bottles
     bottom
     calcurse
-    eww
     gamescope_git
     gimp
     gnome.gnome-boxes
@@ -34,6 +33,7 @@
     gnome.gnome-settings-daemon
     gnome.simple-scan
     heroic
+    jq
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
@@ -45,6 +45,7 @@
     noto-fonts-cjk-serif
     obs-studio
     openmw
+    pamixer
     pavucontrol
     playerctl
     protontricks
@@ -55,6 +56,7 @@
     signal-desktop
     sshfs
     steam-run
+    steamtinkerlaunch
     sxiv
     thunderbird
     tldr
@@ -63,7 +65,6 @@
     vulkan-tools
     vulkan-validation-layers
     discord
-    wineWowPackages.stagingFull
     xdg-utils
   ];
 

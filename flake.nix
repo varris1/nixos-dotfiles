@@ -3,8 +3,21 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    chaotic-nyx = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -51,6 +64,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    eww-git = {
+      # url = "github:elkowar/eww";
+      url = "github:ralismark/eww/tray-3";
+      flake = false;
+    };
+
     openmw-git = {
       url = "gitlab:OpenMW/openmw";
       flake = false;
@@ -65,7 +84,6 @@
       url = "github:calops/hmts.nvim";
       flake = false;
     };
-
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
