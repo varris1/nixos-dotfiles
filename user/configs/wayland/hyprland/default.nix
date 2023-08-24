@@ -146,7 +146,7 @@ in
 
       exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      # exec = pkill waybar; ${pkgs.waybar-hyprland}/bin/waybar
+      # exec = pkill waybar; ${pkgs.waybar}/bin/waybar
       exec = ${pkgs.eww-git}/bin/eww kill; ${pkgs.eww-git}/bin/eww open-many bar0 bar1
       exec = pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
 

@@ -24,7 +24,7 @@ in
 {
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar-hyprland;
+    package = pkgs.waybar;
 
     settings = [{
       layer = "top";
