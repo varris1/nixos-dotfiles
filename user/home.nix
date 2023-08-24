@@ -43,7 +43,6 @@
     nerdfonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    obs-studio
     openmw
     pamixer
     pavucontrol
@@ -154,6 +153,11 @@
       enableFishIntegration = true;
     };
     nix-index-database.comma.enable = true;
+
+    obs-studio = {
+      enable = true;
+      plugins = [ pkgs.obs-studio-plugins.obs-vkcapture ];
+    };
   };
 
   services.gnome-keyring.enable = true;
