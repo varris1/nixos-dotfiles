@@ -31,7 +31,6 @@
       null-ls-nvim
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
-      playground
       trouble-nvim
 
       nvim-cmp

@@ -13,10 +13,6 @@
         "amd_pstate=active"
       ];
 
-    # kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "bcachefs" ];
-    kernelModules = [ "i2c-dev" "i2c-piix4" ];
-
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -37,6 +33,8 @@
       };
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";

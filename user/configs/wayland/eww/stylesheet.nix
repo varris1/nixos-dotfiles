@@ -1,5 +1,5 @@
 {
-  panel-stylesheet = ''
+  eww-stylesheet = ''
       $bg: rgba(40,40,40,0.8);
       $fg: rgb(235,219,178);
 
@@ -15,21 +15,21 @@
       }
 
       //Global Styles
-      .panel {
+      .bar {
         background-color: $bg;
         color: $fg;
         font-family: "JetBrainsMono Nerd Font";
         font-size: 12px;
       }
 
-      .panel-widget-window {
+      .window {
         background-color: $box-bg;
         border-radius: 10px;
         padding: 0px 10px 0px 10px;
         margin: 5px 0px 5px 10px;
       }
 
-      .panel-widget-volume {
+      .volume {
         background-color: $box-bg;
         border-radius: 10px 0px 0px 10px;
         margin: 5px 0px 5px 0px;
@@ -57,7 +57,7 @@
         margin: 5px 10px 5px 0px;
       }
 
-      .panel-widget-workspace {
+      .wswidget {
         background-color: $box-bg;
         border-radius: 10px;
         margin: 5px 0px 5px 10px;

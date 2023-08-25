@@ -122,7 +122,7 @@ in
 
         drop_shadow = yes
         shadow_range = 8
-        shadow_render_power = 6
+        shadow_render_power = 1
         col.shadow = rgba(282828ff)
       }
 
@@ -208,7 +208,6 @@ in
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 
       layerrule = blur, notifications
-      layerrule = ignorezero, notifications
       layerrule = blur, gtk-layer-shell
 
 
