@@ -25,14 +25,16 @@
     bottles
     bottom
     calcurse
+    discord
     gamescope_git
     gimp
     gnome.gnome-boxes
+    gnome.gnome-settings-daemon
     gnome.gvfs
     gnome.seahorse
-    gnome.gnome-settings-daemon
     gnome.simple-scan
     heroic
+    imv
     jq
     libsForQt5.ark
     libsForQt5.dolphin
@@ -50,20 +52,18 @@
     protontricks
     qbittorrent
     qt5ct
-    sc-im
     samba
+    sc-im
     signal-desktop
     sshfs
     steam-run
     steamtinkerlaunch
-    sxiv
     thunderbird
     tldr
     twemoji-color-font
     vimv
     vulkan-tools
     vulkan-validation-layers
-    discord
     xdg-utils
   ];
 

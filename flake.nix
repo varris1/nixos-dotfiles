@@ -75,11 +75,6 @@
       flake = false;
     };
 
-    waybar = {
-      url = "github:alexays/waybar";
-      flake = false;
-    };
-
     nvim-hmts = {
       url = "github:calops/hmts.nvim";
       flake = false;

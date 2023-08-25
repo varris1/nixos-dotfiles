@@ -3,11 +3,12 @@ let
   inherit (import ./scripts.nix { inherit pkgs; }) workspaces mpd-current-song get-volume;
 in
 {
-  eww-config = ''
+  panel-config = 
+  ''
       ;; ----------------------------- right monitor
       (defwidget bar0 []
         (centerbox
-          :class "bar"
+          :class "panel"
           :orientation "h"
           (left_side0)
           (center)
@@ -28,7 +29,7 @@ in
           )
 
           (box 
-            :class "window"
+            :class { window0 != "" ? "panel-widget-window" : "" }
             window0)
         )
       )
@@ -37,7 +38,7 @@ in
 
       (defwidget bar1 []
         (centerbox
-          :class "bar"
+          :class "panel"
           :orientation "h"
           (left_side1)
           (center)
@@ -58,7 +59,7 @@ in
           )
 
           (box 
-            :class "window"
+            :class { window1 != "" ? "panel-widget-window" : "" }
             window1)
         )
       )
@@ -74,7 +75,7 @@ in
             :onscroll "pamixer `echo {} | sed 's/up/\-i/\' | sed 's/down/\-d/'` 10"
             (box
               :space-evenly false
-              :class "volume"
+              :class "panel-widget-volume"
               volume))
 
           (box 
@@ -118,8 +119,8 @@ in
 
       ;; ---------------------------- window widget
 
-      (deflisten window0 "${pkgs.eww-hyprland-activewindow}/bin/hyprland-activewindow `hyprctl monitors -j | jq -r \".[0].name\"`")
-      (deflisten window1 "${pkgs.eww-hyprland-activewindow}/bin/hyprland-activewindow `hyprctl monitors -j | jq -r \".[1].name\"`")
+      (deflisten window0 "${pkgs.eww-hyprland-activewindow}/bin/hyprland-activewindow `${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r \".[0].name\"`")
+      (deflisten window1 "${pkgs.eww-hyprland-activewindow}/bin/hyprland-activewindow `${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r \".[1].name\"`")
 
       (defwidget title0 []
           (label :text "''${window0}"))
