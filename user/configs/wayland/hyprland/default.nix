@@ -145,7 +145,7 @@ in
 
       exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      exec = ${pkgs.eww-git}/bin/eww kill; ${pkgs.eww-git}/bin/eww open-many bar0 bar1
+      exec = ${pkgs.eww-wayland}/bin/eww kill; ${pkgs.eww-wayland}/bin/eww open-many bar0 bar1
       exec = pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
 
       #Set cursor
@@ -208,6 +208,8 @@ in
       bind = ${modKey} SHIFT, C, exec, hyprctl reload
 
       layerrule = blur, notifications
+      layerrule = ignorezero, notifications
+
       layerrule = blur, gtk-layer-shell
 
 

@@ -12,14 +12,15 @@
 
       * {
         all: unset; //Unsets everything so you can style everything from scratch
+
+        font-family: "JetBrainsMono Nerd Font";
+        font-size: 12px;
       }
 
       //Global Styles
       .bar {
         background-color: $bg;
         color: $fg;
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 12px;
       }
 
       .window {

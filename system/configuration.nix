@@ -2,6 +2,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./services
+    ./programs
   ];
 
   boot = {
@@ -76,9 +78,7 @@
   };
 
   hardware.steam-hardware.enable = true;
-  programs.steam.enable = true;
-  chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
-
+  
   hardware.bluetooth.enable = true;
   hardware.sane = {
     enable = true;
@@ -135,76 +135,6 @@
       unzip
       usbutils
       ydotool
-    ];
-  };
-
-  programs = {
-    dconf.enable = true;
-    hyprland.enable = true;
-    fish.enable = true;
-    kdeconnect.enable = true;
-    ssh.startAgent = true;
-  };
-
-  services = {
-    blueman.enable = true;
-    flatpak.enable = true;
-    fwupd.enable = true;
-    gnome.gnome-keyring.enable = true;
-    gvfs.enable = true;
-    openssh.enable = true;
-    udisks2.enable = true;
-
-    udev = {
-      packages = [ pkgs.openrgb ];
-    };
-
-    printing = {
-      enable = true;
-      drivers = [ pkgs.cnijfilter2 ];
-    };
-
-    avahi = {
-      enable = true;
-      nssmdns = true;
-    };
-
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
-    };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
-    locate = {
-      enable = true;
-      locate = pkgs.plocate;
-      localuser = null;
-      prunePaths = lib.mkOptionDefault [ ];
-      interval = "hourly";
-    };
-
-    fstrim = {
-      enable = true;
-      interval = "weekly";
-    };
-  };
-
-  virtualisation = {
-    podman.enable = true;
-  };
-
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    wlr.enable = false; #conflict with XDPH if enabled
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
     ];
   };
 

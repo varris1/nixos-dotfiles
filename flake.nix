@@ -64,12 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    eww-git = {
-      # url = "github:elkowar/eww";
-      url = "github:ralismark/eww/tray-3";
-      flake = false;
-    };
-
     openmw-git = {
       url = "gitlab:OpenMW/openmw";
       flake = false;

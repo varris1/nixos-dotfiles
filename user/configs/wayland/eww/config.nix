@@ -77,10 +77,11 @@ in
               :class "volume"
               volume))
 
-          (box 
-            :space-evenly false
-            :class "mpd"
-            mpd)
+          (eventbox 
+            :onclick "${pkgs.mpc-cli}/bin/mpc toggle"
+            (box
+              :class "mpd"
+              mpd))
         )
       )
 
@@ -89,10 +90,6 @@ in
         :space-evenly false
         :spacing 5
         :halign "end"
-
-         ;; (box
-         ;;  :class "tray"
-         ;;  (tray))
 
         (box 
           :space-evenly false
@@ -141,12 +138,6 @@ in
       (defpoll date
         :interval "1s"
         "date '+%a %d, %B  %H:%M'")
-
-      (defwidget tray []
-        (systray 
-        :pack-direction "ltr"
-        :icon-size 22
-        ))
 
       (defwindow bar0
         :monitor 0

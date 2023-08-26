@@ -6,8 +6,9 @@ let
 
 in
 {
+  home.packages = [ pkgs.eww-wayland ];
+
   xdg.configFile."eww/eww.yuck".text = "${eww-config}";
   xdg.configFile."eww/eww.scss".text = "${eww-stylesheet}";
 
-  home.packages = [ pkgs.eww-git ];
 }

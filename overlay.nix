@@ -2,7 +2,6 @@
 {
   default = final: prev: {
 
-    eww-git = prev.callPackage ./pkgs/eww-systray { inherit inputs; withWayland = true; }; 
     eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow { inherit inputs; };
 
     gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack { };
