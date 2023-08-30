@@ -139,13 +139,13 @@ in
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
-      # exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+      exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${pkgs.ydotool}/bin/ydotoold
 
       exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary
       exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      exec = ${pkgs.eww-wayland}/bin/eww kill; ${pkgs.eww-wayland}/bin/eww open-many bar0 bar1
+      exec = pkill eww; ${pkgs.eww-wayland}/bin/eww open-many bar0 bar1
       exec = pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
 
       #Set cursor

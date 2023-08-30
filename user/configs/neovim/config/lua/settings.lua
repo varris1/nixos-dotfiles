@@ -8,7 +8,7 @@ vim.o.smartindent = true
 
 vim.o.background = "dark"
 vim.o.clipboard = "unnamedplus"
-vim.o.mouse = ""
+-- vim.o.mouse = ""
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true

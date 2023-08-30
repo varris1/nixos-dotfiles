@@ -76,7 +76,6 @@
     RADV_PERFTEST = "gpl";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
-    # WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   fonts.fontconfig.enable = true;
