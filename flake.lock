@@ -38,6 +38,23 @@
         "type": "github"
       }
     },
+    "eww-systray": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692622179,
+        "narHash": "sha256-vxMGAa/RTsMADPK4dM/28SV2ktCT0DenYvGsHZ4IJ8c=",
+        "owner": "ralismark",
+        "repo": "eww",
+        "rev": "a82ed62c25ba50f28dc8c3d57efe440d51d6136b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ralismark",
+        "ref": "tray-3",
+        "repo": "eww",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -400,6 +417,7 @@
     "root": {
       "inputs": {
         "chaotic-nyx": "chaotic-nyx",
+        "eww-systray": "eww-systray",
         "fenix": "fenix",
         "fish-plugin-bobthefish": "fish-plugin-bobthefish",
         "fish-plugin-gruvbox-theme": "fish-plugin-gruvbox-theme",
