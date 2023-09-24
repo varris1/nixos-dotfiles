@@ -83,6 +83,7 @@
       header_window_color = "yellow";
     };
   };
+
   services.mpdris2 = {
     enable = true;
     notifications = true;

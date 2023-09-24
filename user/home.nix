@@ -25,7 +25,7 @@
     bottles
     bottom
     calcurse
-    discord
+    electron
     gamescope_git
     gimp
     gnome.gnome-boxes
@@ -43,6 +43,7 @@
     mangohud
     mesa-demos
     nerdfonts
+    nodejs
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     openmw
@@ -64,6 +65,7 @@
     vimv
     vulkan-tools
     vulkan-validation-layers
+    webcord
     xdg-utils
   ];
 
@@ -80,7 +82,7 @@
 
   fonts.fontconfig.enable = true;
 
-  programs.exa = {
+  programs.eza = {
     enable = true;
   };
 
@@ -119,8 +121,8 @@
     };
 
     iconTheme = {
-      package = pkgs.gruvbox-plus-icon-pack;
-      name = "GruvboxPlus";
+     package = pkgs.gruvbox-plus-icon-pack;
+     name = "Gruvbox-Plus-Dark";
     };
 
     cursorTheme = {

@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "ags": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1695234369,
+        "narHash": "sha256-1XX2K417v9ghnLI9uP6EIEAS1zmy92AenQ04P+v6Si4=",
+        "owner": "Aylur",
+        "repo": "ags",
+        "rev": "364fde91311ca6396c8a82796eb54bbca7e708ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aylur",
+        "repo": "ags",
+        "type": "github"
+      }
+    },
     "chaotic-nyx": {
       "inputs": {
         "compare-to": "compare-to",
@@ -35,23 +55,6 @@
       "original": {
         "owner": "chaotic-cx",
         "repo": "nix-empty-flake",
-        "type": "github"
-      }
-    },
-    "eww-systray": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1692622179,
-        "narHash": "sha256-vxMGAa/RTsMADPK4dM/28SV2ktCT0DenYvGsHZ4IJ8c=",
-        "owner": "ralismark",
-        "repo": "eww",
-        "rev": "a82ed62c25ba50f28dc8c3d57efe440d51d6136b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ralismark",
-        "ref": "tray-3",
-        "repo": "eww",
         "type": "github"
       }
     },
@@ -416,8 +419,8 @@
     },
     "root": {
       "inputs": {
+        "ags": "ags",
         "chaotic-nyx": "chaotic-nyx",
-        "eww-systray": "eww-systray",
         "fenix": "fenix",
         "fish-plugin-bobthefish": "fish-plugin-bobthefish",
         "fish-plugin-gruvbox-theme": "fish-plugin-gruvbox-theme",

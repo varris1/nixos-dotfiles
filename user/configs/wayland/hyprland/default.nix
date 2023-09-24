@@ -33,7 +33,7 @@ let
   '';
 
   killprocess = pkgs.writeShellScriptBin "killprocess.sh" ''
-    ps -x -o pid=,comm= | column -t -o "    " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
+    ps -x -o pid=,comm= | column -t -o "  " | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p "kill process: " | awk '{print $1}' | uniq | xargs -r kill -9
   '';
 
   passmenu = pkgs.writeShellScriptBin "passmenu.sh" ''
@@ -56,7 +56,7 @@ in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../eww
+    ../ags
     ../foot
     ../wob
     ../mako
@@ -140,12 +140,12 @@ in
       exec-once = ${pkgs.blueman}/bin/blueman-applet
       exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-      exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
+      # exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${pkgs.ydotool}/bin/ydotoold
 
       exec = ${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary
-      exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh;
-      exec = pkill eww; ${pkgs.eww-wayland}/bin/eww open-many bar0 bar1
+      exec = ${wob-voldaemon}/bin/wob-volumeindicator.sh
+      exec = ags -q; ags
       exec = pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)
 
       #Set cursor
@@ -211,6 +211,8 @@ in
       layerrule = ignorezero, notifications
 
       layerrule = blur, gtk-layer-shell
+      layerrule = blur, bar-0
+      layerrule = blur, bar-1
 
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$

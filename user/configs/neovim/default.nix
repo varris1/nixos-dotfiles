@@ -53,6 +53,7 @@
       nixd
       rust-analyzer
       stylua
+      nodePackages.typescript-language-server
       nodePackages.vscode-css-languageserver-bin
       zls
     ] ++ [

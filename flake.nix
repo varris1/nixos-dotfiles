@@ -69,14 +69,19 @@
       flake = false;
     };
 
-    waybar = {
-      url = "github:alexays/waybar";
-      flake = false;
-    };
-
     nvim-hmts = {
       url = "github:calops/hmts.nvim";
       flake = false;
+    };
+
+    gruvbox-plus-icon-pack = {
+      url = "github:SylEleuth/gruvbox-plus-icon-pack";
+      flake = false;
+    };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

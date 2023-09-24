@@ -2,11 +2,18 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./services
+    ./hardware
     ./programs
+    ./services
   ];
 
   boot = {
+    tmp.useTmpfs = true;
+
+    kernel.sysctl."vm.max_map_count" = 16777216; #Star Citizen crash fix
+
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
     kernelParams =
       [
         "amdgpu.ppfeaturemask=0xffffffff"
@@ -23,7 +30,7 @@
 
       grub = {
         enable = true;
-        useOSProber = true;
+        useOSProber = false;
         efiSupport = true;
         device = "nodev";
       };
@@ -34,9 +41,6 @@
         screen = "2k";
       };
     };
-
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "i2c-dev" "i2c-piix4" ];
   };
 
   powerManagement.cpuFreqGovernor = "schedutil";
@@ -47,6 +51,7 @@
     firewall.enable = false;
     extraHosts = ''
       192.168.0.18 steam.deck
+      127.0.0.1 modules-cdn.eac-prod.on.epicgames.com
     '';
   };
 
@@ -70,21 +75,7 @@
     keyMap = "us-acentos";
   };
 
-  hardware.opengl = {
-    enable = true;
-    extraPackages = [ pkgs.libvdpau-va-gl ];
-
-    driSupport32Bit = true;
-  };
-
-  hardware.steam-hardware.enable = true;
   
-  hardware.bluetooth.enable = true;
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
-  };
-
   # Enable sound.
   sound.enable = true;
 
@@ -121,6 +112,7 @@
       file
       git
       htop
+      inotify-tools
       kdiskmark
       links2
       libsForQt5.dolphin
@@ -130,6 +122,7 @@
       openrgb
       p7zip
       pciutils
+      sassc
       ripgrep
       unrar
       unzip

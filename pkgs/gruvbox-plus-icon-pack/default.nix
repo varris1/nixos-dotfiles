@@ -1,25 +1,26 @@
-{ stdenvNoCC, fetchFromGitHub, gtk3, gnome-icon-theme, hicolor-icon-theme }:
+{ stdenvNoCC, fetchFromGitHub, inputs, gtk3, fd, gnome-icon-theme, hicolor-icon-theme }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "gruvbox-plus-icon-pack";
-  version = "4.0";
+  version = "9999";
 
-  src = fetchFromGitHub {
-    owner = "SylEleuth";
-    repo = pname;
-    rev = "v${version}";
-    hash = "sha256-KefCHHFtuh2wAGBq6hZr9DpuJ0W99ueh8i1K3tohgG8=";
-  };
+  src = inputs.gruvbox-plus-icon-pack; 
 
-  nativeBuildInputs = [ gtk3 ];
+  nativeBuildInputs = [ gtk3 fd ];
 
   propagatedBuildInputs = [ gnome-icon-theme hicolor-icon-theme ];
 
   installPhase = ''
-    mkdir -p $out/share/icons/GruvboxPlus
-    cp -r * $out/share/icons/GruvboxPlus
+    cd Gruvbox-Plus-Dark
+    fd " " -X rm
+    mkdir -p $out/share/icons/Gruvbox-Plus-Dark
+    cp -r * $out/share/icons/Gruvbox-Plus-Dark
+  '';
 
-    gtk-update-icon-cache $out/share/icons/GruvboxPlus
+  postFixup = ''
+    for i in $out/share/icons/*; do
+      gtk-update-icon-cache $i
+    done
   '';
 
   dontDropIconThemeCache = true;

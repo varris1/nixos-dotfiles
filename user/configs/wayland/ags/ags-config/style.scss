@@ -1,0 +1,72 @@
+$bg: rgba(40,40,40,0.8);
+$fg: rgb(235,219,178);
+
+$wsfg: rgb(235,219,178);
+$wsbg: rgb(60,56,54);
+$activewsbg: rgb(102,92,84);
+
+$box-bg: rgb(80,73,69);
+
+* {
+  min-height: unset;
+}
+
+.bar {
+  min-height: 33px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+  background-color: $bg;
+  color: $fg;
+}
+
+.workspaces {
+  background-color: $box-bg;
+  border-radius: 10px;
+  margin: 5px 0px 5px 10px;
+  font-size: 0px;
+}
+
+.workspaces button {
+  border-radius: 0px;
+  background-color: $wsbg;
+  font-size: 10px;
+}
+
+.workspaces button.focused {
+  background-color: $activewsbg;
+  border-radius: 0px;
+}
+
+.windowTitle {
+  background-color: $box-bg;
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
+  margin: 5px 0px 5px 10px;
+}
+
+.media {
+  background-color: $box-bg;
+  border-radius: 0px 10px 10px 0px;
+  padding: 0px 10px 0px 10px;
+  margin: 5px 10px 5px 0px;
+}
+
+.date {
+  background-color: $box-bg;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  margin: 5px 10px 5px 0px;
+};
+
+.tray {
+  background-color: $box-bg;
+  padding: 0px 10px 0px 10px;
+  border-radius: 10px;
+  margin: 5px 10px 5px 0px;
+}
+
+.tray-icon {
+  font-size: 18px;
+  background-color: $box-bg;
+  padding: 2px;
+}

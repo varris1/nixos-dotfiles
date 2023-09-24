@@ -40,6 +40,7 @@ lspconfig.rust_analyzer.setup { capabilities = capabilities }
 lspconfig.zls.setup { capabilities = capabilities }
 lspconfig.jedi_language_server.setup { capabilities = capabilities }
 lspconfig.bashls.setup { capabilities = capabilities }
+lspconfig.tsserver.setup { capabilities = capabilities }
 
 lspconfig.cssls.setup {
   capabilities = capabilities,
