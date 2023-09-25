@@ -12,7 +12,8 @@
 
     kernel.sysctl."vm.max_map_count" = 16777216; #Star Citizen crash fix
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "bcachefs" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     kernelParams =
       [
@@ -25,7 +26,7 @@
     loader = {
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
       };
 
       grub = {

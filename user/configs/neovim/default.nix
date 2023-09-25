@@ -8,6 +8,7 @@
       gruvbox-nvim
       comment-nvim
       dressing-nvim
+      indent-blankline-nvim
       lualine-nvim
       luasnip
       neo-tree-nvim

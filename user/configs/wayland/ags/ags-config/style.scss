@@ -33,8 +33,16 @@ $box-bg: rgb(80,73,69);
 }
 
 .workspaces button.focused {
-  background-color: $activewsbg;
   border-radius: 0px;
+  background-color: $activewsbg;
+}
+
+.workspaces button:first-child {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.workspaces button:last-child {
+  border-radius: 0px 10px 10px 0px;
 }
 
 .windowTitle {
@@ -42,6 +50,13 @@ $box-bg: rgb(80,73,69);
   border-radius: 10px;
   padding: 0px 10px 0px 10px;
   margin: 5px 0px 5px 10px;
+}
+
+.volume {
+  background-color: $box-bg;
+  border-radius: 10px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
+  margin: 5px 5px 5px 0px;
 }
 
 .media {

@@ -51,6 +51,7 @@
     pavucontrol
     playerctl
     protontricks
+    pulsemixer
     qbittorrent
     qt5ct
     samba
