@@ -100,7 +100,6 @@ const Media = () => Button({
                             break;
                         default:
                             stack.shown = 'stopped';
-                            break;
                     }
                 }]],
             }),
