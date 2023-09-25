@@ -90,12 +90,18 @@ const Media = () => Button({
 
                 connections: [[Mpris, stack => {
                     const mpris = Mpris.getPlayer('mpd');
-                    if (mpris.playBackStatus == 'Playing')
-                    stack.shown = 'playing';
-                    else if (mpris.playBackStatus == 'Paused')
-                    stack.shown = 'paused';
-                    else
-                    stack.shown = 'stopped';
+
+                    switch (mpris.playBackStatus) {
+                        case "Playing":
+                            stack.shown = 'playing';
+                            break;
+                        case "Paused":
+                            stack.shown = 'paused';
+                            break;
+                        default:
+                            stack.shown = 'stopped';
+                            break;
+                    }
                 }]],
             }),
 
@@ -103,9 +109,9 @@ const Media = () => Button({
                 connections: [[Mpris, label => {
                     const mpris = Mpris.getPlayer('mpd');
                     if (!mpris || mpris.playBackStatus == "Stopped")
-                    label.label = ' Stopped';
+                        label.label = ' Stopped';
                     else 
-                    label.label = ` ${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
+                        label.label = ` ${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
                 }]],
             }),
         ],
