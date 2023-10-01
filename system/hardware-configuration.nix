@@ -29,8 +29,8 @@
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/4af74e31-5ec6-4244-bb1e-192df0b8a175";
-      fsType = "ext4";
+    { device = "/dev/nvme0n1p1";
+      fsType = "bcachefs";
     };
 
   swapDevices = [ ];

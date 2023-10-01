@@ -25,6 +25,7 @@
     bottles
     bottom
     calcurse
+    discord
     electron
     gamescope_git
     gimp
@@ -66,7 +67,6 @@
     vimv
     vulkan-tools
     vulkan-validation-layers
-    webcord
     xdg-utils
   ];
 

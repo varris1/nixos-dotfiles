@@ -66,6 +66,9 @@ const Volume = () => Button({
 
             Label({
                 connections: [[Audio, label => {
+                    if (!Audio.speaker)
+                    return;
+
                     label.label = ` ${Math.ceil((Audio.speaker.volume * 100) / 10) * 10}%`; // round up to nearest 10
                 }, 'speaker-changed' ]],
             }),
@@ -167,8 +170,8 @@ const Center = () => Box({
 const Right = () => Box({
     halign: 'end',
     children: [
-        Clock(),
         SysTray(),
+        Clock(),
     ],
 });
 
