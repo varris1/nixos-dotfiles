@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./configs/beets
     ./configs/cava
@@ -122,8 +126,8 @@
     };
 
     iconTheme = {
-     package = pkgs.gruvbox-plus-icon-pack;
-     name = "Gruvbox-Plus-Dark";
+      package = pkgs.gruvbox-plus-icon-pack;
+      name = "Gruvbox-Plus-Dark";
     };
 
     cursorTheme = {
@@ -158,7 +162,7 @@
 
     obs-studio = {
       enable = true;
-      plugins = [ pkgs.obs-studio-plugins.obs-vkcapture ];
+      plugins = [pkgs.obs-studio-plugins.obs-vkcapture];
     };
   };
 
@@ -168,7 +172,6 @@
     enable = true;
     preset = "DT770";
   };
-
 
   xdg.userDirs = {
     enable = true;
@@ -180,4 +183,3 @@
 
   home.stateVersion = "23.05";
 }
-

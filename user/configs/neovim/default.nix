@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
 
@@ -45,21 +44,23 @@
       lspkind-nvim
     ];
 
-    extraPackages = with pkgs; [
-      nodePackages.bash-language-server
-      clang-tools
-      lua-language-server
-      python3Packages.jedi-language-server
-      nixpkgs-fmt
-      nixd
-      rust-analyzer
-      stylua
-      nodePackages.typescript-language-server
-      nodePackages.vscode-css-languageserver-bin
-      zls
-    ] ++ [
-      pkgs.nvim-hmts
-    ];
+    extraPackages = with pkgs;
+      [
+        nodePackages.bash-language-server
+        clang-tools
+        lua-language-server
+        python3Packages.jedi-language-server
+        nixpkgs-fmt
+        nixd
+        rust-analyzer
+        stylua
+        nodePackages.typescript-language-server
+        nodePackages.vscode-css-languageserver-bin
+        zls
+      ]
+      ++ [
+        pkgs.nvim-hmts
+      ];
   };
 
   xdg.configFile.nvim = {

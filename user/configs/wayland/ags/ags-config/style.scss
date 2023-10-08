@@ -7,6 +7,8 @@ $activewsbg: rgb(102,92,84);
 
 $box-bg: rgb(80,73,69);
 
+$box-border-radius: 10px;
+
 * {
   min-height: unset;
 }
@@ -21,13 +23,13 @@ $box-bg: rgb(80,73,69);
 
 .workspaces {
   background-color: $box-bg;
-  border-radius: 10px;
+  border-radius: $box-border-radius;
   margin: 5px 0px 5px 10px;
   font-size: 0px;
 }
 
 .workspaces button {
-  border-radius: 0px;
+  border-radius: 0;
   background-color: $wsbg;
   font-size: 10px;
 }
@@ -38,30 +40,30 @@ $box-bg: rgb(80,73,69);
 }
 
 .workspaces button:first-child {
-  border-radius: 10px 0px 0px 10px;
+  border-radius: $box-border-radius 0px 0px $box-border-radius;
 }
 
 .workspaces button:last-child {
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px $box-border-radius $box-border-radius 0px;
 }
 
 .windowTitle {
   background-color: $box-bg;
-  border-radius: 10px;
+  border-radius: $box-border-radius;
   padding: 0px 10px 0px 10px;
   margin: 5px 0px 5px 10px;
 }
 
 .volume {
   background-color: $box-bg;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: $box-border-radius;
   padding: 0px 10px 0px 10px;
   margin: 5px 5px 5px 0px;
 }
 
 .media {
   background-color: $box-bg;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: $box-border-radius;
   padding: 0px 10px 0px 10px;
   margin: 5px 10px 5px 0px;
 }
@@ -69,14 +71,14 @@ $box-bg: rgb(80,73,69);
 .date {
   background-color: $box-bg;
   padding: 0px 10px 0px 10px;
-  border-radius: 10px;
+  border-radius: $box-border-radius;
   margin: 5px 10px 5px 0px;
 };
 
 .tray {
   background-color: $box-bg;
   padding: 0px 10px 0px 10px;
-  border-radius: 10px;
+  border-radius: $box-border-radius;
   margin: 5px 10px 5px 0px;
 }
 

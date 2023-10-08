@@ -1,8 +1,11 @@
-{ pkgs, lib, ... }:
 {
-  home.packages = [ pkgs.cava ];
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages = [pkgs.cava];
 
-  xdg.configFile."cava/config".text = lib.generators.toINI { } {
+  xdg.configFile."cava/config".text = lib.generators.toINI {} {
     general = {
       bars = "0";
       bar_width = "2";
@@ -16,4 +19,3 @@
     };
   };
 }
-

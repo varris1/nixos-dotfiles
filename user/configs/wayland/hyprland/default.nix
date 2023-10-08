@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
-let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   leftMonitor = {
     display = "DP-2";
     res = "2560x1440";
@@ -50,10 +54,7 @@ let
 
     pass show -c "$password" 2>/dev/null
   '';
-
-in
-
-{
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ../ags
@@ -102,8 +103,7 @@ in
       }
 
       misc {
-          disable_hyprland_logo = true
-          disable_splash_rendering = true
+          force_default_wallpaper = 0
           vfr = true
           vrr = 2
           # enable_swallow = true
@@ -163,7 +163,7 @@ in
       bind = ${modKey}, 4, workspace, 4
       bind = ${modKey}, 5, workspace, 5
       bind = ${modKey}, 6, workspace, 6
-                                
+
       bind = ${modKey} SHIFT, 1, movetoworkspace, 1
       bind = ${modKey} SHIFT, 2, movetoworkspace, 2
       bind = ${modKey} SHIFT, 3, movetoworkspace, 3
@@ -190,7 +190,7 @@ in
       bind = , XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}
       bind = , XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 10 --get-volume > ${wobsock}
 
-      bind = CTRL, Space, exec, ${pkgs.mako}/bin/makoctl dismiss
+      bind = SHIFT CTRL, Space, exec, ${pkgs.mako}/bin/makoctl dismiss
       bind = CTRL, grave, exec, ${pkgs.mako}/bin/makoctl restore
       bind = ${modKey} SHIFT, O, exec, ${killprocess}/bin/killprocess.sh
       bind = ${modKey} SHIFT, P, exec, ${passmenu}/bin/passmenu.sh
@@ -233,6 +233,5 @@ in
     Exec=swww img "%f" && echo "%f" > ~/.cache/swww/wallpaper.txt
   '';
 
-  home.packages = [ pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.swww pkgs.hyprprop ];
+  home.packages = [pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.hyprpicker pkgs.swww pkgs.hyprprop];
 }
-

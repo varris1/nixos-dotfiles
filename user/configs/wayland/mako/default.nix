@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.mako = {
     enable = true;
     anchor = "top-right";
@@ -18,4 +21,3 @@
     font = "JetBrainsMono Nerd Font Regular 10";
   };
 }
-

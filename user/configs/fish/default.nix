@@ -1,11 +1,21 @@
-{ config, pkgs, inputs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.fish = {
     enable = true;
 
     plugins = [
-      { name = "gruvbox-theme"; src = inputs.fish-plugin-gruvbox-theme; }
-      { name = "bobthefish"; src = inputs.fish-plugin-bobthefish; }
+      {
+        name = "gruvbox-theme";
+        src = inputs.fish-plugin-gruvbox-theme;
+      }
+      {
+        name = "bobthefish";
+        src = inputs.fish-plugin-bobthefish;
+      }
     ];
 
     interactiveShellInit = ''

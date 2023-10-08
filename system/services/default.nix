@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./avahi
-      ./locate
-      ./pipewire
-      ./printing
-      ./udev
-      ./xdg-portal
+    ./locate
+    ./pipewire
+    ./printing
+    ./udev
+    ./xdg-portal
   ];
 
   services = {

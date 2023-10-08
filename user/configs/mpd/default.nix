@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.mpd = {
     enable = true;
     musicDirectory = "/mnt/hdd/Music";
@@ -36,7 +36,7 @@
     enable = true;
     settings = {
       id = 474605546457137157;
-      hosts = [ "localhost:6600" ];
+      hosts = ["localhost:6600"];
       format = {
         details = "$title ($album)";
         state = "by $artist";
@@ -68,8 +68,7 @@
       alternative_header_second_line_format = "$7{%t}|{%f}$0";
       progressbar_look = "─╼ ";
 
-      song_columns_list_format =
-        "(25)[5]{a:artist} (3f)[5]{n: } (50)[cyan]{t|f:title} (5)[cyan]{lr:duration}";
+      song_columns_list_format = "(25)[5]{a:artist} (3f)[5]{n: } (50)[cyan]{t|f:title} (5)[cyan]{lr:duration}";
       playlist_display_mode = "columns";
       browser_display_mode = "columns";
       search_engine_display_mode = "columns";

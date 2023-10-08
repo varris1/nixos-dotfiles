@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs = {
     dconf.enable = true;
     fish.enable = true;
@@ -8,5 +7,5 @@
     ssh.startAgent = true;
     steam.enable = true;
   };
-  chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
+  chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
 }

@@ -1,6 +1,5 @@
-{ lib, ... }:
-{
-  xdg.configFile."wob/wob.ini".text = lib.generators.toINIWithGlobalSection { } {
+{lib, ...}: {
+  xdg.configFile."wob/wob.ini".text = lib.generators.toINIWithGlobalSection {} {
     globalSection = {
       height = "40";
 
@@ -9,9 +8,7 @@
 
       background_color = "282828FF";
       bar_color = "665C54FF";
-
     };
-    sections = { };
+    sections = {};
   };
 }
-

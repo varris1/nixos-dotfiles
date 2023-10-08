@@ -302,22 +302,6 @@
         "type": "github"
       }
     },
-    "mpd-discord-rpc": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696275938,
-        "narHash": "sha256-hIbODswDa50BoAysXXT2HEoJJIp4d28NAQBm3DzYILg=",
-        "owner": "JakeStanger",
-        "repo": "mpd-discord-rpc",
-        "rev": "f887d05794a6dffb1cc4e143e8155d6b318e0e1a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JakeStanger",
-        "repo": "mpd-discord-rpc",
-        "type": "github"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -437,7 +421,6 @@
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "hyprpicker": "hyprpicker",
-        "mpd-discord-rpc": "mpd-discord-rpc",
         "nix-index-database": "nix-index-database",
         "nixd": "nixd",
         "nixpkgs": "nixpkgs",

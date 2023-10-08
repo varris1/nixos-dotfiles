@@ -8,23 +8,22 @@ const Workspaces = (monitor) => Box({
         if (monitor == 0) {
             box.children = [1,2,3].map(i => Button({
                 onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`),
-                onScrollUp: () => execAsync(`hyprctl dispatch workspace +1`),
-                onScrollDown: () => execAsync(`hyprctl dispatch workspace -1`),
+                onScrollDown: () => execAsync(`hyprctl dispatch workspace +1`),
+                onScrollUp: () => execAsync(`hyprctl dispatch workspace -1`),
                 child: Label({ label: `${i}` }),
                 className: Hyprland.active.workspace.id == i ? 'focused' : '',
             }));
         } else if (monitor == 1) {
             box.children = [4,5,6].map(i => Button({
                 onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`),
-                onScrollUp: () => execAsync(`hyprctl dispatch workspace +1`),
-                onScrollDown: () => execAsync(`hyprctl dispatch workspace -1`),
+                onScrollDown: () => execAsync(`hyprctl dispatch workspace +1`),
+                onScrollUp: () => execAsync(`hyprctl dispatch workspace -1`),
                 child: Label({ label: `${i}` }),
                 className: Hyprland.active.workspace.id == i ? 'focused' : '',
             }));
         }
     }]],
 });
-
 
 const WindowTitle = () => Label({
     connections: [[Hyprland, label => {
@@ -78,9 +77,9 @@ const Volume = () => Button({
 
 const Media = () => Button({
     className: 'media',
-    onPrimaryClick: () => Mpris.getPlayer('mpd')?.playPause(),
-    onScrollUp: () => Mpris.getPlayer('mpd')?.previous(),
-    onScrollDown: () => Mpris.getPlayer('mpd')?.next(),
+    onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
+    onScrollUp: () => Mpris.getPlayer('')?.previous(),
+    onScrollDown: () => Mpris.getPlayer('')?.next(),
 
     child: Box({
         children: [
@@ -92,7 +91,7 @@ const Media = () => Button({
                 ],
 
                 connections: [[Mpris, stack => {
-                    const mpris = Mpris.getPlayer('mpd');
+                    const mpris = Mpris.getPlayer('');
 
                     switch (mpris.playBackStatus) {
                         case "Playing":
@@ -109,7 +108,7 @@ const Media = () => Button({
 
             Label({
                 connections: [[Mpris, label => {
-                    const mpris = Mpris.getPlayer('mpd');
+                    const mpris = Mpris.getPlayer('');
                     if (!mpris || mpris.playBackStatus == "Stopped")
                         label.label = ' Stopped';
                     else 

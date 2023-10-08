@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.foot = {
     enable = true;
     settings = {
@@ -34,4 +38,3 @@
     };
   };
 }
-

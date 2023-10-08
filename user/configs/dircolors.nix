@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.dircolors = {
     enable = true;
     enableFishIntegration = true;
@@ -67,7 +71,6 @@
       ".z" = "01;31";
       ".zip" = "01;31";
       ".zoo" = "01;31";
-
 
       ".anx" = "01;35";
       ".asf" = "01;35";
@@ -155,8 +158,6 @@
       ".xls" = "38;5;109";
       ".xlsx" = "38;5;109";
       ".xml" = "38;5;109";
-
     };
-
   };
 }

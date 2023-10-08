@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.udev = {
-    packages = [ pkgs.openrgb ];
+    packages = [pkgs.openrgb];
   };
 }

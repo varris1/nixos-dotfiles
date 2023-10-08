@@ -1,24 +1,22 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   default = final: prev: {
-
-    gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack { inherit inputs; };
+    gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack {inherit inputs;};
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
     };
 
     nerdfonts = prev.nerdfonts.override {
-      fonts = [ "JetBrainsMono" ];
+      fonts = ["JetBrainsMono"];
     };
 
     openmw = prev.openmw.overrideAttrs (old: {
       version = "9999";
       src = inputs.openmw-git;
 
-      buildInputs = old.buildInputs ++ [ prev.libyamlcpp prev.luajit ];
+      buildInputs = old.buildInputs ++ [prev.libyamlcpp prev.luajit];
 
-      patches = [ ];
+      patches = [];
       dontWrapQtApps = false;
     });
 
@@ -29,10 +27,10 @@
         prev.gnome.zenity
         prev.xdg-user-dirs
       ];
-      extraLibraries = prev: [ ];
+      extraLibraries = prev: [];
     };
 
-    nvim-hmts = prev.vimUtils.buildVimPluginFrom2Nix {
+    nvim-hmts = prev.vimUtils.buildVimPlugin {
       pname = "nvim-hmts";
       version = "1";
       src = inputs.nvim-hmts;

@@ -80,49 +80,55 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
+    pkgs = import nixpkgs {
+      inherit system;
+
+      config = {
+        allowUnfree = true;
+        allowUnsupportedSystem = true;
+      };
+
+      overlays = [
+        self.overlays.default
+        inputs.chaotic-nyx.overlays.default
+        inputs.hyprland-contrib.overlays.default
+        inputs.hyprpicker.overlays.default
+        inputs.nixd.overlays.default
+      ];
+    };
+  in {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    overlays = import ./overlay.nix {inherit inputs;};
+
+    nixosConfigurations.terra =
+      nixpkgs.lib.nixosSystem
+      {
         inherit system;
-
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-        };
-
-        overlays = [
-          self.overlays.default
-          inputs.chaotic-nyx.overlays.default
-          inputs.hyprland-contrib.overlays.default
-          inputs.hyprpicker.overlays.default
-          inputs.nixd.overlays.default
+        inherit pkgs;
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./system/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              users.manuel = import ./user/home.nix;
+              extraSpecialArgs = {inherit inputs;};
+              useGlobalPkgs = true;
+            };
+          }
+          inputs.grub2-themes.nixosModules.default
+          inputs.chaotic-nyx.nixosModules.default
+          inputs.hyprland.nixosModules.default
         ];
       };
-    in
-    {
-      overlays = (import ./overlay.nix { inherit inputs; });
-
-      nixosConfigurations.terra = nixpkgs.lib.nixosSystem
-        {
-          inherit system;
-          inherit pkgs;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./system/configuration.nix
-            home-manager.nixosModules.home-manager {
-              home-manager = {
-                useUserPackages = true;
-                users.manuel = import ./user/home.nix;
-                extraSpecialArgs = { inherit inputs; };
-                useGlobalPkgs = true;
-              };
-            }
-            inputs.grub2-themes.nixosModules.default
-            inputs.chaotic-nyx.nixosModules.default
-            inputs.hyprland.nixosModules.default
-          ];
-        };
-    };
+  };
 }

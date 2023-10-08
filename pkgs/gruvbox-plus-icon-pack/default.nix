@@ -1,14 +1,21 @@
-{ stdenvNoCC, fetchFromGitHub, inputs, gtk3, fd, gnome-icon-theme, hicolor-icon-theme }:
-
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+  inputs,
+  gtk3,
+  fd,
+  gnome-icon-theme,
+  hicolor-icon-theme,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "gruvbox-plus-icon-pack";
   version = "9999";
 
-  src = inputs.gruvbox-plus-icon-pack; 
+  src = inputs.gruvbox-plus-icon-pack;
 
-  nativeBuildInputs = [ gtk3 fd ];
+  nativeBuildInputs = [gtk3 fd];
 
-  propagatedBuildInputs = [ gnome-icon-theme hicolor-icon-theme ];
+  propagatedBuildInputs = [gnome-icon-theme hicolor-icon-theme];
 
   installPhase = ''
     cd Gruvbox-Plus-Dark
