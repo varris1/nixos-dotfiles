@@ -105,7 +105,7 @@
       ];
     };
   in {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     overlays = import ./overlay.nix {inherit inputs;};
 
     nixosConfigurations.terra =

@@ -72,6 +72,7 @@
     vulkan-tools
     vulkan-validation-layers
     xdg-utils
+    xivlauncher
   ];
 
   home.sessionVariables = {
