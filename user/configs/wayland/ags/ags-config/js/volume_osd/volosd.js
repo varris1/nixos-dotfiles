@@ -1,10 +1,15 @@
-export default () => ags.Widget.Window({
+const {
+    Label,
+    Window
+} = ags.Widget;
+
+export default () => Window({
     name: `volume-osd`,
     className: `osd`,
     monitor: null,
     focusable: false,
-    anchor: [ 'center' ],
+    anchor: ['center'],
     popup: true,
-    
-    child: ags.Widget.Label('hello world'),
+
+    child: Label('hello world'),
 })

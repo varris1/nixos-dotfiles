@@ -1,45 +1,50 @@
-export default player => ags.Widget.Button({
-    className: 'media',
-    onPrimaryClick: () => ags.Service.Mpris.getPlayer(player)?.playPause(),
-    onScrollUp: () => ags.Service.Mpris.getPlayer(player)?.previous(),
-    onScrollDown: () => ags.Service.Mpris.getPlayer(player)?.next(),
+import { Box, Button, Icon, Label, Stack } from 'resource:///com/github/Aylur/ags/widget.js';
+import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 
-    child: ags.Widget.Box({
+export default player => Button({
+    className: 'media',
+    onPrimaryClick: () => Mpris.getPlayer(player)?.playPause(),
+    onScrollUp: () => Mpris.getPlayer(player)?.previous(),
+    onScrollDown: () => Mpris.getPlayer(player)?.next(),
+
+    child: Box({
         children: [
-            ags.Widget.Stack({
+            Stack({
                 items: [
-                    ['paused', ags.Widget.Icon('media-playback-pause-symbolic')],
-                    ['playing', ags.Widget.Icon('media-playback-start-symbolic')],
-                    ['stopped', ags.Widget.Icon('media-playback-stop-symbolic')],
+                    ['paused', Icon('media-playback-pause-symbolic')],
+                    ['playing', Icon('media-playback-start-symbolic')],
+                    ['stopped', Icon('media-playback-stop-symbolic')],
                 ],
 
-                connections: [[ags.Service.Mpris, statusIcon => {
-                    const mpris = ags.Service.Mpris.getPlayer(player);
+                connections: [
+                    [Mpris, statusIcon => {
+                        const mpris = Mpris.getPlayer(player);
 
-                    switch (mpris.playBackStatus) {
-                        case "Playing":
-                            statusIcon.shown = 'playing';
-                            break;
-                        case "Paused":
-                            statusIcon.shown = 'paused';
-                            break;
-                        default:
-                            statusIcon.shown = 'stopped';
-                    }
-                }]],
+                        switch (mpris.playBackStatus) {
+                            case "Playing":
+                                statusIcon.shown = 'playing';
+                                break;
+                            case "Paused":
+                                statusIcon.shown = 'paused';
+                                break;
+                            default:
+                                statusIcon.shown = 'stopped';
+                        }
+                    }]
+                ],
             }),
 
-            ags.Widget.Label({
-                connections: [[ags.Service.Mpris, label => {
-                    const mpris = ags.Service.Mpris.getPlayer(player);
-                    if (!mpris || mpris.playBackStatus == "Stopped")
-                    label.label = ' Stopped';
-                    else 
-                    label.label = ` ${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
-                }]],
+            Label({
+                connections: [
+                    [Mpris, label => {
+                        const mpris = Mpris.getPlayer(player);
+                        if (!mpris || mpris.playBackStatus == "Stopped")
+                            label.label = ' Stopped';
+                        else
+                            label.label = ` ${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
+                    }]
+                ],
             }),
         ],
     }),
 })
-
-

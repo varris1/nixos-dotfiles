@@ -6,16 +6,14 @@
 }: let
   leftMonitor = {
     display = "DP-2";
-    res = "2560x1440";
-    pos = "-2560x0";
-    refreshRate = "144";
+    res = "preferred";
+    pos = "0x0";
   };
 
   rightMonitor = {
     display = "DP-1";
-    res = "2560x1440";
-    pos = "0x0";
-    refreshRate = "144";
+    res = "preferred";
+    pos = "2560x0";
   };
 
   modKey = "SUPER";
@@ -66,8 +64,8 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      monitor=${leftMonitor.display}, ${leftMonitor.res}@${leftMonitor.refreshRate}, ${leftMonitor.pos}, 1
-      monitor=${rightMonitor.display}, ${rightMonitor.res}@${rightMonitor.refreshRate}, ${rightMonitor.pos}, 1
+      monitor=${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1
+      monitor=${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1
 
       workspace = 1, monitor:${rightMonitor.display}
       workspace = 2, monitor:${rightMonitor.display}
@@ -138,7 +136,7 @@ in {
 
       exec-once = ${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp
       exec-once = ${pkgs.blueman}/bin/blueman-applet
-      exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
+      # exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
       exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
       # exec-once = ${pkgs.mullvad-vpn}/bin/mullvad-gui
       exec-once = ${pkgs.ydotool}/bin/ydotoold

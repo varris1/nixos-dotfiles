@@ -1,16 +1,19 @@
-export default () => ags.Widget.Box({
+import { Box, Icon, Label } from 'resource:///com/github/Aylur/ags/widget.js';
+import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
+
+export default () => Box({
     className: 'date',
     children: [
-        ags.Widget.Icon({
-            icon: 'x-office-calendar-symbolic', 
+        Icon({
+            icon: 'x-office-calendar-symbolic',
         }),
 
-        ags.Widget.Label({
+        Label({
             connections: [
-                [1000, label => ags.Utils.execAsync(['date', '+%a %d, %B  %H:%M'])
-                    .then(date => label.label = ' ' + date).catch(console.error)],
+                [1000, label => execAsync(['date', '+%a %d, %B  %H:%M'])
+                    .then(date => label.label = ' ' + date).catch(console.error)
+                ],
             ],
         }),
     ],
 });
-

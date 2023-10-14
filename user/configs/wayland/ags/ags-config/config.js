@@ -1,16 +1,19 @@
-import Panel from './js/panel/panel.js';
-import VolumeOSD from './js/volume_osd/volosd.js';
+import App from 'resource:///com/github/Aylur/ags/app.js'
+import { exec } from 'resource://com/github/Aylur/ags/utils.js'
 
-const scss = ags.App.configDir + '/style.scss';
+import Panel from './js/panel/panel.js';
+import {
+    forMonitors
+}
+from './js/utils.js';
+
+const scss = App.configDir + '/style.scss';
 const css = '/tmp/style-ags.css';
-ags.Utils.exec(`sassc ${scss} ${css}`);
+exec(`sassc ${scss} ${css}`);
 
 export default {
     style: css,
     windows: [
-        Panel(0),
-        Panel(1),
-
-        // VolumeOSD(),
-    ],
+        forMonitors(Panel),
+    ].flat(2),
 };

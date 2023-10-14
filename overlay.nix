@@ -10,16 +10,6 @@
       fonts = ["JetBrainsMono"];
     };
 
-    openmw = prev.openmw.overrideAttrs (old: {
-      version = "9999";
-      src = inputs.openmw-git;
-
-      buildInputs = old.buildInputs ++ [prev.libyamlcpp prev.luajit];
-
-      patches = [];
-      dontWrapQtApps = false;
-    });
-
     steam = prev.steam.override {
       extraPkgs = prev: [
         prev.libkrb5

@@ -13,7 +13,7 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
@@ -22,7 +22,7 @@
     fsType = "xfs";
   };
 
-  fileSystems."/boot/efi" = {
+  fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/BE4D-EFA9";
     fsType = "vfat";
   };

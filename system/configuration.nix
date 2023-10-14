@@ -24,26 +24,21 @@
       "net.ifnames=0"
       "amd_pstate.shared_mem=1"
       "amd_pstate=active"
+      # "video=DP-1:2560x1440@144"
+      # "video=DP-2:2560x1440@144"
     ];
 
     loader = {
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
       };
 
-      grub = {
-        enable = true;
-        useOSProber = false;
-        efiSupport = true;
-        device = "nodev";
+      systemd-boot = {
+          enable = true;
+          configurationLimit = 5;
+          consoleMode = "max";
       };
 
-      grub2-theme = {
-        enable = true;
-        theme = "stylish";
-        screen = "2k";
-      };
     };
   };
 
@@ -51,7 +46,7 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    networkmanager.enable = true;
+    dhcpcd.enable = true;
     firewall.enable = false;
     extraHosts = ''
       192.168.0.18 steam.deck

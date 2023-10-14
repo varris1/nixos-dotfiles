@@ -49,11 +49,6 @@
       flake = false;
     };
 
-    grub2-themes = {
-      url = "github:vinceliuice/grub2-themes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixd = {
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -125,7 +120,6 @@
               useGlobalPkgs = true;
             };
           }
-          inputs.grub2-themes.nixosModules.default
           inputs.chaotic-nyx.nixosModules.default
           inputs.hyprland.nixosModules.default
         ];

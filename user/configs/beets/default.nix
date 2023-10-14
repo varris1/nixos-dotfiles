@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      plugins = "ftintitle fetchart embedart chroma edit replaygain badfiles fish";
+      plugins = "duplicates ftintitle fetchart embedart chroma edit replaygain badfiles fish";
 
       directory = "/mnt/hdd/Music";
       library = "/mnt/hdd/Music/library.db";

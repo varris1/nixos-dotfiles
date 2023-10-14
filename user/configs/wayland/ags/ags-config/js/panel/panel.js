@@ -1,3 +1,5 @@
+import { Box, CenterBox, Window } from 'resource:///com/github/Aylur/ags/widget.js';
+
 import Workspaces from './widgets/workspaces.js';
 import WindowTitle from './widgets/windowTitle.js';
 //
@@ -7,38 +9,34 @@ import Mpris from './widgets/mpris.js'
 import SysTray from './widgets/sysTray.js';
 import Clock from './widgets/clock.js';
 
-const Left = monitor => ags.Widget.Box({
+const Left = monitor => Box({
     children: [
-        Workspaces(monitor),
-        WindowTitle(),
+        Workspaces(monitor), WindowTitle(),
     ],
 });
 
-const Center = () => ags.Widget.Box({
+const Center = () => Box({
     children: [
-        Volume(),
-        Mpris('mpd')
+        Volume(), Mpris('mpd')
     ],
 });
 
-const Right = () => ags.Widget.Box({
+const Right = () => Box({
     halign: 'end',
     children: [
-        SysTray(),
-        Clock(),
+        SysTray(), Clock(),
     ],
 });
 
-export default monitor => ags.Widget.Window({
-    name: `bar-${monitor}`, // name has to be unique
+export default monitor => Window({
+    name: `bar-${monitor}`,
+    exclusive: true,
     className: 'bar',
     monitor,
     anchor: ['top', 'left', 'right'],
-    exclusive: true,
-    child: ags.Widget.CenterBox({
-        startWidget: Left(`${monitor}`),
+    child: CenterBox({
+        startWidget: Left(monitor),
         centerWidget: Center(),
         endWidget: Right(),
     }),
 })
-

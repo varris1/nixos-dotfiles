@@ -1,17 +1,22 @@
-export default () => ags.Widget.Box({
+import { Box, Button, Icon } from 'resource:///com/github/Aylur/ags/widget.js';
+import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
+
+export default () => Box({
     className: 'tray',
-    connections: [[ags.Service.SystemTray, box => {
-        box.children = ags.Service.SystemTray.items.map(item => ags.Widget.Button({
-            className: 'tray-icon',
-            child: ags.Widget.Icon(),
-            onPrimaryClick: (_, event) => item.activate(event),
-            onSecondaryClick: (_, event) => item.openMenu(event),
-            connections: [[item, button => {
-                button.child.icon = item.icon;
-                button.tooltipMarkup = item.tooltipMarkup;
-            }]],
-        }));
-    }]],
+    connections: [
+        [SystemTray, box => {
+            box.children = SystemTray.items.map(item => Button({
+                className: 'tray-icon',
+                child: Icon(),
+                onPrimaryClick: (_, event) => item.activate(event),
+                onSecondaryClick: (_, event) => item.openMenu(event),
+                connections: [
+                    [item, button => {
+                        button.child.icon = item.icon;
+                        button.tooltipMarkup = item.tooltipMarkup;
+                    }]
+                ],
+            }));
+        }]
+    ],
 });
-
-
