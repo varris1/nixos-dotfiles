@@ -6,7 +6,7 @@ export default () => Box({
     connections: [
         [SystemTray, box => {
             box.children = SystemTray.items.map(item => Button({
-                className: 'tray-icon',
+                className: 'tray-icons',
                 child: Icon(),
                 onPrimaryClick: (_, event) => item.activate(event),
                 onSecondaryClick: (_, event) => item.openMenu(event),
