@@ -2,7 +2,7 @@ import { Box, Button, Icon, Label, Stack } from 'resource:///com/github/Aylur/ag
 import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 
 export default player => Button({
-    className: 'media',
+    className: 'mpris',
     onPrimaryClick: () => Mpris.getPlayer(player)?.playPause(),
     onScrollUp: () => Mpris.getPlayer(player)?.previous(),
     onScrollDown: () => Mpris.getPlayer(player)?.next(),

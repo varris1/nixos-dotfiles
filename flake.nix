@@ -54,11 +54,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    openmw-git = {
-      url = "gitlab:OpenMW/openmw";
-      flake = false;
-    };
-
     nvim-hmts = {
       url = "github:calops/hmts.nvim";
       flake = false;
@@ -89,6 +84,9 @@
       config = {
         allowUnfree = true;
         allowUnsupportedSystem = true;
+        permittedInsecurePackages = [
+            "libxls-1.6.2"
+        ];
       };
 
       overlays = [

@@ -17,14 +17,16 @@ const Left = monitor => Box({
 
 const Center = () => Box({
     children: [
-        Volume(), Mpris('mpd')
+        Volume(),
+        Mpris('mpd'),
     ],
 });
 
 const Right = () => Box({
     halign: 'end',
     children: [
-        SysTray(), Clock(),
+        SysTray(), 
+        Clock(),
     ],
 });
 

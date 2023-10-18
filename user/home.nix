@@ -59,6 +59,7 @@
     pulsemixer
     qbittorrent
     qt5ct
+    ranger
     samba
     sc-im
     signal-desktop

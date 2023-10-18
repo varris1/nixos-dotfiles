@@ -67,13 +67,13 @@ in {
       monitor=${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1
       monitor=${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1
 
-      workspace = 1, monitor:${rightMonitor.display}
-      workspace = 2, monitor:${rightMonitor.display}
-      workspace = 3, monitor:${rightMonitor.display}
+      workspace = 1, monitor:${rightMonitor.display}, persistent:true
+      workspace = 2, monitor:${rightMonitor.display}, persistent:true
+      workspace = 3, monitor:${rightMonitor.display}, persistent:true
 
-      workspace = 4, monitor:${leftMonitor.display}
-      workspace = 5, monitor:${leftMonitor.display}
-      workspace = 6, monitor:${leftMonitor.display}
+      workspace = 4, monitor:${leftMonitor.display}, persistent:true
+      workspace = 5, monitor:${leftMonitor.display}, persistent:true
+      workspace = 6, monitor:${leftMonitor.display}, persistent:true
 
       input {
           kb_layout = us
@@ -119,9 +119,9 @@ in {
         }
 
         drop_shadow = yes
-        shadow_range = 8
-        shadow_render_power = 1
-        col.shadow = rgba(282828ff)
+        shadow_range = 30 
+        shadow_render_power = 3
+        col.shadow = rgba(1a1a1aee)
       }
 
       animations {
