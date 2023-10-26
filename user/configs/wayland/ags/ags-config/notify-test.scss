@@ -1,37 +1,28 @@
 /* Assuming Adwaita-dark as Gtk theme */
 
-#popup-window {
-    background-color: transparent;
-}
-
 #notification-center {
     background-color: #232323;
 }
 
-#popup-window .notification > * {
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-}
-
-#popup-window *,
 #notification-center *{
     outline: none;
     color: white;
 }
 
-button {
-    border: none;
-    box-shadow: none;
-    border-radius: 7px;
-    background-color: rgba(255,255,255, 0.1);
-}
-
-button:hover {
-    background-color: rgba(255,255,255, 0.2);
-}
-
-button:active {
-    background-color: rgba(255,255,255, 0.3);
-}
+// button {
+//     border: none;
+//     box-shadow: none;
+//     border-radius: 7px;
+//     background-color: rgba(255,255,255, 0.1);
+// }
+//
+// button:hover {
+//     background-color: rgba(255,255,255, 0.2);
+// }
+//
+// button:active {
+//     background-color: rgba(255,255,255, 0.3);
+// }
 
 .notification > * {
     margin: 8px;
@@ -60,11 +51,6 @@ button:active {
 
 .notification .description {
     color: rgba(255, 255, 255, 0.7);
-}
-
-.list {
-    margin: 8px;
-    min-width: 380px;
 }
 
 .action-button {

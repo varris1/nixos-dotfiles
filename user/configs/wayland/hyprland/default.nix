@@ -188,8 +188,7 @@ in {
       bind = , XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 10 --get-volume > ${wobsock}
       bind = , XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 10 --get-volume > ${wobsock}
 
-      bind = SHIFT CTRL, Space, exec, ${pkgs.mako}/bin/makoctl dismiss
-      bind = CTRL, grave, exec, ${pkgs.mako}/bin/makoctl restore
+      bind = CTRL, grave, exec, ags toggle-window notification-center
       bind = ${modKey} SHIFT, O, exec, ${killprocess}/bin/killprocess.sh
       bind = ${modKey} SHIFT, P, exec, ${passmenu}/bin/passmenu.sh
 
@@ -211,6 +210,9 @@ in {
       layerrule = blur, gtk-layer-shell
       layerrule = blur, bar-0
       layerrule = blur, bar-1
+
+      layerrule = blur, notificationPopupWindow
+      layerrule = ignorezero, notificationPopupWindow
 
 
       windowrulev2 = fullscreen, class:^(hl2_linux)$

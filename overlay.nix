@@ -25,5 +25,6 @@
       version = "1";
       src = inputs.nvim-hmts;
     };
+
   };
 }

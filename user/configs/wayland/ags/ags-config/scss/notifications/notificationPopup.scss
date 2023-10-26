@@ -1,0 +1,48 @@
+// #notificationPopupWindow {
+//     background-color: transparent;
+// }
+#notificationPopupWindow {
+    background-color: transparent;
+}
+
+#notificationPopupWindow * {
+    outline: none;
+}
+
+.notificationPopupList {
+    margin: 8px;
+    min-width: 400px;
+}
+
+#notificationPopupWindow .notification > * {
+    box-shadow: 0 0 4px 0 rgba(102, 92, 84, 1);
+}
+
+.notification > * {
+    margin: 8px;
+    padding: 8px;
+    border-radius: 15px;
+    background-color: $bg;
+}
+
+.notification .icon {
+    border-radius: 7px;
+    margin-right: 8px;
+}
+
+.notification .close-button {
+    padding: 0;
+    margin: 0;
+    min-height: 1.4em;
+    min-width: 1.4em;
+    border-radius: 1em;
+}
+
+.notification .title {
+    font-size: 1.1em;
+    color: white;
+}
+
+.notification .description {
+    color: rgba(255, 255, 255, 0.7);
+}

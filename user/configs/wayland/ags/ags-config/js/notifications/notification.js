@@ -19,9 +19,10 @@ const NotificationIcon = ({ appEntry, appIcon, image }) => {
     }
 
     let icon = 'dialog-information-symbolic';
-    if (lookUpIcon(appIcon))
+    
+    if(lookUpIcon(appIcon))
         icon = appIcon;
-
+    
     if (lookUpIcon(appEntry))
         icon = appEntry;
 

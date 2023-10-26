@@ -11,7 +11,8 @@ import Clock from './widgets/clock.js';
 
 const Left = monitor => Box({
     children: [
-        Workspaces(monitor), WindowTitle(),
+        Workspaces(monitor), 
+        WindowTitle(),
     ],
 });
 

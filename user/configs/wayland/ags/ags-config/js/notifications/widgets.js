@@ -58,11 +58,3 @@ export const ClearButton = () => Widget.Button({
         ],
     }),
 });
-
-export const PopupList = () => Widget.Box({
-    className: 'list',
-    style: 'padding: 1px;', // so it shows up
-    vertical: true,
-    binds: [['children', Notifications, 'popups',
-        popups => popups.map(Notification)]],
-});

@@ -38,7 +38,6 @@
     gnome.gvfs
     gnome.seahorse
     gnome.simple-scan
-    heroic
     imv
     jq
     libsForQt5.ark
@@ -61,7 +60,6 @@
     qt5ct
     ranger
     samba
-    sc-im
     signal-desktop
     sshfs
     steam-run

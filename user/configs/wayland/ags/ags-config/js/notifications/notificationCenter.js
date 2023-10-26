@@ -1,5 +1,5 @@
 import {
-    NotificationList, ClearButton, PopupList
+    NotificationList, ClearButton
 } from './widgets.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import App from 'resource:///com/github/Aylur/ags/app.js';
@@ -16,6 +16,7 @@ export const NotificationCenter = () => Widget.Window({
     name: 'notification-center',
     anchor: [ 'right', 'top', 'bottom'],
     popup: true,
+    visible: false,
     focusable: true,
     child: Widget.Box({
         children: [
@@ -35,8 +36,4 @@ export const NotificationCenter = () => Widget.Window({
     }),
 });
 
-export const NotificationsPopupWindow = () => Widget.Window({
-    name: 'popup-window',
-    anchor: ['right', 'top'],
-    child: PopupList(),
-});
+

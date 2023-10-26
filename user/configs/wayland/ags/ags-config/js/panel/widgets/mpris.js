@@ -20,6 +20,9 @@ export default player => Button({
                     [Mpris, statusIcon => {
                         const mpris = Mpris.getPlayer(player);
 
+                        if(!mpris)
+                            return;
+
                         switch (mpris.playBackStatus) {
                             case "Playing":
                                 statusIcon.shown = 'playing';

@@ -57,7 +57,7 @@
       visualizer_output_name = "my_fifo";
       visualizer_in_stereo = true;
       visualizer_type = "spectrum";
-      visualizer_look = "+│";
+      visualizer_look = "▮●";
 
       mouse_support = false;
 

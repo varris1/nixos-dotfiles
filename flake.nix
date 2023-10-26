@@ -85,7 +85,6 @@
         allowUnfree = true;
         allowUnsupportedSystem = true;
         permittedInsecurePackages = [
-            "libxls-1.6.2"
         ];
       };
 
