@@ -32,11 +32,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1699366404,
-        "narHash": "sha256-sxkFZK8coUQKWKIPbCbFoDFg4dUes39xzKafa3DYH8w=",
+        "lastModified": 1699446102,
+        "narHash": "sha256-GEsE5BleGWs4AswXs8felNfHHZ73iB+x3isyopXYiVU=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "23504b430452563bda007480f44c9c44dba8a5a1",
+        "rev": "b67aa4caf8ff5f8630b35dc012c1e80ae77bcdd2",
         "type": "github"
       },
       "original": {
@@ -143,11 +143,11 @@
     "gruvbox-plus-icon-pack": {
       "flake": false,
       "locked": {
-        "lastModified": 1699354855,
-        "narHash": "sha256-eQARHyAeB6DGfnSyFg4G3WkomdP1xvD6BLgm39roOcs=",
+        "lastModified": 1699440858,
+        "narHash": "sha256-R20Ng3qEx6UXz1JxYix8euluKJ42Lb0s+sPZ9llW6DI=",
         "owner": "SylEleuth",
         "repo": "gruvbox-plus-icon-pack",
-        "rev": "1f2d1a06a0f0547df9f20ae0ab0883b94afb62f8",
+        "rev": "e68e274fe57a198f4b4f505ac0462fcac4739374",
         "type": "github"
       },
       "original": {
@@ -164,12 +164,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1699345318,
-        "narHash": "sha256-JxMtX7/2PdxSUXu38S8ACH71TcZULiztlkv+elEq7og=",
-        "rev": "76e7c05f7d3d5ffac219450af824043da52af1cc",
-        "revCount": 3098,
+        "lastModified": 1699368917,
+        "narHash": "sha256-nUtGIWf86BOkUbtksWtfglvCZ/otP0FTZlQH8Rzc7PA=",
+        "rev": "6a8444467c83c961e2f5ff64fb4f422e303c98d3",
+        "revCount": 3099,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3098%2Brev-76e7c05f7d3d5ffac219450af824043da52af1cc/018ba8e1-0330-7cb1-8d95-1f297d18453c/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3099%2Brev-6a8444467c83c961e2f5ff64fb4f422e303c98d3/018baa48-c2e1-7f9f-b4da-9d9cfe4a3b4c/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -207,11 +207,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1699391198,
-        "narHash": "sha256-HrnlCdZBqqE37gFORapfSGEGcqhCyhX2aSMRnDEmR0k=",
+        "lastModified": 1699447387,
+        "narHash": "sha256-757r6PbNsKNqP68renCiz9kNpnBeCRUdje98duGrQKA=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "751d2851cc270c3322ffe2eb83c156e4298a0c0e",
+        "rev": "c619e6976f8d7f9637b4bee098159935412c2e99",
         "type": "github"
       },
       "original": {
