@@ -5,7 +5,7 @@ import { Notification } from './notification.js';
 
 const PopupList = () => Box({
     className: 'notificationPopupList',
-    style: 'padding: 1px;', // so it shows up
+    css: 'padding: 1px;', // so it shows up
     vertical: true,
     binds: [['children', Notifications, 'popups',
         popups => popups.map(Notification)]],

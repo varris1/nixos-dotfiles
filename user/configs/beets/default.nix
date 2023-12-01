@@ -1,6 +1,6 @@
 {
   programs.beets = {
-    enable = true;
+    enable = true; #until fixed
 
     settings = {
       plugins = "duplicates ftintitle fetchart embedart chroma edit replaygain badfiles fish";

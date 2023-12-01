@@ -24,7 +24,7 @@ const Center = () => Box({
 });
 
 const Right = () => Box({
-    halign: 'end',
+    hpack: 'end',
     children: [
         SysTray(), 
         Clock(),
@@ -33,7 +33,7 @@ const Right = () => Box({
 
 export default monitor => Window({
     name: `bar-${monitor}`,
-    exclusive: true,
+    exclusivity: "exclusive",
     className: 'bar',
     monitor,
     anchor: ['top', 'left', 'right'],

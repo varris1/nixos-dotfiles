@@ -13,12 +13,12 @@ from './js/utils.js';
 
 Notifications.clear();
 
-const scss = App.configDir + '/style.scss';
-const css = '/tmp/style-ags.css';
-exec(`sassc ${scss} ${css}`);
+const styleScss = App.configDir + '/style.scss';
+const styleCss = '/tmp/style-ags.css';
+exec(`sassc ${styleScss} ${styleCss}`);
 
 export default {
-    style: css,
+    style: styleCss,
     windows: [
         forMonitors(Panel),
         NotificationsPopupWindow(),

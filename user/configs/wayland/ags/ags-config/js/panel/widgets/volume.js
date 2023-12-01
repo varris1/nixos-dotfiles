@@ -11,7 +11,6 @@ export default () => Button({
             Stack({
                 items: [
                     // tuples of [string, Widget]
-                    ['101', Icon('audio-volume-overamplified-symbolic')],
                     ['67', Icon('audio-volume-high-symbolic')],
                     ['34', Icon('audio-volume-medium-symbolic')],
                     ['1', Icon('audio-volume-low-symbolic')],

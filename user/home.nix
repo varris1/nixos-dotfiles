@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  system,
   ...
 }: {
   imports = [
@@ -25,11 +26,11 @@
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
     appimage-run
+    armcord
     bc
     bottles
     bottom
     calcurse
-    discord
     electron
     gamescope_git
     gimp
@@ -69,18 +70,15 @@
     twemoji-color-font
     vimv
     vulkan-tools
-    vulkan-validation-layers
     xdg-utils
-    xivlauncher
+    wqy_zenhei #fix for missing non-ascii fonts in TF2
   ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
     GTK_THEME = "${builtins.toString config.gtk.theme.name}";
-    MESA_DISK_CACHE_SINGLE_FILE = "1";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
-    RADV_PERFTEST = "gpl";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
     XDG_SCREENSHOTS_DIR = "~/Screenshots";
   };

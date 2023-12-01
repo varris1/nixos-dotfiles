@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     gruvbox-kvantum = {
       url = "github:thefallnn/Gruvbox-Kvantum";
       flake = false;
@@ -63,11 +68,6 @@
       url = "github:SylEleuth/gruvbox-plus-icon-pack";
       flake = false;
     };
-
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -90,10 +90,6 @@
 
       overlays = [
         self.overlays.default
-        inputs.chaotic-nyx.overlays.default
-        inputs.hyprland-contrib.overlays.default
-        inputs.hyprpicker.overlays.default
-        inputs.nixd.overlays.default
       ];
     };
   in {
@@ -113,12 +109,14 @@
             home-manager = {
               useUserPackages = true;
               users.manuel = import ./user/home.nix;
-              extraSpecialArgs = {inherit inputs;};
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit system;
+              };
               useGlobalPkgs = true;
             };
           }
           inputs.chaotic-nyx.nixosModules.default
-          inputs.hyprland.nixosModules.default
         ];
       };
   };

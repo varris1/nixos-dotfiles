@@ -53,6 +53,8 @@
     enable = true;
 
     settings = {
+      lyrics_fetchers = "musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet";
+
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "my_fifo";
       visualizer_in_stereo = true;

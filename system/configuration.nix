@@ -34,11 +34,10 @@
       };
 
       systemd-boot = {
-          enable = true;
-          configurationLimit = 5;
-          consoleMode = "max";
+        enable = true;
+        configurationLimit = 10;
+        consoleMode = "max";
       };
-
     };
   };
 

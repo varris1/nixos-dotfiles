@@ -57,7 +57,6 @@
       e = "nvim";
       ls = "${pkgs.eza}/bin/eza --icons";
       ll = "${pkgs.eza}/bin/eza --icons -l";
-      nf = "${pkgs.fastfetch}/bin/fastfetch";
       r = "${pkgs.ranger}/bin/ranger";
     };
   };

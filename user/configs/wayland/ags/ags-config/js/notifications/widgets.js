@@ -18,7 +18,7 @@ const Placeholder = () => Widget.Box({
     className: 'placeholder',
     vertical: true,
     vexpand: true,
-    valign: 'center',
+    vpack: 'center',
     children: [
         Widget.Icon('notifications-disabled-symbolic'),
         Widget.Label('Your inbox is empty'),
