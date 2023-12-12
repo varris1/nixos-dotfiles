@@ -99,10 +99,10 @@ in {
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
         "ags -q; ags"
-        "pkill swww; sleep 2 && ${pkgs.swww}/bin/swww init && ${pkgs.swww}/bin/swww img $(cat ~/.cache/swww/wallpaper.txt)"
+        "pkill swww-daemon && sleep 2 && ${pkgs.swww}/bin/swww-daemon && ${pkgs.swww}/bin/swww img ~/.cache/swww/wallpaper"
 
         #Set cursor
-        "${pkgs.hyprland}/bin/hyprctl setcursor ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null"
+        "${pkgs.hyprland}/bin/hyprctl setcursor '${config.gtk.cursorTheme.name}' ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null"
       ];
 
       env = [

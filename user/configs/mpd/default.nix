@@ -1,4 +1,8 @@
 {
+  imports = [ 
+    ../../modules/mpd-notification
+  ];
+
   services.mpd = {
     enable = true;
     musicDirectory = "/mnt/hdd/Music";
@@ -85,9 +89,18 @@
     };
   };
 
-  services.mpdris2 = {
+  # services.mpdris2 = {
+  #   enable = true;
+  #   notifications = true;
+  #   multimediaKeys = false;
+  # };
+
+  services.mpd-mpris = {
+      enable = true;
+      mpd.useLocal = true;
+  };
+
+  services.mpd-notification = {
     enable = true;
-    notifications = true;
-    multimediaKeys = false;
   };
 }

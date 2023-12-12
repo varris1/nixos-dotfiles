@@ -1,5 +1,6 @@
 import { Box, Button, Icon, Label, Stack } from 'resource:///com/github/Aylur/ags/widget.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
+import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 
 export default () => Button({
     className: 'volume',

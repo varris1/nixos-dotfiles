@@ -21,7 +21,6 @@
     kernelModules = ["i2c-dev" "i2c-piix4"];
     kernelParams = [
       "amdgpu.ppfeaturemask=0xffffffff"
-      "net.ifnames=0"
       "amd_pstate.shared_mem=1"
       "amd_pstate=active"
       # "video=DP-1:2560x1440@144"
@@ -45,8 +44,8 @@
 
   networking = {
     hostName = "terra"; # Define your hostname.
-    dhcpcd.enable = true;
     firewall.enable = false;
+    useNetworkd = true;
     extraHosts = ''
       192.168.0.18 steam.deck
       127.0.0.1 modules-cdn.eac-prod.on.epicgames.com
@@ -130,17 +129,27 @@
     ];
   };
 
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
+  systemd = {
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
 
-  systemd.user.extraConfig = ''
-    # needed for xdg-open to find the default browser. Why the fuck do I even need to do that?
-    DefaultEnvironment="PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
+    user.extraConfig = ''
+      # needed for xdg-open to find the default browser. Why the fuck do I even need to do that?
+      DefaultEnvironment="PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
 
-    #Systemd is a meme. This is the proof
-    DefaultTimeoutStopSec=10s
-  '';
+      #Systemd is a meme. This is the proof
+      DefaultTimeoutStopSec=10s
+    '';
+
+    network = {
+      enable = true;
+    };
+
+    services = {
+      systemd-networkd-wait-online.enable = lib.mkForce false;
+    };
+  };
 
   nix = {
     extraOptions = ''

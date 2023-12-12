@@ -12,7 +12,6 @@ vim.o.clipboard = "unnamedplus"
 vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.lazyredraw = true
 vim.o.wrap = false
 vim.o.scrolloff = 8
 

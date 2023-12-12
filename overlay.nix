@@ -10,6 +10,22 @@
       fonts = ["JetBrainsMono"];
     };
 
+    # mygui = prev.mygui.overrideAttrs (old: {
+    #   version = "3.4.3";
+    #   src = inputs.mygui-git;
+    #   patches = [];
+    # });
+    #
+    # openmw = prev.openmw.overrideAttrs (old: {
+    #   version = "9999";
+    #   src = inputs.openmw-git;
+    #
+    #   buildInputs = old.buildInputs ++ [prev.libyamlcpp prev.luajit prev.collada-dom];
+    #
+    #   patches = [];
+    #   dontWrapQtApps = false;
+    # });
+
     steam = prev.steam.override {
       extraPkgs = prev: [
         prev.libkrb5
@@ -17,7 +33,10 @@
         prev.gnome.zenity
         prev.xdg-user-dirs
       ];
-      extraLibraries = prev: [];
+      extraLibraries = prev: [
+        prev.gperftools
+        prev.mpg123
+      ];
     };
 
     nvim-hmts = prev.vimUtils.buildVimPlugin {

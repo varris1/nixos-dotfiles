@@ -54,6 +54,7 @@
       '';
     };
     shellAliases = {
+      nf = "${pkgs.neofetch}/bin/neofetch";
       e = "nvim";
       ls = "${pkgs.eza}/bin/eza --icons";
       ll = "${pkgs.eza}/bin/eza --icons -l";

@@ -20,6 +20,8 @@
       smart-splits-nvim
       vim-easy-align
       mini-nvim
+      nui-nvim
+      noice-nvim
 
       vim-fugitive
 
