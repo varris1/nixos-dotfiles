@@ -10,22 +10,6 @@
       fonts = ["JetBrainsMono"];
     };
 
-    # mygui = prev.mygui.overrideAttrs (old: {
-    #   version = "3.4.3";
-    #   src = inputs.mygui-git;
-    #   patches = [];
-    # });
-    #
-    # openmw = prev.openmw.overrideAttrs (old: {
-    #   version = "9999";
-    #   src = inputs.openmw-git;
-    #
-    #   buildInputs = old.buildInputs ++ [prev.libyamlcpp prev.luajit prev.collada-dom];
-    #
-    #   patches = [];
-    #   dontWrapQtApps = false;
-    # });
-
     kitty = prev.kitty.overrideAttrs (old: {
       patches = [./pkgs/kitty/0011-fix-test_fish_integration.patch];
     });
@@ -41,12 +25,6 @@
         prev.gperftools
         prev.mpg123
       ];
-    };
-
-    nvim-hmts = prev.vimUtils.buildVimPlugin {
-      pname = "nvim-hmts";
-      version = "1";
-      src = inputs.nvim-hmts;
     };
   };
 }

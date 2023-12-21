@@ -4,24 +4,25 @@
 
     plugins = with pkgs.vimPlugins; [
       bufferline-nvim
-      gruvbox-nvim
       comment-nvim
       dressing-nvim
+      gruvbox-nvim
+      hmts-nvim
       indent-blankline-nvim
       lualine-nvim
       luasnip
+      mini-nvim
       neo-tree-nvim
+      noice-nvim
+      nui-nvim
       nvim-autopairs
       nvim-colorizer-lua
       nvim-notify
       nvim-surround
       nvim-web-devicons
-      which-key-nvim
       smart-splits-nvim
       vim-easy-align
-      mini-nvim
-      nui-nvim
-      noice-nvim
+      which-key-nvim
 
       vim-fugitive
 
@@ -46,23 +47,19 @@
       lspkind-nvim
     ];
 
-    extraPackages = with pkgs;
-      [
-        nodePackages.bash-language-server
-        clang-tools
-        lua-language-server
-        python3Packages.jedi-language-server
-        nixpkgs-fmt
-        nixd
-        rust-analyzer
-        stylua
-        nodePackages.typescript-language-server
-        nodePackages.vscode-css-languageserver-bin
-        zls
-      ]
-      ++ [
-        pkgs.nvim-hmts
-      ];
+    extraPackages = with pkgs; [
+      nodePackages.bash-language-server
+      clang-tools
+      lua-language-server
+      python3Packages.jedi-language-server
+      nixpkgs-fmt
+      nixd
+      rust-analyzer
+      stylua
+      nodePackages.typescript-language-server
+      nodePackages.vscode-css-languageserver-bin
+      zls
+    ];
   };
 
   xdg.configFile.nvim = {

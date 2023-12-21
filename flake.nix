@@ -3,51 +3,33 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
 
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+
     ags.url = "github:Aylur/ags";
 
-    gruvbox-kvantum = {
-      url = "github:thefallnn/Gruvbox-Kvantum";
-      flake = false;
-    };
+    gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
+    gruvbox-kvantum.flake = false;
 
-    fish-plugin-bobthefish = {
-      url = "github:oh-my-fish/theme-bobthefish";
-      flake = false;
-    };
+    fish-plugin-bobthefish.url = "github:oh-my-fish/theme-bobthefish";
+    fish-plugin-bobthefish.flake = false;
 
-    fish-plugin-gruvbox-theme = {
-      url = "github:Jomik/fish-gruvbox";
-      flake = false;
-    };
+    fish-plugin-gruvbox-theme.url = "github:Jomik/fish-gruvbox";
+    fish-plugin-gruvbox-theme.flake = false;
 
-    nvim-hmts = {
-      url = "github:calops/hmts.nvim";
-      flake = false;
-    };
-
-    gruvbox-plus-icon-pack = {
-      url = "github:SylEleuth/gruvbox-plus-icon-pack";
-      flake = false;
-    };
-
-    openmw-git = {
-      url = "gitlab:OpenMW/openmw";
-      flake = false;
-    };
-
-    mygui-git = {
-      url = "github:mygui/MyGUI/dae9ac4be5a09e672bec509b1a8552b107c40214";
-      flake = false;
-    };
+    gruvbox-plus-icon-pack.url = "github:SylEleuth/gruvbox-plus-icon-pack";
+    gruvbox-plus-icon-pack.flake = false;
   };
 
   outputs = {
