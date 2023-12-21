@@ -8,7 +8,6 @@
   imports = [
     ./settings.nix
     ../ags
-    ../foot
     ../wob
   ];
 

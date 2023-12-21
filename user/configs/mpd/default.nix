@@ -1,5 +1,5 @@
 {
-  imports = [ 
+  imports = [
     ../../modules/mpd-notification
   ];
 
@@ -96,8 +96,8 @@
   # };
 
   services.mpd-mpris = {
-      enable = true;
-      mpd.useLocal = true;
+    enable = true;
+    mpd.useLocal = true;
   };
 
   services.mpd-notification = {

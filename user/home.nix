@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   system,
   ...
@@ -8,17 +9,18 @@
   imports = [
     ./configs/beets
     ./configs/cava
-    ./configs/wayland/hyprland
-    ./configs/rofi
+    ./configs/dircolors.nix
+    ./configs/firefox
     ./configs/fish
+    ./configs/kitty
+    ./configs/kvantum
     ./configs/mpd
     ./configs/mpv
     ./configs/neovim
-    ./configs/firefox
-    ./configs/dircolors.nix
-    ./configs/xdg-mime.nix
-    ./configs/kvantum
+    ./configs/rofi
     ./configs/tmux
+    ./configs/wayland/hyprland
+    ./configs/xdg-mime.nix
     inputs.nix-index-database.hmModules.nix-index
   ];
 
@@ -70,8 +72,8 @@
     twemoji-color-font
     vimv
     vulkan-tools
-    xdg-utils
     wqy_zenhei #fix for missing non-ascii fonts in TF2
+    xdg-utils
   ];
 
   home.sessionVariables = {
@@ -96,7 +98,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "qt";
   };
 
   services.udiskie.enable = true;
@@ -164,7 +166,7 @@
     };
   };
 
-  services.gnome-keyring.enable = true;
+  # services.gnome-keyring.enable = true;
 
   services.easyeffects = {
     enable = true;

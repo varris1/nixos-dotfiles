@@ -41,7 +41,7 @@ export default () => Button({
                         if (!Audio.speaker)
                             return;
 
-                        label.label = ` ${Math.floor((Audio.speaker.volume * 100) / 10) * 10}%`; // round down to nearest 10
+                        label.label = ` ${Math.floor((Audio.speaker.volume * 100) / 5) * 5}%`; // round down to nearest 5
                     }, 'speaker-changed']
                 ],
             }),

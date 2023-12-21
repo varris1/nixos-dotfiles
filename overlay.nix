@@ -26,6 +26,10 @@
     #   dontWrapQtApps = false;
     # });
 
+    kitty = prev.kitty.overrideAttrs (old: {
+      patches = [./pkgs/kitty/0011-fix-test_fish_integration.patch];
+    });
+
     steam = prev.steam.override {
       extraPkgs = prev: [
         prev.libkrb5

@@ -91,7 +91,6 @@ in {
 
       exec-once = [
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
-        "${pkgs.blueman}/bin/blueman-applet"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.ydotool}/bin/ydotoold"
       ];
@@ -99,7 +98,7 @@ in {
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
         "ags -q; ags"
-        "pkill swww-daemon && sleep 2 && ${pkgs.swww}/bin/swww-daemon && ${pkgs.swww}/bin/swww img ~/.cache/swww/wallpaper"
+        "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor
         "${pkgs.hyprland}/bin/hyprctl setcursor '${config.gtk.cursorTheme.name}' ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null"
@@ -135,10 +134,10 @@ in {
 
         "${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox"
 
-        "${modKey}, Return, exec, ${pkgs.foot}/bin/foot"
+        "${modKey}, Return, exec, ${pkgs.kitty}/bin/kitty"
 
-        ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 10 --get-volume"
-        ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 10 --get-volume"
+        ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume"
+        ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume"
 
         "CTRL, grave, exec, ags toggle-window notification-center"
 
