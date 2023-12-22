@@ -15,7 +15,6 @@
 
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
 
     ags.url = "github:Aylur/ags";
 

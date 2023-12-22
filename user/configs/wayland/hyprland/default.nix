@@ -8,7 +8,6 @@
   imports = [
     ./settings.nix
     ../ags
-    ../wob
   ];
 
   wayland.windowManager.hyprland = {
@@ -29,5 +28,11 @@
     Exec=swww img "%f" && ln -sf "%f" ~/.cache/swww/wallpaper
   '';
 
-  home.packages = [pkgs.wl-clipboard pkgs.wl-clipboard-x11 pkgs.swww inputs.hyprland-contrib.packages.${system}.hyprprop];
+  home.packages = [
+    inputs.hyprland-contrib.packages.${system}.hyprprop
+    pkgs.hyprpicker
+    pkgs.swww
+    pkgs.wl-clipboard
+    pkgs.wl-clipboard-x11
+  ];
 }
