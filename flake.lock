@@ -28,11 +28,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1703442677,
-        "narHash": "sha256-tGBkhm6OSWMbtP69Xr2Plp4CqbAXPOGjNm3NPIdiSZ8=",
+        "lastModified": 1703505889,
+        "narHash": "sha256-Bos1oQCO8qzYAdlK41WumzEmWdGH7gsIG0DeMv2fehY=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "908c560f28e6dcf8f3d6800f0b656df84a8ac5e1",
+        "rev": "778e166a2a77a42f5f32eff590b0be60f0daf562",
         "type": "github"
       },
       "original": {
@@ -121,11 +121,11 @@
     "gruvbox-plus-icon-pack": {
       "flake": false,
       "locked": {
-        "lastModified": 1703414536,
-        "narHash": "sha256-gZBrcmT/8zKf8A9KTFZtxeX0/v0RTIiC4Dcakm6fUes=",
+        "lastModified": 1703502947,
+        "narHash": "sha256-fSRSTvf0w2A6INvnDOvUDURrw+0AVuPzI7/AxHLaKPg=",
         "owner": "SylEleuth",
         "repo": "gruvbox-plus-icon-pack",
-        "rev": "ad7de5d14a7780d09aa03deff9eb1bdb000dfc80",
+        "rev": "e2ff443038cdeaac8fd14a7276c72606ad378934",
         "type": "github"
       },
       "original": {
