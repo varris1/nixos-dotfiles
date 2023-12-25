@@ -29,6 +29,12 @@
 
     gruvbox-plus-icon-pack.url = "github:SylEleuth/gruvbox-plus-icon-pack";
     gruvbox-plus-icon-pack.flake = false;
+
+    openmw-git.url = "gitlab:OpenMW/openmw";
+    openmw-git.flake = false;
+
+    mygui-git.url = "github:mygui/MyGUI/dae9ac4be5a09e672bec509b1a8552b107c40214";
+    mygui-git.flake = false;
   };
 
   outputs = {

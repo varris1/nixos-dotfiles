@@ -92,6 +92,11 @@
         }
       ];
     };
+
+    pam.services.kwallet = {
+      name = "kwallet";
+      enableKwallet = true;
+    };
   };
 
   users.users.manuel = {

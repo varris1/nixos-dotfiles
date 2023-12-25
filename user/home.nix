@@ -34,6 +34,7 @@
     bottom
     calcurse
     electron
+    filezilla
     gamescope_git
     gimp
     gnome.gnome-boxes
@@ -46,6 +47,7 @@
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
+    libsForQt5.kwallet
     lutris
     mangohud
     mesa-demos

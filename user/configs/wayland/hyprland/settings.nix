@@ -93,6 +93,7 @@ in {
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.ydotool}/bin/ydotoold"
+        "${pkgs.libsForQt5.kwallet}/bin/kwalletd5"
       ];
 
       exec = [

@@ -19,6 +19,7 @@
       nvim-colorizer-lua
       nvim-notify
       nvim-surround
+      nvim-ufo
       nvim-web-devicons
       smart-splits-nvim
       vim-easy-align
