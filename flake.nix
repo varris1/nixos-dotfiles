@@ -18,6 +18,9 @@
 
     ags.url = "github:Aylur/ags";
 
+    eww-systray.url = "github:ralismark/eww/tray-3";
+    eww-systray.inputs.nixpkgs.follows = "nixpkgs";
+
     gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
     gruvbox-kvantum.flake = false;
 

@@ -23,8 +23,6 @@
       "amdgpu.ppfeaturemask=0xffffffff"
       "amd_pstate.shared_mem=1"
       "amd_pstate=active"
-      # "video=DP-1:2560x1440@144"
-      # "video=DP-2:2560x1440@144"
     ];
 
     loader = {
@@ -92,11 +90,6 @@
         }
       ];
     };
-
-    pam.services.kwallet = {
-      name = "kwallet";
-      enableKwallet = true;
-    };
   };
 
   users.users.manuel = {
@@ -126,6 +119,7 @@
       p7zip
       pciutils
       sassc
+      socat
       ripgrep
       unrar
       unzip

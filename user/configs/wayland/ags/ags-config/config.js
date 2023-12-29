@@ -8,7 +8,6 @@ import {
 }
 from './js/utils.js';
 
-
 const styleScss = App.configDir + '/style.scss';
 const styleCss = '/tmp/style-ags.css';
 exec(`sassc ${styleScss} ${styleCss}`);

@@ -10,6 +10,10 @@
       fonts = ["JetBrainsMono"];
     };
 
+    gruvbox-gtk-theme = prev.gruvbox-gtk-theme.overrideAttrs {
+      patches = [./pkgs/gruvbox-gtk-theme/silence-warnings.patch];
+    };
+
     mygui-openmw = prev.mygui.overrideAttrs (old: {
       version = "3.4.3";
       src = inputs.mygui-git;
@@ -39,12 +43,6 @@
         prev.gperftools
         prev.mpg123
       ];
-    };
-
-    nvim-hmts = prev.vimUtils.buildVimPlugin {
-      pname = "nvim-hmts";
-      version = "1";
-      src = inputs.nvim-hmts;
     };
   };
 }

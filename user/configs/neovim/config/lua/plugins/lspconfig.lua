@@ -45,6 +45,6 @@ lspconfig.cssls.setup({
     capabilities = capabilities,
     cmd = { "css-languageserver", "--stdio" },
     settings = {
-        css = { validate = false },
+        css = { validate = true },
     },
 })

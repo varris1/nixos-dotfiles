@@ -14,6 +14,7 @@
     ./configs/fish
     ./configs/kitty
     ./configs/kvantum
+    ./configs/lf
     ./configs/mpd
     ./configs/mpv
     ./configs/neovim
@@ -43,11 +44,11 @@
     gnome.seahorse
     gnome.simple-scan
     imv
+    inputs.eww-systray.packages.${system}.eww-wayland
     jq
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
-    libsForQt5.kwallet
     lutris
     mangohud
     mesa-demos
@@ -63,7 +64,6 @@
     pulsemixer
     qbittorrent
     qt5ct
-    ranger
     samba
     signal-desktop
     sshfs
@@ -168,7 +168,7 @@
     };
   };
 
-  # services.gnome-keyring.enable = true;
+  services.gnome-keyring.enable = true;
 
   services.easyeffects = {
     enable = true;

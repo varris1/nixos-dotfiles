@@ -1,0 +1,99 @@
+From 562a48ed02a252dbbbaad582baf8bd22658e62e2 Mon Sep 17 00:00:00 2001
+From: Daniele Massaro <d.massaro.26@gmail.com>
+Date: Fri, 22 Dec 2023 12:50:56 +0100
+Subject: [PATCH] Fix #43 putting :run argument on same line for gtk-3
+
+The warning comes from :run pseudo-class having its argument placed in
+a newline.
+---
+ themes/Gruvbox-Dark-B-LB/gtk-3.0/gtk.css  | 8 ++------
+ themes/Gruvbox-Dark-B/gtk-3.0/gtk.css     | 8 ++------
+ themes/Gruvbox-Dark-BL-LB/gtk-3.0/gtk.css | 8 ++------
+ themes/Gruvbox-Dark-BL/gtk-3.0/gtk.css    | 8 ++------
+ 4 files changed, 8 insertions(+), 24 deletions(-)
+
+diff --git a/themes/Gruvbox-Dark-B-LB/gtk-3.0/gtk.css b/themes/Gruvbox-Dark-B-LB/gtk-3.0/gtk.css
+index d8cb8872..09fcd78a 100644
+--- a/themes/Gruvbox-Dark-B-LB/gtk-3.0/gtk.css
++++ b/themes/Gruvbox-Dark-B-LB/gtk-3.0/gtk.css
+@@ -6625,14 +6625,10 @@ popover.emoji-completion .emoji:hover {
+ 
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):last-child:dir(
+-    ltr
+-  ):disabled,
++  button:not(.suggested-action):not(.destructive-action):last-child:dir(ltr):disabled,
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):first-child:dir(
+-    rtl
+-  ):disabled {
++  button:not(.suggested-action):not(.destructive-action):first-child:dir(rtl):disabled {
+   color: #89b482;
+   background-color: #282828;
+ }
+diff --git a/themes/Gruvbox-Dark-B/gtk-3.0/gtk.css b/themes/Gruvbox-Dark-B/gtk-3.0/gtk.css
+index e8a9d787..11cd058f 100644
+--- a/themes/Gruvbox-Dark-B/gtk-3.0/gtk.css
++++ b/themes/Gruvbox-Dark-B/gtk-3.0/gtk.css
+@@ -6700,14 +6700,10 @@ popover.emoji-completion .emoji:hover {
+ 
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):last-child:dir(
+-    ltr
+-  ):disabled,
++  button:not(.suggested-action):not(.destructive-action):last-child:dir(ltr):disabled,
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):first-child:dir(
+-    rtl
+-  ):disabled {
++  button:not(.suggested-action):not(.destructive-action):first-child:dir(rtl):disabled {
+   color: #89b482;
+   background-color: #282828;
+ }
+diff --git a/themes/Gruvbox-Dark-BL-LB/gtk-3.0/gtk.css b/themes/Gruvbox-Dark-BL-LB/gtk-3.0/gtk.css
+index 28d74941..18601e37 100644
+--- a/themes/Gruvbox-Dark-BL-LB/gtk-3.0/gtk.css
++++ b/themes/Gruvbox-Dark-BL-LB/gtk-3.0/gtk.css
+@@ -6613,14 +6613,10 @@ popover.emoji-completion .emoji:hover {
+ 
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):last-child:dir(
+-    ltr
+-  ):disabled,
++  button:not(.suggested-action):not(.destructive-action):last-child:dir(ltr):disabled,
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):first-child:dir(
+-    rtl
+-  ):disabled {
++  button:not(.suggested-action):not(.destructive-action):first-child:dir(rtl):disabled {
+   color: #89b482;
+   background-color: #282828;
+ }
+diff --git a/themes/Gruvbox-Dark-BL/gtk-3.0/gtk.css b/themes/Gruvbox-Dark-BL/gtk-3.0/gtk.css
+index f7251514..ebc91ea9 100644
+--- a/themes/Gruvbox-Dark-BL/gtk-3.0/gtk.css
++++ b/themes/Gruvbox-Dark-BL/gtk-3.0/gtk.css
+@@ -6688,14 +6688,10 @@ popover.emoji-completion .emoji:hover {
+ 
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):last-child:dir(
+-    ltr
+-  ):disabled,
++  button:not(.suggested-action):not(.destructive-action):last-child:dir(ltr):disabled,
+ .path-bar-box
+   .linked.nautilus-path-bar
+-  button:not(.suggested-action):not(.destructive-action):first-child:dir(
+-    rtl
+-  ):disabled {
++  button:not(.suggested-action):not(.destructive-action):first-child:dir(rtl):disabled {
+   color: #89b482;
+   background-color: #282828;
+ }
+

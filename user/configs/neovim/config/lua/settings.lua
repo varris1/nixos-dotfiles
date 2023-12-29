@@ -25,7 +25,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "nix",
+    pattern = "nix,yuck",
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.tabstop = 2

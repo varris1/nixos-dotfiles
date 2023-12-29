@@ -80,12 +80,20 @@ in {
 
       animations = {
         enabled = true;
+        bezier = [
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+        ];
         animation = [
-          "windowsIn, 1, 8, default, slide"
-          "windowsOut, 1, 8, default, slide"
-          "border, 1, 8, default"
-          "fade, 1, 5, default"
-          "workspaces, 1, 4, default"
+          "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 5, winOut, slide"
+          "border, 1, 1, liner"
+          "borderangle, 1, 30, liner, loop"
+          "fade, 1, 10, default"
+          "workspaces, 1, 5, wind"
         ];
       };
 
@@ -93,12 +101,11 @@ in {
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.ydotool}/bin/ydotoold"
-        "${pkgs.libsForQt5.kwallet}/bin/kwalletd5"
       ];
 
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
-        "ags -q; ags"
+        "ags -q; sleep 1; ags"
         "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor
@@ -142,10 +149,10 @@ in {
 
         "CTRL, grave, exec, ags toggle-window notification-center"
 
-        "MOD5, F9, exec, ${pkgs.mpc-cli}/bin/mpc stop"
-        "MOD5, F10, exec, ${pkgs.mpc-cli}/bin/mpc prev"
-        "MOD5, F11, exec, ${pkgs.mpc-cli}/bin/mpc toggle"
-        "MOD5, F12, exec, ${pkgs.mpc-cli}/bin/mpc next"
+        "MOD5, F9, exec, ${pkgs.playerctl}/bin/playerctl stop"
+        "MOD5, F10, exec, ${pkgs.playerctl}/bin/playerctl previous"
+        "MOD5, F11, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+        "MOD5, F12, exec, ${pkgs.playerctl}/bin/playerctl next"
         ", Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy screen"
         "${modKey}, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy active"
         "${modKey} SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast -c --notify copy area"

@@ -54,11 +54,11 @@
       '';
     };
     shellAliases = {
-      nf = "${pkgs.neofetch}/bin/neofetch";
+      nf = "${pkgs.fastfetch}/bin/fastfetch";
       e = "nvim";
       ls = "${pkgs.eza}/bin/eza --icons";
       ll = "${pkgs.eza}/bin/eza --icons -l";
-      r = "${pkgs.ranger}/bin/ranger";
+      r = "${pkgs.lf}/bin/lf";
     };
   };
 }

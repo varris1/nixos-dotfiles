@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
-    ./settings.nix
     ../ags
+    ./settings.nix
   ];
 
   wayland.windowManager.hyprland = {
