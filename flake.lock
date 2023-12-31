@@ -428,11 +428,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1704041052,
-        "narHash": "sha256-5Vq/tu7QGaVZSk1+qC7EWYp7NbFwL8xFt+d/50k5JD4=",
+        "lastModified": 1704050432,
+        "narHash": "sha256-gPHL0esqZX1ziS2DZpG42vp+/os7kliqNDbmBVRY6l0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "cb219cf4a8d325e5033b62d49f199630033daa43",
+        "rev": "e3a2c227b7de1a72acd98028d8c0cb6f3e2cec60",
         "type": "github"
       },
       "original": {
@@ -444,11 +444,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1704042766,
-        "narHash": "sha256-NV6aeHDSbF7pIWsfXHUbnMQVMCLt9qbm03i+9QWs2YU=",
+        "lastModified": 1704043988,
+        "narHash": "sha256-gdifQ7GJ7htdo4l5TwV1rEQL36e0YMeyXPmpQ0undpE=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "31ac99337425ec1885d97daa2328ce8daa67bb7b",
+        "rev": "78459314bf88022ee43f5ff0869a316a15555db1",
         "type": "gitlab"
       },
       "original": {
