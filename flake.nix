@@ -21,6 +21,8 @@
     eww-systray.url = "github:ralismark/eww/tray-3";
     eww-systray.inputs.nixpkgs.follows = "nixpkgs";
 
+    nur.url = "github:nix-community/NUR";
+
     gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
     gruvbox-kvantum.flake = false;
 
@@ -87,6 +89,7 @@
             };
           }
           inputs.chaotic-nyx.nixosModules.default
+          inputs.nur.nixosModules.nur
         ];
       };
   };

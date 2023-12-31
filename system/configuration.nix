@@ -13,7 +13,7 @@
   ];
 
   boot = {
-    tmp.useTmpfs = true;
+    tmp.cleanOnBoot = true;
 
     kernel.sysctl."vm.max_map_count" = 16777216; #Star Citizen crash fix
 

@@ -39,7 +39,7 @@
       '';
 
       nor = ''
-        pushd . &> /dev/null
+        pushd $PWD &> /dev/null
         cd "${config.home.homeDirectory}/.dotfiles"
         doas nixos-rebuild switch --flake .#
         popd &> /dev/null

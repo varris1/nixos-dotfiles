@@ -105,7 +105,7 @@ in {
 
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
-        "ags -q; sleep 1; ags"
+        "eww kill; sleep 1; eww open-many bar0 bar1"
         "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor

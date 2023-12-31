@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ../ags
     ./settings.nix
   ];
 

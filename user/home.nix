@@ -23,6 +23,7 @@
     ./configs/wayland/hyprland
     ./configs/xdg-mime.nix
     inputs.nix-index-database.hmModules.nix-index
+    inputs.nur.hmModules.nur
   ];
 
   home.username = "manuel";
@@ -36,7 +37,6 @@
     calcurse
     electron
     filezilla
-    gamescope_git
     gimp
     gnome.gnome-boxes
     gnome.gnome-settings-daemon
