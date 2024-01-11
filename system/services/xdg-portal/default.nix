@@ -2,7 +2,7 @@
   xdg.portal = {
     enable = true;
     config.common.default = "*";
-    xdgOpenUsePortal = true;
+    xdgOpenUsePortal = false;
     wlr.enable = false; #conflict with XDPH if enabled
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };

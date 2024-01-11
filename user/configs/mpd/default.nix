@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../../modules/mpd-notification
   ];
@@ -103,4 +103,6 @@
   services.mpd-notification = {
     enable = true;
   };
+
+  home.packages = [pkgs.mpc-cli];
 }

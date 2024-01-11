@@ -16,8 +16,6 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
-    ags.url = "github:Aylur/ags";
-
     eww-systray.url = "github:ralismark/eww/tray-3";
     eww-systray.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -40,6 +38,9 @@
 
     mygui-git.url = "github:mygui/MyGUI/dae9ac4be5a09e672bec509b1a8552b107c40214";
     mygui-git.flake = false;
+
+    nvim-presence.url = "github:andweeb/presence.nvim";
+    nvim-presence.flake = false;
   };
 
   outputs = {
@@ -68,29 +69,25 @@
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     overlays = import ./overlay.nix {inherit inputs;};
 
-    nixosConfigurations.terra =
-      nixpkgs.lib.nixosSystem
-      {
-        inherit system;
-        inherit pkgs;
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./system/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              users.manuel = import ./user/home.nix;
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit system;
-              };
-              useGlobalPkgs = true;
-            };
-          }
-          inputs.chaotic-nyx.nixosModules.default
-          inputs.nur.nixosModules.nur
-        ];
-      };
+    nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
+      inherit system;
+      inherit pkgs;
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./system/configuration.nix
+        inputs.chaotic-nyx.nixosModules.default
+        inputs.nur.nixosModules.nur
+      ];
+    };
+
+    homeConfigurations.manuel = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {inherit inputs;};
+      modules = [
+        ./user/home.nix
+        inputs.nix-index-database.hmModules.nix-index
+        inputs.nur.hmModules.nur
+      ];
+    };
   };
 }

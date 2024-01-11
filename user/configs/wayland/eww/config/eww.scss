@@ -1,0 +1,111 @@
+$bg: rgb(40,40,40);
+$fg: rgb(235,219,178);
+
+$widgetbg: rgb(80, 73, 69);
+$border: rgb(102, 92, 84);
+
+$wsfg: rgb(235,219,178);
+$wsbg: rgb(60,56,54);
+$activewsbg: rgb(102,92,84);
+
+$border_radius: 6px;
+
+* {
+    all: unset;
+}
+
+.panel {
+    background: rgba($bg, 0.8);
+    color: $fg;
+    font-size: 14px;
+
+    border-radius: 0 0 $border-radius $border-radius;
+    border-bottom: 4px solid $border;
+    border-right: 4px solid $border;
+    border-left: 4px solid $border;
+
+    @mixin widget {
+        font-size: 12px;
+
+        background-color: $widgetbg;
+
+        margin-top: 0.25em;
+        margin-bottom: 0.25em;
+        margin-left: 0.8em;
+        margin-right: 0.8em;
+
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+
+        border-radius: $border-radius;
+    }
+
+    .widget-workspace {
+        @include widget;
+        padding: 0;
+
+        .workspace {
+            font-size: 14px;
+        }
+
+        .workspace-button {
+            padding: 0 1em 0 1em;
+
+            :first-child {
+                border-radius: $border-radius 0 0 $border-radius;
+            }
+
+            :last-child {
+                border-radius: 0 $border-radius $border-radius 0;
+            }
+        }
+
+        .workspace-active {
+            background: $fg;
+            color: $bg;
+            border-radius: $border-radius;
+        }
+    }
+
+    .widget-activewindow {
+        font-size: 12px;
+        margin: 0 0 0 1em;
+    }
+
+    .widget-systray {
+        @include widget;
+
+        menu, menu menu {
+            font-size: 14px;
+            border-radius: $border-radius;
+
+            background: $widgetbg;
+            color: $fg;
+            border: 1px solid $border;
+
+            padding: 0.3em;
+
+            :hover {
+                background: $fg;
+                color: $widgetbg;
+            }
+
+            >separator {
+                border-top: 1px solid;
+                margin: 0.5em 0 0.5em 0;
+                padding: 0;
+            }
+        }
+    }
+
+    .widget-music {
+        @include widget;
+    }
+
+    .widget-time {
+        @include widget;
+        font-size: 14px;
+    }
+
+}
+

@@ -39,18 +39,16 @@
       '';
 
       nor = ''
-        pushd $PWD &> /dev/null
-        cd "${config.home.homeDirectory}/.dotfiles"
-        doas nixos-rebuild switch --flake .#
-        popd &> /dev/null
+        doas nixos-rebuild switch --flake ${config.home.homeDirectory}/.dotfiles
+      '';
+
+      hms = ''
+        home-manager switch --flake ${config.home.homeDirectory}/.dotfiles
       '';
 
       nou = ''
-        pushd . &> /dev/null
-        cd "${config.home.homeDirectory}/.dotfiles"
-        nix flake update --commit-lock-file
-        doas nixos-rebuild switch --upgrade --flake .#
-        popd &> /dev/null
+        nix flake update ${config.home.homeDirectory}/.dotfiles --commit-lock-file
+        doas nixos-rebuild switch --upgrade --flake ${config.home.homeDirectory}/.dotfiles
       '';
     };
     shellAliases = {

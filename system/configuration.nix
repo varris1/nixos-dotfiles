@@ -124,6 +124,7 @@
       unrar
       unzip
       usbutils
+      wget
       ydotool
     ];
   };
@@ -134,8 +135,8 @@
     '';
 
     user.extraConfig = ''
-      # needed for xdg-open to find the default browser. Why the fuck do I even need to do that?
-      DefaultEnvironment="PATH=/etc/profiles/per-user/manuel/bin:/run/current/system/sw/bin"
+      # # needed for xdg-open to find the default browser. Why the fuck do I even need to do that?
+      # DefaultEnvironment="PATH=/etc/profiles/per-user/$USER/bin:/run/current/system/sw/bin"
 
       #Systemd is a meme. This is the proof
       DefaultTimeoutStopSec=10s

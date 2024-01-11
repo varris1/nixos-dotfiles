@@ -2,16 +2,17 @@
   config,
   pkgs,
   inputs,
-  system,
   ...
 }: {
   imports = [
+    ../eww
+    ../mako
     ./settings.nix
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   home.file.".local/share/kservices5/swww.desktop".text = ''
@@ -28,7 +29,7 @@
   '';
 
   home.packages = [
-    inputs.hyprland-contrib.packages.${system}.hyprprop
+    inputs.hyprland-contrib.packages.${pkgs.system}.hyprprop
     pkgs.hyprpicker
     pkgs.swww
     pkgs.wl-clipboard

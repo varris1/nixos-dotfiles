@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
 
     plugins = with pkgs.vimPlugins; [
       bufferline-nvim
@@ -24,6 +25,7 @@
       smart-splits-nvim
       vim-easy-align
       which-key-nvim
+      presence-nvim
 
       vim-fugitive
 

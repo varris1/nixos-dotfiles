@@ -1,6 +1,9 @@
 {inputs, ...}: {
   default = final: prev: {
-    gruvbox-plus-icon-pack = final.callPackage ./pkgs/gruvbox-plus-icon-pack {inherit inputs;};
+    gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack {inherit inputs;};
+    eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow {};
+    eww-hyprland-workspaces = prev.callPackage ./pkgs/eww-hyprland-workspaces {};
+    bitwarden-rofi = prev.callPackage ./pkgs/bitwarden-rofi { rofi = prev.rofi-wayland; };
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
@@ -44,5 +47,14 @@
         prev.mpg123
       ];
     };
+
+    vimPlugins =
+      prev.vimPlugins
+      // {
+        presence-nvim = prev.vimUtils.buildVimPlugin {
+          name = "presence";
+          src = inputs.nvim-presence;
+        };
+      };
   };
 }

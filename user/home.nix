@@ -3,7 +3,6 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }: {
   imports = [
@@ -22,21 +21,22 @@
     ./configs/tmux
     ./configs/wayland/hyprland
     ./configs/xdg-mime.nix
-    inputs.nix-index-database.hmModules.nix-index
-    inputs.nur.hmModules.nur
   ];
 
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
+    bitwarden-rofi
     appimage-run
     armcord
     bc
+    bitwarden
     bottles
     bottom
     calcurse
     electron
     filezilla
+    floorp
     gimp
     gnome.gnome-boxes
     gnome.gnome-settings-daemon
@@ -44,7 +44,6 @@
     gnome.seahorse
     gnome.simple-scan
     imv
-    inputs.eww-systray.packages.${system}.eww-wayland
     jq
     libsForQt5.ark
     libsForQt5.dolphin
@@ -79,12 +78,10 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
     GTK_THEME = "${builtins.toString config.gtk.theme.name}";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
-    XDG_SCREENSHOTS_DIR = "~/Screenshots";
   };
 
   fonts.fontconfig.enable = true;
@@ -141,7 +138,6 @@
 
   programs = {
     aria2.enable = true;
-    password-store.enable = true;
     command-not-found.enable = false;
 
     fzf = {
@@ -182,6 +178,8 @@
     music = "/mnt/hdd/Music";
     download = "/mnt/hdd/Downloads";
   };
+
+  programs.home-manager.enable = true;
 
   home.stateVersion = "23.05";
 }

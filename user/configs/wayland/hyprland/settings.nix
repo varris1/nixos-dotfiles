@@ -25,13 +25,13 @@ in {
       ];
 
       workspace = [
-        "1, monitor:${rightMonitor.display}, persistent:true"
-        "2, monitor:${rightMonitor.display}, persistent:true"
-        "3, monitor:${rightMonitor.display}, persistent:true"
+        "1, monitor:${rightMonitor.display}"
+        "2, monitor:${rightMonitor.display}"
+        "3, monitor:${rightMonitor.display}"
 
-        "4, monitor:${leftMonitor.display}, persistent:true"
-        "5, monitor:${leftMonitor.display}, persistent:true"
-        "6, monitor:${leftMonitor.display}, persistent:true"
+        "4, monitor:${leftMonitor.display}"
+        "5, monitor:${leftMonitor.display}"
+        "6, monitor:${leftMonitor.display}"
       ];
 
       input = {
@@ -64,7 +64,7 @@ in {
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 6;
 
         blur = {
           enabled = true;
@@ -101,11 +101,12 @@ in {
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.ydotool}/bin/ydotoold"
+        "${pkgs.bitwarden}/bin/bitwarden"
       ];
 
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
-        "eww kill; sleep 1; eww open-many bar0 bar1"
+        "pkill eww; sleep 1; eww open-many bar0 bar1"
         "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor
@@ -138,7 +139,6 @@ in {
 
         "${modKey} SHIFT, Q, killactive"
         "${modKey}, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -p Applications -show-icons"
-        "${modKey} SHIFT, P, exec, ${pkgs.rofi-pass-wayland}/bin/rofi-pass"
 
         "${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox"
 
@@ -146,8 +146,6 @@ in {
 
         ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume"
         ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume"
-
-        "CTRL, grave, exec, ags toggle-window notification-center"
 
         "MOD5, F9, exec, ${pkgs.playerctl}/bin/playerctl stop"
         "MOD5, F10, exec, ${pkgs.playerctl}/bin/playerctl previous"
@@ -169,8 +167,6 @@ in {
         "blur, notifications"
         "ignorezero, notifications"
         "blur, gtk-layer-shell"
-        "blur, bar-0"
-        "blur, bar-1"
         "blur, notificationPopupWindow"
         "ignorezero, notificationPopupWindow"
       ];

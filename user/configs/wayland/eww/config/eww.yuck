@@ -1,0 +1,121 @@
+(defpoll TIME :interval "1s" "date '+%H:%M'")
+(defpoll VOL :interval "1s" "scripts/getvol")
+
+(deflisten ACTIVEWINDOW :initial "[]" "hyprland-activewindow _")
+(deflisten WORKSPACE0 :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[0].name\")")
+(deflisten WORKSPACE1 :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[1].name\")")
+(deflisten MUSIC :initial "" "scripts/mpd_current_song.sh")
+
+
+;; --------------------------
+
+(defwidget bar [monitor]
+  (centerbox
+    :class "panel"
+    (panel_left :monitor monitor)
+    (panel_center :monitor monitor)
+    (panel_right :monitor monitor)
+  )
+)
+
+(defwidget panel_left [monitor]
+  (box
+    :halign "start"
+    :space-evenly false
+    (widget_workspaces :monitor monitor)
+    (widget_activewindow :monitor monitor)
+  )
+)
+
+(defwidget panel_center [monitor]
+  (box
+    :halign "center"
+    :space-evenly false
+
+    (widget_music)
+  )
+)
+
+(defwidget panel_right [monitor]
+  (box
+    :halign "end"
+    :space-evenly false
+
+    (widget_systray)
+    (widget_time)
+  )
+)
+
+;; --------------------------
+
+(defwidget widget_workspaces [monitor]
+ (eventbox :onscroll "hyprctl dispatch workspace `echo {} | sed 's/up/+/\' | sed 's/down/-/'`1"
+    (box :class "widget-workspace"
+      (for i in {monitor == 0 ? WORKSPACE0 : WORKSPACE1}
+        (button 
+          :onclick "hyprctl dispatch workspace ${i.id}"
+          :class "${i.class}"
+          "${i.name}"
+        )
+      )
+    )
+  )
+)
+
+(defwidget widget_activewindow [monitor]
+  (box
+    :class "widget-activewindow" 
+    (label :text 
+      {ACTIVEWINDOW == "[]" ? "" : "${ACTIVEWINDOW['${monitor}'].title}"}
+    )
+  )
+)
+
+(defwidget widget_music []
+  (box
+    :class "widget-music"
+    MUSIC
+  )
+)
+
+(defwidget widget_systray []
+  (box
+    :class "widget-systray"
+    (systray
+      :pack-direction "rtl"
+    )
+  )
+)
+
+(defwidget widget_time []
+  (box
+    :class "widget-time"
+    TIME
+  )
+)
+
+;; --------------------------
+
+(defwindow bar0
+  :monitor 0
+  :exclusive true
+  :geometry
+    (geometry
+      :width "95%"
+      :height "36px"
+      :anchor "top center"
+    )
+    (bar :monitor 0)
+)
+
+(defwindow bar1
+  :monitor 1
+  :exclusive true
+  :geometry
+    (geometry
+      :width "95%"
+      :height "36px"
+      :anchor "top center"
+    )
+    (bar :monitor 1)
+)
