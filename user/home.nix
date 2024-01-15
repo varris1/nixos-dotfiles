@@ -26,6 +26,7 @@
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
+    inputs.chaotic-nyx.packages.${pkgs.system}.gamescope_git
     bitwarden-rofi
     appimage-run
     armcord

@@ -19,10 +19,7 @@ $border_radius: 6px;
     color: $fg;
     font-size: 14px;
 
-    border-radius: 0 0 $border-radius $border-radius;
     border-bottom: 4px solid $border;
-    border-right: 4px solid $border;
-    border-left: 4px solid $border;
 
     @mixin widget {
         font-size: 12px;

@@ -1,10 +1,10 @@
-(defpoll TIME :interval "1s" "date '+%H:%M'")
-(defpoll VOL :interval "1s" "scripts/getvol")
+(defpoll TIME           :interval "1s" "date '+%H:%M'")
+(defpoll VOL            :interval "1s" "scripts/getvol")
 
 (deflisten ACTIVEWINDOW :initial "[]" "hyprland-activewindow _")
-(deflisten WORKSPACE0 :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[0].name\")")
-(deflisten WORKSPACE1 :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[1].name\")")
-(deflisten MUSIC :initial "" "scripts/mpd_current_song.sh")
+(deflisten WORKSPACE0   :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[0].name\")")
+(deflisten WORKSPACE1   :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[1].name\")")
+(deflisten MUSIC        :initial "" "scripts/mpd_current_song.sh")
 
 
 ;; --------------------------
@@ -32,7 +32,7 @@
     :halign "center"
     :space-evenly false
 
-    (widget_music)
+    (widget_music :monitor monitor)
   )
 )
 
@@ -41,8 +41,8 @@
     :halign "end"
     :space-evenly false
 
-    (widget_systray)
-    (widget_time)
+    (widget_systray :monitor monitor)
+    (widget_time :monitor monitor)
   )
 )
 
@@ -71,14 +71,14 @@
   )
 )
 
-(defwidget widget_music []
+(defwidget widget_music [monitor]
   (box
     :class "widget-music"
     MUSIC
   )
 )
 
-(defwidget widget_systray []
+(defwidget widget_systray [monitor]
   (box
     :class "widget-systray"
     (systray
@@ -87,7 +87,7 @@
   )
 )
 
-(defwidget widget_time []
+(defwidget widget_time [monitor]
   (box
     :class "widget-time"
     TIME
@@ -101,7 +101,7 @@
   :exclusive true
   :geometry
     (geometry
-      :width "95%"
+      :width "100%"
       :height "36px"
       :anchor "top center"
     )
@@ -113,7 +113,7 @@
   :exclusive true
   :geometry
     (geometry
-      :width "95%"
+      :width "100%"
       :height "36px"
       :anchor "top center"
     )

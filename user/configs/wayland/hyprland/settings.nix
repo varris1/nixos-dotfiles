@@ -20,8 +20,8 @@ in {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
-        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1"
-        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1"
+        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1, vrr, 2"
+        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1, vrr, 2"
       ];
 
       workspace = [
@@ -106,7 +106,7 @@ in {
 
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
-        "pkill eww; sleep 1; eww open-many bar0 bar1"
+        "pkill eww; sleep 1; eww open-many bar0 bar1 &> /dev/null"
         "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor

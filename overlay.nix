@@ -3,7 +3,7 @@
     gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack {inherit inputs;};
     eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow {};
     eww-hyprland-workspaces = prev.callPackage ./pkgs/eww-hyprland-workspaces {};
-    bitwarden-rofi = prev.callPackage ./pkgs/bitwarden-rofi { rofi = prev.rofi-wayland; };
+    bitwarden-rofi = prev.callPackage ./pkgs/bitwarden-rofi {rofi = prev.rofi-wayland;};
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
