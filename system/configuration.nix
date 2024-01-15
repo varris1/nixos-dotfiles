@@ -48,7 +48,7 @@
       192.168.0.18 steam.deck
       127.0.0.1 modules-cdn.eac-prod.on.epicgames.com
     '';
-    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Vienna";
@@ -143,7 +143,6 @@
       enable = true;
     };
 
-    
     services = {
       systemd-networkd-wait-online.enable = lib.mkForce false;
     };
