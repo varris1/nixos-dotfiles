@@ -106,7 +106,7 @@ in {
 
       exec = [
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
-        "pkill eww; sleep 1; eww open-many bar0 bar1 &> /dev/null"
+        "pkill eww; sleep 1; eww open-many panel0 panel1 &> /dev/null"
         "sleep 2; pkill swww-daemon; swww init"
 
         #Set cursor
@@ -174,6 +174,7 @@ in {
       windowrulev2 = [
         "fullscreen, class:^(hl2_linux)$"
         "float, class:^(org.kde.dolphin)$"
+        "nomaximizerequest, class:.*"
       ];
     };
   };

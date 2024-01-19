@@ -12,11 +12,13 @@
     ./configs/firefox
     ./configs/fish
     ./configs/kitty
+    ./configs/wezterm
     ./configs/kvantum
     ./configs/lf
     ./configs/mpd
     ./configs/mpv
-    ./configs/neovim
+    # ./configs/neovim
+    ./configs/helix
     ./configs/rofi
     ./configs/tmux
     ./configs/wayland/hyprland

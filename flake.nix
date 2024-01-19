@@ -2,10 +2,9 @@
   description = "My personal dotfiles";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -14,12 +13,18 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-contrib.url = "github:hyprwm/contrib";
 
     eww-systray.url = "github:ralismark/eww/tray-3";
     eww-systray.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
+
+    helix.url = "github:helix-editor/helix";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
+
+    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
 
     gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
     gruvbox-kvantum.flake = false;

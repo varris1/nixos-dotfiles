@@ -13,6 +13,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    #package = inputs.nixpkgs.legacyPackages.${pkgs.system}.hyprland;
   };
 
   home.file.".local/share/kservices5/swww.desktop".text = ''

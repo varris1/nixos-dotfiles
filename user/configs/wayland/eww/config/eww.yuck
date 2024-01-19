@@ -9,7 +9,7 @@
 
 ;; --------------------------
 
-(defwidget bar [monitor]
+(defwidget panel [monitor]
   (centerbox
     :class "panel"
     (panel_left :monitor monitor)
@@ -96,7 +96,7 @@
 
 ;; --------------------------
 
-(defwindow bar0
+(defwindow panel0
   :monitor 0
   :exclusive true
   :geometry
@@ -105,10 +105,10 @@
       :height "36px"
       :anchor "top center"
     )
-    (bar :monitor 0)
+    (panel :monitor 0)
 )
 
-(defwindow bar1
+(defwindow panel1
   :monitor 1
   :exclusive true
   :geometry
@@ -117,5 +117,5 @@
       :height "36px"
       :anchor "top center"
     )
-    (bar :monitor 1)
+    (panel :monitor 1)
 )

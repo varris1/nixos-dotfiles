@@ -114,6 +114,7 @@
       libsForQt5.dolphin
       libsForQt5.kio-extras
       lm_sensors
+      nix-search-cli
       nvtop-amd
       openrgb
       p7zip

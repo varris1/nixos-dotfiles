@@ -31,13 +31,6 @@
     functions = {
       fish_greeting = "";
 
-      ec = ''
-        pushd . &> /dev/null
-        cd "${config.home.homeDirectory}/.dotfiles"
-        nvim "+Telescope find_files"
-        popd
-      '';
-
       nor = ''
         doas nixos-rebuild switch --flake ${config.home.homeDirectory}/.dotfiles
       '';
@@ -52,8 +45,8 @@
       '';
     };
     shellAliases = {
+      ec = "hx ~/.dotfiles";
       nf = "${pkgs.fastfetch}/bin/fastfetch";
-      e = "nvim";
       ls = "${pkgs.eza}/bin/eza --icons";
       ll = "${pkgs.eza}/bin/eza --icons -l";
       r = "${pkgs.lf}/bin/lf";

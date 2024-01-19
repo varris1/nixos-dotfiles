@@ -1,6 +1,12 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
+    # package = inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin;
 
     profiles.${config.home.username} = {
       extensions = with config.nur.repos.rycee.firefox-addons; [
