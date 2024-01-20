@@ -10,11 +10,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1705754480,
-        "narHash": "sha256-wp3XCkcXS4Joug/6vNTerfwyZ58tE3G1LuILhIBKFDo=",
+        "lastModified": 1705759270,
+        "narHash": "sha256-l/QFi7jHwPljR+gmLQjjHCzN1DWqIdJTLYf4Dv5E3Qo=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "672ea7b8c0a99439f313015cdf8a8be1afb13f40",
+        "rev": "0e567266fb8a634da50a03e303e081ab76f76f80",
         "type": "github"
       },
       "original": {
@@ -517,11 +517,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1705751097,
-        "narHash": "sha256-WYDyMjCFPvY/4oAb51znGVYO87L+murinwJSKWjlXyQ=",
+        "lastModified": 1705772662,
+        "narHash": "sha256-l9P1lDYLxOnLiUUkRE8piHdzGc2NfJRznonYNSHsqgg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "883f061dd30e40bb06f1ed490ab073cb18c41a41",
+        "rev": "93a3c3987677fc28e66b8876f9e5a2712d79b918",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1705751856,
-        "narHash": "sha256-Xlq71jUteKrkVailVdhBkHkvk1Q1m5fkd0hGf4LuOSw=",
+        "lastModified": 1705766020,
+        "narHash": "sha256-ZlChOWgzqUdQJmPeUsgTO9xw7e9e5uoogCa31UCGkaE=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "6b35ee68e151c8c50882a3f278db5dafa7a43415",
+        "rev": "a41259cca8440ab86d69c6269185fae55898bfa9",
         "type": "gitlab"
       },
       "original": {
