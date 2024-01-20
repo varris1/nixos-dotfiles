@@ -24,7 +24,8 @@
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    wezterm.url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
+    wezterm.inputs.nixpkgs.follows = "nixpkgs";
 
     gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
     gruvbox-kvantum.flake = false;

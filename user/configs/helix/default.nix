@@ -9,9 +9,16 @@
     package = inputs.helix.packages.${pkgs.system}.helix;
     defaultEditor = true;
 
-    settings = {
-      theme = "gruvbox";
+    themes = {
+      custom-gruvbox = {
+        inherits = "gruvbox";
+        "ui.background" = {bg = "none";};
+        "ui.statusline" = {bg = "none";};
+      };
+    };
 
+    settings = {
+      theme = "custom-gruvbox";
       editor = {
         line-number = "relative";
         color-modes = true;
@@ -23,7 +30,7 @@
         statusline = {
           left = ["mode" "spinner"];
           center = ["file-name"];
-          right = [];
+          right = ["selections" "file-type" "position"];
 
           mode.normal = "NORMAL";
           mode.insert = "INSERT";

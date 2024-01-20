@@ -6,6 +6,7 @@
 }: {
   programs.wezterm = {
     enable = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig =
       /*
       lua
@@ -18,7 +19,22 @@
           config = wezterm.config_builder()
         end
 
-        config.color_scheme = 'Gruvbox Dark (Gogh)'
+        config = {
+          font = wezterm.font "JetBrainsMono Nerd Font",
+          font_size = 10,
+
+          line_height = 1.1,
+          window_background_opacity = 0.9,
+          color_scheme = 'Gruvbox Dark (Gogh)',
+          hide_tab_bar_if_only_one_tab = true,
+
+          window_padding = {
+            left = "20",
+            right = "20",
+            top = "20",
+            bottom = "20",
+          },
+        }
 
         return config
       '';

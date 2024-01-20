@@ -16,6 +16,7 @@
     gvfs.enable = true;
     openssh.enable = true;
     udisks2.enable = true;
+    dbus.implementation = "broker";
 
     fstrim = {
       enable = true;

@@ -89,12 +89,6 @@
     };
   };
 
-  # services.mpdris2 = {
-  #   enable = true;
-  #   notifications = true;
-  #   multimediaKeys = false;
-  # };
-
   services.mpd-mpris = {
     enable = true;
     mpd.useLocal = true;

@@ -2,26 +2,26 @@
   config,
   pkgs,
   ...
-}: let
-  leftMonitor = {
-    display = "DP-2";
-    res = "preferred";
-    pos = "0x0";
-  };
+}: {
+  wayland.windowManager.hyprland = let
+    leftMonitor = {
+      display = "DP-2";
+      res = "preferred";
+      pos = "0x0";
+    };
 
-  rightMonitor = {
-    display = "DP-1";
-    res = "preferred";
-    pos = "2560x0";
-  };
+    rightMonitor = {
+      display = "DP-1";
+      res = "preferred";
+      pos = "2560x0";
+    };
 
-  modKey = "SUPER";
-in {
-  wayland.windowManager.hyprland = {
+    modKey = "SUPER";
+  in {
     settings = {
       monitor = [
-        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1, vrr, 2"
-        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1, vrr, 2"
+        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1"
+        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1"
       ];
 
       workspace = [
@@ -142,7 +142,7 @@ in {
 
         "${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox"
 
-        "${modKey}, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "${modKey}, Return, exec, wezterm"
 
         ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume"
         ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume"
