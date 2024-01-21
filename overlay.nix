@@ -3,7 +3,6 @@
     gruvbox-plus-icon-pack = prev.callPackage ./pkgs/gruvbox-plus-icon-pack {inherit inputs;};
     eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow {};
     eww-hyprland-workspaces = prev.callPackage ./pkgs/eww-hyprland-workspaces {};
-    bitwarden-rofi = prev.callPackage ./pkgs/bitwarden-rofi {rofi = prev.rofi-wayland;};
 
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
@@ -29,10 +28,6 @@
       src = inputs.openmw-git;
       buildInputs = (prev.lib.lists.remove prev.mygui old.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom final.mygui-openmw];
       patches = [];
-    });
-
-    kitty = prev.kitty.overrideAttrs (old: {
-      patches = [./pkgs/kitty/0011-fix-test_fish_integration.patch];
     });
 
     steam = prev.steam.override {

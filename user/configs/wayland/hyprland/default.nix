@@ -30,7 +30,6 @@
   '';
 
   home.packages = [
-    inputs.hyprland-contrib.packages.${pkgs.system}.hyprprop
     pkgs.hyprpicker
     pkgs.swww
     pkgs.wl-clipboard

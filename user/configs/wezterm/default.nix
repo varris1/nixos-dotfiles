@@ -23,10 +23,11 @@
           font = wezterm.font "JetBrainsMono Nerd Font",
           font_size = 10,
 
-          line_height = 1.1,
-          window_background_opacity = 0.9,
           color_scheme = 'Gruvbox Dark (Gogh)',
           hide_tab_bar_if_only_one_tab = true,
+          line_height = 1.1,
+          window_background_opacity = 0.9,
+          window_close_confirmation = "NeverPrompt",
 
           window_padding = {
             left = "20",

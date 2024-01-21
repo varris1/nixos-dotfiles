@@ -13,13 +13,13 @@
       custom-gruvbox = {
         inherits = "gruvbox";
         "ui.background" = {bg = "none";};
-        "ui.statusline" = {bg = "none";};
       };
     };
 
     settings = {
       theme = "custom-gruvbox";
       editor = {
+        cursorline = true;
         line-number = "relative";
         color-modes = true;
         bufferline = "multiple";
@@ -27,8 +27,16 @@
 
         indent-guides.render = true;
 
+        cursor-shape = {
+          "insert" = "bar";
+          "normal" = "block";
+          "select" = "underline";
+        };
+
         statusline = {
-          left = ["mode" "spinner"];
+          separator = "|";
+
+          left = ["mode" "separator" "spinner"];
           center = ["file-name"];
           right = ["selections" "file-type" "position"];
 
@@ -39,6 +47,7 @@
 
         lsp = {
           display-messages = true;
+          display-inlay-hints = true;
         };
       };
 
@@ -52,13 +61,27 @@
       language = [
         {
           name = "nix";
+          auto-format = true;
+          formatter = ["alejandra"];
           language-servers = ["nixd"];
         }
       ];
 
       language-server.nixd = {
-        command = "${pkgs.nixd}/bin/nixd";
+        command = "nixd";
+      };
+
+      formatter.alejandra = {
+        command = "alejandra";
+        args = ["-qq"];
       };
     };
+
+    extraPackages = with pkgs; [
+      alejandra
+      nixd
+      lua-language-server
+      vscode-langservers-extracted
+    ];
   };
 }

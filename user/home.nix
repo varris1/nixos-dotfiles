@@ -26,8 +26,6 @@
   home.username = "manuel";
   home.homeDirectory = "/home/manuel";
   home.packages = with pkgs; [
-    inputs.chaotic-nyx.packages.${pkgs.system}.gamescope_git
-    bitwarden-rofi
     appimage-run
     armcord
     bc
@@ -37,7 +35,7 @@
     calcurse
     electron
     filezilla
-    floorp
+    gamescope
     gimp
     gnome.gnome-boxes
     gnome.gnome-settings-daemon
@@ -76,6 +74,7 @@
     vulkan-tools
     wqy_zenhei #fix for missing non-ascii fonts in TF2
     xdg-utils
+
   ];
 
   home.sessionVariables = {

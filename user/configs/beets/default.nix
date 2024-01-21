@@ -18,13 +18,13 @@
 
       paths = {
         "default" = "$albumartist/$year - $album%aunique{}/$track $title";
-        "singleton" = "Singles/$artist/$year - $title";
+        "singleton" = "$artist/$year - $title";
         "comp" = "Compilations/$year - $album%aunique{}/$track $title";
       };
 
       replaygain = {
         "backend" = "gstreamer";
-        "threads" = 16;
+        "threads" = 8;
       };
     };
   };

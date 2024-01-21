@@ -2,51 +2,80 @@
   description = "My personal dotfiles";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs = {
+      url = "nixpkgs/nixpkgs-unstable";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    chaotic-nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nur = {
+      url = "github:nix-community/NUR";
+    };
 
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    chaotic-nyx = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    hyprland.url = "github:hyprwm/hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland-contrib.url = "github:hyprwm/contrib";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    eww-systray.url = "github:ralismark/eww/tray-3";
-    eww-systray.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nur.url = "github:nix-community/NUR";
+    eww-systray = {
+      url = "github:ralismark/eww/tray-3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    helix.url = "github:helix-editor/helix";
-    helix.inputs.nixpkgs.follows = "nixpkgs";
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    wezterm.url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
-    wezterm.inputs.nixpkgs.follows = "nixpkgs";
+    wezterm = {
+      url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    gruvbox-kvantum.url = "github:thefallnn/Gruvbox-Kvantum";
-    gruvbox-kvantum.flake = false;
+    #--- non-flakes
 
-    fish-plugin-bobthefish.url = "github:oh-my-fish/theme-bobthefish";
-    fish-plugin-bobthefish.flake = false;
+    fish-plugin-bobthefish = {
+      url = "github:oh-my-fish/theme-bobthefish";
+      flake = false;
+    };
 
-    fish-plugin-gruvbox-theme.url = "github:Jomik/fish-gruvbox";
-    fish-plugin-gruvbox-theme.flake = false;
+    fish-plugin-gruvbox-theme = {
+      url = "github:Jomik/fish-gruvbox";
+      flake = false;
+    };
 
-    gruvbox-plus-icon-pack.url = "github:SylEleuth/gruvbox-plus-icon-pack";
-    gruvbox-plus-icon-pack.flake = false;
+    gruvbox-kvantum = {
+      url = "github:thefallnn/Gruvbox-Kvantum";
+      flake = false;
+    };
 
-    openmw-git.url = "gitlab:OpenMW/openmw";
-    openmw-git.flake = false;
+    gruvbox-plus-icon-pack = {
+      url = "github:SylEleuth/gruvbox-plus-icon-pack";
+      flake = false;
+    };
 
-    mygui-git.url = "github:mygui/MyGUI/dae9ac4be5a09e672bec509b1a8552b107c40214";
-    mygui-git.flake = false;
+    mygui-git = {
+      url = "github:mygui/MyGUI/dae9ac4be5a09e672bec509b1a8552b107c40214";
+      flake = false;
+    };
 
-    nvim-presence.url = "github:andweeb/presence.nvim";
-    nvim-presence.flake = false;
+    openmw-git = {
+      url = "gitlab:OpenMW/openmw";
+      flake = false;
+    };
   };
 
   outputs = {
