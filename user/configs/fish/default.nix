@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  flakeDir,
   ...
 }: {
   programs.fish = {
@@ -32,20 +33,20 @@
       fish_greeting = "";
 
       nor = ''
-        doas nixos-rebuild switch --flake ${config.home.homeDirectory}/.dotfiles
+        doas nixos-rebuild switch --flake ${flakeDir}
       '';
 
       hms = ''
-        home-manager switch --flake ${config.home.homeDirectory}/.dotfiles
+        home-manager switch --flake ${flakeDir}
       '';
 
       nou = ''
-        nix flake update ${config.home.homeDirectory}/.dotfiles --commit-lock-file
-        doas nixos-rebuild switch --upgrade --flake ${config.home.homeDirectory}/.dotfiles
+        nix flake update ${flakeDir} --commit-lock-file
+        doas nixos-rebuild switch --upgrade --flake ${flakeDir}
       '';
     };
     shellAliases = {
-      ec = "hx ~/.dotfiles";
+      ec = "hx ${flakeDir}";
       nf = "${pkgs.fastfetch}/bin/fastfetch";
       ls = "${pkgs.eza}/bin/eza --icons";
       ll = "${pkgs.eza}/bin/eza --icons -l";

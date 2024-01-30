@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.mpv = {
     enable = true;
     config = {
@@ -7,6 +7,14 @@
       hwdec = "vaapi";
       force-window = "yes";
       ao = "pipewire";
+      video-sync = "display-resample";
     };
+
+    scripts = with pkgs.mpvScripts; [
+      quality-menu
+      uosc
+      sponsorblock
+      thumbfast
+    ];
   };
 }

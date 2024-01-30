@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  userName,
   ...
 }: {
   imports = [
@@ -23,8 +24,8 @@
     ./configs/xdg-mime.nix
   ];
 
-  home.username = "manuel";
-  home.homeDirectory = "/home/manuel";
+  home.username = "${userName}";
+  home.homeDirectory = "/home/${userName}";
   home.packages = with pkgs; [
     appimage-run
     armcord
@@ -72,15 +73,17 @@
     twemoji-color-font
     vimv
     vulkan-tools
+    wineWowPackages.staging
+    winetricks
     wqy_zenhei #fix for missing non-ascii fonts in TF2
     xdg-utils
-
   ];
 
   home.sessionVariables = {
     GTK_THEME = "${builtins.toString config.gtk.theme.name}";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
+    WINEDEBUG = "fixme-all";
     WINEDLLOVERRIDES = "winemenubuilder.exe=d";
   };
 
@@ -162,6 +165,14 @@
       enable = true;
       plugins = [pkgs.obs-studio-plugins.obs-vkcapture];
     };
+
+    rbw = {
+      enable = true;
+      settings = {
+        pinentry = "gtk2";
+        email = "varris@posteo.net";
+      };
+    };
   };
 
   services.gnome-keyring.enable = true;
@@ -178,6 +189,9 @@
     music = "/mnt/hdd/Music";
     download = "/mnt/hdd/Downloads";
   };
+
+  home.file."Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd/Downloads";
+  home.file."Music".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd/Music";
 
   programs.home-manager.enable = true;
 

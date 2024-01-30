@@ -26,7 +26,7 @@
 
     [Desktop Action setSWWWWallpaper]
     Name=Set Image as Wallpaper
-    Exec=swww img "%f" && ln -sf "%f" ~/.cache/swww/wallpaper
+    Exec=swww img "%f"
   '';
 
   home.packages = [

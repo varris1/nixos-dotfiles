@@ -26,6 +26,7 @@
     };
 
     hyprland = {
+      # url = "github:hyprwm/hyprland/12d79d63421e2ed3f31130755c7a37f0e4fb5cb1";
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -100,14 +101,23 @@
         self.overlays.default
       ];
     };
+
+    #edit as you see fit
+    hostName = "terra";
+    userName = "manuel";
+    flakeDir = "/home/${userName}/.dotfiles";
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     overlays = import ./overlay.nix {inherit inputs;};
 
-    nixosConfigurations.terra = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
       inherit system;
       inherit pkgs;
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        inherit hostName;
+        inherit userName;
+      };
       modules = [
         ./system/configuration.nix
         inputs.chaotic-nyx.nixosModules.default
@@ -115,9 +125,13 @@
       ];
     };
 
-    homeConfigurations.manuel = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit userName;
+        inherit flakeDir;
+      };
       modules = [
         ./user/home.nix
         inputs.nix-index-database.hmModules.nix-index

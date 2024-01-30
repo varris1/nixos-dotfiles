@@ -3,6 +3,8 @@
   lib,
   config,
   inputs,
+  hostName,
+  userName,
   ...
 }: {
   imports = [
@@ -41,7 +43,7 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   networking = {
-    hostName = "terra"; # Define your hostname.
+    hostName = "${hostName}"; #hostname declared in flake.nix
     firewall.enable = false;
     useNetworkd = true;
     extraHosts = ''
@@ -84,7 +86,7 @@
       enable = true;
       extraRules = [
         {
-          users = ["manuel"];
+          users = ["${userName}"];
           keepEnv = true;
           persist = true;
         }
@@ -92,7 +94,7 @@
     };
   };
 
-  users.users.manuel = {
+  users.users.${userName} = {
     isNormalUser = true;
     extraGroups = ["audio" "games" "input" "lp" "networkmanager" "scanner" "users" "vboxusers" "video" "wheel"];
     shell = pkgs.fish;
@@ -167,6 +169,7 @@
 
     settings = {
       auto-optimise-store = true;
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
       substituters = [
         "https://nyx.chaotic.cx"

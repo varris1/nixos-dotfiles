@@ -27,6 +27,15 @@
       version = "9999";
       src = inputs.openmw-git;
       buildInputs = (prev.lib.lists.remove prev.mygui old.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom final.mygui-openmw];
+      cmakeFlags =
+        old.cmakeFlags
+        ++ [
+          "-DBUILD_BSATOOL=OFF"
+          "-DBUILD_BULLETOBJECTTOOL=OFF"
+          "-DBUILD_ESMTOOL=OFF"
+          "-DBUILD_NIFTEST=OFF"
+          "-DBUILD_OPENCS=OFF"
+        ];
       patches = [];
     });
 
@@ -42,14 +51,5 @@
         prev.mpg123
       ];
     };
-
-    vimPlugins =
-      prev.vimPlugins
-      // {
-        presence-nvim = prev.vimUtils.buildVimPlugin {
-          name = "presence";
-          src = inputs.nvim-presence;
-        };
-      };
   };
 }

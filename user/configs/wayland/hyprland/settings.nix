@@ -101,7 +101,6 @@
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.ydotool}/bin/ydotoold"
-        "${pkgs.bitwarden}/bin/bitwarden"
       ];
 
       exec = [
@@ -125,12 +124,12 @@
         "${modKey}, 5, workspace, 5"
         "${modKey}, 6, workspace, 6"
 
-        "${modKey} SHIFT, 1, movetoworkspace, 1"
-        "${modKey} SHIFT, 2, movetoworkspace, 2"
-        "${modKey} SHIFT, 3, movetoworkspace, 3"
-        "${modKey} SHIFT, 4, movetoworkspace, 4"
-        "${modKey} SHIFT, 5, movetoworkspace, 5"
-        "${modKey} SHIFT, 6, movetoworkspace, 6"
+        "${modKey} SHIFT, 1, movetoworkspacesilent, 1"
+        "${modKey} SHIFT, 2, movetoworkspacesilent, 2"
+        "${modKey} SHIFT, 3, movetoworkspacesilent, 3"
+        "${modKey} SHIFT, 4, movetoworkspacesilent, 4"
+        "${modKey} SHIFT, 5, movetoworkspacesilent, 5"
+        "${modKey} SHIFT, 6, movetoworkspacesilent, 6"
 
         "${modKey}, P, pseudo, # dwindle"
         "${modKey}, J, togglesplit, # dwindle"

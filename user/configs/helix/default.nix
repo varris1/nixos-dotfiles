@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  flakeDir,
   ...
 }: {
   programs.helix = {
@@ -13,6 +14,21 @@
       custom-gruvbox = {
         inherits = "gruvbox";
         "ui.background" = {bg = "none";};
+        "ui.statusline.normal" = {
+          bg = "#AA9A85";
+          fg = "#232323";
+          modifiers = ["bold"];
+        };
+        "ui.statusline.insert" = {
+          bg = "#84A799";
+          fg = "#232323";
+          modifiers = ["bold"];
+        };
+        "ui.statusline.select" = {
+          bg = "#FE8112";
+          fg = "#232323";
+          modifiers = ["bold"];
+        };
       };
     };
 
@@ -36,8 +52,7 @@
         statusline = {
           separator = "|";
 
-          left = ["mode" "separator" "spinner"];
-          center = ["file-name"];
+          left = ["mode" "file-name"];
           right = ["selections" "file-type" "position"];
 
           mode.normal = "NORMAL";
@@ -53,7 +68,7 @@
 
       keys.normal = {
         "esc" = ["collapse_selection" "keep_primary_selection"];
-        space."e" = ":open ~/.dotfiles";
+        space."e" = ":open ${flakeDir}";
       };
     };
 

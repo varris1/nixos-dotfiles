@@ -1,5 +1,5 @@
 (defpoll TIME           :interval "1s" "date '+%H:%M'")
-(defpoll VOL            :interval "1s" "scripts/getvol")
+;; (defpoll VOL            :interval "1s" "scripts/getvol")
 
 (deflisten ACTIVEWINDOW :initial "[]" "hyprland-activewindow _")
 (deflisten WORKSPACE0   :initial "[]" "hyprland-workspaces $(hyprctl monitors -j | jq -r \".[0].name\")")
@@ -88,10 +88,10 @@
 )
 
 (defwidget widget_time [monitor]
-  (box
-    :class "widget-time"
-    TIME
-  )
+    (box
+      :class "widget-time"
+      TIME
+    )
 )
 
 ;; --------------------------

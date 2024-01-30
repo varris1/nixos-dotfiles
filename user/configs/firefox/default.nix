@@ -23,9 +23,11 @@
         redirector
         return-youtube-dislikes
         sponsorblock
+        startpage-private-search
         stylus
         tampermonkey
         ublock-origin
+        vimium
         youtube-shorts-block
       ];
 
@@ -44,6 +46,10 @@
                 {
                   name = "NixOS Search";
                   url = "https://search.nixos.org";
+                }
+                {
+                  name = "NUR Search";
+                  url = "https://nur.nix-community.org";
                 }
                 {
                   name = "Home Manager Options List";
