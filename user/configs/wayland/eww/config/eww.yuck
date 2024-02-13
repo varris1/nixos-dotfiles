@@ -83,6 +83,7 @@
     :class "widget-systray"
     (systray
       :pack-direction "rtl"
+      :icon-size 26
     )
   )
 )

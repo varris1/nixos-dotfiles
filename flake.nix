@@ -11,23 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-    };
-
     chaotic-nyx = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland = {
-      # url = "github:hyprwm/hyprland/12d79d63421e2ed3f31130755c7a37f0e4fb5cb1";
-      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,9 +21,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    grub2-themes = {
+      url = "github:vinceliuice/grub2-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
     };
 
     wezterm = {
@@ -105,7 +109,9 @@
     #edit as you see fit
     hostName = "terra";
     userName = "manuel";
+    emailAddress = "varris@posteo.net";
     flakeDir = "/home/${userName}/.dotfiles";
+    #-------------------
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     overlays = import ./overlay.nix {inherit inputs;};
@@ -121,6 +127,7 @@
       modules = [
         ./system/configuration.nix
         inputs.chaotic-nyx.nixosModules.default
+        inputs.grub2-themes.nixosModules.default
         inputs.nur.nixosModules.nur
       ];
     };
@@ -131,6 +138,7 @@
         inherit inputs;
         inherit userName;
         inherit flakeDir;
+        inherit emailAddress;
       };
       modules = [
         ./user/home.nix

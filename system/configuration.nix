@@ -22,20 +22,33 @@
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["i2c-dev" "i2c-piix4"];
     kernelParams = [
-      "amdgpu.ppfeaturemask=0xffffffff"
       "amd_pstate.shared_mem=1"
       "amd_pstate=active"
+
+      #quiet boot
+      "quiet"
+      "splash"
+      "vga=current"
+      "quiet"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "splash"
     ];
+
+    initrd.verbose = false;
+    consoleLogLevel = 0;
 
     loader = {
       efi = {
+        efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
       };
 
       systemd-boot = {
         enable = true;
-        configurationLimit = 10;
+        consoleMode = "auto";
       };
+
       timeout = 0;
     };
   };
@@ -45,7 +58,7 @@
   networking = {
     hostName = "${hostName}"; #hostname declared in flake.nix
     firewall.enable = false;
-    useNetworkd = true;
+    networkmanager.enable = true;
     extraHosts = ''
       192.168.0.18 steam.deck
       127.0.0.1 modules-cdn.eac-prod.on.epicgames.com
@@ -91,6 +104,15 @@
           persist = true;
         }
       ];
+    };
+
+    wrappers = {
+      "wavemon" = {
+        source = "${pkgs.wavemon}/bin/wavemon";
+        owner = "root";
+        group = "root";
+        capabilities = "cap_net_admin+eip";
+      };
     };
   };
 
@@ -186,5 +208,5 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

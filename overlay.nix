@@ -26,7 +26,7 @@
     openmw = prev.openmw.overrideAttrs (old: {
       version = "9999";
       src = inputs.openmw-git;
-      buildInputs = (prev.lib.lists.remove prev.mygui old.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom final.mygui-openmw];
+      buildInputs = (prev.lib.lists.remove prev.mygui old.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom prev.libsForQt5.qt5.qttools final.mygui-openmw];
       cmakeFlags =
         old.cmakeFlags
         ++ [

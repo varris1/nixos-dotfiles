@@ -1,4 +1,8 @@
 {
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./locate
     ./pipewire

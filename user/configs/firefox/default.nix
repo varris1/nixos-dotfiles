@@ -18,7 +18,6 @@
         gruvbox-dark-theme
         indie-wiki-buddy
         istilldontcareaboutcookies
-        nitter-redirect
         privacy-badger
         redirector
         return-youtube-dislikes

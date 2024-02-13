@@ -4,6 +4,7 @@
   lib,
   inputs,
   userName,
+  emailAddress,
   ...
 }: {
   imports = [
@@ -152,7 +153,7 @@
       enable = true;
       lfs.enable = true;
       userName = "Varris";
-      userEmail = "varris@posteo.net";
+      userEmail = "${emailAddress}";
     };
 
     nix-index = {
@@ -170,7 +171,7 @@
       enable = true;
       settings = {
         pinentry = "gtk2";
-        email = "varris@posteo.net";
+        email = "${emailAddress}";
       };
     };
   };
@@ -195,5 +196,5 @@
 
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 }
