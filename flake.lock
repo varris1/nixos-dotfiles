@@ -455,11 +455,11 @@
     "gruvbox-plus-icon-pack": {
       "flake": false,
       "locked": {
-        "lastModified": 1707994221,
-        "narHash": "sha256-N5IsVevX+TeGV/mIYayLCZszU5+eBYO2/cajEpdYEIo=",
+        "lastModified": 1708078392,
+        "narHash": "sha256-7GDaGLlT/ctF/Z5QMXexK1Ks5NAjmODNR1S86GEm+qc=",
         "owner": "SylEleuth",
         "repo": "gruvbox-plus-icon-pack",
-        "rev": "0afd859366961322a0e16a9f58652e8a21d03342",
+        "rev": "0e8fe6457b60057298fdc51974fb055cbfab7ece",
         "type": "github"
       },
       "original": {
@@ -495,11 +495,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1707929755,
-        "narHash": "sha256-mqqYc76wzC80hVRtdsnONVtszEI4l42WvK6WurUisoY=",
+        "lastModified": 1708094594,
+        "narHash": "sha256-vAVKC8DdyQx/XngWV95FRvE+wAtf0f9bqKm3tFipiyE=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "59369d99e2ed891206bd63c9b83b034da474920a",
+        "rev": "76e512f9445b2a26655248b46cf13413f9a6bbba",
         "type": "github"
       },
       "original": {
@@ -835,11 +835,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1708001613,
-        "narHash": "sha256-woOmAXW05XnqlLn7dKzCkRAEOSOdA/Z2ndVvKcjid94=",
+        "lastModified": 1708093448,
+        "narHash": "sha256-gohEm3/NVyu7WINFhRf83yJH8UM2ie/KY9Iw3VN6fiE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "085589047343aad800c4d305cf7b98e8a3d51ae2",
+        "rev": "c7763249f02b7786b4ca36e13a4d7365cfba162f",
         "type": "github"
       },
       "original": {
@@ -866,11 +866,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1708076655,
-        "narHash": "sha256-KNRfg2szpJ19/NgXXB4s9r2+CCM90nq0MVUuvdQI+Ws=",
+        "lastModified": 1708123471,
+        "narHash": "sha256-oLVR1/4320M6V3WoDx25YYrwY9INZCz0jJSofPZqXdE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1155ba6a69b8a69d7edda02321a21ff993d9300e",
+        "rev": "9eab660e8f9fe1b41bca3e198ba96c23270659ab",
         "type": "github"
       },
       "original": {
@@ -882,11 +882,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1707989202,
-        "narHash": "sha256-UgWjeVMRvQOcswrNYMjiZVCX1gIp8vQo065ABskqP4o=",
+        "lastModified": 1708124572,
+        "narHash": "sha256-thZdL7XDXgDtK8PSXa3cNDUgdAAU2tjoaoPzU/gJ7B8=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "1280345296dfb3799e6428536b0f74a36e9d4c9f",
+        "rev": "0db730825d7f929f8567647c135376a8100aa462",
         "type": "gitlab"
       },
       "original": {
