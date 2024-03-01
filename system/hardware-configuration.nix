@@ -18,22 +18,24 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/7009c691-ca34-4106-b959-0d625aefb30b";
-    fsType = "xfs";
+    device = "/dev/disk/by-uuid/d580b740-a571-4e34-820f-6a641bc0dd65";
+    fsType = "btrfs";
+    options = ["compress=zstd" "discard=async"];
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/3A8C-A960";
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/hdd" = {
-    device = "/dev/disk/by-uuid/ecbbfb05-ada8-4044-81a6-9a280f93802f";
-    fsType = "xfs";
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/1e5d64ef-acc9-45cd-b9b6-8706cfac04b8";
+    fsType = "btrfs";
+    options = ["compress=zstd" "discard=async"];
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/9d1be271-ca41-43cc-a334-016103bfde1a";
+  fileSystems."/mnt/hdd" = {
+    device = "/dev/disk/by-uuid/ecbbfb05-ada8-4044-81a6-9a280f93802f";
     fsType = "xfs";
   };
 

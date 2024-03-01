@@ -142,7 +142,7 @@
 
         "${modKey}, Q, exec, ${pkgs.firefox}/bin/firefox"
 
-        "${modKey}, Return, exec, wezterm"
+        "${modKey}, Return, exec, kitty"
 
         ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume"
         ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume"
@@ -174,7 +174,7 @@
       windowrulev2 = [
         "fullscreen, class:^(hl2_linux)$"
         "float, class:^(org.kde.dolphin)$"
-        "nomaximizerequest, class:.*"
+        # "nomaximizerequest, class:.*"
       ];
     };
   };

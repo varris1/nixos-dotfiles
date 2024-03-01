@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ./nix-ld
+  ];
+
   programs = {
     adb.enable = true;
     ccache = {
@@ -12,5 +16,5 @@
     ssh.startAgent = true;
     steam.enable = true;
   };
-  chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda];
+  chaotic.steam.extraCompatPackages = with pkgs; [luxtorpeda proton-ge-custom];
 }

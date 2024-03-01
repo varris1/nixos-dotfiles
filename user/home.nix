@@ -13,7 +13,7 @@
     ./configs/dircolors.nix
     ./configs/firefox
     ./configs/fish
-    ./configs/wezterm
+    ./configs/kitty
     ./configs/kvantum
     ./configs/lf
     ./configs/mpd
@@ -28,6 +28,7 @@
   home.username = "${userName}";
   home.homeDirectory = "/home/${userName}";
   home.packages = with pkgs; [
+    alacritty
     appimage-run
     armcord
     bc
@@ -44,11 +45,12 @@
     gnome.gvfs
     gnome.seahorse
     gnome.simple-scan
-    imv
+    # imv
     jq
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
+    libnotify
     lutris
     mangohud
     mesa-demos
@@ -97,6 +99,22 @@
   programs.keychain = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  services.arrpc = {
+    enable = true;
+  };
+
+  services.flatpak = {
+    enable = true;
+
+    packages = [
+    ];
+
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly";
+    };
   };
 
   services.gpg-agent = {
@@ -196,5 +214,5 @@
 
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "23.05";
 }

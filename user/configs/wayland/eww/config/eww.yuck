@@ -41,7 +41,7 @@
     :halign "end"
     :space-evenly false
 
-    (widget_systray :monitor monitor)
+    ; (widget_systray :monitor monitor)
     (widget_time :monitor monitor)
   )
 )
@@ -78,15 +78,15 @@
   )
 )
 
-(defwidget widget_systray [monitor]
-  (box
-    :class "widget-systray"
-    (systray
-      :pack-direction "rtl"
-      :icon-size 26
-    )
-  )
-)
+; (defwidget widget_systray [monitor]
+;   (box
+;     :class "widget-systray"
+;     (systray
+;       :pack-direction "rtl"
+;       :icon-size 26
+;     )
+;   )
+; )
 
 (defwidget widget_time [monitor]
     (box

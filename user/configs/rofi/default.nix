@@ -2,7 +2,7 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    terminal = "wezterm";
+    terminal = "kitty";
     extraConfig = {
       modi = "drun,run";
     };

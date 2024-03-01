@@ -5,7 +5,7 @@
 }: {
   programs.eww = {
     enable = true;
-    package = inputs.eww-systray.packages.${pkgs.system}.eww-wayland;
+    # package = inputs.eww-systray.packages.${pkgs.system}.eww-wayland;
     configDir = ./config;
   };
 

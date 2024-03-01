@@ -17,6 +17,7 @@
     };
 
     eww-systray = {
+      # url = "github:ralismark/eww/5b507c813c79be42b174f477b7acd2c95d58f09f";
       url = "github:ralismark/eww/tray-3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -36,18 +37,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
     };
 
-    wezterm = {
-      url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
     };
 
     #--- non-flakes
@@ -142,7 +152,9 @@
       };
       modules = [
         ./user/home.nix
+        inputs.hyprlock.homeManagerModules.hyprlock
         inputs.nix-index-database.hmModules.nix-index
+        inputs.nix-flatpak.homeManagerModules.nix-flatpak
         inputs.nur.hmModules.nur
       ];
     };
