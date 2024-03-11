@@ -6,8 +6,6 @@
 }: let
   cfg = config.services.mpd-notification;
 in {
-  meta.maintainers = ["Varris"];
-
   options.services.mpd-notification = {
     package = lib.mkPackageOption pkgs "mpd-notification" {};
     enable = lib.mkEnableOption "the mpd-notification service";

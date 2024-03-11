@@ -4,6 +4,8 @@
     eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow {};
     eww-hyprland-workspaces = prev.callPackage ./pkgs/eww-hyprland-workspaces {};
 
+    # eww = final.callPackage ./pkgs/eww-systray {inherit inputs;};
+
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
     };
@@ -16,19 +18,19 @@
       patches = [./pkgs/gruvbox-gtk-theme/silence-warnings.patch];
     };
 
-    mygui-openmw = prev.mygui.overrideAttrs (old: {
+    mygui-openmw = prev.mygui.overrideAttrs (oldAttrs: {
       version = "3.4.3";
       src = inputs.mygui-git;
       patches = [];
-      cmakeFlags = old.cmakeFlags ++ ["-DMYGUI_DONT_USE_OBSOLETE=ON"]; #fix openmw link error
+      cmakeFlags = oldAttrs.cmakeFlags ++ ["-DMYGUI_DONT_USE_OBSOLETE=ON"]; #fix openmw link error
     });
 
-    openmw = prev.openmw.overrideAttrs (old: {
+    openmw = prev.openmw.overrideAttrs (oldAttrs: {
       version = "9999";
       src = inputs.openmw-git;
-      buildInputs = (prev.lib.lists.remove prev.mygui old.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom prev.libsForQt5.qt5.qttools final.mygui-openmw];
+      buildInputs = (prev.lib.lists.remove prev.mygui oldAttrs.buildInputs) ++ [prev.libyamlcpp prev.luajit prev.collada-dom prev.libsForQt5.qt5.qttools final.mygui-openmw];
       cmakeFlags =
-        old.cmakeFlags
+        oldAttrs.cmakeFlags
         ++ [
           "-DBUILD_BSATOOL=OFF"
           "-DBUILD_BULLETOBJECTTOOL=OFF"

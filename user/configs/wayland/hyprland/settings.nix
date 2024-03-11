@@ -98,6 +98,7 @@
       };
 
       exec-once = [
+        "${pkgs.systemd}/bin/systemctl --user import-environment PATH"
         "${pkgs.networkmanagerapplet}/bin/nm-applet"
         "${pkgs.openrgb}/bin/openrgb --startminimized --profile autorun.orp"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"

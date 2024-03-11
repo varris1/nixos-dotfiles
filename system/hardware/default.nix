@@ -4,7 +4,6 @@
     extraPackages = [pkgs.libvdpau-va-gl];
     driSupport32Bit = true;
   };
-  # chaotic.mesa-git.enable = true;
 
   hardware.steam-hardware.enable = true;
 

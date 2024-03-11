@@ -45,13 +45,11 @@
     gnome.gvfs
     gnome.seahorse
     gnome.simple-scan
-    # imv
     jq
     libsForQt5.ark
     libsForQt5.dolphin
     libsForQt5.dolphin-plugins
     libnotify
-    lutris
     mangohud
     mesa-demos
     nerdfonts
@@ -214,5 +212,14 @@
 
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.05";
+  nixpkgs.config = {
+    permittedInsecurePackages = [
+      "nix-2.16.2" # TODO: Delete after finding out what keeps pulling this in
+    ];
+
+    allowUnfree = true;
+    allowUnfreePredicate = true;
+  };
+
+  home.stateVersion = "23.11";
 }

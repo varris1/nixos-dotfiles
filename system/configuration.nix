@@ -45,12 +45,12 @@
       };
 
       grub = {
-	enable = true;
-	efiSupport = true;
-	device = "nodev";
-      }; 
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
 
-      timeout = 0;
+      timeout = 10;
     };
   };
 
@@ -64,7 +64,7 @@
       192.168.0.18 steam.deck
       127.0.0.1 modules-cdn.eac-prod.on.epicgames.com
     '';
-    nameservers = ["94.16.114.254" "94.247.43.254"]; #OpenNIC
+    # nameservers = ["94.16.114.254" "94.247.43.254"]; #OpenNIC
   };
 
   # Set your time zone.
@@ -102,8 +102,10 @@
       extraRules = [
         {
           users = ["${userName}"];
-          keepEnv = true;
+          # keepEnv = true;
           persist = true;
+          #silence a warning about missing locales
+          setEnv = ["LOCALE_ARCHIVE"];
         }
       ];
     };
@@ -145,6 +147,7 @@
       openrgb
       p7zip
       pciutils
+      pv
       sassc
       socat
       ripgrep
@@ -210,5 +213,5 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
