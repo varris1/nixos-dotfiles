@@ -55,11 +55,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1711370886,
-        "narHash": "sha256-0XPTL6xxT3WFqm7RRNLh2/C+H8+KtJE7TqJ9POEeSCU=",
+        "lastModified": 1711410101,
+        "narHash": "sha256-HEOyOUg+rRelnhsmXJ9ht0cUok94s2oCw6TtHhMPC+8=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "36fca81ad3e0390e58e45a0d63eb1f15e541837d",
+        "rev": "0d2b028bcf1a9c8d0d8bb987edec8d56a2075922",
         "type": "github"
       },
       "original": {
@@ -442,11 +442,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1711382373,
-        "narHash": "sha256-/Pu8APFFMtFXuqyVJpODuV6teisNZyDEsXsNmctpN3M=",
+        "lastModified": 1711432179,
+        "narHash": "sha256-7gqkf4VElAkDpDY2M+uRTNBoZ/r4ZVeeTNyHmlIvjuc=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "1d1087822a3b91dfc6617e0d67bf4293ad4f38e2",
+        "rev": "07e21a10f065eab5491e1e4a1a7aa12000b47d59",
         "type": "github"
       },
       "original": {
@@ -534,11 +534,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1711331441,
-        "narHash": "sha256-Tvgc9hUfNELWl3R2gtCBQ2D7lVIjumzLHs6JiM1RT6g=",
+        "lastModified": 1711419979,
+        "narHash": "sha256-3MHxCysSDf+2anImp6UQInHJnQUp+3Ble2Y7tllwHkA=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "356414639fc06ace7045236ec41d673342981057",
+        "rev": "a9d7526aae38dcdceb391fe9f00919c6c400abe3",
         "type": "github"
       },
       "original": {
@@ -650,11 +650,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1711313012,
-        "narHash": "sha256-d0Shu3dqdJj9QKR3dnE4Mh8t66hUlfLGZl+9A9JsoI8=",
+        "lastModified": 1711433716,
+        "narHash": "sha256-X1lgHBx2FLNwDQr8TT2ryl3pzdAO1dUNB5IZ7kanL9A=",
         "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "87fce7923fef1143b3a473abb2fc873e67664475",
+        "rev": "ab2836360bf82689e02e2265627698cc24176b0b",
         "type": "github"
       },
       "original": {
@@ -862,11 +862,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711231723,
-        "narHash": "sha256-dARJQ8AJOv6U+sdRePkbcVyVbXJTi1tReCrkkOeusiA=",
+        "lastModified": 1711370797,
+        "narHash": "sha256-2xu0jVSjuKhN97dqc4bVtvEH52Rwh6+uyI1XCnzoUyI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e1d501922fd7351da4200e1275dfcf5faaad1220",
+        "rev": "c726225724e681b3626acc941c6f95d2b0602087",
         "type": "github"
       },
       "original": {
@@ -893,11 +893,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1711377844,
-        "narHash": "sha256-E5jsUyR5UQY5slFiCO+QtGOFj56UWPNgKoKgnW4eZnM=",
+        "lastModified": 1711441864,
+        "narHash": "sha256-IydTkm5qYJRNkH/D7TNw2AJs/4CkWLNvkHIU7zRJq4E=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "435c03ee817cba44dd394383b0f7a9a33216d649",
+        "rev": "29fb3ba317fe519e65bbd2a176bb5581a61025cd",
         "type": "github"
       },
       "original": {
@@ -909,11 +909,11 @@
     "openmw-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1711374623,
-        "narHash": "sha256-72d4OEqV0vRI3vKbJnGrQUxx/z2wkUKcc29yuiQEab4=",
+        "lastModified": 1711443921,
+        "narHash": "sha256-usmzhi188whl97qG4mCGxv5pUBjVdZ+Rj2zNyygzJVg=",
         "owner": "OpenMW",
         "repo": "openmw",
-        "rev": "012d10703f5c53b860e269c30fc4becbc4414620",
+        "rev": "58632218fbf444f8a8d1dd0234219225c1e56e92",
         "type": "gitlab"
       },
       "original": {
@@ -1197,11 +1197,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.freedesktop.org",
-        "lastModified": 1711229443,
-        "narHash": "sha256-CACd+4mpiDPgEQby83LeB4MhgocJhbNRq70MWg2Cw4w=",
+        "lastModified": 1711395604,
+        "narHash": "sha256-mZf4K2xxwCybN3V8a+WHCE7BJcWLzwljXAZPDxB50R4=",
         "owner": "xorg",
         "repo": "xserver",
-        "rev": "bb2e2eba422128d06666afa7dedd45f08a78f02e",
+        "rev": "a57b449485912f908608b6af2ff0ac1342dec087",
         "type": "gitlab"
       },
       "original": {
