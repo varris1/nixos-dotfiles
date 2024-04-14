@@ -15,6 +15,7 @@
     theme = "Gruvbox Dark";
 
     settings = {
+      confirm_os_window_close = "0";
       background_opacity = "0.9";
       modify_font = "cell_height 2px";
       shell_integration = "no-cursor";

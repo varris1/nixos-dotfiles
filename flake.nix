@@ -17,7 +17,6 @@
     };
 
     eww-systray = {
-      # url = "github:ralismark/eww/5b507c813c79be42b174f477b7acd2c95d58f09f";
       url = "github:ralismark/eww/tray-3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -85,6 +84,11 @@
 
     openmw-git = {
       url = "gitlab:OpenMW/openmw";
+      flake = false;
+    };
+
+    xorg-git = {
+      url = "gitlab:xorg/xserver?host=gitlab.freedesktop.org";
       flake = false;
     };
   };

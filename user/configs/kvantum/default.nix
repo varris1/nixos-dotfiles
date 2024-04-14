@@ -14,6 +14,7 @@
   qt = {
     enable = true;
     platformTheme = "gtk";
+    style.name = "kvantum-dark";
   };
 
   xdg.configFile."Kvantum/kvantum.kvconfig".text = "theme=gruvbox-kvantum";

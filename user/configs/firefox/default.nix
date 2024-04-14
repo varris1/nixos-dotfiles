@@ -33,6 +33,7 @@
       settings = {
         "general.smoothScroll" = false;
         "media.hardwaremediakeys.enabled" = false;
+        "browser.download.useDownloadDir" = false;
       };
 
       bookmarks = [

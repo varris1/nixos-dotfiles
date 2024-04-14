@@ -17,9 +17,9 @@
   boot = {
     tmp.cleanOnBoot = true;
 
-    kernel.sysctl."vm.max_map_count" = 16777216; #Star Citizen crash fix
+    kernel.sysctl."vm.max_map_count" = 2147483642; #Star Citizen crash fix
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = ["i2c-dev" "i2c-piix4"];
     kernelParams = [
       "amd_pstate.shared_mem=1"
@@ -33,6 +33,7 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "splash"
+      "acpi_enforce_resources=lax"
     ];
 
     initrd.verbose = false;
@@ -40,7 +41,7 @@
 
     loader = {
       efi = {
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
       };
 
@@ -54,7 +55,7 @@
     };
   };
 
-  powerManagement.cpuFreqGovernor = "schedutil";
+  powerManagement.cpuFreqGovernor = "performance";
 
   networking = {
     hostName = "${hostName}"; #hostname declared in flake.nix
@@ -122,7 +123,7 @@
 
   users.users.${userName} = {
     isNormalUser = true;
-    extraGroups = ["audio" "games" "input" "lp" "networkmanager" "scanner" "users" "vboxusers" "video" "wheel"];
+    extraGroups = ["audio" "games" "input" "lp" "libvirtd" "networkmanager" "scanner" "users" "vboxusers" "video" "wheel"];
     shell = pkgs.fish;
   };
 
@@ -143,7 +144,7 @@
       libsForQt5.kio-extras
       lm_sensors
       nix-search-cli
-      nvtop-amd
+      nvtopPackages.amd
       openrgb
       p7zip
       pciutils
@@ -158,6 +159,9 @@
       ydotool
     ];
   };
+
+  # virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
 
   systemd = {
     extraConfig = ''

@@ -38,17 +38,17 @@
     calcurse
     electron
     filezilla
-    gamescope
     gimp
+    gnome-multi-writer
     gnome.gnome-boxes
     gnome.gnome-settings-daemon
     gnome.gvfs
     gnome.seahorse
     gnome.simple-scan
     jq
-    libsForQt5.ark
-    libsForQt5.dolphin
-    libsForQt5.dolphin-plugins
+    gnome.file-roller
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
     libnotify
     mangohud
     mesa-demos
@@ -56,9 +56,10 @@
     nodejs
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    openmw
+    # openmw
     pamixer
     pavucontrol
+    protonvpn-gui
     playerctl
     protontricks
     pulsemixer
@@ -90,6 +91,10 @@
 
   fonts.fontconfig.enable = true;
 
+  programs.bat = {
+    enable = true;
+  };
+
   programs.eza = {
     enable = true;
   };
@@ -117,7 +122,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-qt;
   };
 
   services.udiskie.enable = true;
@@ -128,7 +133,7 @@
   };
 
   services.gammastep = {
-    enable = false;
+    enable = true;
     provider = "geoclue2";
   };
 
@@ -186,7 +191,7 @@
     rbw = {
       enable = true;
       settings = {
-        pinentry = "gtk2";
+        pinentry = pkgs.pinentry-qt;
         email = "${emailAddress}";
       };
     };
@@ -197,6 +202,10 @@
   services.easyeffects = {
     enable = true;
     preset = "DT770";
+  };
+
+  services.syncthing = {
+    enable = true;
   };
 
   xdg.userDirs = {

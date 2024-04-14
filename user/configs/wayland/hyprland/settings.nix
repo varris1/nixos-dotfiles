@@ -20,8 +20,8 @@
   in {
     settings = {
       monitor = [
-        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos}, 1"
-        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos}, 1"
+        "${leftMonitor.display}, ${leftMonitor.res}, ${leftMonitor.pos},1"
+        "${rightMonitor.display}, ${rightMonitor.res}, ${rightMonitor.pos},1"
       ];
 
       workspace = [
@@ -42,6 +42,7 @@
       };
 
       general = {
+        allow_tearing = false;
         gaps_in = 10;
         border_size = 4;
         "col.active_border" = "rgba(665C54ff)";
@@ -59,7 +60,6 @@
 
       misc = {
         force_default_wallpaper = 0;
-        vfr = true;
         vrr = 2;
       };
 
@@ -109,8 +109,6 @@
         "${pkgs.xorg.xrandr}/bin/xrandr --output ${rightMonitor.display} --primary"
         "pkill eww; sleep 1; eww open-many panel0 panel1 &> /dev/null"
         "sleep 2; pkill swww-daemon; swww init"
-
-        #Set cursor
         "${pkgs.hyprland}/bin/hyprctl setcursor '${config.gtk.cursorTheme.name}' ${builtins.toString config.gtk.cursorTheme.size} &> /dev/null"
       ];
 
@@ -136,7 +134,7 @@
         "${modKey}, P, pseudo, # dwindle"
         "${modKey}, J, togglesplit, # dwindle"
         "${modKey} SHIFT, Space, togglefloating"
-        "${modKey}, F, fullscreen"
+        "${modKey} SHIFT, F, fullscreen"
 
         "${modKey} SHIFT, Q, killactive"
         "${modKey}, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -p Applications -show-icons"
@@ -177,6 +175,10 @@
         "float, class:^(org.kde.dolphin)$"
         # "nomaximizerequest, class:.*"
       ];
+
+      debug = {
+        disable_logs = false;
+      };
     };
   };
 }

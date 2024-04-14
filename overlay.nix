@@ -4,8 +4,6 @@
     eww-hyprland-activewindow = prev.callPackage ./pkgs/eww-hyprland-activewindow {};
     eww-hyprland-workspaces = prev.callPackage ./pkgs/eww-hyprland-workspaces {};
 
-    # eww = final.callPackage ./pkgs/eww-systray {inherit inputs;};
-
     ncmpcpp = prev.ncmpcpp.override {
       visualizerSupport = true;
     };
