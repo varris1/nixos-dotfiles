@@ -11,13 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    chaotic-nyx = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    eww-systray = {
-      url = "github:ralismark/eww/tray-3";
+    eww = {
+      url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -136,7 +131,6 @@
       };
       modules = [
         ./system/configuration.nix
-        inputs.chaotic-nyx.nixosModules.default
         inputs.grub2-themes.nixosModules.default
         inputs.nur.nixosModules.nur
       ];

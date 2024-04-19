@@ -82,6 +82,7 @@
   ];
 
   home.sessionVariables = {
+    FLAKE = "${config.home.homeDirectory}/.dotfiles";
     GTK_THEME = "${builtins.toString config.gtk.theme.name}";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
@@ -112,6 +113,7 @@
     enable = true;
 
     packages = [
+      "dev.aunetx.deezer"
     ];
 
     update.auto = {
@@ -201,7 +203,7 @@
 
   services.easyeffects = {
     enable = true;
-    preset = "DT770";
+    preset = "oratory1990";
   };
 
   services.syncthing = {

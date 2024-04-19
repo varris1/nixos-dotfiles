@@ -174,6 +174,19 @@
         "fullscreen, class:^(hl2_linux)$"
         "float, class:^(org.kde.dolphin)$"
         # "nomaximizerequest, class:.*"
+
+        "float, title:^(Blish HUD)$"
+        "center, title:^(Blish HUD)$"
+        "nofocus, title:^(Blish HUD)$"
+        "noinitialfocus, title:^(Blish HUD)$"
+        "noborder, title:^(Blish HUD)$"
+        "noblur, title:^(Blish HUD)$"
+        "pin, title:^(Blish HUD)$"
+        "opacity 0.3, title:^(Blish HUD)$"
+        "workspace 9 silent, title:$(Blish HUD)$"
+
+        "stayfocused, title:(Guild Wars 2)"
+        "forceinput, title:(Guild Wars 2)"
       ];
 
       debug = {

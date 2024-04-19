@@ -12,5 +12,4 @@
     enable = true;
     extraBackends = [pkgs.sane-airscan];
   };
-  chaotic.mesa-git.enable = true;
 }
