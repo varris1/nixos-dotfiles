@@ -27,7 +27,8 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      # url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland/f94264928a8ab4da8759d4ded25a46af44451d38";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -133,23 +134,19 @@
         ./system/configuration.nix
         inputs.grub2-themes.nixosModules.default
         inputs.nur.nixosModules.nur
-      ];
-    };
 
-    homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        inherit inputs;
-        inherit userName;
-        inherit flakeDir;
-        inherit emailAddress;
-      };
-      modules = [
-        ./user/home.nix
-        inputs.hyprlock.homeManagerModules.hyprlock
-        inputs.nix-index-database.hmModules.nix-index
-        inputs.nix-flatpak.homeManagerModules.nix-flatpak
-        inputs.nur.hmModules.nur
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.manuel = import ./user/home.nix;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            inherit userName;
+            inherit flakeDir;
+            inherit emailAddress;
+          };
+        }
       ];
     };
   };

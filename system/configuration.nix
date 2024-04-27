@@ -22,9 +22,6 @@
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = ["i2c-dev" "i2c-piix4"];
     kernelParams = [
-      "amd_pstate.shared_mem=1"
-      "amd_pstate=active"
-
       #quiet boot
       "quiet"
       "splash"
@@ -55,7 +52,7 @@
     };
   };
 
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   networking = {
     hostName = "${hostName}"; #hostname declared in flake.nix

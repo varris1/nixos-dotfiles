@@ -13,14 +13,20 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/01457b77-e372-4e6f-894f-2ea46f0c791d";
+    fileSystems."/" =
+    { device = "/dev/disk/by-uuid/1000a2da-adbe-4002-b382-06b2a1f317e1";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/751C-67A3";
+    { device = "/dev/disk/by-uuid/1A71-A862";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/44eb4792-3d6b-46de-9cad-7c468f88eeff";
+      fsType = "btrfs";
     };
 
   fileSystems."/mnt/hdd" =
@@ -28,10 +34,7 @@
       fsType = "xfs";
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/44eb4792-3d6b-46de-9cad-7c468f88eeff";
-      fsType = "btrfs";
-    };
+
 
   swapDevices = [ ];
 

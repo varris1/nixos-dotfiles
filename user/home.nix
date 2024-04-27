@@ -23,6 +23,11 @@
     ./configs/tmux
     ./configs/wayland/hyprland
     ./configs/xdg-mime.nix
+
+    inputs.hyprlock.homeManagerModules.hyprlock
+    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.nur.hmModules.nur
   ];
 
   home.username = "${userName}";
@@ -75,7 +80,7 @@
     twemoji-color-font
     vimv
     vulkan-tools
-    wineWowPackages.staging
+    wineWowPackages.waylandFull
     winetricks
     wqy_zenhei #fix for missing non-ascii fonts in TF2
     xdg-utils
@@ -221,7 +226,7 @@
   home.file."Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd/Downloads";
   home.file."Music".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd/Music";
 
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 
   nixpkgs.config = {
     permittedInsecurePackages = [

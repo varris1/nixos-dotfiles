@@ -60,7 +60,7 @@
 
       misc = {
         force_default_wallpaper = 0;
-        vrr = 2;
+        vrr = 1;
       };
 
       decoration = {
@@ -171,8 +171,8 @@
       ];
 
       windowrulev2 = [
-        "fullscreen, class:^(hl2_linux)$"
         "float, class:^(org.kde.dolphin)$"
+        "float, class:^(gamescope)$"
         # "nomaximizerequest, class:.*"
 
         "float, title:^(Blish HUD)$"

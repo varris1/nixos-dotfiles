@@ -36,9 +36,9 @@
         doas nixos-rebuild switch --flake ${flakeDir}
       '';
 
-      hms = ''
-        home-manager switch --flake ${flakeDir}
-      '';
+      # hms = ''
+        # home-manager switch --flake ${flakeDir}
+      # '';
 
       nou = ''
         nix flake update ${flakeDir} --commit-lock-file
